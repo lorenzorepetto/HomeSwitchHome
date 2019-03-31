@@ -1,0 +1,62 @@
+# This file is part of the Ocrend Framewok 3 package.
+#
+# (c) Ocrend Software <info@ocrend.com>
+#
+# For the full copyright and license information, please view the LICENS
+# file that was distributed with this source code.
+
+# Configuración de la base de datos
+database:
+  default_driver: mysql
+  drivers:
+    mysql: 
+      host: 127.0.0.1
+      user: root
+      pass:
+      name: homeSwitchHome
+      port: default
+      socket: default
+    sqlite3:
+      file: '___ROOT___Ocrend/Kernel/Database/Drivers/Sqlite/db.sqlite3'
+      
+# Configuración de servidor SMTP
+mailer:
+  host: 
+  user: 
+  pass: 
+  port: 587
+  logo:
+
+# Configuración de twig
+twig:
+  cache: false
+  compiled_dir: ./app/templates/.compiled/
+  charset: UTF-8
+  strict_variables: false
+  autoescape: html
+  
+# Configuración del sitio
+build:
+  production: false
+  name: Home Switch Home
+  url: http://localhost/homeSwitchHome/
+  timezone: America/Caracas
+  version: 3.0.1
+
+# Configuración de cookies
+sessions:
+  lifetime: 3600
+  user_cookie:
+    enable: true
+    key_encrypt: X8f3p@9Vde0WvKauzI8C
+    lifetime: 3600
+
+# Configuración de la api
+api:
+  active: true
+  origin: '*'
+
+# Configuración de ruta
+router:
+  ssl: false
+  path: localhost/HomeSwitchHome/
