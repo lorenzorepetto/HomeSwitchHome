@@ -25,33 +25,50 @@ class usuariosController extends Controllers implements IControllers {
     public function __construct(IRouter $router) {
         parent::__construct($router);
         
+        #Instancio un objeto Usuario
+        $u = new Model\Usuarios;
+
         switch ($this->method) {
         	case 'login':
         			echo $this->template->render('usuarios/login');
         		break;
         	
         	case 'autenticar':
-        			$u = new Model\Usuarios;
-
-        			$email= $_POST['email'];
-        			$pass= $_POST['password'];
-
-        			$u->autenticar($email,$pass);
-
-        			$usuario= '';
-        			if (isset($_SESSION['nombre'])) {
-        				$usuario= array('nombre' => $_SESSION['nombre'] , 'apellido' => $_SESSION['apellido'] );
-        			}
-
-        			
-        			
-        			echo $this->template->render('usuarios/usuarios', array('data' => $usuario ));
-        		break;
+        			$this->autenticar($u);
+         		break;
 
         	default:
         			echo $this->template->render('usuarios/usuarios');
         		break;
     	}
-        
     }
+
+
+
+
+    private function autenticar($u){
+
+    	#Guardo los valores del formulario
+    	$email= $_POST['email'];
+        $pass= $_POST['password'];
+
+        $ok = $u->autenticar($email,$pass);
+      
+        if ($ok) {
+        	#Guardo los datos de la sesion en un arreglo
+        	$usuario= array('nombre' => $_SESSION['nombre'] , 'apellido' => $_SESSION['apellido'] );
+
+
+        	#Envia los datos del arreglo a la vista, junto con el valor TRUE en el index isLogged
+        	echo $this->template->render('usuarios/usuarios', array('isLogged' => true,'data' => $usuario ));
+        }
+        else{
+        	#Le envia a la vista solo un valor false en el index isLogged
+        	echo $this->template->render('usuarios/usuarios' , array('isLogged' => false));
+        }
+
+
+    }
+
+
 }
