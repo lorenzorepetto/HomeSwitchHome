@@ -45,9 +45,9 @@ build:
 
 # Configuración de cookies
 sessions:
-  lifetime: 3600
+  lifetime: 1
   user_cookie:
-    enable: true
+    enable: false
     key_encrypt: X8f3p@9Vde0WvKauzI8C
     lifetime: 3600
 

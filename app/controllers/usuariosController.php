@@ -1,0 +1,57 @@
+<?php
+
+/*
+ * This file is part of the Ocrend Framewok 3 package.
+ *
+ * (c) Ocrend Software <info@ocrend.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+*/
+
+namespace app\controllers;
+
+use app\models as Model;
+use Ocrend\Kernel\Helpers as Helper;
+use Ocrend\Kernel\Controllers\Controllers;
+use Ocrend\Kernel\Controllers\IControllers;
+use Ocrend\Kernel\Router\IRouter;
+
+/**
+ * Controlador usuarios/
+*/
+class usuariosController extends Controllers implements IControllers {
+
+    public function __construct(IRouter $router) {
+        parent::__construct($router);
+        
+        switch ($this->method) {
+        	case 'login':
+        			echo $this->template->render('usuarios/login');
+        		break;
+        	
+        	case 'autenticar':
+        			$u = new Model\Usuarios;
+
+        			$email= $_POST['email'];
+        			$pass= $_POST['password'];
+
+        			$u->autenticar($email,$pass);
+
+        			$usuario= '';
+        			if (isset($_SESSION['nombre'])) {
+        				$usuario= array('nombre' => $_SESSION['nombre'] , 'apellido' => $_SESSION['apellido'] );
+        			}
+
+        			
+        			
+        			echo $this->template->render('usuarios/usuarios', array('data' => $usuario ));
+        		break;
+
+        	default:
+        			echo $this->template->render('usuarios/usuarios');
+        		break;
+    	}
+        
+    }
+}
