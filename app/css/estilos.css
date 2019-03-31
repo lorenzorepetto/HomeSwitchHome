@@ -1,0 +1,12 @@
+.bg-dark {
+    background-color: #000d1a !important;
+}
+
+.navbar-dark {
+	border-radius: 0 !important;
+}
+
+#fotoRedondel{
+display:block;
+margin:auto;
+}
