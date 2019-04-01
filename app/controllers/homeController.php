@@ -26,6 +26,19 @@ class homeController extends Controllers implements IControllers {
 
     public function __construct(IRouter $router) {
         parent::__construct($router);
-        $this->template->display('home/home');
+
+
+        if (isset($_SESSION['id'])) {
+        	if ($_SESSION['rol']='ADMINISTRADOR') {
+        		$this->template->display('home/homeBackend');
+        	}
+        	else{
+        		$this->template->display('home/homeLogged');
+        	}
+        }
+        else{
+        	$this->template->display('home/home');	
+        }
     }
+    
 }

@@ -38,7 +38,7 @@ class usuariosController extends Controllers implements IControllers {
          		break;
 
         	default:
-        			echo $this->template->render('usuarios/usuarios');
+        			echo $this->template->display('home/home');
         		break;
     	}
     }
@@ -53,18 +53,19 @@ class usuariosController extends Controllers implements IControllers {
         $pass= $_POST['password'];
 
         $ok = $u->autenticar($email,$pass);
-      
-        if ($ok) {
-        	#Guardo los datos de la sesion en un arreglo
-        	$usuario= array('nombre' => $_SESSION['nombre'] , 'apellido' => $_SESSION['apellido'] );
 
+        if ($ok) {     	
 
-        	#Envia los datos del arreglo a la vista, junto con el valor TRUE en el index isLogged
-        	echo $this->template->render('usuarios/usuarios', array('isLogged' => true,'data' => $usuario ));
+        	if ($_SESSION['rol']='ADMINISTRADOR') {
+        		$this->template->display('home/homeBackend');
+        	}
+        	else{
+        		$this->template->display('home/homeLogged');
+        	}
         }
         else{
         	#Le envia a la vista solo un valor false en el index isLogged
-        	echo $this->template->render('usuarios/usuarios' , array('isLogged' => false));
+        	echo $this->template->render('usuarios/login');
         }
 
 

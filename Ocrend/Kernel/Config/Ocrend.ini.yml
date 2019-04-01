@@ -37,7 +37,7 @@ twig:
   
 # Configuración del sitio
 build:
-  production: false
+  production: true
   name: Home Switch Home
   url: http://localhost/homeSwitchHome/
   timezone: America/Caracas
@@ -45,7 +45,7 @@ build:
 
 # Configuración de cookies
 sessions:
-  lifetime: 1
+  lifetime: 122
   user_cookie:
     enable: false
     key_encrypt: X8f3p@9Vde0WvKauzI8C

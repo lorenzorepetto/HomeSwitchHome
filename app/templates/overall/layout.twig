@@ -20,9 +20,11 @@
 
     {% block appHeader %}
 
+        <div id="navbar">
+
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
           <!-- Brand -->
-          <a class="navbar-brand" href="#"><div><img src="app/img/HSH-Text.jpg" class="img-responsive" title="Logo Home Switch Home" style="width:180px;"></div></a>
+          <a class="navbar-brand" href="http://localhost/HomeSwitchHome/"><div><img src="app/img/HSH-Text.jpg" class="img-responsive" title="Logo Home Switch Home" style="width:180px;"></div></a>
 
           <!-- Links -->
           <ul class="navbar-nav">
@@ -30,7 +32,7 @@
               <a class="nav-link" href="#"><span class="glyphicon glyphicon-user"></span>  Registrarse</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#"><span class="glyphicon glyphicon-log-in"></span>   Iniciar Sesion</a>
+              <a class="nav-link" href="http://localhost/HomeSwitchHome/usuarios/login"><span class="glyphicon glyphicon-log-in"></span>   Iniciar Sesion</a>
             </li>
 
             <!-- Dropdown -->
@@ -46,7 +48,9 @@
               </div>
             </li>
           </ul>
-        </nav> 
+        </nav>
+
+        </div> 
     {% endblock %}
 
     {% block carrousel %}
@@ -125,9 +129,6 @@
 
 
     {% endblock %}
-
-    <div class="container-fluid"> hola</div>
-
         
 
     {# Sólamente necesario para facilitar las peticiones AJAX del generador, puede eliminarse #}
