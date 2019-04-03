@@ -37,11 +37,30 @@ class usuariosController extends Controllers implements IControllers {
         			$this->autenticar($u);
          		break;
 
+            case 'logout':
+                    $this->logout();    
+                break;    
+
         	default:
         			echo $this->template->display('home/home');
         		break;
     	}
     }
+
+
+    private function logout(){
+
+        if (isset($_SESSION['id'])) {
+           
+            #Destruir la sesión
+            session_destroy();
+           
+        }
+        echo $this->template->display('home/home');
+    }
+
+
+
 
 
 

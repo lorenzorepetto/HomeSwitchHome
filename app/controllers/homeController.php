@@ -29,7 +29,7 @@ class homeController extends Controllers implements IControllers {
 
 
         if (isset($_SESSION['id'])) {
-        	if ($_SESSION['rol']='ADMINISTRADOR') {
+        	if ($_SESSION['rol']=='ADMINISTRADOR') {
         		$this->template->display('home/homeBackend');
         	}
         	else{
