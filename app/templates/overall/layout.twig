@@ -16,6 +16,8 @@
     <title>{{ config.build.name }}</title>
 </head>
 
+
+
 <body>
 
     {% block appHeader %}
@@ -95,6 +97,8 @@
     {% endblock %}
     <br>
 
+    {% block appBody %}
+
     <div class="container-fluid row">
       <div class="container-fluid col-lg-4">
         <div class="container-fluid">
@@ -123,7 +127,7 @@
     </div>
     
 
-    {% block appBody %}
+    
 
 
     {% endblock %}
