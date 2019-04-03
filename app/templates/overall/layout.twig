@@ -29,7 +29,7 @@
           <!-- Links -->
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" href="#"><span class="glyphicon glyphicon-user"></span>  Registrarse</a>
+              <a class="nav-link" href="http://localhost/HomeSwitchHome/usuarios/registrar"><span class="glyphicon glyphicon-user"></span>  Registrarse</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="http://localhost/HomeSwitchHome/usuarios/login"><span class="glyphicon glyphicon-log-in"></span> Iniciar Sesión </a>
@@ -54,8 +54,7 @@
     {% endblock %}
 
     {% block carrousel %}
-
-        <main role="main">
+        <div id="prueba">
             <div id="demo" class="carousel slide" data-ride="carousel">
                 <ul class="carousel-indicators">
                     <li data-target="#demo" data-slide-to="0" class="active"></li>
@@ -70,30 +69,29 @@
                             <p>We had such a great time in LA!</p>
                         </div>   
                     </div>
-                <div class="carousel-item">
-                    <img src="app/img/residencia2.jpeg" width="100%" height="100%" alt="Chicago" width="1100" height="500">
-                    <div class="carousel-caption">
-                        <h3>Chicago</h3>
-                        <p>Thank you, Chicago!</p>
-                    </div>   
+                    <div class="carousel-item">
+                        <img src="app/img/residencia2.jpeg" width="100%" height="100%" alt="Chicago" width="1100" height="500">
+                        <div class="carousel-caption">
+                            <h3>Chicago</h3>
+                            <p>Thank you, Chicago!</p>
+                        </div>   
+                    </div>
+                    <div class="carousel-item">
+                        <img src="app/img/residencia3.jpeg" width="100%" height="100%" alt="New York" width="1100" height="500">
+                        <div class="carousel-caption">
+                            <h3>New York</h3>
+                            <p>We love the Big Apple!</p>
+                        </div>   
+                    </div>
                 </div>
-                <div class="carousel-item">
-                    <img src="app/img/residencia3.jpeg" width="100%" height="100%" alt="New York" width="1100" height="500">
-                    <div class="carousel-caption">
-                        <h3>New York</h3>
-                        <p>We love the Big Apple!</p>
-                    </div>   
-                </div>
+                <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </a>
+                <a class="carousel-control-next" href="#demo" data-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </a>
             </div>
-            <a class="carousel-control-prev" href="#demo" data-slide="prev">
-                <span class="carousel-control-prev-icon"></span>
-            </a>
-            <a class="carousel-control-next" href="#demo" data-slide="next">
-                <span class="carousel-control-next-icon"></span>
-            </a>
-        </main>
-
-        <div class="container marketing">
+        </div>
     {% endblock %}
     <br>
 
