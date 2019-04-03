@@ -32,7 +32,6 @@ class usuariosController extends Controllers implements IControllers {
         	case 'iniciar':
         			echo $this->template->display('usuarios/iniciar');
         		break;
-        	
         	case 'autenticar':
         			$this->autenticar($u);
          		break;
