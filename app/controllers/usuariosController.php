@@ -29,14 +29,16 @@ class usuariosController extends Controllers implements IControllers {
         $u = new Model\Usuarios;
 
         switch ($this->method) {
-        	case 'login':
-        			echo $this->template->render('usuarios/login');
+        	case 'iniciar':
+        			echo $this->template->display('usuarios/iniciar');
         		break;
         	
         	case 'autenticar':
         			$this->autenticar($u);
          		break;
-
+            case 'registrar':
+                    echo $this->template->display('usuarios/registrar');
+                break;
 
             case 'logout':
                     $this->logout();    
