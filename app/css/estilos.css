@@ -14,6 +14,10 @@ margin:auto;
 .btn-secondary{
 	background-color: #000d1a;
 }
+.btn-secondary:hover {
+  color: #000d1a;
+  background-color: #e6e6ff;
+}
 
 .form{
 	width: 400px;
@@ -32,7 +36,23 @@ margin:auto;
 	margin-top: 10px
 }
 
+h2{
+	text-align: center;
+}
+
 nav{
 	font-size: 16px;
+}
+
+.footer{
+	background-color: #000d1a;
+}
+
+a.comun{
+	color: #000d1a;
+}
+
+#carrusel{
+	margin-top: -20px;
 }
 
