@@ -50,15 +50,20 @@ class Usuarios extends Models implements IModels {
     }
 
     
-    private function generarSesion($usuario){   
+    private function generarSesion($usuario){  
+        global $session;
+
         # Generar la sesión del usuario
-        $_SESSION['id'] = $usuario['id'];
-        $_SESSION['nombre'] = $usuario['nombre'];
-        $_SESSION['apellido'] = $usuario['apellido'];
-        $_SESSION['rol'] = $usuario['rol'];
+        $_SESSION['id'] = $usuario['0']['id'];
+        $_SESSION['nombre'] = $usuario['0']['nombre'];
+        $_SESSION['apellido'] = $usuario['0']['apellido'];
+        $_SESSION['rol'] = $usuario['0']['rol'];
+
+
     }
 
 
+    
     private function insertar(){
         #FALTA VALIDAR
 
@@ -82,39 +87,34 @@ class Usuarios extends Models implements IModels {
 
     }
 
-
+    
 
 
     public function autenticar($email,$pass){
 
-        $resultado= $this->db->query("SELECT id,nombre,apellido,rol
-                                      FROM usuarios
-                                      WHERE email='$email' and password='$pass'");
+        $usuario = $this->db->select('*', 'usuarios', null, "email = '$email' AND password = '$pass'");
+        
+        if ($usuario){
 
-        if (mysqli_num_rows($resultado)){
-            $usuario= mysqli_fetch_array($resultado);
             $this->generarSesion($usuario);
             return true;
         }
 
         return false;
-
     }
     
-
+    
     public function existe($email){
 
-        $resultado= $this->db->query("SELECT id,nombre,apellido,rol
-                                      FROM usuarios
-                                      WHERE email='$email'");
+        $resultado= $this->db->select('*', 'usuarios', null, "email = '$email'");
 
-        if (mysqli_fetch_array($resultado)){
+        if ($resultado){
             return true;
         }
 
         return false;
     }
-
+    
 
     
 }
