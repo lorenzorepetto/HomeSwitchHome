@@ -56,7 +56,7 @@ class usuariosController extends Controllers implements IControllers {
 
         if ($ok) {     	
 
-        	if ($_SESSION['rol']='ADMINISTRADOR') {
+        	if ($_SESSION['rol']=='ADMINISTRADOR') {
         		$this->template->display('home/homeBackend');
         	}
         	else{
