@@ -37,6 +37,7 @@ class usuariosController extends Controllers implements IControllers {
         			$this->autenticar($u);
          		break;
 
+
             case 'logout':
                     $this->logout();    
                 break;    
@@ -46,6 +47,8 @@ class usuariosController extends Controllers implements IControllers {
         		break;
     	}
     }
+
+
 
 
     private function logout(){
@@ -58,10 +61,6 @@ class usuariosController extends Controllers implements IControllers {
         }
         echo $this->template->display('home/home');
     }
-
-
-
-
 
 
 
@@ -86,9 +85,10 @@ class usuariosController extends Controllers implements IControllers {
         	#Le envia a la vista solo un valor false en el index isLogged
         	echo $this->template->render('usuarios/login');
         }
-
-
     }
+
+
+    
 
 
 }

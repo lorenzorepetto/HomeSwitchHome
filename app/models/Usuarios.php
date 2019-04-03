@@ -50,9 +50,7 @@ class Usuarios extends Models implements IModels {
     }
 
     
-    private function generarSesion($usuario){
-        global $session;
-        
+    private function generarSesion($usuario){   
         # Generar la sesión del usuario
         $_SESSION['id'] = $usuario['id'];
         $_SESSION['nombre'] = $usuario['nombre'];
@@ -61,13 +59,39 @@ class Usuarios extends Models implements IModels {
     }
 
 
+    private function insertar(){
+        #FALTA VALIDAR
+
+        $u = array(
+            'email' => $_POST['email'],
+            'password' => $_POST['password'],
+            'nombre' => $_POST['nombre'],
+            'apellido' => $_POST['apellido'],
+            'fecha_nacimiento' => $_POST['fecha_nacimiento'],
+            'foto' => addslashes(file_get_contents($_FILES['foto']['tmp_name'])),
+            'telefono' => $_POST['telefono'],
+            'creditos' => 2,
+            'marca_tarjeta' => $_POST['marca_tarjeta'],
+            'numero_tarjeta' => $_POST['numero_tarjeta'],
+            'fecha_vencimiento_tarjeta' => $_POST['fecha_vencimiento_tarjeta'],
+            'rol' => "ESTANDAR"
+        );
+        
+
+        $this->db->insert('usuarios',$u);
+
+    }
+
+
+
+
     public function autenticar($email,$pass){
 
         $resultado= $this->db->query("SELECT id,nombre,apellido,rol
                                       FROM usuarios
                                       WHERE email='$email' and password='$pass'");
 
-        if (mysqli_num_rows($resultado)) {
+        if (mysqli_num_rows($resultado)){
             $usuario= mysqli_fetch_array($resultado);
             $this->generarSesion($usuario);
             return true;
@@ -77,5 +101,20 @@ class Usuarios extends Models implements IModels {
 
     }
     
+
+    public function existe($email){
+
+        $resultado= $this->db->query("SELECT id,nombre,apellido,rol
+                                      FROM usuarios
+                                      WHERE email='$email'");
+
+        if (mysqli_fetch_array($resultado)){
+            return true;
+        }
+
+        return false;
+    }
+
+
     
 }
