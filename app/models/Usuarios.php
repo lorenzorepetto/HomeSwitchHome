@@ -64,8 +64,19 @@ class Usuarios extends Models implements IModels {
 
 
     
-    private function insertar(){
-        #FALTA VALIDAR
+    public function insertar(){
+        
+        if (isset($_FILES["foto"]["tmp_name"])) {
+            $foto= $_FILES["foto"]["tmp_name"];
+            $nombrefoto = $_FILES["foto"]["name"];
+            $foto  = $_FILES['foto']['tmp_name'];
+
+            $foto= $this->db->scape($foto);
+        }
+        else{
+            $foto=null;
+        }
+        
 
         $u = array(
             'email' => $_POST['email'],
@@ -73,7 +84,7 @@ class Usuarios extends Models implements IModels {
             'nombre' => $_POST['nombre'],
             'apellido' => $_POST['apellido'],
             'fecha_nacimiento' => $_POST['fecha_nacimiento'],
-            'foto' => addslashes(file_get_contents($_FILES['foto']['tmp_name'])),
+            'foto' => $foto,
             'telefono' => $_POST['telefono'],
             'creditos' => 2,
             'marca_tarjeta' => $_POST['marca_tarjeta'],
@@ -81,7 +92,6 @@ class Usuarios extends Models implements IModels {
             'fecha_vencimiento_tarjeta' => $_POST['fecha_vencimiento_tarjeta'],
             'rol' => "ESTANDAR"
         );
-        
 
         $this->db->insert('usuarios',$u);
 

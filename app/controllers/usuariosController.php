@@ -38,6 +38,10 @@ class usuariosController extends Controllers implements IControllers {
             case 'registrar':
                     echo $this->template->display('usuarios/registrar');
                 break;
+            
+            case 'insertar':
+                    $this->insertar($u);
+                break;
 
             case 'logout':
                     $this->logout();    
@@ -50,6 +54,15 @@ class usuariosController extends Controllers implements IControllers {
     }
 
 
+
+    public function insertar($u){
+        $email=$_POST['email'];
+        if (!$u->existe($email)) {
+            $u->insertar();
+        }
+
+        echo $this->template->display('home/home');
+    }
 
 
     private function logout(){

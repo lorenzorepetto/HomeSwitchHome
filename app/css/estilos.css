@@ -26,6 +26,7 @@ margin:auto;
 #div_registrar{
 	background-color: #e6e6ff;
 	width: 500px;
+	border-radius: 15px;
 }
 
 #body_registrar{
