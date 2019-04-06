@@ -124,6 +124,14 @@ class Usuarios extends Models implements IModels {
 
         return false;
     }
+
+
+    public function perfil($id){
+        
+        $resultado = $this->db->select('*', 'usuarios', null, "id = '$id'");
+        return $resultado;
+
+    }
     
 
     

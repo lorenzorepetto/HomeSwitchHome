@@ -43,6 +43,11 @@ class usuariosController extends Controllers implements IControllers {
                     $this->insertar($u);
                 break;
 
+
+            case 'perfil':
+                    $this->perfil($u);
+                break;
+
             case 'logout':
                     $this->logout();    
                 break;    
@@ -97,8 +102,40 @@ class usuariosController extends Controllers implements IControllers {
         }
         else{
         	#Le envia a la vista solo un valor false en el index isLogged
-        	echo $this->template->render('usuarios/login');
+        	echo $this->template->display('usuarios/login');
         }
+    }
+
+
+
+    public function perfil($u){
+        
+        $id = $_SESSION['id'];
+        
+        if ($id) {
+               
+            $resultado = $u->perfil($id);
+
+            if ($resultado) {
+                
+                $usuario = array(
+                'id' => $resultado['0']['id'],
+                'email' => $resultado['0']['email'],
+                'nombre' => $resultado['0']['nombre'],
+                'apellido' => $resultado['0']['apellido'],
+                'foto' => $resultado['0']['foto'],
+                'creditos' => $resultado['0']['creditos'],
+                'rol' => $resultado['0']['rol'],
+                 );
+            }
+            
+
+            #ACA IMPRIMO EL USUARIO PARA QUE VEAS COMO ESTA LA FOTO EN LA BASE
+            dump($usuario);
+
+            $this->template->display('usuarios/perfil', $usuario);
+        }
+        
     }
 
 
