@@ -13,7 +13,8 @@
     <link rel="stylesheet" href="app/css/animate.css">
     {# Glyphicons #}
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    {#<link rel="stylesheet" href="app/css/animate.css">#}
+    <!--iconos del footer-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>{{ config.build.name }}</title>
 </head>
 
@@ -57,30 +58,30 @@
     {% endblock %}
 
     {% block carrousel %}
-        <div id="carrusel">
-            <div id="demo" class="carousel slide" data-ride="carousel">
+        <div id="carrusel" class="carru">
+            <div id="demo" class="carru carousel slide" data-ride="carousel">
                 <ul class="carousel-indicators">
                     <li data-target="#demo" data-slide-to="0" class="active"></li>
                     <li data-target="#demo" data-slide-to="1"></li>
                     <li data-target="#demo" data-slide-to="2"></li>
                 </ul>
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="app/img/residencia1.jpeg" focusable="false" role="img" width="100%" height="100%" alt="Los Angeles" width="1100" height="500">
+                <div class="carru carousel-inner">
+                    <div class="carru carousel-item active">
+                        <img src="app/img/residencia1.jpeg" focusable="false" role="img" width="100%" height="100%" alt="Los Angeles">
                         <div class="carousel-caption">
                             <h3>Los Angeles</h3>
                             <p>We had such a great time in LA!</p>
                         </div>   
                     </div>
-                    <div class="carousel-item">
-                        <img src="app/img/residencia2.jpeg" width="100%" height="100%" alt="Chicago" width="1100" height="500">
+                    <div class="carru carousel-item">
+                        <img src="app/img/residencia2.jpeg" width="100%" height="100%" alt="Chicago">
                         <div class="carousel-caption">
                             <h3>Chicago</h3>
                             <p>Thank you, Chicago!</p>
                         </div>   
                     </div>
-                    <div class="carousel-item">
-                        <img src="app/img/residencia3.jpeg" width="100%" height="100%" alt="New York" width="1100" height="500">
+                    <div class="carru carousel-item">
+                        <img src="app/img/residencia3.jpeg" width="100%" height="100%" alt="New York">
                         <div class="carousel-caption">
                             <h3>New York</h3>
                             <p>We love the Big Apple!</p>
@@ -132,11 +133,15 @@
     {% endblock %}
         
     {% block appFooter %}
+        <img src="app/img/PROSolutions2.jpg">
         <footer class="footer mt-auto py-3">
-            <div class="container">
-            <span class="text-muted">Place sticky footer content here.</span>
-        </div>
+            <div class="main row">              
+                <div class="texto-footer col-md-4"><i class="fa">&#xf16d;</i><small> @homeswitchhome</small></div>
+                <div class="texto-footer col-md-4"><i class="fa">&#xf082;</i><small> Home Switch Home</small></div>
+                <div class="texto-footer col-md-4"><i class="fa">&#xf081;</i><small> @homeswitchhome</small></div>
+            </div>
         </footer>
+
     {% endblock %}
     
     {# Sólamente necesario para facilitar las peticiones AJAX del generador, puede eliminarse #}

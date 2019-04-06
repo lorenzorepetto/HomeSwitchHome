@@ -133,6 +133,9 @@ class usuariosController extends Controllers implements IControllers {
                 'foto' => $resultado['0']['foto'],
                 'creditos' => $resultado['0']['creditos'],
                 'rol' => $resultado['0']['rol'],
+                'telefono' => $resultado['0']['telefono'],
+                'fecha_nacimiento' => $resultado['0']['fecha_nacimiento'],
+                'marca_tarjeta' => $resultado['0']['marca_tarjeta']
                  );
             }
 

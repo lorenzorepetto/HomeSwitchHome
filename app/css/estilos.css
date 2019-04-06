@@ -79,3 +79,19 @@ img .align-right{
  	border: 1px solid #000d1a !important;
 
  }
+
+ .textoFooter{
+ 	font-size: 20px;
+ }
+
+ footer{
+ 	color: white;
+ }
+
+ .texto-footer{
+	text-align: center;
+}
+
+.carru{
+	height: 550px;
+}
