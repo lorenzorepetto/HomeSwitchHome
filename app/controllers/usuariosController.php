@@ -28,6 +28,7 @@ class usuariosController extends Controllers implements IControllers {
         #Instancio un objeto Usuario
         $u = new Model\Usuarios;
 
+
         switch ($this->method) {
         	case 'iniciar':
         			echo $this->template->display('usuarios/iniciar');
@@ -43,10 +44,17 @@ class usuariosController extends Controllers implements IControllers {
                     $this->insertar($u);
                 break;
 
+            case 'cambiarRol':
+                    $this->cambiarRol($u);
+                break;
 
             case 'perfil':
                     $this->perfil($u);
                 break;
+
+            case 'descontarCredito':
+                    $this->descontarCredito($u);
+                break;    
 
             case 'logout':
                     $this->logout();    
@@ -101,23 +109,22 @@ class usuariosController extends Controllers implements IControllers {
         	}
         }
         else{
-        	#Le envia a la vista solo un valor false en el index isLogged
-        	echo $this->template->display('usuarios/login');
+        	echo $this->template->display('usuarios/iniciar');
         }
     }
 
 
 
     public function perfil($u){
-        
-        $id = $_SESSION['id'];
-        
-        if ($id) {
-               
-            $resultado = $u->perfil($id);
+                
+        if (isset($_SESSION['id'])) {
+            
+            $id=$_SESSION['id'];
+
+            $resultado = $u->getUsuario($id);
 
             if ($resultado) {
-                
+
                 $usuario = array(
                 'id' => $resultado['0']['id'],
                 'email' => $resultado['0']['email'],
@@ -128,18 +135,35 @@ class usuariosController extends Controllers implements IControllers {
                 'rol' => $resultado['0']['rol'],
                  );
             }
-            
-
-            #ACA IMPRIMO EL USUARIO PARA QUE VEAS COMO ESTA LA FOTO EN LA BASE
-            dump($usuario);
 
             $this->template->display('usuarios/perfil', $usuario);
+        }
+        else{
+            $this->template->display('home/home');    
         }
         
     }
 
 
-    
+    public function descontarCredito($u){
+
+        $u->descontarCredito($_SESSION['id']);
+        $this->perfil($u);
+    }
+
+
+    public function cambiarRol($u){
+
+        #ESTE METODO TENDRIA QUE IR EN ADMIN CONTROLLER Y LE LLEGARIA UN ID DEL USUARIO A MODIFICAR
+
+        if(isset($_SESSION)){
+            if ($_SESSION['rol'] == 'ADMINISTRADOR') {
+                $u->cambiarRol($_SESSION['id']);
+            }
+        }
+        
+        $this->perfil($u);
+    }
 
 
 }

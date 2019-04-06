@@ -50,7 +50,60 @@ class Usuarios extends Models implements IModels {
     }
 
     
-    private function generarSesion($usuario){  
+   
+
+
+
+    /*
+
+    ------------------------  CONSULTAS  ---------------------------------------------------------------------
+
+    */
+
+
+
+
+    public function getUsuario($id){
+        
+        $resultado = $this->db->select('*', 'usuarios', null, "id = '$id'");
+        return $resultado;
+
+    }
+
+
+    public function existe($email){
+
+        $resultado= $this->db->select('*', 'usuarios', null, "email = '$email'");
+
+        if ($resultado){
+            return true;
+        }
+
+        return false;
+    }
+
+
+
+    /*
+
+    ------------------------  SESIONES  ---------------------------------------------------------------------
+
+    */
+
+    public function autenticar($email,$pass){
+
+        $usuario = $this->db->select('*', 'usuarios', null, "email = '$email' AND password = '$pass'");
+        if ($usuario){
+
+            $this->generarSesion($usuario);
+            return true;
+        }
+
+        return false;
+    }
+    
+    
+     private function generarSesion($usuario){  
         global $session;
 
         # Generar la sesión del usuario
@@ -63,6 +116,14 @@ class Usuarios extends Models implements IModels {
     }
 
 
+
+    /*
+
+    ------------------------  CREAR USUARIO  ---------------------------------------------------------------------
+
+    */
+
+   
     
     public function insertar(){
         
@@ -97,26 +158,16 @@ class Usuarios extends Models implements IModels {
 
     }
 
-    
 
+    /*
 
-    public function autenticar($email,$pass){
+    ------------------------  MODIFICACIONES  ---------------------------------------------------------------------
 
-        $usuario = $this->db->select('*', 'usuarios', null, "email = '$email' AND password = '$pass'");
-        
-        if ($usuario){
+    */
 
-            $this->generarSesion($usuario);
-            return true;
-        }
+    public function update($id, $datos){
 
-        return false;
-    }
-    
-    
-    public function existe($email){
-
-        $resultado= $this->db->select('*', 'usuarios', null, "email = '$email'");
+        $resultado = $this->db->update('usuarios', $datos, "id = '$id'");
 
         if ($resultado){
             return true;
@@ -126,12 +177,38 @@ class Usuarios extends Models implements IModels {
     }
 
 
-    public function perfil($id){
-        
-        $resultado = $this->db->select('*', 'usuarios', null, "id = '$id'");
-        return $resultado;
+    public function descontarCredito($id){
+
+        $usuario = $this->db->select('creditos', 'usuarios', null, "id = '$id'");
+
+        $creditos = $usuario['0']['creditos'];
+        $creditos = $creditos - 1;
+
+        $this->update($id, array('creditos' => $creditos ));
 
     }
+
+
+    public function cambiarRol($id){
+
+        $usuario = $this->db->select('rol', 'usuarios', null, "id = '$id'");
+
+        if ($usuario['0']['rol'] == 'ESTANDAR'){
+            $nuevo_rol = 'PREMIUM';
+        }
+        elseif ($usuario['0']['rol'] == 'PREMIUM') {
+            $nuevo_rol = 'ESTANDAR';
+        }
+
+        $this->update($id, array('rol' => $nuevo_rol)); 
+
+    }
+    
+
+
+    
+
+
     
 
     
