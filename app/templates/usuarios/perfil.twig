@@ -39,18 +39,23 @@
 {% endblock %}
 
 {% block appContenido %}
-
-	
-	
-		ID: {{ id }},  
-		NOMBRE: {{ nombre }},  
-		APELLIDO: {{ apellido }},  
-		EMAIL: {{ email }}, 
-		CREDITOS: {{ creditos }},  
-		ROL: {{ rol }},  
-		{{ foto }}
 		
-		
+	<div class="border container">
+    <h2>{{ nombre }} {{ apellido }}</h2>
+    <div class_"row">
+      <ul class="list-group list-group-flush col-lg-8">
+        <li class="list-group-item"><span class="glyphicon glyphicon-envelope"></span> Email: {{ email }}</li>
+        <li class="list-group-item"><span class="glyphicon glyphicon-user"></span> Tipo de usuario: {{ rol }}</li>
+        <li class="list-group-item"><span class="glyphicon glyphicon-earphone"></span> Teléfono: {{ telefono }}</li>
+        <li class="list-group-item"><span class="glyphicon glyphicon-calendar"></span> Fecha de nacimiento: {{ fecha_nacimiento }}</li>
+        <li class="list-group-item"><span class="glyphicon glyphicon-usd"></span> Créditos: <span class="badge badge-primary badge-pill creditos">{{ creditos }}</span></li>
+        <li class="list-group-item"><span class="glyphicon glyphicon-envelope"></span> Marca tarjeta: {{ marca_tarjeta }}</li>
+      </ul>
+      <img src="app/img/residencia2.jpeg" class="float-right col-lg-4" alt="Foto de perfil">  
+    </div>
+  </div>
+  <br>
 
 {% endblock %}
+
 

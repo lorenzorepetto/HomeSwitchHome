@@ -131,9 +131,6 @@
     {% block appBody %}
     {% endblock %}
         
-
-    {# Sólamente necesario para facilitar las peticiones AJAX del generador, puede eliminarse #}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     {% block appFooter %}
         <footer class="footer mt-auto py-3">
             <div class="container">
@@ -141,8 +138,9 @@
         </div>
         </footer>
     {% endblock %}
-
-
+    
+    {# Sólamente necesario para facilitar las peticiones AJAX del generador, puede eliminarse #}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     {# Importo Bootsrap #}
     <script src="app/js/jquery-3.3.1.min.js"></script>
     <script src="app/js/popper.min.js"></script>

@@ -57,3 +57,25 @@ a.comun{
 	margin-top: -20px;
 }
 
+img .align-right{
+	width:304;
+	 height:236;
+}
+
+.badge{
+	width: 25px;
+	background-color: #000d1a !important;
+	float: none;
+}
+
+.badge-pill{
+	float: none;
+}
+ .creditos{
+ 	float: none !important;
+ }
+
+ .border{
+ 	border: 1px solid #000d1a !important;
+
+ }
