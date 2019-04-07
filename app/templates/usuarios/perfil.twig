@@ -47,7 +47,7 @@
         <li class="list-group-item"><span class="glyphicon glyphicon-envelope"></span> Email: {{ email }}</li>
         <li class="list-group-item"><span class="glyphicon glyphicon-user"></span> Tipo de usuario: {{ rol }}</li>
         <li class="list-group-item"><span class="glyphicon glyphicon-earphone"></span> Teléfono: {{ telefono }}</li>
-        <li class="list-group-item"><span class="glyphicon glyphicon-calendar"></span> Fecha de nacimiento: {{ fecha_nacimiento }}</li>
+        <li class="list-group-item"><span class="glyphicon glyphicon-calendar"></span> Fecha de nacimiento: {{ fecha_nacimiento|date("d/m/Y") }}</li>
         <li class="list-group-item"><span class="glyphicon glyphicon-usd"></span> Créditos: <span class="badge badge-primary badge-pill creditos">{{ creditos }}</span></li>
         <li class="list-group-item"><span class="glyphicon glyphicon-envelope"></span> Marca tarjeta: {{ marca_tarjeta }}</li>
       </ul>
