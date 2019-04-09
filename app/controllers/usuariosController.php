@@ -28,37 +28,89 @@ class usuariosController extends Controllers implements IControllers {
         #Instancio un objeto Usuario
         $u = new Model\Usuarios;
 
+        
+        switch ($router->getMethod()) {
 
-        switch ($this->method) {
-        	case 'iniciar':
-        			echo $this->template->display('usuarios/iniciar');
-        		break;
-        	case 'autenticar':
-        			$this->autenticar($u);
-         		break;
-            case 'registrar':
-                    echo $this->template->display('usuarios/registrar');
-                break;
+            case 'cuenta':
+                
+                    switch ($router->getId()) {
+
+                        case 'iniciar':
+                            echo $this->template->display('usuarios/iniciar');
+                        break;
+                        
+                        case 'logout':
+                            $this->logout();    
+                        break;  
+
+                        case 'autenticar':
+                            $this->autenticar($u);
+                        break;
+
+                        
+                        default:
+                            echo $this->template->display('home/home');
+                        break;
+                        
+                    }
+
+            break;
+
+
+        	
+            case 'registro':
+                
+                    switch ($router->getId()) {
+
+                        case 'registrar':
+                            echo $this->template->display('usuarios/registrar');
+                        break;
             
-            case 'insertar':
-                    $this->insertar($u);
-                break;
+                        case 'insertar':
+                            $this->insertar($u);
+                        break;
+
+
+                        default:
+                            echo $this->template->display('home/home');
+                        break;
+                        
+                    }
+
+
+            break;
+
+
+        	
+            case 'operaciones':
+                
+                switch ($router->getId()) {
+
+                    case 'perfil':
+                        $this->perfil($u);
+                    break;
+
+                    case 'descontarCredito':
+                        $this->descontarCredito($u);
+                    break; 
+
+                    default:
+                        echo $this->template->display('home/home');
+                    break;
+                }
+
+
+                   
+
+            break;
+
+            
 
             case 'cambiarRol':
                     $this->cambiarRol($u);
                 break;
 
-            case 'perfil':
-                    $this->perfil($u);
-                break;
-
-            case 'descontarCredito':
-                    $this->descontarCredito($u);
-                break;    
-
-            case 'logout':
-                    $this->logout();    
-                break;    
+              
 
         	default:
         			echo $this->template->display('home/home');
