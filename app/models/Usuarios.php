@@ -65,7 +65,7 @@ class Usuarios extends Models implements IModels {
 
     public function getUsuario($id){
         
-        $resultado = $this->db->select('*', 'usuarios', null, "id = '$id'");
+        $resultado = $this->db->select('*', 'usuarios', null, "id = '$id' AND estado_logico = true");
         return $resultado;
 
     }
@@ -73,7 +73,7 @@ class Usuarios extends Models implements IModels {
 
     public function existe($email){
 
-        $resultado= $this->db->select('*', 'usuarios', null, "email = '$email'");
+        $resultado= $this->db->select('*', 'usuarios', null, "email = '$email' AND estado_logico = true");
 
         if ($resultado){
             return true;
@@ -92,7 +92,7 @@ class Usuarios extends Models implements IModels {
 
     public function autenticar($email,$pass){
 
-        $usuario = $this->db->select('*', 'usuarios', null, "email = '$email' AND password = '$pass'");
+        $usuario = $this->db->select('*', 'usuarios', null, "email = '$email' AND password = '$pass' AND estado_logico = true");
         if ($usuario){
 
             $this->generarSesion($usuario);
@@ -167,7 +167,7 @@ class Usuarios extends Models implements IModels {
 
     public function update($id, $datos){
 
-        $resultado = $this->db->update('usuarios', $datos, "id = '$id'");
+        $resultado = $this->db->update('usuarios', $datos, "id = '$id' AND estado_logico = true");
 
         if ($resultado){
             return true;
@@ -177,9 +177,26 @@ class Usuarios extends Models implements IModels {
     }
 
 
+
+    public function delete($id){
+
+        $usuario = $this->db->select('estado_logico', 'usuarios', null, "id = '$id' AND estado_logico = true");
+
+        if ($usuario['0']['estado_logico']) {
+            $this->update($id, array('estado_logico' => false ));
+        }
+
+    }
+
+
+
+
+
+
+
     public function descontarCredito($id){
 
-        $usuario = $this->db->select('creditos', 'usuarios', null, "id = '$id'");
+        $usuario = $this->db->select('creditos', 'usuarios', null, "id = '$id' AND estado_logico = true");
 
         $creditos = $usuario['0']['creditos'];
         $creditos = $creditos - 1;
@@ -191,7 +208,7 @@ class Usuarios extends Models implements IModels {
 
     public function cambiarRol($id){
 
-        $usuario = $this->db->select('rol', 'usuarios', null, "id = '$id'");
+        $usuario = $this->db->select('rol', 'usuarios', null, "id = '$id' AND estado_logico = true");
 
         if ($usuario['0']['rol'] == 'ESTANDAR'){
             $nuevo_rol = 'PREMIUM';

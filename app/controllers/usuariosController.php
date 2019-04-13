@@ -37,24 +37,24 @@ class usuariosController extends Controllers implements IControllers {
 
                         case 'iniciar':
                             echo $this->template->display('usuarios/iniciar');
-                        break;
+                            break;
                         
                         case 'logout':
                             $this->logout();    
-                        break;  
+                            break;  
 
                         case 'autenticar':
                             $this->autenticar($u);
-                        break;
+                            break;
 
                         
                         default:
                             echo $this->template->display('home/home');
-                        break;
+                            break;
                         
                     }
 
-            break;
+                break;
 
 
         	
@@ -64,21 +64,21 @@ class usuariosController extends Controllers implements IControllers {
 
                         case 'registrar':
                             echo $this->template->display('usuarios/registrar');
-                        break;
+                            break;
             
                         case 'insertar':
                             $this->insertar($u);
-                        break;
+                            break;
 
 
                         default:
                             echo $this->template->display('home/home');
-                        break;
+                            break;
                         
                     }
 
 
-            break;
+                break;
 
 
         	
@@ -88,21 +88,21 @@ class usuariosController extends Controllers implements IControllers {
 
                     case 'perfil':
                         $this->perfil($u);
-                    break;
+                        break;
 
                     case 'descontarCredito':
                         $this->descontarCredito($u);
-                    break; 
+                        break; 
 
                     default:
                         echo $this->template->display('home/home');
-                    break;
+                        break;
                 }
 
 
                    
 
-            break;
+                break;
 
             
 
