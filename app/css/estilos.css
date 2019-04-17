@@ -20,17 +20,43 @@ margin:auto;
 }
 
 .form{
-	width: 400px;
+	width: 450px;
 }
+
 
 #div_registrar{
 	background-color: #e6e6ff;
-	width: 500px;
+	width: 800px;
 	border-radius: 15px;
 }
 
+#div_iniciar{
+	background-color: #e6e6ff;
+	width: 500px;
+	border-radius: 15px;
+	height: 600px;
+}
+
+
 #body_registrar{
 	background-color: #000d1a;
+}
+
+div .input_tarjeta{
+	padding-left: 2.5px !important;
+	padding-right: 2.5px !important;
+}
+
+#body_iniciar{
+	background-color: #000d1a;
+}
+
+#texto_iniciar{
+	text-align: justify;
+}
+
+#msjEmail, #msjPassword1, #msjPassword2, #msjNombre, #msjApellido, #msjFecha_nacimiento, #msjTelefono, #msjMarca, #msjNumero, #msjVencimiento, #msjTitular{
+	display:none;
 }
 
 #titulo_form{

@@ -1,100 +1,103 @@
 {% extends 'overall/layout' %}
 {% block carrousel %}
 
-  {% if email_existente == 1 %}
-    
-      Email existente en el sistema
-  {% endif %}
-  {% if edad_invalida == 1 %}
-    
-      Debe ser mayor a 18 años
-  {% endif %}
-
-
   <body class="text-center" id="body_registrar">
-      <br>
       <div class="container" id="div_registrar">  
         <br>
-        <form action="http://localhost/HomeSwitchHome/usuarios/registro/insertar" class="was-validated" enctype="multipart/form-data" method="post">
+        <form action="http://localhost/HomeSwitchHome/usuarios/registro/insertar" enctype="multipart/form-data" onsubmit="return validarRegistrar();" method="post">
           <img class="bd-placeholder-img rounded-circle" src="app/img/HSH-Logo.jpg" alt="" width="90" height="90">
           <h1 id="titulo_form"class="h3 mb-3 font-weight-normal animated wobble">¡Registrate!</h1>
 
+          {% if email_existente == 1 %}
+            <div class="alert alert-danger alert-dismissible">
+              <button type="button" class="close" data-dismiss="alert">&times;</button>
+              <strong class="animated flash"><span class="glyphicon glyphicon-exclamation-sign"></span> Error: </strong> El email ingresado ya se encuentra registrado.
+            </div>
+          {% endif %}
+
+          {% if edad_invalida == 1 %}
+            <div class="alert alert-danger alert-dismissible">
+              <button type="button" class="close" data-dismiss="alert">&times;</button>
+              <strong class="animated flash"><span class="glyphicon glyphicon-exclamation-sign"></span> Error: </strong> Debe ser mayor de 18 años para poder registrarse.
+            </div>
+          {% endif %}
+
           <div class="center-block form-group form">
             <label for="email">Email adress:</label>
-            <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" required>
-            <div class="valid-feedback">Valid.</div>
-            <div class="invalid-feedback">Por favor, completa este campo.</div>
+            <input type="email" class="form-control" id="email" placeholder="Ingrese su email" name="email">
+            <p class="animated shake" id="msjEmail"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
+            
           </div>
 
           <div class="center-block form-group form">
             <label for="password">Password:</label>
-            <input type="password" class="form-control" id="password" placeholder="Enter password" name="password" required>
-            <div class="valid-feedback">Valid.</div>
-            <div class="invalid-feedback">Por favor, completa este campo.</div>
+            <input type="password" class="form-control" id="password" placeholder="Ingrese una contraseña" name="password">
+            <p class="animated shake" id="msjPassword1"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
+            
           </div>
 
           <div class="center-block form-group form">
             <div class="row">
                 <div class="col">
-                    <label for="nombre">Nombre:</label>
-                    <input type="text" class="form-control" id="nombre" placeholder="Enter nombre" name="nombre" required>
-                    <div class="valid-feedback">Valid.</div>
-                    <div class="invalid-feedback">Por favor, completa este campo.</div>
+                  <label for="nombre">Nombre:</label>
+                  <input type="text" class="form-control" id="nombre" placeholder="Ingrese su nombre" name="nombre">
+                  <p class="animated shake" id="msjNombre"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
+                    
                 </div>
                 <div class="col">
-                    <label for="apellido">Apellido:</label>
-                    <input type="text" class="form-control" id="apellido" placeholder="Enter apellido" name="apellido" required>
-                    <div class="valid-feedback">Valid.</div>
-                    <div class="invalid-feedback">Por favor, completa este campo.</div>
+                  <label for="apellido">Apellido:</label>
+                  <input type="text" class="form-control" id="apellido" placeholder="Ingrese su apellido" name="apellido">
+                  <p class="animated shake" id="msjApellido"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
+                    
                 </div>
             </div>
           </div>
 
           <div class="center-block form-group form">
             <label for="fecha_nacimiento">Fecha nacimiento:</label>
-            <input type="date" class="form-control" id="fecha_nacimiento" placeholder="Enter fecha nacimiento" name="fecha_nacimiento" required>
-            <div class="valid-feedback">Valid.</div>
-            <div class="invalid-feedback">Por favor, completa este campo.</div>
+            <input type="date" class="form-control" id="fecha_nacimiento" placeholder="Ingrese su fecha nacimiento" name="fecha_nacimiento">
+            <p class="animated shake" id="msjFecha_nacimiento"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
+      
           </div>
 
           <div class="center-block form-group form">
             <label for="foto">Foto de perfil:</label>
             <input type="hidden" name="MAX_FILE_SIZE" value="30000" />
-            <input type="file" class="form-control-file border" id="foto" placeholder="Enter fecha nacimiento" name="foto">
+            <input type="file" class="form-control-file border" id="foto" placeholder="Ingrese su fecha nacimiento" name="foto">
           </div>
 
           <div class="center-block form-group form">
-            <label for="tel">Telefono:</label>
-            <input type="text" class="form-control" id="telefono" placeholder="Enter fecha nacimiento" name="telefono" required>
-            <div class="valid-feedback">Valid.</div>
-            <div class="invalid-feedback">Por favor, completa este campo.</div>
+            <label for="telefono">Telefono:</label>
+            <input type="text" class="form-control" id="telefono" placeholder="Ingrese un teléfono" name="telefono">
+            <p class="animated shake" id="msjTelefono"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
+            
           </div>
-
+          <label>Información de la tarjeta: </label>
           <div class="center-block form-group form">
             <div class="row">
-              <div class="col">
-                <label for="marca_t">Marca:</label>
-                <input type="text" class="form-control" id="marca_tarjeta" placeholder="Enter marca_t" name="marca_tarjeta" required>
-                <div class="valid-feedback">Valid.</div>
-                <div class="invalid-feedback">Por favor, completa este campo.</div>
+              <div class="col-md-3 input_tarjeta">
+                
+                <input type="text" class="form-control" id="marca_tarjeta" placeholder="Marca" name="marca_tarjeta">
+                <p class="animated shake" id="msjMarca"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
+               
               </div>
-              <div class="col">
-                <label for="numero_t">Numero:</label>
-                <input type="text" class="form-control" id="numero_tarjeta" placeholder="Enter numero_t" name="numero_tarjeta" required>
-                <div class="valid-feedback">Valid.</div>
-                <div class="invalid-feedback">Por favor, completa este campo.</div>
+              <div class="col-md-3 input_tarjeta">
+                
+                <input type="text" class="form-control" id="numero_tarjeta" placeholder="Número" name="numero_tarjeta">
+                <p class="animated shake" id="msjNumero"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
+                
               </div>
-              <div class="col">
-                <label for="titular_t">Titular:</label>
-                <input type="text" class="form-control" id="titular_tarjeta" placeholder="Enter titular_t" name="titular_tarjeta" required>
-                <div class="valid-feedback">Valid.</div>
-                <div class="invalid-feedback">Por favor, completa este campo.</div>
+              <div class="col-md-3 input_tarjeta">
+                
+                <input type="text" class="form-control" id="titular_tarjeta" placeholder="Titular" name="titular_tarjeta">
+                <p class="animated shake" id="msjTitular"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
+                
               </div>
-            <div class="col">
-              <label for="fecha_v_t">Vencimiento:</label>
-              <input type="text" class="form-control" id="fecha_vencimiento_tarjeta" placeholder="Enter fecha_v_t" name="fecha_vencimiento_tarjeta" required>
-              <div class="valid-feedback">Valid.</div>
-              <div class="invalid-feedback">Por favor, completa este campo.</div>
+            <div class="col-md-3 input_tarjeta">
+              
+              <input type="text" class="form-control" id="fecha_vencimiento_tarjeta" placeholder="Vencimiento" name="fecha_vencimiento_tarjeta">
+              <p class="animated shake" id="msjVencimiento"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
+              
             </div>
           </div>
         </div>       
