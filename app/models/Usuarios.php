@@ -128,9 +128,10 @@ class Usuarios extends Models implements IModels {
     public function insertar(){
         
         if (isset($_FILES["foto"]["tmp_name"])) {
-            $foto= $_FILES["foto"]["tmp_name"];
             $nombrefoto = $_FILES["foto"]["name"];
-            $foto  = $_FILES['foto']['tmp_name'];
+            $nombrefoto = "app/img/" . $nombrefoto; 
+
+            $foto = $nombrefoto;
 
             $foto= $this->db->scape($foto);
         }
