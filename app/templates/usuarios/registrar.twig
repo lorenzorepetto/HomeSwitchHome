@@ -1,6 +1,16 @@
 {% extends 'overall/layout' %}
-
 {% block carrousel %}
+
+  {% if email_existente == 1 %}
+    
+      Email existente en el sistema
+  {% endif %}
+  {% if edad_invalida == 1 %}
+    
+      Debe ser mayor a 18 años
+  {% endif %}
+
+
   <body class="text-center" id="body_registrar">
       <br>
       <div class="container" id="div_registrar">  

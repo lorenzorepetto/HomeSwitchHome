@@ -18,30 +18,22 @@ use Ocrend\Kernel\Controllers\IControllers;
 use Ocrend\Kernel\Router\IRouter;
 
 /**
- * Controlador residencias/
+ * Controlador prueba/
 */
-class residenciasController extends Controllers implements IControllers {
+class pruebaController extends Controllers implements IControllers {
 
     public function __construct(IRouter $router) {
         parent::__construct($router);
 
-        $r = new Model\Residencias;
 
-        switch ($router->getMethod()) {
-        	case 'insertar':
-        		if (isset($_SESSION['rol'])) {
-        			if ($_SESSION['rol'] == 'ADMINISTRADOR') {
-        				$r->insertar();
-        			}
-        		}
-        		break;
-        	
-        	default:
-        		$this->template->display('home/home');
-        		break;
-        }
-   
+        $_SESSION['error_login'] = 1;
+
+        $datos = array('error' => $_SESSION['error_login']);
+
+        unset($_SESSION['error_login']);
+        
+        $this->template->display('prueba/prueba',$datos);
+
+        
     }
-
-
 }

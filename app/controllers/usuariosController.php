@@ -16,6 +16,7 @@ use Ocrend\Kernel\Helpers as Helper;
 use Ocrend\Kernel\Controllers\Controllers;
 use Ocrend\Kernel\Controllers\IControllers;
 use Ocrend\Kernel\Router\IRouter;
+use Ocrend\Kernel\Helpers\Strings;
 
 /**
  * Controlador usuarios/
@@ -120,14 +121,37 @@ class usuariosController extends Controllers implements IControllers {
 
 
 
-    public function insertar($u){
-        $email=$_POST['email'];
-        if (!$u->existe($email)) {
-            $u->insertar();
-        }
+    /*
 
-        echo $this->template->display('home/home');
+    -------------------------------------CUENTA----------------------------------------------
+
+    */
+
+
+    private function autenticar($u){
+
+        #Guardo los valores del formulario
+        $email= $_POST['email'];
+        $pass= $_POST['password'];
+
+        $ok = $u->autenticar($email,$pass);
+
+        if ($ok) {      
+
+            if ($_SESSION['rol']=='ADMINISTRADOR') {
+                $this->template->display('home/homeBackend');
+            }
+            else{
+                $this->template->display('home/homeLogged');
+            }
+        }
+        else{
+            //Login fallido
+            $errores = array('error_login' => 1);
+            echo $this->template->display('usuarios/iniciar',$errores);
+        }
     }
+
 
 
     private function logout(){
@@ -143,29 +167,61 @@ class usuariosController extends Controllers implements IControllers {
 
 
 
-    private function autenticar($u){
+    /*
 
-    	#Guardo los valores del formulario
-    	$email= $_POST['email'];
-        $pass= $_POST['password'];
+    -------------------------------------------REGISTRO-------------------------------
 
-        $ok = $u->autenticar($email,$pass);
+    */    
 
-        if ($ok) {     	
 
-        	if ($_SESSION['rol']=='ADMINISTRADOR') {
-        		$this->template->display('home/homeBackend');
-        	}
-        	else{
-        		$this->template->display('home/homeLogged');
-        	}
+    public function insertar($u){
+
+        $errores= array('email_existente' => 0,
+                        'edad_invalida' => 0 );
+
+
+        $email=$_POST['email'];
+        $originalDate = $_POST['fecha_nacimiento'];
+        $newDate = date("d/m/Y", strtotime($originalDate));
+        $edad = Strings::calculate_age($newDate);
+
+
+        //Valido el email
+        if ($u->existe($email)) {
+            $errores['email_existente'] = 1;            
+        }
+
+        //Valido la edad
+        if ($edad < 18) {
+            $errores['edad_invalida'] = 1;
+        }
+
+        if ($errores['email_existente'] || $errores['edad_invalida']) {
+            //registro fallido
+            echo $this->template->display('usuarios/registrar',$errores);
         }
         else{
-        	echo $this->template->display('usuarios/iniciar');
+            //registro exitoso
+            $u->insertar();
+            $this->autenticar($u);
         }
     }
 
 
+
+
+
+
+
+
+
+
+
+    /*
+
+    ----------------------------OPERACIONES--------------------------------------------
+    
+    */
 
     public function perfil($u){
                 

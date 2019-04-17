@@ -1,5 +1,11 @@
 {% extends 'overall/layout' %}
 {% block carrousel %}
+
+  {% if error_login == 1 %}
+    
+      Datos invalidos
+  {% endif %}
+
   <body class="text-center" id="body_registrar">
     <br>
     <div class="container" id="div_registrar">
