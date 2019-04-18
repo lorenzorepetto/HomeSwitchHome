@@ -22,6 +22,13 @@
             </div>
           {% endif %}
 
+          {% if sin_error == 1 %}
+            <div class="alert alert-success alert-dismissible">
+              <button type="button" class="close" data-dismiss="alert">&times;</button>
+              <strong class="animated flash"> <span class='glyphicon glyphicon-ok-sign'></span> Nota:</strong> ¡Usted se ha registrado con éxito! <a href="http://localhost/HomeSwitchHome/usuarios/cuenta/iniciar" class="alert-link"> Inicie sesion</a> y comience a disfrutar de nuestro servicio.
+            </div>
+          {% endif %}
+
           <div class="center-block form-group form">
             <label for="email">Email adress:</label>
             <input type="email" class="form-control" id="email" placeholder="Ingrese su email" name="email">

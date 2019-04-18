@@ -177,7 +177,8 @@ class usuariosController extends Controllers implements IControllers {
     public function insertar($u){
 
         $errores= array('email_existente' => 0,
-                        'edad_invalida' => 0 );
+                        'edad_invalida' => 0,
+                        'sin_error' => 0);
 
 
         $email=$_POST['email'];
@@ -197,9 +198,10 @@ class usuariosController extends Controllers implements IControllers {
         }
 
 
-        if (!$errores['email_existente'] || !$errores['edad_invalida']) {
+        if (!$errores['email_existente'] && !$errores['edad_invalida']) {
             //Registro exitoso
             $u->insertar();
+            $errores['sin_error'] = 1;
         }
 
         echo $this->template->display('usuarios/registrar',$errores);
