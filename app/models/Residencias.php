@@ -99,13 +99,12 @@ class Residencias extends Models implements IModels {
     
     public function insertar(){
         
-        if (isset($_FILES["foto"]["tmp_name"])) {
+
+
+        if (is_uploaded_file($_FILES["foto"]["tmp_name"])) {
             $nombrefoto = $_FILES["foto"]["name"];
-            $nombrefoto = "app/img/residencias" . $nombrefoto; 
-
-            $foto = $nombrefoto;
-
-            $foto= $this->db->scape($foto);
+            $foto = "app/img/residencias/" . $nombrefoto; 
+            $foto = $this->db->scape($foto);
         }
         else{
             $foto=null;
