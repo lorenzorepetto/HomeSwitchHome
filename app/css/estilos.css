@@ -125,3 +125,18 @@ img .perfil{
 #imgFooter{
 	width: 150px;
 }
+
+.jumbotron{
+	padding-top: 5px !important;
+}
+
+#msjNombreR, #msjDescripcionR, #msjCapacidadR, #msjCalleR, #msjAlturaR, #msjProvinciaR, #msjCiudadR{
+	display: none;
+}
+
+#div_agregar_residencia{
+	background-color: #e6e6ff;
+	width: 800px;
+	border-radius: 15px;
+	height: 700px;
+}

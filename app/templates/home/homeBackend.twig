@@ -33,66 +33,38 @@
 {% block carrousel %}
   <section class="jumbotron text-center">
     <div class="container">
-      <h1 class="jumbotron">Nuestras Residencias</h1>
-      <p class="lead text-muted">Lista de residencias para editar/eliminar/agregar</p>
+      <h1 class="jumbotron">Administrar Residencias</h1>
+      <p class="lead text-muted">Usted puede agregar, eliminar, listar las residencias para editarlas y crear estadías.</p>
+      <div class="center-block row">      
+        <a href="http://localhost/HomeSwitchHome/usuarios/operaciones/agregar_residencia" class="btn btn-secondary my-2">Agregar residencia</a>
+        <a href="http://localhost/HomeSwitchHome/usuarios/operaciones/editar_residencias" class="btn btn-secondary my-2">Ver lista de residencias</a> 
+        <a href="http://localhost/HomeSwitchHome/usuarios/operaciones/agregar_residencia" class="btn btn-secondary my-2">Crear estadía</a>    
+      </div>
+    </div>
+  </section>
+{% endblock %}
+
+{% block appContenido %}
+  <section class="jumbotron text-center">
+    <div class="container">
+      <h1 class="jumbotron">Administrar Hotsales y Subastas</h1>
+      <p class="lead text-muted">Usted puede crear Hotsales y Subastas.</p>
+      <div class="center-block row"> 
+        <a href="http://localhost/HomeSwitchHome/usuarios/operaciones/editar_residencias" class="btn btn-secondary my-2">Crear Hotsale</a>
+        <a href="http://localhost/HomeSwitchHome/usuarios/operaciones/editar_residencias" class="btn btn-secondary my-2">Crear Subasta</a>
+      </div>
+    </div>
+  </section>
+{% endblock %}
+
+{% block appBody %}
+  <section class="jumbotron text-center">
+    <div class="container">
+      <h1 class="jumbotron">Administrar usuarios</h1>
+      <p class="lead text-muted">Usted puede cambiar el rol de un usuario de "Standar" a "Premium" o viceversa</p>
       <p>
-        <a href="#" class="btn btn-secondary my-2">Agregar residencia</a>
+        <a href="http://localhost/HomeSwitchHome/usuarios/operaciones/editar_residencias" class="btn btn-secondary my-2">Cambiar rol</a>
       </p>
     </div>
   </section>
-
-  <div class="py-5 bg-light">
-    <div class="container">
-
-      <div class="row">
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-            <img src="app/img/residencia3.jpeg" class="card-img-top" width="100%" height="100%">
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Ver detalles</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Editar</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-            <img src="app/img/residencia2.jpeg" class="card-img-top" width="100%" height="100%">
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Ver detalles</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Editar</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-            <img src="app/img/residencia3.jpeg" class="card-img-top" width="100%" height="100%">
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Ver detalles</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Editar</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-{% endblock %}
-{% block appContenido %}
-{% endblock %}
-{% block appBody %}
 {% endblock %}

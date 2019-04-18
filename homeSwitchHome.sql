@@ -2,10 +2,10 @@
 -- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 18-04-2019 a las 01:56:47
--- Versión del servidor: 10.1.38-MariaDB
--- Versión de PHP: 7.3.2
+-- Host: localhost
+-- Generation Time: Apr 18, 2019 at 04:04 AM
+-- Server version: 10.1.38-MariaDB
+-- PHP Version: 7.3.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,42 +19,28 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `homeSwitchHome`
+-- Database: `homeSwitchHome`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `direcciones`
---
-
-CREATE TABLE `direcciones` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `calle` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
-  `altura` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
-  `provincia` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
-  `ciudad` varchar(50) COLLATE utf8_spanish_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `estadias`
+-- Table structure for table `estadias`
 --
 
 CREATE TABLE `estadias` (
   `id` int(10) UNSIGNED NOT NULL,
   `caducada` tinyint(1) NOT NULL DEFAULT '0',
   `id_residencia` int(10) UNSIGNED NOT NULL,
-  `monto_pagado` float NOT NULL,
   `semana` int(2) NOT NULL,
-  `ocupada` tinyint(1) NOT NULL DEFAULT '0'
+  `ocupada` tinyint(1) NOT NULL DEFAULT '0',
+  `monto` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `hotsales`
+-- Table structure for table `hotsales`
 --
 
 CREATE TABLE `hotsales` (
@@ -69,7 +55,7 @@ CREATE TABLE `hotsales` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `residencias`
+-- Table structure for table `residencias`
 --
 
 CREATE TABLE `residencias` (
@@ -78,15 +64,17 @@ CREATE TABLE `residencias` (
   `descripcion` text COLLATE utf8_spanish_ci NOT NULL,
   `foto` varchar(100) COLLATE utf8_spanish_ci DEFAULT 'app/img/residencias/residenciaPrueba.jpg',
   `capacidad` int(10) UNSIGNED NOT NULL,
-  `monto` float NOT NULL,
-  `id_direccion` int(10) UNSIGNED NOT NULL,
-  `estado_logico` tinyint(1) NOT NULL DEFAULT '1'
+  `estado_logico` tinyint(1) NOT NULL DEFAULT '1',
+  `calle` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  `altura` int(11) NOT NULL,
+  `ciudad` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  `provincia` varchar(50) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `subastas`
+-- Table structure for table `subastas`
 --
 
 CREATE TABLE `subastas` (
@@ -101,7 +89,7 @@ CREATE TABLE `subastas` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `usuarios`
+-- Table structure for table `usuarios`
 --
 
 CREATE TABLE `usuarios` (
@@ -123,7 +111,7 @@ CREATE TABLE `usuarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- Volcado de datos para la tabla `usuarios`
+-- Dumping data for table `usuarios`
 --
 
 INSERT INTO `usuarios` (`id`, `email`, `password`, `nombre`, `apellido`, `fecha_nacimiento`, `foto`, `telefono`, `creditos`, `marca_tarjeta`, `numero_tarjeta`, `titular_tarjeta`, `fecha_vencimiento_tarjeta`, `rol`, `estado_logico`) VALUES
@@ -136,7 +124,7 @@ INSERT INTO `usuarios` (`id`, `email`, `password`, `nombre`, `apellido`, `fecha_
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `usuarios_estadias`
+-- Table structure for table `usuarios_estadias`
 --
 
 CREATE TABLE `usuarios_estadias` (
@@ -148,7 +136,7 @@ CREATE TABLE `usuarios_estadias` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `usuarios_subastas`
+-- Table structure for table `usuarios_subastas`
 --
 
 CREATE TABLE `usuarios_subastas` (
@@ -159,106 +147,94 @@ CREATE TABLE `usuarios_subastas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- Índices para tablas volcadas
+-- Indexes for dumped tables
 --
 
 --
--- Indices de la tabla `direcciones`
---
-ALTER TABLE `direcciones`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `estadias`
+-- Indexes for table `estadias`
 --
 ALTER TABLE `estadias`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `hotsales`
+-- Indexes for table `hotsales`
 --
 ALTER TABLE `hotsales`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `residencias`
+-- Indexes for table `residencias`
 --
 ALTER TABLE `residencias`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `subastas`
+-- Indexes for table `subastas`
 --
 ALTER TABLE `subastas`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `usuarios`
+-- Indexes for table `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `mail` (`email`);
 
 --
--- Indices de la tabla `usuarios_estadias`
+-- Indexes for table `usuarios_estadias`
 --
 ALTER TABLE `usuarios_estadias`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `usuarios_subastas`
+-- Indexes for table `usuarios_subastas`
 --
 ALTER TABLE `usuarios_subastas`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT de las tablas volcadas
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT de la tabla `direcciones`
---
-ALTER TABLE `direcciones`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `estadias`
+-- AUTO_INCREMENT for table `estadias`
 --
 ALTER TABLE `estadias`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `hotsales`
+-- AUTO_INCREMENT for table `hotsales`
 --
 ALTER TABLE `hotsales`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `residencias`
+-- AUTO_INCREMENT for table `residencias`
 --
 ALTER TABLE `residencias`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `subastas`
+-- AUTO_INCREMENT for table `subastas`
 --
 ALTER TABLE `subastas`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `usuarios`
+-- AUTO_INCREMENT for table `usuarios`
 --
 ALTER TABLE `usuarios`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT de la tabla `usuarios_estadias`
+-- AUTO_INCREMENT for table `usuarios_estadias`
 --
 ALTER TABLE `usuarios_estadias`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `usuarios_subastas`
+-- AUTO_INCREMENT for table `usuarios_subastas`
 --
 ALTER TABLE `usuarios_subastas`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;

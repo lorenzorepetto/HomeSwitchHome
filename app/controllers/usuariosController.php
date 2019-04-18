@@ -91,6 +91,14 @@ class usuariosController extends Controllers implements IControllers {
                         $this->perfil($u);
                         break;
 
+                    case 'editar_residencias':
+                        echo $this->template->display('usuarios/editar_residencias');
+                        break;
+
+                    case 'agregar_residencia':
+                        echo $this->template->display('usuarios/agregar_residencia');
+                        break;
+
                     case 'descontarCredito':
                         $this->descontarCredito($u);
                         break; 
