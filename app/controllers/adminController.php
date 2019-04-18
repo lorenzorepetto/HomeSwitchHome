@@ -26,22 +26,66 @@ class adminController extends Controllers implements IControllers {
         parent::__construct($router);
         
         $a = new Model\Admin;
+        $r = new Model\Residencias;
+        $u = new Model\Usuarios;
 
 
         switch ($router->getMethod()) {
+
+
+            case 'registrarResidencia':
+                # code...
+                break;
+
+
 
         	case 'cambiarRol':
 
         		$a->cambiarRol($router->getId(true));
         		$this->template->display('home/homeBackend');
-        	break;
+        	   break;
         	
         	default:
         		$this->template->display('home/homeBackend');
-        	break;
+        	   break;
         }
 
 
 
     }
+
+
+    /*
+
+    -------------------------------------------AGREGAR---------------------------------------------------
+
+    */
+
+
+    public function insertar($r){
+
+        $errores= array('nombre_existente' => 0);
+
+
+        $nombre=$_POST['nombre'];
+
+        //Valido el nombre
+        if ($r->existe($nombre)) {
+            $errores['nombre_existente'] = 1;            
+        }
+
+
+        if (!$errores['nombre_existente']) {
+            //Registro exitoso
+            $r->insertar();
+        }
+
+        echo $this->template->display('home/homeBackend',$errores); 
+
+    }
+
+
+
+
+
 }

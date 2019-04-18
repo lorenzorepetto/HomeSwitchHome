@@ -76,6 +76,19 @@ class Residencias extends Models implements IModels {
 
 
 
+    public function existe($nombre){
+
+        $resultado= $this->db->select('*', 'residencias', null, "nombre = '$nombre' AND estado_logico = true");
+
+        if ($resultado){
+            return true;
+        }
+
+        return false;
+    }
+
+
+
      /*
 
     ------------------------  CREAR RESIDENCIA  ---------------------------------------------------------------------
@@ -87,9 +100,10 @@ class Residencias extends Models implements IModels {
     public function insertar(){
         
         if (isset($_FILES["foto"]["tmp_name"])) {
-            $foto= $_FILES["foto"]["tmp_name"];
             $nombrefoto = $_FILES["foto"]["name"];
-            $foto  = $_FILES['foto']['tmp_name'];
+            $nombrefoto = "app/img/residencias" . $nombrefoto; 
+
+            $foto = $nombrefoto;
 
             $foto= $this->db->scape($foto);
         }

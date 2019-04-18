@@ -196,21 +196,15 @@ class usuariosController extends Controllers implements IControllers {
             $errores['edad_invalida'] = 1;
         }
 
-        if ($errores['email_existente'] || $errores['edad_invalida']) {
-            //registro fallido
-            echo $this->template->display('usuarios/registrar',$errores);
-        }
-        else{
-            //registro exitoso
+
+        if (!$errores['email_existente'] || !$errores['edad_invalida']) {
+            //Registro exitoso
             $u->insertar();
-            $this->autenticar($u);
         }
+
+        echo $this->template->display('usuarios/registrar',$errores);
+
     }
-
-
-
-
-
 
 
 

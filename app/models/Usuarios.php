@@ -129,7 +129,7 @@ class Usuarios extends Models implements IModels {
         
         if (isset($_FILES["foto"]["tmp_name"])) {
             $nombrefoto = $_FILES["foto"]["name"];
-            $nombrefoto = "app/img/" . $nombrefoto; 
+            $nombrefoto = "app/img/usuarios" . $nombrefoto; 
 
             $foto = $nombrefoto;
 
