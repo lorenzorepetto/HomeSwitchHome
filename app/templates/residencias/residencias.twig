@@ -1,5 +1,4 @@
 {% extends 'overall/layout' %}
-
 {% block appHeader %}
 
         <div id="navbar">
@@ -14,7 +13,7 @@
               <a class="nav-link" href="http://localhost/HomeSwitchHome/usuarios/operaciones/perfil"><span class="glyphicon glyphicon-user"></span>  Mi perfil</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="http://localhost/HomeSwitchHome/usuarios/cuenta/logout"><span class="glyphicon glyphicon-log-in"></span>   Cerrar Sesion</a>
+              <a class="nav-link" href="http://localhost/HomeSwitchHome/usuarios/logout"><span class="glyphicon glyphicon-log-in"></span>   Cerrar Sesion</a>
             </li>
 
             <!-- Dropdown -->
@@ -33,32 +32,39 @@
         </nav>
 
         </div> 
-    {% endblock %}
+{% endblock %}
 
 {% block carrousel %}
 {% endblock %}
 
 {% block appContenido %}
 		
-	<div class="border container">
-    <h2>{{ nombre }} {{ apellido }}</h2>
-    <div class_"row">
-      <ul class="list-group list-group-flush col-lg-8">
-        <li class="list-group-item"><span class="glyphicon glyphicon-envelope"></span><strong> Email:</strong> {{ email }}</li>
-        <li class="list-group-item"><span class="glyphicon glyphicon-user"></span><strong> Tipo de usuario:</strong> {{ rol }}</li>
-        <li class="list-group-item"><span class="glyphicon glyphicon-earphone"></span><strong> Teléfono:</strong> {{ telefono }}</li>
-        <li class="list-group-item"><span class="glyphicon glyphicon-calendar"></span><strong> Fecha de nacimiento:</strong> {{ fecha_nacimiento|date("d/m/Y") }}</li>
-        <li class="list-group-item"><span class="glyphicon glyphicon-usd"></span><strong> Créditos:</strong> <span class="badge badge-primary badge-pill creditos">{{ creditos }}</span></li>
-        <li class="list-group-item"><span class="glyphicon glyphicon-envelope"></span> <strong>Marca tarjeta:</strong> {{ marca_tarjeta }}</li>
-      </ul>
-      <img src="{{ foto }}" class="perfil float-right col-lg-4" alt="Foto de perfil">  
-    </div>
-  </div>
-  <br>
+
+
+
+
+	{% for r in residencias %}
+
+
+		
+		<div class="border container">
+		   	 <h2>{{ r.nombre }}</h2>
+		    <div class_"row">
+		      <ul class="list-group list-group-flush col-lg-8">
+		        <li class="list-group-item"><span class="glyphicon glyphicon-ok"></span> <strong> Descripción: </strong>{{ r.descripcion }}</li>
+		        <li class="list-group-item"><span class="glyphicon glyphicon-map-marker"></span><strong> Dirección:</strong> {{ r.calle }}, {{ r.altura }}, {{ r.ciudad }}, {{ r.provincia }}</li>
+		        <li class="list-group-item"><span class="glyphicon glyphicon-user"></span> <strong>Capacidad:</strong> {{ r.capacidad }}</li>
+		      </ul>
+		      <img src="{{ r.foto }}" class="perfil float-right col-lg-4" alt="Foto de perfil">  
+		    </div>
+	 	</div>
+		<br>
+		
+
+  {% endfor %}
+
 
 {% block appBody %}
 {% endblock %}
 
 {% endblock %}
-
-

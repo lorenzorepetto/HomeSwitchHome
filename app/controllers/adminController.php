@@ -16,6 +16,7 @@ use Ocrend\Kernel\Helpers as Helper;
 use Ocrend\Kernel\Controllers\Controllers;
 use Ocrend\Kernel\Controllers\IControllers;
 use Ocrend\Kernel\Router\IRouter;
+use Ocrend\Kernel\Helpers\Functions;
 
 /**
  * Controlador admin/
@@ -30,7 +31,39 @@ class adminController extends Controllers implements IControllers {
         $u = new Model\Usuarios;
 
 
+        if (isset($_SESSION['id'])) {
+            if ($_SESSION['rol'] != 'ADMINISTRADOR') {
+                $this->template->display('usuarios/iniciar');
+            }
+        }
+        else{
+            $this->template->display('usuarios/iniciar');
+        }
+
+
         switch ($router->getMethod()) {
+
+
+            case 'operaciones':
+                
+                switch ($router->getId()) {
+                    
+                    case 'editar_residencias':
+                        Functions::redir("http://localhost/HomeSwitchHome/residencias/listar");
+                        break;
+
+                    case 'agregar_residencia':
+                        echo $this->template->display('usuarios/agregar_residencia');
+                        break;
+                    
+                    default:
+                        $this->template->display('usuarios/iniciar');
+                        break;
+                }
+
+
+                break;
+
 
 
             case 'residencias':
@@ -42,7 +75,7 @@ class adminController extends Controllers implements IControllers {
                         break;
                     
                     default:
-                        $this->template->display('home/homeBackend');
+                        $this->template->display('usuarios/iniciar');
                         break;
                 }
 
@@ -64,16 +97,14 @@ class adminController extends Controllers implements IControllers {
                         break;
                     
                     default:
-                        $this->template->display('home/homeBackend');
+                        $this->template->display('usuarios/iniciar');
                         break;
                 }
 
         		
         	   break;
         	
-        	default:
-        		$this->template->display('home/homeBackend');
-        	   break;
+
         }
 
 

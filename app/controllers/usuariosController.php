@@ -29,6 +29,11 @@ class usuariosController extends Controllers implements IControllers {
         #Instancio un objeto Usuario
         $u = new Model\Usuarios;
 
+        //if (!isset($_SESSION['id'])) {
+         //   $this->template->display('usuarios/iniciar');
+        //}
+       
+
         
         switch ($router->getMethod()) {
 
@@ -50,7 +55,7 @@ class usuariosController extends Controllers implements IControllers {
 
                         
                         default:
-                            echo $this->template->display('home/home');
+                            echo $this->template->display('usuarios/iniciar');
                             break;
                         
                     }
@@ -91,13 +96,7 @@ class usuariosController extends Controllers implements IControllers {
                         $this->perfil($u);
                         break;
 
-                    case 'editar_residencias':
-                        echo $this->template->display('usuarios/editar_residencias');
-                        break;
-
-                    case 'agregar_residencia':
-                        echo $this->template->display('usuarios/agregar_residencia');
-                        break;
+                    
 
                     case 'descontarCredito':
                         $this->descontarCredito($u);
@@ -121,9 +120,6 @@ class usuariosController extends Controllers implements IControllers {
 
               
 
-        	default:
-        			echo $this->template->display('home/home');
-        		break;
     	}
     }
 
@@ -170,7 +166,7 @@ class usuariosController extends Controllers implements IControllers {
             session_destroy();
            
         }
-        echo $this->template->display('home/home');
+        echo $this->template->display('usuarios/iniciar');
     }
 
 

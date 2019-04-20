@@ -16,6 +16,7 @@ use Ocrend\Kernel\Helpers as Helper;
 use Ocrend\Kernel\Controllers\Controllers;
 use Ocrend\Kernel\Controllers\IControllers;
 use Ocrend\Kernel\Router\IRouter;
+use Ocrend\Kernel\Helpers\Arrays;
 
 /**
  * Controlador residencias/
@@ -27,20 +28,34 @@ class residenciasController extends Controllers implements IControllers {
 
         $r = new Model\Residencias;
 
+        if (!isset($_SESSION['id'])) {
+            $this->template->display('usuarios/iniciar');
+        }
+
         switch ($router->getMethod()) {
-        	case 'insertar':
-        		if (isset($_SESSION['rol'])) {
-        			if ($_SESSION['rol'] == 'ADMINISTRADOR') {
-        				$r->insertar();
-        			}
-        		}
-        		break;
+
+        	case 'listar':
+                $this->listarResidencias($r);
+                break;
         	
         	default:
-        		$this->template->display('home/home');
+        		$this->template->display('usuarios/iniciar');
         		break;
         }
    
+    }
+
+
+    public function listarResidencias($r){
+
+        $residencias = $r->getResidencias();
+
+        if ($_SESSION['rol']== "ADMINISTRADOR") {
+            $this->template->display('residencias/editarResidencias',array('residencias' => $residencias));
+        }
+        else{
+            $this->template->display('residencias/listarResidencias',array('residencias' => $residencias));
+        }
     }
 
 

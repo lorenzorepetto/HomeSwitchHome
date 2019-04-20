@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-04-2019 a las 03:32:32
+-- Tiempo de generación: 20-04-2019 a las 16:15:54
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 7.3.2
 
@@ -34,7 +34,8 @@ CREATE TABLE `estadias` (
   `id_residencia` int(10) UNSIGNED NOT NULL,
   `semana` int(2) NOT NULL,
   `ocupada` tinyint(1) NOT NULL DEFAULT '0',
-  `monto` float NOT NULL
+  `monto` float NOT NULL,
+  `estado_logico` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
@@ -77,7 +78,8 @@ CREATE TABLE `residencias` (
 
 INSERT INTO `residencias` (`id`, `nombre`, `descripcion`, `foto`, `capacidad`, `estado_logico`, `calle`, `altura`, `ciudad`, `provincia`) VALUES
 (1, 'Aldea Andina', 'Los servicios de Aldea Andina incluyen Wi-Fi en todo el recinto, zonas comunes y privadas, piscina climatizada interior y exterior, servicios de SPA, cancha de tenis, un \"quincho para asados\", un fogón, lugar de juegos de mesa y un parque de juegos para los niños en el fabuloso parque de cuatro acres rodeado de una gran variedad de árboles. ', 'app/img/residencias/residencia1.jpg', 10, 1, 'Avenida de Los Pioneros', 1400, 'San Carlos de Bariloche', 'Río Negro'),
-(2, 'Building Albar', 'El complejo Building Albar tiene dos espacios diferentes: un área gastronómica abierta a todo el público y un área de recreación privada con piscinas, decks y solárium. Tiene cocheras con portón automatizado con comando a distancia. Ademas cuentan con sauna, hidromasaje, piscina climatizada, área de fitness y vestuarios con acceso independiente. El complejo brinda todo en cuanto a tecnología, confort, seguridad y un diseño moderno en armonía con el entorno. ', 'app/img/residencias/residencia2.jpg', 6, 1, 'Av. Bunge ', 1867, 'Pinamar', 'Buenos Aires');
+(2, 'Building Albar', 'El complejo Building Albar tiene dos espacios diferentes: un área gastronómica abierta a todo el público y un área de recreación privada con piscinas, decks y solárium. Tiene cocheras con portón automatizado con comando a distancia. Ademas cuentan con sauna, hidromasaje, piscina climatizada, área de fitness y vestuarios con acceso independiente. El complejo brinda todo en cuanto a tecnología, confort, seguridad y un diseño moderno en armonía con el entorno. ', 'app/img/residencias/residencia2.jpg', 6, 1, 'Av. Bunge ', 1867, 'Pinamar', 'Buenos Aires'),
+(3, 'Apartur Mar Del Plata', 'El desarrollo cuenta con 1 piscina descubierta, bar - cafetería, cancha de tenis, de boley y de futbol, cuarto de juegos , área de recreación, etc. Estacionamiento para todas las unidades.\r\n', 'app/img/residencias/residencia3.jpg', 10, 1, 'Jorge Hernandez', 1066, 'Mar Del Plata', 'Buenos Aires');
 
 -- --------------------------------------------------------
 
@@ -224,7 +226,7 @@ ALTER TABLE `hotsales`
 -- AUTO_INCREMENT de la tabla `residencias`
 --
 ALTER TABLE `residencias`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `subastas`

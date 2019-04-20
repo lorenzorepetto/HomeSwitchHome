@@ -62,7 +62,6 @@ class Usuarios extends Models implements IModels {
 
 
 
-
     public function getUsuario($id){
         
         $resultado = $this->db->select('*', 'usuarios', null, "id = '$id' AND estado_logico = true");
