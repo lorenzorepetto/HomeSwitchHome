@@ -30,6 +30,7 @@ class residenciasController extends Controllers implements IControllers {
 
         if (isset($_SESSION['id'])) { 
 
+<<<<<<< HEAD
             switch ($router->getMethod()) {
 
             	case 'listar':
@@ -40,12 +41,57 @@ class residenciasController extends Controllers implements IControllers {
             		$this->template->display('home/home');
             		break;
             }
+=======
+        switch ($router->getMethod()) {
+
+        	case 'listar':
+                $this->listarResidencias($r);
+                break;
+        	
+
+            case 'detalle':
+                $this->detalleResidencia($r, $router->getId(true));
+                break;
+
+
+
+        	default:
+        		$this->template->display('home/home');
+        		break;
+        }
+>>>>>>> 30b4f3917ccde3aee130475bc419934ee42e21a1
 
         }else{
             $this->template->display('home/home');
         }
    
     }
+
+
+    public function detalleResidencia($r, $id){
+        
+        $resultado = $r->getResidencia($id);
+        
+        if ($resultado) {
+
+                $residencia = array(
+                'id' => $resultado['0']['id'],
+                'nombre' => $resultado['0']['nombre'],
+                'descripcion' => $resultado['0']['descripcion'],
+                'foto' => $resultado['0']['foto'],
+                'capacidad' => $resultado['0']['capacidad'],
+                'estado_logico' => $resultado['0']['estado_logico'],
+                'calle' => $resultado['0']['calle'],
+                'altura' => $resultado['0']['altura'],
+                'ciudad' => $resultado['0']['ciudad'],
+                'provincia' => $resultado['0']['provincia']
+                 );
+            }
+
+
+        $this->template->diplay('residencias/detalleResidencia',$residencia);
+    }
+
 
 
     public function listarResidencias($r){
