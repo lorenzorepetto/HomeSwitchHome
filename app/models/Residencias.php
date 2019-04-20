@@ -62,14 +62,14 @@ class Residencias extends Models implements IModels {
 
     public function getResidencia($id){
         
-        $resultado = $this->db->select('*', 'residencias', null, "id = '$id' AND estado_logico = true");
+        $resultado = $this->db->select('*', 'residencias', null, "id = '$id' AND estado_logico = 0");
         return $resultado;
     }
 
 
     public function getResidencias(){
 
-        $resultado = $this->db->select('*', 'residencias', null, "estado_logico = true");
+        $resultado = $this->db->select('*', 'residencias', null, "estado_logico = 0");
         return $resultado;
     }
 
@@ -78,7 +78,7 @@ class Residencias extends Models implements IModels {
 
     public function existe($nombre){
 
-        $resultado= $this->db->select('*', 'residencias', null, "nombre = '$nombre' AND estado_logico = true");
+        $resultado= $this->db->select('*', 'residencias', null, "nombre = '$nombre' AND estado_logico = 0");
 
         if ($resultado){
             return true;
@@ -137,7 +137,7 @@ class Residencias extends Models implements IModels {
 
     public function update($id, $datos){
 
-        $resultado = $this->db->update('residencias', $datos, "id = '$id' AND estado_logico = true");
+        $resultado = $this->db->update('residencias', $datos, "id = '$id' AND estado_logico = 0");
 
         if ($resultado){
             return true;
@@ -150,10 +150,10 @@ class Residencias extends Models implements IModels {
 
     public function delete($id){
 
-        $residencia = $this->db->select('estado_logico', 'residencias', null, "id = '$id' AND estado_logico = true");
+        $residencia = $this->db->select('estado_logico', 'residencias', null, "id = '$id' AND estado_logico = 0");
 
         if ($residencias['0']['estado_logico']) {
-            $this->update($id, array('estado_logico' => false ));
+            $this->update($id, array('estado_logico' => 1 ));
         }
 
     }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-04-2019 a las 16:15:54
+-- Tiempo de generación: 20-04-2019 a las 23:21:58
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 7.3.2
 
@@ -35,7 +35,7 @@ CREATE TABLE `estadias` (
   `semana` int(2) NOT NULL,
   `ocupada` tinyint(1) NOT NULL DEFAULT '0',
   `monto` float NOT NULL,
-  `estado_logico` tinyint(1) NOT NULL DEFAULT '1'
+  `estado_logico` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
@@ -65,7 +65,7 @@ CREATE TABLE `residencias` (
   `descripcion` text COLLATE utf8_spanish_ci NOT NULL,
   `foto` varchar(100) COLLATE utf8_spanish_ci DEFAULT 'app/img/residencias/residenciaPrueba.jpg',
   `capacidad` int(10) UNSIGNED NOT NULL,
-  `estado_logico` tinyint(1) NOT NULL DEFAULT '1',
+  `estado_logico` tinyint(1) NOT NULL DEFAULT '0',
   `calle` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
   `altura` int(11) NOT NULL,
   `ciudad` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
@@ -77,9 +77,10 @@ CREATE TABLE `residencias` (
 --
 
 INSERT INTO `residencias` (`id`, `nombre`, `descripcion`, `foto`, `capacidad`, `estado_logico`, `calle`, `altura`, `ciudad`, `provincia`) VALUES
-(1, 'Aldea Andina', 'Los servicios de Aldea Andina incluyen Wi-Fi en todo el recinto, zonas comunes y privadas, piscina climatizada interior y exterior, servicios de SPA, cancha de tenis, un \"quincho para asados\", un fogón, lugar de juegos de mesa y un parque de juegos para los niños en el fabuloso parque de cuatro acres rodeado de una gran variedad de árboles. ', 'app/img/residencias/residencia1.jpg', 10, 1, 'Avenida de Los Pioneros', 1400, 'San Carlos de Bariloche', 'Río Negro'),
-(2, 'Building Albar', 'El complejo Building Albar tiene dos espacios diferentes: un área gastronómica abierta a todo el público y un área de recreación privada con piscinas, decks y solárium. Tiene cocheras con portón automatizado con comando a distancia. Ademas cuentan con sauna, hidromasaje, piscina climatizada, área de fitness y vestuarios con acceso independiente. El complejo brinda todo en cuanto a tecnología, confort, seguridad y un diseño moderno en armonía con el entorno. ', 'app/img/residencias/residencia2.jpg', 6, 1, 'Av. Bunge ', 1867, 'Pinamar', 'Buenos Aires'),
-(3, 'Apartur Mar Del Plata', 'El desarrollo cuenta con 1 piscina descubierta, bar - cafetería, cancha de tenis, de boley y de futbol, cuarto de juegos , área de recreación, etc. Estacionamiento para todas las unidades.\r\n', 'app/img/residencias/residencia3.jpg', 10, 1, 'Jorge Hernandez', 1066, 'Mar Del Plata', 'Buenos Aires');
+(1, 'Aldea Andina', 'Los servicios de Aldea Andina incluyen Wi-Fi en todo el recinto, zonas comunes y privadas, piscina climatizada interior y exterior, servicios de SPA, cancha de tenis, un \"quincho para asados\", un fogón, lugar de juegos de mesa y un parque de juegos para los niños en el fabuloso parque de cuatro acres rodeado de una gran variedad de árboles. ', 'app/img/residencias/residencia1.jpg', 10, 0, 'Avenida de Los Pioneros', 1400, 'San Carlos de Bariloche', 'Río Negro'),
+(2, 'Building Albar', 'El complejo Building Albar tiene dos espacios diferentes: un área gastronómica abierta a todo el público y un área de recreación privada con piscinas, decks y solárium. Tiene cocheras con portón automatizado con comando a distancia. Ademas cuentan con sauna, hidromasaje, piscina climatizada, área de fitness y vestuarios con acceso independiente. El complejo brinda todo en cuanto a tecnología, confort, seguridad y un diseño moderno en armonía con el entorno. ', 'app/img/residencias/residencia2.jpg', 6, 0, 'Av. Bunge ', 1867, 'Pinamar', 'Buenos Aires'),
+(3, 'Apartur Mar Del Plata', 'El desarrollo cuenta con 1 piscina descubierta, bar - cafetería, cancha de tenis, de boley y de futbol, cuarto de juegos , área de recreación, etc. Estacionamiento para todas las unidades.\r\n', 'app/img/residencias/residencia3.jpg', 10, 0, 'Jorge Hernandez', 1066, 'Mar Del Plata', 'Buenos Aires'),
+(4, 'Club Cariló Playa', 'El complejo cuenta con un clubhouse, una sala para leer, un solarium, piscina exterior y cubierta, gimnasio, sauna, acceso directo a la playa y WI-FI. El condominio está formado por 4 edificios con departamentos de 1, 2 y 3 ambientes totalmente equipados con parrillas y balcones individuales. Dichos departamentos tienen una capacidad de 2 a 7 personas, con vista al mar y al bosque. Desarrollados en un amplio parque con salida exclusiva a la playa.             ', 'app/img/residencias/residencia4.jpg', 15, 0, 'Avutarda', 2909, 'Cariló', 'Buenos Aires');
 
 -- --------------------------------------------------------
 
@@ -117,7 +118,7 @@ CREATE TABLE `usuarios` (
   `titular_tarjeta` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
   `fecha_vencimiento_tarjeta` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
   `rol` varchar(20) COLLATE utf8_spanish_ci NOT NULL DEFAULT 'ESTANDAR',
-  `estado_logico` tinyint(1) NOT NULL DEFAULT '1'
+  `estado_logico` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
@@ -125,13 +126,13 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `email`, `password`, `nombre`, `apellido`, `fecha_nacimiento`, `foto`, `telefono`, `creditos`, `marca_tarjeta`, `numero_tarjeta`, `titular_tarjeta`, `fecha_vencimiento_tarjeta`, `rol`, `estado_logico`) VALUES
-(1, 'admin@homeswitchhome.com', 'admin1234', 'Administrador', 'Administrador', '0000-00-00', NULL, '111', 0, 'no corresponde', 'no corresponde', 'no corresponde', '0000-00-00', 'ADMINISTRADOR', 1),
-(2, 'loren@mail.com', 'loren1234', 'Lorenzo', 'Repetto', '1994-04-28', 'app/img/usuarios/user.png', '452710', 1, 'VISA', '444', 'Lorenzo Repetto', '2021-08-16', 'ESTANDAR', 1),
-(3, 'prueba@mail.com', 'prueba1234', 'Prueba', 'SubirUsuario', '1992-04-18', '', '11111', 2, 'AAA', '111', '', '1/2020', 'ESTANDAR', 1),
-(4, 'asdasdasd@asdas.asd', 'asdasdasd', 'asdasdas', 'asdasdasd', '2000-04-05', '', 'asdasd', 2, 'asdasdas', 'asdad', '', 'asdasd', 'ESTANDAR', 1),
-(5, 'pieri@mail.com', 'pieri1234', 'Pierina', 'Tufillaro', '1999-01-13', '', '411872', 2, 'VISA', '1111', '', '13/2022', 'ESTANDAR', 1),
-(6, 'jorge@gmail.com', 'jorge1234', 'Jorge', 'Paulos', '1980-04-13', 'app/img/usuarios/jorge.jpg', '0113751314', 2, 'MASTERCARD', '8254435411', '', '04/2022', 'ESTANDAR', 1),
-(7, 'julia@gmail.com', 'julia1234', 'Julia', 'Rosales', '1990-09-04', 'app/img/usuarios/julia.jpg', '0113441586', 2, 'VISA', '512497543', '', '04/2022', 'ESTANDAR', 1);
+(1, 'admin@homeswitchhome.com', 'admin1234', 'Administrador', 'Administrador', '0000-00-00', NULL, '111', 0, 'no corresponde', 'no corresponde', 'no corresponde', '0000-00-00', 'ADMINISTRADOR', 0),
+(2, 'loren@mail.com', 'loren1234', 'Lorenzo', 'Repetto', '1994-04-28', 'app/img/usuarios/user.png', '452710', 1, 'VISA', '444', 'Lorenzo Repetto', '2021-08-16', 'ESTANDAR', 0),
+(3, 'prueba@mail.com', 'prueba1234', 'Prueba', 'SubirUsuario', '1992-04-18', '', '11111', 2, 'AAA', '111', '', '1/2020', 'ESTANDAR', 0),
+(4, 'asdasdasd@asdas.asd', 'asdasdasd', 'asdasdas', 'asdasdasd', '2000-04-05', '', 'asdasd', 2, 'asdasdas', 'asdad', '', 'asdasd', 'ESTANDAR', 0),
+(5, 'pieri@mail.com', 'pieri1234', 'Pierina', 'Tufillaro', '1999-01-13', '', '411872', 2, 'VISA', '1111', '', '13/2022', 'ESTANDAR', 0),
+(6, 'jorge@gmail.com', 'jorge1234', 'Jorge', 'Paulos', '1980-04-13', 'app/img/usuarios/jorge.jpg', '0113751314', 2, 'MASTERCARD', '8254435411', '', '04/2022', 'ESTANDAR', 0),
+(7, 'julia@gmail.com', 'julia1234', 'Julia', 'Rosales', '1990-09-04', 'app/img/usuarios/julia.jpg', '0113441586', 2, 'VISA', '512497543', '', '04/2022', 'ESTANDAR', 0);
 
 -- --------------------------------------------------------
 
@@ -226,7 +227,7 @@ ALTER TABLE `hotsales`
 -- AUTO_INCREMENT de la tabla `residencias`
 --
 ALTER TABLE `residencias`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `subastas`
