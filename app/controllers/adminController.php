@@ -94,8 +94,7 @@ class adminController extends Controllers implements IControllers {
                          'sin_error' => 0);
 
 
-        dump($errores); exit;
-
+        
         $nombre=$_POST['nombre'];
 
         //Valido el nombre
