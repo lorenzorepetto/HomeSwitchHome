@@ -29,12 +29,8 @@ class usuariosController extends Controllers implements IControllers {
         #Instancio un objeto Usuario
         $u = new Model\Usuarios;
 
-        //if (!isset($_SESSION['id'])) {
-         //   $this->template->display('usuarios/iniciar');
-        //}
-       
-
-        
+            
+                
         switch ($router->getMethod()) {
 
             case 'cuenta':
@@ -42,7 +38,7 @@ class usuariosController extends Controllers implements IControllers {
                     switch ($router->getId()) {
 
                         case 'iniciar':
-                            echo $this->template->display('usuarios/iniciar');
+                            echo $this->template->display('home/home');
                             break;
                         
                         case 'logout':
@@ -55,7 +51,7 @@ class usuariosController extends Controllers implements IControllers {
 
                         
                         default:
-                            echo $this->template->display('usuarios/iniciar');
+                            echo $this->template->display('home/home');
                             break;
                         
                     }
@@ -118,9 +114,13 @@ class usuariosController extends Controllers implements IControllers {
                     $this->cambiarRol($u);
                 break;
 
-              
+             
+             default:
+                $this->template->display('home/home');
+                break; 
 
     	}
+
     }
 
 
@@ -152,7 +152,7 @@ class usuariosController extends Controllers implements IControllers {
         else{
             //Login fallido
             $errores = array('error_login' => 1);
-            echo $this->template->display('usuarios/iniciar',$errores);
+            echo $this->template->display('home/home',$errores);
         }
     }
 
@@ -166,7 +166,7 @@ class usuariosController extends Controllers implements IControllers {
             session_destroy();
            
         }
-        echo $this->template->display('usuarios/iniciar');
+        echo $this->template->display('home/home');
     }
 
 

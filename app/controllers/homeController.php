@@ -37,7 +37,7 @@ class homeController extends Controllers implements IControllers {
         	}
         }
         else{
-        	$this->template->display('usuarios/iniciar');	
+        	$this->template->display('home/home');	
         }
     }
     

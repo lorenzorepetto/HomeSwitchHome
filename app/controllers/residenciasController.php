@@ -28,9 +28,7 @@ class residenciasController extends Controllers implements IControllers {
 
         $r = new Model\Residencias;
 
-        if (!isset($_SESSION['id'])) {
-            $this->template->display('usuarios/iniciar');
-        }
+        if (isset($_SESSION['id'])) { 
 
         switch ($router->getMethod()) {
 
@@ -39,8 +37,12 @@ class residenciasController extends Controllers implements IControllers {
                 break;
         	
         	default:
-        		$this->template->display('usuarios/iniciar');
+        		$this->template->display('home/home');
         		break;
+        }
+
+        }else{
+            $this->template->display('home/home');
         }
    
     }
@@ -49,6 +51,7 @@ class residenciasController extends Controllers implements IControllers {
     public function listarResidencias($r){
 
         $residencias = $r->getResidencias();
+
 
         if ($_SESSION['rol']== "ADMINISTRADOR") {
             $this->template->display('residencias/editarResidencias',array('residencias' => $residencias));

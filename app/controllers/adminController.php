@@ -33,11 +33,11 @@ class adminController extends Controllers implements IControllers {
 
         if (isset($_SESSION['id'])) {
             if ($_SESSION['rol'] != 'ADMINISTRADOR') {
-                $this->template->display('usuarios/iniciar');
+                $this->template->display('home/home');
             }
         }
         else{
-            $this->template->display('usuarios/iniciar');
+            $this->template->display('home/home');
         }
 
 
@@ -53,11 +53,11 @@ class adminController extends Controllers implements IControllers {
                         break;
 
                     case 'agregar_residencia':
-                        echo $this->template->display('usuarios/agregar_residencia');
+                        echo $this->template->display('residencias/agregarResidencia');
                         break;
                     
                     default:
-                        $this->template->display('usuarios/iniciar');
+                        $this->template->display('home/home');
                         break;
                 }
 
@@ -75,7 +75,7 @@ class adminController extends Controllers implements IControllers {
                         break;
                     
                     default:
-                        $this->template->display('usuarios/iniciar');
+                        $this->template->display('home/home');
                         break;
                 }
 
@@ -97,7 +97,7 @@ class adminController extends Controllers implements IControllers {
                         break;
                     
                     default:
-                        $this->template->display('usuarios/iniciar');
+                        $this->template->display('home/home');
                         break;
                 }
 

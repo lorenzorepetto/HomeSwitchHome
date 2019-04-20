@@ -1,1 +1,54 @@
 {% extends 'overall/layout' %}
+{% block carrousel %}
+
+  <body class="text-center" id="body_iniciar">
+    <div class="row">
+
+      <div class="container " id="div_iniciar">
+        <br>
+        <form action="http://localhost/HomeSwitchHome/usuarios/cuenta/autenticar" method="post" onsubmit="return validarIniciar();">
+          <img class="bd-placeholder-img rounded-circle" src="app/img/HSH-Logo.jpg" alt="" width="90" height="90">
+          <h1 id="titulo_form" class="h3 mb-3 font-weight-normal animated wobble">Iniciar Sesión</h1>
+          <p id="texto_iniciar"><i class="glyphicon glyphicon-question-sign animated flash"></i> Si ya te registraste como usuario, ingresa a continuación tu nombre de usuario y clave. ¿Todavia no lo has hecho? <a href="http://localhost/HomeSwitchHome/usuarios/registro/registrar" class="comun animated flash"><big>Regístrate!</big></a> Es rápido y sencillo.</p>
+
+          {% if error_login == 1 %}
+            <div class="alert alert-danger alert-dismissible">
+              <button type="button" class="close" data-dismiss="alert">&times;</button>
+              <strong class="animated flash"><span class="glyphicon glyphicon-exclamation-sign"></span> Error: </strong> Los datos ingresados son inválidos.
+            </div>
+          {% endif %}
+
+          <div class="center-block form-group form">
+            <label for="email">Email adress:</label>
+            <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">           
+          </div>
+          <p class="animated shake" id="msjEmail"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
+
+          <div class="center-block form-group form">
+            <label for="password">Password:</label>
+            <input type="password" class="form-control" id="password" placeholder="Enter password" name="password">          
+          </div>
+          <p class="animated shake" id="msjPassword1"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
+
+          <button type="submit" class="btn btn-secondary">Submit</button>
+        </form>
+        <br>
+      </div>
+
+
+       <div class="container " id="div_iniciar">
+        <div id="div_iniciar">
+          Aca iría la subasta y un hotsale aleatorio
+        </div>
+      </div>
+
+    </div>
+  </body>
+ {% endblock %}
+
+{% block appContenido %}
+{% endblock %}
+    
+{% block appBody %}
+{% endblock %}
+    
