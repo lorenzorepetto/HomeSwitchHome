@@ -29,7 +29,7 @@ class usuariosController extends Controllers implements IControllers {
         #Instancio un objeto Usuario
         $u = new Model\Usuarios;
 
-            
+             
                 
         switch ($router->getMethod()) {
 
