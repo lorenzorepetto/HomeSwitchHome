@@ -160,6 +160,8 @@ class adminController extends Controllers implements IControllers {
 
     }
 
+
+
     public function insertarEstadia($e){
         /*aca hago la cuenta para obtener el numero de semana*/
         $data = array('sin_error' => 1,
