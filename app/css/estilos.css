@@ -140,3 +140,14 @@ img .perfil{
 	border-radius: 15px;
 	height: 800px;
 }
+
+#msjFechaE, #msjMontoE{
+	display: none;
+}
+
+#div_agregar_estadia{
+	background-color: #e6e6ff;
+	width: 800px;
+	border-radius: 15px;
+	height: 450px;
+}

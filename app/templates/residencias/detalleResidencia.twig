@@ -40,29 +40,19 @@
 {% block appContenido %}
 		
 
-
-
-
-	{% for r in residencias %}
-
-
 		
 		<div class="border container">
-		   	 <h2>{{ r.nombre }}</h2>
+		   	 <h2>{{ nombre }}</h2>
 		    <div class_"row">
 		      <ul class="list-group list-group-flush col-lg-8">
-		        <li class="list-group-item"><span class="glyphicon glyphicon-ok"></span> <strong> Descripción: </strong>{{ r.descripcion }}</li>
-		        <li class="list-group-item"><span class="glyphicon glyphicon-map-marker"></span><strong> Dirección:</strong> {{ r.calle }}, {{ r.altura }}, {{ r.ciudad }}, {{ r.provincia }}</li>
-		        <li class="list-group-item"><span class="glyphicon glyphicon-user"></span> <strong>Capacidad:</strong> {{ r.capacidad }}</li>
+		        <li class="list-group-item"><span class="glyphicon glyphicon-ok"></span> <strong> Descripción: </strong>{{ descripcion }}</li>
+		        <li class="list-group-item"><span class="glyphicon glyphicon-map-marker"></span><strong> Dirección:</strong> {{ calle }}, {{ altura }}, {{ ciudad }}, {{ provincia }}</li>
+		        <li class="list-group-item"><span class="glyphicon glyphicon-user"></span> <strong>Capacidad:</strong> {{ capacidad }}</li>
 		      </ul>
-		      <img src="{{ r.foto }}" class="perfil float-right col-lg-4" alt="Foto de perfil">  
+		      <img src="{{ foto }}" class="perfil float-right col-lg-4" alt="Foto de perfil">  
 		    </div>
 	 	</div>
 		<br>
-		
-
-  {% endfor %}
-
 
 {% block appBody %}
 {% endblock %}

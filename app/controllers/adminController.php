@@ -29,6 +29,7 @@ class adminController extends Controllers implements IControllers {
         $a = new Model\Admin;
         $r = new Model\Residencias;
         $u = new Model\Usuarios;
+        $e = new Model\Estadias;
 
 
         if (isset($_SESSION['id'])) {
@@ -48,12 +49,18 @@ class adminController extends Controllers implements IControllers {
                 
                 switch ($router->getId()) {
                     
-                    case 'editar_residencias':
+                    case 'editarResidencias':
                         Functions::redir("http://localhost/HomeSwitchHome/residencias/listar");
                         break;
 
-                    case 'agregar_residencia':
+                    case 'agregarResidencia':
                         echo $this->template->display('residencias/agregarResidencia');
+                        break;
+
+                    case 'agregarEstadia':
+
+                        $data = array('id_residencia' => $_GET['id_residencia'] );
+                        echo $this->template->display('estadias/agregarEstadia', $data);
                         break;
                     
                     default:
@@ -79,11 +86,22 @@ class adminController extends Controllers implements IControllers {
                         break;
                 }
 
+            break;
 
+            case 'estadias':
+                
+                switch ($router->getId()) {
+                    
+                    case 'insertar':
+                        $this->insertarEstadia($e);
+                        break;
+                    
+                    default:
+                        $this->template->display('home/home');
+                        break;
+                }
 
-
-
-                break;
+            break;
 
 
 
@@ -123,8 +141,6 @@ class adminController extends Controllers implements IControllers {
 
         $errores= array('nombre_existente' => 0,
                          'sin_error' => 0);
-
-
         
         $nombre=$_POST['nombre'];
 
@@ -141,6 +157,24 @@ class adminController extends Controllers implements IControllers {
         }
 
         echo $this->template->display('home/homeBackend',$errores); 
+
+    }
+
+    public function insertarEstadia($e){
+        /*aca hago la cuenta para obtener el numero de semana*/
+        $data = array('sin_error' => 1,
+                        'semana_ocupada' => 0,
+                        'id_residencia'=> $_GET['id_residencia']);
+
+        $fecha_inicio=$_POST['fecha_inicio'];
+        $monto=$_POST['monto'];
+        $id_residencia=$_GET['id_residencia'];
+        /*pruebo con semana 1*/
+        $semana=1;
+
+        $e->insertar($semana, $monto, $id_residencia);
+
+        echo $this->template->display("estadias/agregarEstadia", $data); 
 
     }
 

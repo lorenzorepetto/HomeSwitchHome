@@ -30,16 +30,16 @@ class residenciasController extends Controllers implements IControllers {
 
         if (isset($_SESSION['id'])) { 
 
-        switch ($router->getMethod()) {
+            switch ($router->getMethod()) {
 
-        	case 'listar':
-                $this->listarResidencias($r);
-                break;
-        	
-        	default:
-        		$this->template->display('home/home');
-        		break;
-        }
+            	case 'listar':
+                    $this->listarResidencias($r);
+                    break;
+            	
+            	default:
+            		$this->template->display('home/home');
+            		break;
+            }
 
         }else{
             $this->template->display('home/home');

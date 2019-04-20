@@ -1,0 +1,74 @@
+{% extends 'overall/layout' %}
+{% block appHeader %}
+
+  <div id="navbar">
+
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+      <!-- Brand -->
+      <a class="navbar-brand" href="http://localhost/HomeSwitchHome/"><div><img src="app/img/HSH-Text.jpg" class="img-responsive" title="Logo Home Switch Home" style="width:180px;"></div></a>
+
+      <!-- Links -->
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="http://localhost/HomeSwitchHome/usuarios/cuenta/logout"><span class="glyphicon glyphicon-log-out"></span>  Cerrar Sesion</a>
+        </li>
+
+        <!-- Dropdown -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+            More
+          </a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#"><span class="glyphicon glyphicon-question-sign"> FAQs</a>
+            <a class="dropdown-item" href="#"><span class="glyphicon glyphicon-envelope"> Contacto</a>
+            <a class="dropdown-item" href="#"><span class="glyphicon glyphicon-fire"></span> Subastas</a>
+            <a class="dropdown-item" href="#"><span class="glyphicon glyphicon-fire"></span> Hotsales</a>
+          </div>
+        </li>
+      </ul>
+    </nav>
+  </div>
+{% endblock %}
+
+{% block carrousel %}
+
+  <body class="text-center" id="body_registrar">
+      <div class="container" id="div_agregar_estadia">  
+        <br>
+        <form action="http://localhost/HomeSwitchHome/admin/estadias/insertar?id_residencia={{ id_residencia }}" enctype="multipart/form-data" method="post">
+          <img class="bd-placeholder-img rounded-circle" src="app/img/HSH-Logo.jpg" alt="" width="90" height="90">
+          <h1 id="titulo_form"class="h3 mb-3 font-weight-normal animated flash">Ingrese los datos de la estadia:</h1>
+          {% if sin_error == 1 %}
+            <div class="alert alert-success alert-dismissible">
+              <button type="button" class="close" data-dismiss="alert">&times;</button>
+              <strong class="animated flash"> <span class='glyphicon glyphicon-ok-sign'></span> Nota:</strong> La estadia se ha registrado con éxito!
+            </div>
+          {% endif %}
+
+          <div class="center-block form-group form">
+            <label for="fecha_inicio">Fecha de inicio:</label>
+            <input type="text" class="form-control" id="fecha_inicio" placeholder="Ingrese la fecha de inicio de la estadía" name="fecha_inicio">
+            <p class="animated shake" id="msjFechaE"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
+            
+          </div>
+
+          <div class="center-block form-group form">
+            <label for="monto">Monto:</label>
+            <input type="text" class="form-control" id="monto" placeholder="Ingrese el monto de la estadia" name="monto">
+            <p class="animated shake" id="msjMontoE"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
+          </div>
+	   
+	        <button type="submit" class="btn btn-secondary">Agregar estadía</button>
+	        </div>
+      </form>
+      <br>
+    </div>
+  </body>
+{% endblock %}
+{% block appContenido %}
+
+{% endblock %}
+    
+{% block appBody %}
+
+{% endblock %}
