@@ -53,3 +53,8 @@ function validarRegistrar(){
   }
 
 }
+
+
+function validarAgregarResidencia(){
+  return true;
+}

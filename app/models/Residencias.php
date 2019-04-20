@@ -116,8 +116,10 @@ class Residencias extends Models implements IModels {
             'descripcion' => $_POST['descripcion'],
             'foto' => $foto,
             'capacidad' => $_POST['capacidad'],
-            'monto' => $_POST['monto'],
-            'id_direccion' => $_SESSION['id_direccion']
+            'calle' => $_POST['calle'],
+            'altura' => $_SESSION['altura'],
+            'ciudad' => $_SESSION['ciudad'],
+            'provincia' => $_SESSION['provincia']
 
             );
 

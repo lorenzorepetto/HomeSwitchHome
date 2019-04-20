@@ -33,16 +33,42 @@ class adminController extends Controllers implements IControllers {
         switch ($router->getMethod()) {
 
 
-            case 'registrarResidencia':
-                # code...
+            case 'residencias':
+                
+                switch ($router->getId()) {
+                    
+                    case 'insertar':
+                        $this->insertarResidencia($r);
+                        break;
+                    
+                    default:
+                        $this->template->display('home/homeBackend');
+                        break;
+                }
+
+
+
+
+
                 break;
 
 
 
-        	case 'cambiarRol':
+        	case 'usuarios':
 
-        		$a->cambiarRol($router->getId(true));
-        		$this->template->display('home/homeBackend');
+                switch ($router->getId()) {
+                    
+                    case 'cambiarRol':
+                            //$a->cambiarRol($router->getId(true));
+                            $this->template->display('home/homeBackend');
+                        break;
+                    
+                    default:
+                        $this->template->display('home/homeBackend');
+                        break;
+                }
+
+        		
         	   break;
         	
         	default:
@@ -62,10 +88,13 @@ class adminController extends Controllers implements IControllers {
     */
 
 
-    public function insertar($r){
+    public function insertarResidencia($r){
 
-        $errores= array('nombre_existente' => 0);
+        $errores= array('nombre_existente' => 0,
+                         'sin_error' => 0);
 
+
+        dump($errores); exit;
 
         $nombre=$_POST['nombre'];
 
@@ -78,6 +107,7 @@ class adminController extends Controllers implements IControllers {
         if (!$errores['nombre_existente']) {
             //Registro exitoso
             $r->insertar();
+            $errores['sin_error'] = 1;
         }
 
         echo $this->template->display('home/homeBackend',$errores); 
