@@ -2,10 +2,10 @@
 -- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Apr 18, 2019 at 04:04 AM
--- Server version: 10.1.38-MariaDB
--- PHP Version: 7.3.3
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 20-04-2019 a las 03:32:32
+-- Versión del servidor: 10.1.38-MariaDB
+-- Versión de PHP: 7.3.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `homeSwitchHome`
+-- Base de datos: `homeSwitchHome`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `estadias`
+-- Estructura de tabla para la tabla `estadias`
 --
 
 CREATE TABLE `estadias` (
@@ -40,7 +40,7 @@ CREATE TABLE `estadias` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `hotsales`
+-- Estructura de tabla para la tabla `hotsales`
 --
 
 CREATE TABLE `hotsales` (
@@ -55,7 +55,7 @@ CREATE TABLE `hotsales` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `residencias`
+-- Estructura de tabla para la tabla `residencias`
 --
 
 CREATE TABLE `residencias` (
@@ -71,10 +71,18 @@ CREATE TABLE `residencias` (
   `provincia` varchar(50) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `residencias`
+--
+
+INSERT INTO `residencias` (`id`, `nombre`, `descripcion`, `foto`, `capacidad`, `estado_logico`, `calle`, `altura`, `ciudad`, `provincia`) VALUES
+(1, 'Aldea Andina', 'Los servicios de Aldea Andina incluyen Wi-Fi en todo el recinto, zonas comunes y privadas, piscina climatizada interior y exterior, servicios de SPA, cancha de tenis, un \"quincho para asados\", un fogón, lugar de juegos de mesa y un parque de juegos para los niños en el fabuloso parque de cuatro acres rodeado de una gran variedad de árboles. ', 'app/img/residencias/residencia1.jpg', 10, 1, 'Avenida de Los Pioneros', 1400, 'San Carlos de Bariloche', 'Río Negro'),
+(2, 'Building Albar', 'El complejo Building Albar tiene dos espacios diferentes: un área gastronómica abierta a todo el público y un área de recreación privada con piscinas, decks y solárium. Tiene cocheras con portón automatizado con comando a distancia. Ademas cuentan con sauna, hidromasaje, piscina climatizada, área de fitness y vestuarios con acceso independiente. El complejo brinda todo en cuanto a tecnología, confort, seguridad y un diseño moderno en armonía con el entorno. ', 'app/img/residencias/residencia2.jpg', 6, 1, 'Av. Bunge ', 1867, 'Pinamar', 'Buenos Aires');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `subastas`
+-- Estructura de tabla para la tabla `subastas`
 --
 
 CREATE TABLE `subastas` (
@@ -89,7 +97,7 @@ CREATE TABLE `subastas` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usuarios`
+-- Estructura de tabla para la tabla `usuarios`
 --
 
 CREATE TABLE `usuarios` (
@@ -111,7 +119,7 @@ CREATE TABLE `usuarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- Dumping data for table `usuarios`
+-- Volcado de datos para la tabla `usuarios`
 --
 
 INSERT INTO `usuarios` (`id`, `email`, `password`, `nombre`, `apellido`, `fecha_nacimiento`, `foto`, `telefono`, `creditos`, `marca_tarjeta`, `numero_tarjeta`, `titular_tarjeta`, `fecha_vencimiento_tarjeta`, `rol`, `estado_logico`) VALUES
@@ -119,24 +127,27 @@ INSERT INTO `usuarios` (`id`, `email`, `password`, `nombre`, `apellido`, `fecha_
 (2, 'loren@mail.com', 'loren1234', 'Lorenzo', 'Repetto', '1994-04-28', 'app/img/usuarios/user.png', '452710', 1, 'VISA', '444', 'Lorenzo Repetto', '2021-08-16', 'ESTANDAR', 1),
 (3, 'prueba@mail.com', 'prueba1234', 'Prueba', 'SubirUsuario', '1992-04-18', '', '11111', 2, 'AAA', '111', '', '1/2020', 'ESTANDAR', 1),
 (4, 'asdasdasd@asdas.asd', 'asdasdasd', 'asdasdas', 'asdasdasd', '2000-04-05', '', 'asdasd', 2, 'asdasdas', 'asdad', '', 'asdasd', 'ESTANDAR', 1),
-(5, 'pieri@mail.com', 'pieri1234', 'Pierina', 'Tufillaro', '1999-01-13', '', '411872', 2, 'VISA', '1111', '', '13/2022', 'ESTANDAR', 1);
+(5, 'pieri@mail.com', 'pieri1234', 'Pierina', 'Tufillaro', '1999-01-13', '', '411872', 2, 'VISA', '1111', '', '13/2022', 'ESTANDAR', 1),
+(6, 'jorge@gmail.com', 'jorge1234', 'Jorge', 'Paulos', '1980-04-13', 'app/img/usuarios/jorge.jpg', '0113751314', 2, 'MASTERCARD', '8254435411', '', '04/2022', 'ESTANDAR', 1),
+(7, 'julia@gmail.com', 'julia1234', 'Julia', 'Rosales', '1990-09-04', 'app/img/usuarios/julia.jpg', '0113441586', 2, 'VISA', '512497543', '', '04/2022', 'ESTANDAR', 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usuarios_estadias`
+-- Estructura de tabla para la tabla `usuarios_estadias`
 --
 
 CREATE TABLE `usuarios_estadias` (
   `id` int(10) UNSIGNED NOT NULL,
   `id_usuario` int(10) UNSIGNED NOT NULL,
-  `id_estadia` int(10) UNSIGNED NOT NULL
+  `id_estadia` int(10) UNSIGNED NOT NULL,
+  `monto_pagado` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usuarios_subastas`
+-- Estructura de tabla para la tabla `usuarios_subastas`
 --
 
 CREATE TABLE `usuarios_subastas` (
@@ -147,94 +158,94 @@ CREATE TABLE `usuarios_subastas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- Indexes for dumped tables
+-- Índices para tablas volcadas
 --
 
 --
--- Indexes for table `estadias`
+-- Indices de la tabla `estadias`
 --
 ALTER TABLE `estadias`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `hotsales`
+-- Indices de la tabla `hotsales`
 --
 ALTER TABLE `hotsales`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `residencias`
+-- Indices de la tabla `residencias`
 --
 ALTER TABLE `residencias`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `subastas`
+-- Indices de la tabla `subastas`
 --
 ALTER TABLE `subastas`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `usuarios`
+-- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `mail` (`email`);
 
 --
--- Indexes for table `usuarios_estadias`
+-- Indices de la tabla `usuarios_estadias`
 --
 ALTER TABLE `usuarios_estadias`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `usuarios_subastas`
+-- Indices de la tabla `usuarios_subastas`
 --
 ALTER TABLE `usuarios_subastas`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT for table `estadias`
+-- AUTO_INCREMENT de la tabla `estadias`
 --
 ALTER TABLE `estadias`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `hotsales`
+-- AUTO_INCREMENT de la tabla `hotsales`
 --
 ALTER TABLE `hotsales`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `residencias`
+-- AUTO_INCREMENT de la tabla `residencias`
 --
 ALTER TABLE `residencias`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `subastas`
+-- AUTO_INCREMENT de la tabla `subastas`
 --
 ALTER TABLE `subastas`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `usuarios`
+-- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT for table `usuarios_estadias`
+-- AUTO_INCREMENT de la tabla `usuarios_estadias`
 --
 ALTER TABLE `usuarios_estadias`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `usuarios_subastas`
+-- AUTO_INCREMENT de la tabla `usuarios_subastas`
 --
 ALTER TABLE `usuarios_subastas`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;

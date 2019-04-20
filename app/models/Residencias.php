@@ -101,6 +101,7 @@ class Residencias extends Models implements IModels {
         
 
 
+
         if (is_uploaded_file($_FILES["foto"]["tmp_name"])) {
             $nombrefoto = $_FILES["foto"]["name"];
             $foto = "app/img/residencias/" . $nombrefoto; 
@@ -117,11 +118,11 @@ class Residencias extends Models implements IModels {
             'foto' => $foto,
             'capacidad' => $_POST['capacidad'],
             'calle' => $_POST['calle'],
-            'altura' => $_SESSION['altura'],
-            'ciudad' => $_SESSION['ciudad'],
-            'provincia' => $_SESSION['provincia']
+            'altura' => $_POST['altura'],
+            'ciudad' => $_POST['ciudad'],
+            'provincia' => $_POST['provincia']
+        );
 
-            );
 
         $this->db->insert('residencias',$r);
 
