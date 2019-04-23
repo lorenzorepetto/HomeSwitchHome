@@ -17,6 +17,7 @@ use Ocrend\Kernel\Controllers\Controllers;
 use Ocrend\Kernel\Controllers\IControllers;
 use Ocrend\Kernel\Router\IRouter;
 use Ocrend\Kernel\Helpers\Strings;
+use Ocrend\Kernel\Helpers\Functions;
 
 /**
  * Controlador usuarios/
@@ -151,8 +152,8 @@ class usuariosController extends Controllers implements IControllers {
         }
         else{
             //Login fallido
-            $errores = array('error_login' => 1);
-            echo $this->template->display('home/home',$errores);
+            //$errores = array('error_login' => 1);
+            Functions::redir("http://localhost/HomeSwitchHome/home/error_login");
         }
     }
 
@@ -166,7 +167,7 @@ class usuariosController extends Controllers implements IControllers {
             session_destroy();
            
         }
-        echo $this->template->display('home/home');
+        Functions::redir("http://localhost/HomeSwitchHome/home");
     }
 
 
