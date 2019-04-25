@@ -32,17 +32,11 @@ class adminController extends Controllers implements IControllers {
         $e = new Model\Estadias;
 
 
-        if (isset($_SESSION['id'])) {
-            if ($_SESSION['rol'] != 'ADMINISTRADOR') {
-                $this->template->display('home/home');
-            }
-        }
-        else{
-            $this->template->display('home/home');
-        }
-
-
         switch ($router->getMethod()) {
+
+            case 'token':
+                $this->autenticar($a);
+                break;
 
 
             case 'operaciones':
@@ -63,6 +57,12 @@ class adminController extends Controllers implements IControllers {
                         echo $this->template->display('estadias/agregarEstadia', $data);
                         break;
                     
+
+                    case 'editarResidencia':
+                        $data = array('id_residencia' => $_GET['id_residencia'] );
+                        $this->template->display('residencias/modificarResidencia', $data);
+                        break;
+
                     default:
                         $this->template->display('home/home');
                         break;
@@ -81,6 +81,11 @@ class adminController extends Controllers implements IControllers {
                         $this->insertarResidencia($r);
                         break;
                     
+                    case 'editar':
+                        $this->editarResidencia($r);
+                        
+                        break;
+
                     default:
                         $this->template->display('home/home');
                         break;
@@ -181,6 +186,49 @@ class adminController extends Controllers implements IControllers {
     }
 
 
+    private function autenticar($a){
+
+        #Guardo los valores del formulario
+        $token= $_POST['valor_token'];
+
+        $ok = $a->autenticar($token);
+
+        if ($ok) {      
+            Functions::redir("http://localhost/HomeSwitchHome/home");
+        }
+        else{
+            //Login fallido
+            //$errores = array('error_login' => 1);
+            Functions::redir("http://localhost/HomeSwitchHome/home/error_login");
+        }
+    }
+
+
+
+    private function editarResidencia($r){
+
+        $data = array('id_residencia' => $_GET['id_residencia'],
+                      'nombre_existente' => 0 ,
+                       'sin_error' => 0);
+
+        $nombre=$_POST['nombre'];
+
+        //Valido el nombre
+        if ($r->existe($nombre)) {
+            $data['nombre_existente'] = 1;            
+        }
+
+
+        if (!$data['nombre_existente']) {
+            //Editar
+            $r->editar();
+            $data['sin_error'] = 1;
+        }
+
+        $this->template->display('home/homeBackend',$data);
+
+
+    }
 
 
 

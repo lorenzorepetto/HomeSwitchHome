@@ -92,6 +92,31 @@ class Admin extends Models implements IModels {
 
 
 
+    private function generarSesion($usuario){  
+        global $session;
+
+        # Generar la sesión del usuario
+        $_SESSION['id'] = $usuario['0']['id'];
+        $_SESSION['nombre'] = $usuario['0']['nombre'];
+        $_SESSION['apellido'] = $usuario['0']['apellido'];
+        $_SESSION['rol'] = $usuario['0']['rol'];
+
+
+    }
+
+
+
+    public function autenticar($token){
+
+        $usuario = $this->db->select('*', 'usuarios', null, "token = '$token' AND estado_logico = 0");
+        if ($usuario){
+
+            $this->generarSesion($usuario);
+            return true;
+        }
+
+        return false;
+    }
 
 
 }

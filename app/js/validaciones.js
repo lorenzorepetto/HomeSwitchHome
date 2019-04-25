@@ -87,3 +87,24 @@ function validarAgregarResidencia(){
 
   return true;
 }
+
+
+function validarToken(){
+    var token = document.getElementById("valor_token").value;
+    if (campoVacio(token)){
+      document.getElementById("msjPassword1").style.display = "block";
+      return false;
+    }
+    return true;
+}
+
+
+
+function mostrarToken(){
+    document.getElementById("token").style.display = "block";
+    document.getElementById("boton_token").style.display = "none";
+    document.getElementById("boton_form_iniciar").style.display = "none";
+    document.getElementById("input_email").style.display = "none";
+    document.getElementById("input_password").style.display = "none";
+    return true;
+}

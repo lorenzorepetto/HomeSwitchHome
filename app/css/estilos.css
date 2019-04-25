@@ -151,3 +151,13 @@ img .perfil{
 	border-radius: 15px;
 	height: 450px;
 }
+
+
+#token{
+	display: none;
+}
+
+#boton_token{
+	position: relative;
+ 	margin-top: 130px;
+}

@@ -18,21 +18,35 @@
             </div>
           {% endif %}
 
-          <div class="center-block form-group form">
+          <div id="input_email" class="center-block form-group form">
             <label for="email">Email adress:</label>
             <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">           
           </div>
           <p class="animated shake" id="msjEmail"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
 
-          <div class="center-block form-group form">
+          <div id="input_password" class="center-block form-group form">
             <label for="password">Password:</label>
             <input type="password" class="form-control" id="password" placeholder="Enter password" name="password">          
           </div>
           <p class="animated shake" id="msjPassword1"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
 
-          <button type="submit" class="btn btn-secondary">Submit</button>
+          <button id="boton_form_iniciar" type="submit" class="btn btn-secondary">Submit</button>
         </form>
-        <br>
+
+        
+        {# TOKEN #}
+        <form action="http://localhost/HomeSwitchHome/admin/token" method="post" id="token" onsubmit="return validarToken();">
+        <div class="center-block form-group form">
+            <label for="password">Token:</label>
+            <input type="password" class="form-control" id="valor_token" placeholder="Enter token" name="valor_token">          
+        </div>
+            <p class="animated shake" id="msjPassword1"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
+            <button type="submit" class="btn btn-secondary">Enviar token</button>
+        </form>
+
+        <button class="btn btn-secondary" id="boton_token" onclick="return mostrarToken();"> Tengo un token </button>
+
+
       </div>
 
 
