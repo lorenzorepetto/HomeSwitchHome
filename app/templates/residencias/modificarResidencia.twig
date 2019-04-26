@@ -35,21 +35,20 @@
   <body class="text-center" id="body_registrar">
       <div class="container" id="div_agregar_residencia">  
         <br>
-        <form action="http://localhost/HomeSwitchHome/admin/editarResidencia" enctype="multipart/form-data" method="post">
+        <form action="http://localhost/HomeSwitchHome/admin/residencias/editar?id_residencia={{ residencia.id }}" enctype="multipart/form-data" method="post">
           <img class="bd-placeholder-img rounded-circle" src="app/img/HSH-Logo.jpg" alt="" width="90" height="90">
           <h1 id="titulo_form"class="h3 mb-3 font-weight-normal animated flash">Ingrese los nuevos datos de la residencia:</h1>
 
 
           <div class="center-block form-group form">
             <label for="nombre">Nombre:</label>
-            <input type="text" class="form-control" id="nombre" placeholder="Ingrese el nuevo nombre de la residencia" name="nombre">
+            <input type="text" class="form-control" id="nombre" placeholder="{{ residencia.nombre }}" name="nombre">
             
           </div>
 
           <div class="center-block form-group form">
             <label for="descripcion">Descripcion:</label>
-            <textarea type="text" class="form-control" id="descripcion" placeholder="Ingrese una nueva descripcion de la residencia" name="descripcion">
-            </textarea>
+            <input type="text" class="form-control" id="descripcion" placeholder="{{ residencia.descripcion }}" name="descripcion">
             
           </div>
 
@@ -57,12 +56,12 @@
           	<label for="direccion">Direccion:</label>
             <div class="row">
                 <div class="col">
-                  	<input type="text" class="form-control" id="calle" placeholder="Calle" name="calle">
+                  	<input type="text" class="form-control" id="calle" placeholder="{{ residencia.calle }}" name="calle">
  
                     
                 </div>
                 <div class="col">
-                	<input type="text" class="form-control" id="altura" placeholder="Altura" name="altura">
+                	<input type="text" class="form-control" id="altura" placeholder="{{ residencia.altura }}" name="altura">
 
             	</div>
             </div>
@@ -71,12 +70,12 @@
           <div class="center-block form-group form">
           	<div class="row">
                 <div class="col">
-                  	<input type="text" class="form-control" id="ciudad" placeholder="Ciudad" name="ciudad">
+                  	<input type="text" class="form-control" id="ciudad" placeholder="{{ residencia.ciudad }}" name="ciudad">
 
                     
                 </div>
                 <div class="col">
-                	<input type="text" class="form-control" id="provincia" placeholder="Provincia" name="provincia">
+                	<input type="text" class="form-control" id="provincia" placeholder="{{ residencia.provincia }}" name="provincia">
 
             	</div>
             </div>
@@ -85,7 +84,7 @@
 	          <div class="center-block form-group form">
 	          	
 	            <label for="capacidad">Capacidad:</label>
-	            <input type="text" class="form-control" id="capacidad" placeholder="Ingrese la nueva capacidad" name="capacidad">
+	            <input type="text" class="form-control" id="capacidad" placeholder="{{ residencia.capacidad }}" name="capacidad">
 
 	           </div>
 

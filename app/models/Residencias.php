@@ -160,5 +160,33 @@ class Residencias extends Models implements IModels {
 
 
 
+    public function editar($r){
+
+
+        if (is_uploaded_file($_FILES["foto"]["tmp_name"])) {
+            $nombrefoto = $_FILES["foto"]["name"];
+            $foto = "app/img/residencias/" . $nombrefoto; 
+            $foto = $this->db->scape($foto);
+        }
+        else{
+            $foto= $r['0']['foto'];
+        }
+
+        $nuevosDatos = array(
+            'nombre' => !empty($_POST['nombre']) ? $_POST['nombre'] : $r['0']['nombre'],
+            'descripcion' => !empty($_POST['descripcion']) ? $_POST['descripcion'] : $r['0']['descripcion'],
+            'foto' => $foto,
+            'capacidad' => !empty($_POST['capacidad']) ? $_POST['capacidad'] : $r['0']['capacidad'],
+            'calle' => !empty($_POST['calle']) ? $_POST['calle'] : $r['0']['calle'],
+            'altura' => !empty($_POST['altura']) ? $_POST['altura'] : $r['0']['altura'],
+            'ciudad' => !empty($_POST['ciudad']) ? $_POST['ciudad'] : $r['0']['ciudad'],
+            'provincia' => !empty($_POST['provincia']) ? $_POST['provincia'] : $r['0']['provincia']
+        );
+
+
+        $this->update($r['0']['id'],$nuevosDatos);
+    }
+
+
 
 }

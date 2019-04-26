@@ -59,7 +59,9 @@ class adminController extends Controllers implements IControllers {
                     
 
                     case 'editarResidencia':
-                        $data = array('id_residencia' => $_GET['id_residencia'] );
+                        $id = $_GET['id_residencia'];
+                        $resultado = $r->getResidencia($id);
+                        $data = array('residencia' => $resultado['0']);
                         $this->template->display('residencias/modificarResidencia', $data);
                         break;
 
@@ -221,7 +223,7 @@ class adminController extends Controllers implements IControllers {
 
         if (!$data['nombre_existente']) {
             //Editar
-            $r->editar();
+            $r->editar($r->getResidencia($data['id_residencia']));
             $data['sin_error'] = 1;
         }
 
