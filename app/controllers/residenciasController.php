@@ -75,10 +75,11 @@ class residenciasController extends Controllers implements IControllers {
                 'provincia' => $resultado['0']['provincia']
                  );
 
+                $mis_estadias = $r->getEstadias($id);
                 
             }
 
-        $this->template->display('residencias/detalle', $residencia);
+        $this->template->display('residencias/detalle', array('residencia' => $residencia, 'estadias' => $mis_estadias)); 
         
     }
 

@@ -38,10 +38,20 @@
         <form action="http://localhost/HomeSwitchHome/admin/estadias/insertar?id_residencia={{ id_residencia }}" enctype="multipart/form-data" method="post">
           <img class="bd-placeholder-img rounded-circle" src="app/img/HSH-Logo.jpg" alt="" width="90" height="90">
           <h1 id="titulo_form"class="h3 mb-3 font-weight-normal animated flash">Ingrese los datos de la estadia:</h1>
+
+          <!-- sin error -->
           {% if sin_error == 1 %}
             <div class="alert alert-success alert-dismissible">
               <button type="button" class="close" data-dismiss="alert">&times;</button>
-              <strong class="animated flash"> <span class='glyphicon glyphicon-ok-sign'></span> Nota:</strong> La estadia se ha registrado con éxito!
+              <strong class="animated flash"> <span class='glyphicon glyphicon-ok-sign'></span> Nota:</strong> La estadia se ha registrado con éxito! Puede seguir agregando estadías para la misma residencia o <a href="#"> volver atrás</a>
+            </div>
+          {% endif %}
+
+          <!-- error por semana ocupada-->
+          {% if semana_ocupada == 1 %}
+            <div class="alert alert-danger alert-dismissible">
+              <button type="button" class="close" data-dismiss="alert">&times;</button>
+              <strong class="animated flash"><span class="glyphicon glyphicon-exclamation-sign"></span> Error: </strong> Ya existe una estadía en esa semana para la residencia seleccionada.
             </div>
           {% endif %}
 

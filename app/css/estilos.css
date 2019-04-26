@@ -182,3 +182,23 @@ img .perfil{
 	position: relative;
  	margin-top: 130px;
 }
+
+#card_residencia{
+	height: 600px;
+	padding-top: 30px;
+}
+
+#card_foto_residencia{
+	height: 50%;
+	width: 100%;
+}
+
+#p_card{
+	height: 200px;
+}
+
+#foto_detalle_residencia{
+	padding-bottom: 20px;
+	width: 400px;
+	height: 300px;
+}

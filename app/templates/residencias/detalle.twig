@@ -37,24 +37,37 @@
 {% block carrousel %}
 {% endblock %}
 
-{% block appContenido %}
-		
-    
+{% block appContenido %}    
 		
 		<div class="border container">
-		   	 <h2>{{ nombre }}</h2>
+		   	 <h2>{{ residencia.nombre }}</h2>
 		    <div class_"row">
 		      <ul class="list-group list-group-flush col-lg-8">
-		        <li class="list-group-item"><span class="glyphicon glyphicon-ok"></span> <strong> Descripción: </strong>{{ descripcion }}</li>
-		        <li class="list-group-item"><span class="glyphicon glyphicon-map-marker"></span><strong> Dirección:</strong> {{ calle }}, {{ altura }}, {{ ciudad }}, {{ provincia }}</li>
-		        <li class="list-group-item"><span class="glyphicon glyphicon-user"></span> <strong>Capacidad:</strong> {{ capacidad }}</li>
+		        <li class="list-group-item"><span class="glyphicon glyphicon-ok"></span> <strong> Descripción: </strong>{{ residencia.descripcion }}</li>
+		        <li class="list-group-item"><span class="glyphicon glyphicon-map-marker"></span><strong> Dirección:</strong> {{ residencia.calle }}, {{ residencia.altura }}, {{ residencia.ciudad }}, {{ residencia.provincia }}</li>
+		        <li class="list-group-item"><span class="glyphicon glyphicon-user"></span> <strong>Capacidad:</strong> {{ residencia.capacidad }}</li>
 		      </ul>
-		      <img src="{{ foto }}" class="perfil float-right col-lg-4" alt="Foto de perfil">  
+		      <img id="foto_detalle_residencia" src="{{ residencia.foto }}" class="perfil float-right col-lg-4" alt="Foto de perfil">  
 		    </div>
 	 	</div>
 		<br>
 
-    
+    <section class="jumbotron text-center">
+    <div class="container">
+      <h1 class="jumbotron">Estadías: </h1>
+      <p class="lead text-muted">aca escribimos algo</p>
+      <ul>
+        {% for e in estadias %}
+            <div class="row">
+              <p>Semana: {{ e.semana }}, monto: {{ e.monto }}, ocupada: {{ e.ocupada }}, caducada: {{ e.caducada }}</p>
+            
+            </div>
+        {% endfor %}
+
+      </ul>
+    </div>
+  </section>
+   
 
 {% endblock %}
 

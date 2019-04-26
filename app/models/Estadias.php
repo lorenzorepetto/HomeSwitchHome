@@ -34,6 +34,19 @@ class Estadias extends Models implements IModels {
 		$this->startDBConexion();
     }
 
+    /*--------------------------CONSULTAS--------------------------*/
+
+    public function existe($semana, $id_residencia){
+
+        $resultado= $this->db->select('*', 'estadias', null, "id_residencia = '$id_residencia' AND estado_logico = 0 and semana = '$semana'");
+
+        if ($resultado){
+            return true;
+        }
+
+        return false;
+    }
+
     /*
     ----------------------------------INSERTAR ESTADIA----------------------------------------
     */

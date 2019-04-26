@@ -163,7 +163,7 @@ class adminController extends Controllers implements IControllers {
             $errores['sin_error'] = 1;
         }
 
-        echo $this->template->display('home/homeBackend',$errores); 
+        echo $this->template->display('residencias/agregarResidencia',$errores); 
 
     }
 
@@ -171,18 +171,27 @@ class adminController extends Controllers implements IControllers {
 
     public function insertarEstadia($e){
         /*aca hago la cuenta para obtener el numero de semana*/
-        $data = array('sin_error' => 1,
+        $data = array('sin_error' => 0, //esta en 1 cuando esta todo ok
                         'semana_ocupada' => 0,
                         'id_residencia'=> $_GET['id_residencia']);
 
         $fecha_inicio=$_POST['fecha_inicio'];
         $monto=$_POST['monto'];
         $id_residencia=$_GET['id_residencia'];
+
         /*pruebo con semana 1*/
         $semana=1;
 
-        $e->insertar($semana, $monto, $id_residencia);
+        //Valido si ya existe una estadia para esa residencia y semana
+        if ($e->existe($semana, $id_residencia)) {
+            $data['semana_ocupada'] = 1;            
+        }
 
+        if (!$data['semana_ocupada']){
+            $e->insertar($semana, $monto, $id_residencia);
+            $data['sin_error'] = 1;
+
+        }
         echo $this->template->display("estadias/agregarEstadia", $data); 
 
     }
