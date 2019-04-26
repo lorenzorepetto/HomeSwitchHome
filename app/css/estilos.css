@@ -202,3 +202,12 @@ img .perfil{
 	width: 400px;
 	height: 300px;
 }
+
+#h1_detalle{
+	margin-bottom: 0;
+	padding-bottom: 20px;
+}
+
+#p_detalle{
+	padding-bottom: 20px;
+}
