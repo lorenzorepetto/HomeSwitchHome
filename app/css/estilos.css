@@ -179,8 +179,8 @@ img .perfil{
 }
 
 #boton_token{
-	position: relative;
- 	margin-top: 130px;
+	font-size: 10px;
+	padding: 1.5px;
 }
 
 #card_residencia{

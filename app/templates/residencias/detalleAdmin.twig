@@ -10,9 +10,6 @@
           <!-- Links -->
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" href="http://localhost/HomeSwitchHome/usuarios/operaciones/perfil"><span class="glyphicon glyphicon-user"></span>  Mi perfil</a>
-            </li>
-            <li class="nav-item">
               <a class="nav-link" href="http://localhost/HomeSwitchHome/usuarios/logout"><span class="glyphicon glyphicon-log-in"></span>   Cerrar Sesion</a>
             </li>
 
@@ -55,14 +52,15 @@
     <section class="jumbotron text-center">
     <div class="container">
       <h1 class="jumbotron">Estadías: </h1>
-      <p class="lead text-muted">Usted puede reservar cualquier estadía</p>
+      <p class="lead text-muted">Usted puede editar las estadias para esta residencia</p>
       <ul>
         {% for e in estadias %}
             <div class="row">
-              <p>Semana: {{ e.semana }}, monto: {{ e.monto }}, ocupada: {{ e.ocupada }}, caducada: {{ e.caducada }}</p>
+              <p>Semana: {{ e.semana }}, monto: {{ e.monto }}, ocupada: {{ e.ocupada }}, caducada: {{ e.caducada }} </p>
               <div class="btn-group">
-                <a href="#"><button type="button" class="btn btn-secondary">Reservar estadía</button></a>
-              </div>            
+                <a href="#"><button type="button" class="btn btn-secondary">Eliminar estadía</button></a>
+              </div>
+            
             </div>
         {% endfor %}
 

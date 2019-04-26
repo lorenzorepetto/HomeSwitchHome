@@ -39,7 +39,7 @@ class residenciasController extends Controllers implements IControllers {
 
             case 'detalle':
 
-                $this->detalleResidencia($r, $router->getId(true));
+                $this->detalleResidencia($_SESSION['rol'],$r, $router->getId(true));
                 break;
 
 
@@ -56,7 +56,7 @@ class residenciasController extends Controllers implements IControllers {
     }
 
 
-    public function detalleResidencia($r, $id){
+    public function detalleResidencia($rol, $r, $id){
         
         $resultado = $r->getResidencia($id);
         
@@ -79,7 +79,15 @@ class residenciasController extends Controllers implements IControllers {
                 
             }
 
-        $this->template->display('residencias/detalle', array('residencia' => $residencia, 'estadias' => $mis_estadias)); 
+        switch ($rol) {
+            case 'ADMINISTRADOR':
+                $this->template->display('residencias/detalleAdmin', array('residencia' => $residencia, 'estadias' => $mis_estadias));
+                break;
+            
+            default:
+                $this->template->display('residencias/detalle', array('residencia' => $residencia, 'estadias' => $mis_estadias));
+                break;
+        } 
         
     }
 

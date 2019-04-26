@@ -102,9 +102,14 @@ function validarToken(){
 
 function mostrarToken(){
     document.getElementById("token").style.display = "block";
+
     document.getElementById("boton_token").style.display = "none";
     document.getElementById("boton_form_iniciar").style.display = "none";
     document.getElementById("input_email").style.display = "none";
     document.getElementById("input_password").style.display = "none";
+
+    document.getElementById("msjEmail").style.display = "none";
+    document.getElementById("msjPassword1").style.display = "none";
+    document.getElementById("msjPassword2").style.display = "none";
     return true;
 }

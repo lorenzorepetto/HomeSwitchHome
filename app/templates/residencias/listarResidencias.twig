@@ -39,19 +39,22 @@
 	<div class="py-5 bg-light">
 	    <div class="container">
 
-	      <div class="row">
+        <p class="lead text-muted">Lista de residencias: </p>
 
+	      <div class="row">
+                
 	      	{% for r in residencias %}
 
-	        <div class="col-md-4">
-	          <div class="card mb-4 shadow-sm">
+	        <div id="card_residencia" class="col-md-4">
+	          <div id="card_residencia" class="card mb-4 shadow-sm">
 	            <img src="{{ r.foto }}" class="card-img-top" width="100%" height="100%">
 	            <div class="card-body">
-	              <p class="card-text"> {{ r.descripcion }}</p>
+                <div id="p_card">
+	                <p class="card-text"> {{ r.descripcion }}</p>
+                </div>
 	              <div class="d-flex justify-content-between align-items-center">
-	                <div class="btn-group">
+	                <div class="container btn-group">
 	                  <a href="http://localhost/HomeSwitchHome/residencias/detalle/{{ r.id }}"><button type="button" class="btn btn-secondary my-2">Ver detalles</button></a>
-
 	                </div>
 	              </div>
 	            </div>

@@ -30,6 +30,7 @@ class adminController extends Controllers implements IControllers {
         $r = new Model\Residencias;
         $u = new Model\Usuarios;
         $e = new Model\Estadias;
+        $s = new Model\Subastas;
 
 
         switch ($router->getMethod()) {
@@ -63,6 +64,11 @@ class adminController extends Controllers implements IControllers {
                         $resultado = $r->getResidencia($id);
                         $data = array('residencia' => $resultado['0']);
                         $this->template->display('residencias/modificarResidencia', $data);
+                        break;
+
+                    case 'agregarSubasta':
+                        $estadias = $e->getEstadias();
+                        echo $this->template->display('subastas/agregarSubasta',array('estadias' => $estadias ));
                         break;
 
                     default:
@@ -110,6 +116,19 @@ class adminController extends Controllers implements IControllers {
 
             break;
 
+            case 'subastas':
+                switch ($router->getId()) {
+                    
+                    case 'insertar':
+                        $id_estadia= $_GET['id_estadia'];
+                        $this->insertarSubasta($s, $id_estadia, $e);
+                        break;
+                    
+                    default:
+                        $this->template->display('home/home');
+                        break;
+                }
+                break;
 
 
         	case 'usuarios':
@@ -193,6 +212,30 @@ class adminController extends Controllers implements IControllers {
 
         }
         echo $this->template->display("estadias/agregarEstadia", $data); 
+
+    }
+
+    private function insertarSubasta($s, $id_estadia, $e){
+        $data = array('sin_error' => 0, //está en 1 cuando esta todo ok
+                        'error_anticipacion' => 0);
+
+        //$fecha_inicio= $_POST['fecha_inicio'];
+        //$fecha_fin= $_POST['fecha_fin'];
+
+        $subasta = array('fecha_inicio' => date("m.d.y"),
+                        'fecha_fin' => date("m.d.y"),
+                        'estado' => 0,
+                        'usuario_ganador' => 'meli',
+                        'id_estadia' => $id_estadia);    
+
+        if (!$data['sin_error']){
+            $s->insertar($subasta);
+            $data['sin_error'] = 1;
+
+        }
+        $estadias= $e->getEstadias();
+        echo $this->template->display("subastas/agregarSubasta", array('estadias' => $estadias,'data' => $data)); 
+        
 
     }
 
