@@ -10,9 +10,6 @@
           <!-- Links -->
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" href="http://localhost/HomeSwitchHome/usuarios/operaciones/perfil"><span class="glyphicon glyphicon-user"></span>  Mi perfil</a>
-            </li>
-            <li class="nav-item">
               <a class="nav-link" href="http://localhost/HomeSwitchHome/usuarios/cuenta/logout"><span class="glyphicon glyphicon-log-in"></span>   Cerrar Sesion</a>
             </li>
 
@@ -68,9 +65,25 @@
                 <p class="card-text"> ID residencia: {{ e.id_residencia }}</p>
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group">
-                    <a href="http://localhost/HomeSwitchHome/admin/subastas/insertar?id_estadia={{ e.id }}"><button type="button" class="btn btn-secondary my-2">Crear subasta</button></a>
-
+                    <button id="hide{{ e.id }}" data-toggle="collapse" data-target="#hide{{ e.id }}" type="button" class="collapse show btn btn-secondary my-2">Crear subasta</button>
+                    <div id="{{ e.id }}" class="collapse"> bu </div>
                   </div>
+                </div>
+                <div id="hide{{ e.id }}" class="collapse">
+                  
+                  <form action="#" enctype="multipart/form-data" method="post"> 
+                  <!-->                 
+                    <div class="center-block form-group form">
+                      <label for="fecha_inicio">Fecha inicio:</label>
+                      <input type="date"  id="fecha_inicio" name="fecha_inicio">                  
+                    </div>
+                  -->
+                    <div class="center-block form-group form">
+                      <label for="monto">Monto minimo:</label>                      
+                      <input type="text" id="monto" name="monto"> 
+                    </div>
+                    <a href="http://localhost/HomeSwitchHome/admin/subastas/insertar?id_estadia={{ e.id }}"><button id="hide{{ e.id }}" data-toggle="collapse" data-target="#hide{{ e.id }}" type="button" class="btn btn-secondary my-2">Finalizar creacion de subasta</button></a>
+                  </form>
                 </div>
               </div>
             </div>
