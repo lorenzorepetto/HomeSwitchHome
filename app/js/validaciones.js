@@ -73,14 +73,14 @@ function validarAgregarResidencia(){
     || campoVacio(ciudad)|| campoVacio(provincia)|| campoVacio(capacidad)
     || campoVacio(foto)){
     document.getElementById("msjNombreR").style.display = "block";
-  document.getElementById("msjDescripcionR").style.display = "block";
-  document.getElementById("msjCalleR").style.display = "block";
-  document.getElementById("msjAlturaR").style.display = "block";
-  document.getElementById("msjCiudadR").style.display = "block";
-  document.getElementById("msjProvinciaR").style.display = "block";
-  document.getElementById("msjCapacidadR").style.display = "block";
-  document.getElementById("msjFotoR").style.display = "block";
-  return false;
+    document.getElementById("msjDescripcionR").style.display = "block";
+    document.getElementById("msjCalleR").style.display = "block";
+    document.getElementById("msjAlturaR").style.display = "block";
+    document.getElementById("msjCiudadR").style.display = "block";
+    document.getElementById("msjProvinciaR").style.display = "block";
+    document.getElementById("msjCapacidadR").style.display = "block";
+    document.getElementById("msjFotoR").style.display = "block";
+    return false;
 
   }
 
@@ -99,7 +99,6 @@ function validarToken(){
 }
 
 
-
 function mostrarToken(){
     document.getElementById("token").style.display = "block";
 
@@ -112,4 +111,15 @@ function mostrarToken(){
     document.getElementById("msjPassword1").style.display = "none";
     document.getElementById("msjPassword2").style.display = "none";
     return true;
+}
+
+function validarAgregarSubasta(){
+  var monto = document.getElementById("monto").value;
+
+  if (campoVacio(monto) || monto <= 0){
+    document.getElementById("msjMontoS").style.display = "block";
+    return false;
+  }
+
+  return true;;
 }

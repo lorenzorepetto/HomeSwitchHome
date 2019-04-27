@@ -40,11 +40,27 @@ class Subastas extends Models implements IModels {
 
     */
 
-   
     
-    public function insertar($subasta){
+    public function insertar($id_estadia, $monto){
+        $subasta = array('fecha_inicio' => date("m.d.y"),
+                        'fecha_fin' => date("m.d.y"),
+                        'estado' => 0,
+                        'usuario_ganador' => 'meli',
+                        'id_estadia' => $id_estadia,
+                        'monto' => $monto);
 
         $this->db->insert('subastas',$subasta);
 
+    }
+
+    /*
+
+    ------------------------  CONSULTAS  ----------------------------------------------------------
+
+    */
+
+    public function existe($id_estadia){
+        $resultado = $this->db->select('*', 'subastas', null, "estado = 0 and id_estadia = '$id_estadia'");
+        return $resultado;
     }
 }

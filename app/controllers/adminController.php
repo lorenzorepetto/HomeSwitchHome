@@ -226,33 +226,27 @@ class adminController extends Controllers implements IControllers {
 
     private function insertarSubasta($s, $id_estadia, $e){
         $data = array('sin_error' => 0, //está en 1 cuando esta todo ok
-                        'error_anticipacion' => 0);
+                        'error_anticipacion' => 0, 
+                      'subasta_existente'=> 0);
 
         $monto= $_POST['monto'];
 
-        //debe crearse con al menos 6 meses de anticipacion (es igual a 6*4=24 semanas=168 dias)
+        //debe crearse con al menos 6 meses de anticipacion (es igual a 52/2=26 semanas)
         $semana_estadia = $e->getSemana($id_estadia);
-        $cant_dias_estadia= $semana_estadia * 7;
-        //var_dump($cant_dias_estadia); exit();
 
-        $hoy= getdate();
-        $dia_hoy= $hoy['mday'];
-        $mes_hoy= $hoy['mon'];
-        $cant_dias_hoy= (($mes_hoy - 1) * 4 * 7) + $dia_hoy;
+        $hoy= date("Y-m-d");        
+        $semana_hoy = $this->calcularSemana($hoy);
         
-        if ($cant_dias_hoy > ($cant_dias_estadia - 168)) {
+        if ($semana_hoy > ($semana_estadia - 26)) {
             $data['error_anticipacion'] = 1;
         }
-    
 
-        if (!$data['error_anticipacion']){
-            $subasta = array('fecha_inicio' => date("m.d.y"),
-                        'fecha_fin' => date("m.d.y"),
-                        'estado' => 0,
-                        'usuario_ganador' => 'meli',
-                        'id_estadia' => $id_estadia,
-                        'monto' => $monto);
-            $s->insertar($subasta);
+        if($s->existe($id_estadia)){
+            $data['subasta_existente'] = 1;
+        }
+    
+        if (!$data['error_anticipacion'] && !$data['subasta_existente']){
+            $s->insertar($id_estadia, $monto);
             $data['sin_error'] = 1;
         }
 

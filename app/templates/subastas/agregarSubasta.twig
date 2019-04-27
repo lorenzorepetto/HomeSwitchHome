@@ -50,6 +50,14 @@
           </div>
         {% endif %}
 
+        <!-- error por subasta existente para esa estadia-->
+        {% if data.subasta_existente == 1 %}
+          <div class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong class="animated flash"><span class="glyphicon glyphicon-exclamation-sign"></span> Error: </strong> Ya existe una subasta para esa estadía.
+          </div>
+        {% endif %}
+
         <p class="lead text-muted">Lista de estadías: </p>
 
         <div class="row">
@@ -63,6 +71,7 @@
                 <p class="card-text"> Semana: {{ e.semana }}</p>
                 <p class="card-text"> Monto: {{ e.monto }}</p>
                 <p class="card-text"> ID residencia: {{ e.id_residencia }}</p>
+                <p class="card-text"> ID estadia: {{ e.id }}</p>
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group">
                     <button id="hide{{ e.id }}" data-toggle="collapse" data-target="#hide{{ e.id }}" type="button" class="collapse show btn btn-secondary my-2">Crear subasta</button>
@@ -71,12 +80,13 @@
                 </div>
                 <div id="hide{{ e.id }}" class="collapse">
                   
-                  <form action="http://localhost/HomeSwitchHome/admin/subastas/insertar?id_estadia={{ e.id }}" enctype="multipart/form-data" method="post"> 
+                  <form action="http://localhost/HomeSwitchHome/admin/subastas/insertar?id_estadia={{ e.id }}" onsubmit="return validarAgregarSubasta();" enctype="multipart/form-data" method="post"> 
                     <div class="center-block form-group form">
                       <label for="monto">Monto minimo:</label>                      
                       <input type="text" id="monto" name="monto"> 
                     </div>
-                    <button id="hide{{ e.id }}" data-toggle="collapse" data-target="#hide{{ e.id }}" type="submit" class="btn btn-secondary my-2">Finalizar creacion de subasta</button>
+                    <p class="animated shake" id="msjMontoS"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo con un monto mayor a 0.</p>
+                    <button type="submit" class="btn btn-secondary my-2">Finalizar creacion de subasta</button>
                   </form>
                 </div>
               </div>

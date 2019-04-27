@@ -211,3 +211,7 @@ img .perfil{
 #p_detalle{
 	padding-bottom: 20px;
 }
+
+#msjMontoS{
+	display: none;
+}
