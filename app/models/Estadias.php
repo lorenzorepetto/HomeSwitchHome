@@ -42,6 +42,12 @@ class Estadias extends Models implements IModels {
         return $resultado;
     }
 
+    public function getSemana($id){
+
+        $resultado = $this->db->select('semana', 'estadias', null, "estado_logico = 0 and id = '$id'");
+        return $resultado[0]['semana'];
+    }
+
 
     public function existe($semana, $id_residencia){
 

@@ -71,18 +71,12 @@
                 </div>
                 <div id="hide{{ e.id }}" class="collapse">
                   
-                  <form action="#" enctype="multipart/form-data" method="post"> 
-                  <!-->                 
-                    <div class="center-block form-group form">
-                      <label for="fecha_inicio">Fecha inicio:</label>
-                      <input type="date"  id="fecha_inicio" name="fecha_inicio">                  
-                    </div>
-                  -->
+                  <form action="http://localhost/HomeSwitchHome/admin/subastas/insertar?id_estadia={{ e.id }}" enctype="multipart/form-data" method="post"> 
                     <div class="center-block form-group form">
                       <label for="monto">Monto minimo:</label>                      
                       <input type="text" id="monto" name="monto"> 
                     </div>
-                    <a href="http://localhost/HomeSwitchHome/admin/subastas/insertar?id_estadia={{ e.id }}"><button id="hide{{ e.id }}" data-toggle="collapse" data-target="#hide{{ e.id }}" type="button" class="btn btn-secondary my-2">Finalizar creacion de subasta</button></a>
+                    <button id="hide{{ e.id }}" data-toggle="collapse" data-target="#hide{{ e.id }}" type="submit" class="btn btn-secondary my-2">Finalizar creacion de subasta</button>
                   </form>
                 </div>
               </div>
