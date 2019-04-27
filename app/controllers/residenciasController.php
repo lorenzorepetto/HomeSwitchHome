@@ -56,6 +56,7 @@ class residenciasController extends Controllers implements IControllers {
     }
 
 
+
     public function detalleResidencia($rol, $r, $id){
         
         $resultado = $r->getResidencia($id);
