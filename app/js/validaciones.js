@@ -121,5 +121,17 @@ function validarAgregarSubasta(){
     return false;
   }
 
-  return true;;
+  return true;
+}
+
+function confirmation(){
+  
+  if(confirm("¿Está seguro que desea realizar esta operación?")){
+     return true;
+  }
+  else
+  {
+     return false;
+  }
+
 }
