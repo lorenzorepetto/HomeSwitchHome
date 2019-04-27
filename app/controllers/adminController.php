@@ -94,6 +94,10 @@ class adminController extends Controllers implements IControllers {
                         
                         break;
 
+                    case 'eliminar':
+                        $this->eliminarResidencia($r);
+                        break;    
+
                     default:
                         $this->template->display('home/home');
                         break;
@@ -195,14 +199,8 @@ class adminController extends Controllers implements IControllers {
                         'id_residencia'=> $_GET['id_residencia']);
 
         $monto=$_POST['monto'];
-        $id_residencia=$_GET['id_residencia'];
-        $originalDate = $_POST['fecha_inicio'];
-        $newDate = date("d/m/Y", strtotime($originalDate));
-
-        var_dump($newDate); exit();
-        
-
-        /*aca hago la cuenta para obtener el numero de semana*/
+        $fecha_inicio= $_POST['fecha_inicio'];
+        $id_residencia = $_GET['id_residencia'];
 
         $semana = $this->calcularSemana($fecha_inicio);
         
@@ -211,12 +209,12 @@ class adminController extends Controllers implements IControllers {
         if ($e->existe($semana, $id_residencia)) {
             $data['semana_ocupada'] = 1;            
         }
-
-        if (!$data['semana_ocupada']){
+        else{
+            //puedo crear la estadia  
             $e->insertar($semana, $monto, $id_residencia);
             $data['sin_error'] = 1;
-
         }
+
         echo $this->template->display("estadias/agregarEstadia", $data); 
 
     }
@@ -321,6 +319,31 @@ class adminController extends Controllers implements IControllers {
 
     }
 
+
+
+    private function eliminarResidencia($r){
+
+        $data = array('id_residencia' => $_GET['id_residencia'],
+                      'estadias_pendientes' => 0 ,
+                       'sin_error' => 0);
+
+        //me fijo si hay estadias pendientes
+        $resultado = $r->getEstadiasPendientes($_GET['id_residencia']);
+
+
+        if ($resultado) {
+            $data['estadias_pendientes'] = 1;
+        }
+        else{
+            //no se encontraron estadias, se puede eliminar
+
+            $r->delete($_GET['id_residencia']);
+            $data['sin_error'] = 1;
+        }
+
+        $this->template->display('home/homeBackend' , $data);
+
+    }
 
 
 }

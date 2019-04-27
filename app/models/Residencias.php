@@ -80,6 +80,13 @@ class Residencias extends Models implements IModels {
     }
 
 
+    public function getEstadiasPendientes($id){
+
+        $resultado = $this->db->select('*', 'estadias', null, "estado_logico = 0 and id_residencia = '$id' and caducada = 0");
+        return $resultado;
+    }
+
+
 
 
     public function existe($nombre){
@@ -158,7 +165,7 @@ class Residencias extends Models implements IModels {
 
         $residencia = $this->db->select('estado_logico', 'residencias', null, "id = '$id' AND estado_logico = 0");
 
-        if ($residencias['0']['estado_logico']) {
+        if (!$residencia['0']['estado_logico']) {
             $this->update($id, array('estado_logico' => 1 ));
         }
 

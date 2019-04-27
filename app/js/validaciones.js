@@ -113,3 +113,15 @@ function mostrarToken(){
     document.getElementById("msjPassword2").style.display = "none";
     return true;
 }
+
+
+function confirmation(){
+  
+  if(confirm("¿Está seguro que desea realizar esta operación?")){
+     return true;
+  }
+  else
+  {
+     return false;
+  }
+}
