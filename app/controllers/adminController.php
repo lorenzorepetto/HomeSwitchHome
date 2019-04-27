@@ -204,8 +204,8 @@ class adminController extends Controllers implements IControllers {
 
         /*aca hago la cuenta para obtener el numero de semana*/
 
-        /*pruebo con semana 1*/
-        $semana=1;
+        $semana = $this->calcularSemana($fecha_inicio);
+        
 
         //Valido si ya existe una estadia para esa residencia y semana
         if ($e->existe($semana, $id_residencia)) {
@@ -220,6 +220,9 @@ class adminController extends Controllers implements IControllers {
         echo $this->template->display("estadias/agregarEstadia", $data); 
 
     }
+
+
+
 
     private function insertarSubasta($s, $id_estadia, $e){
         $data = array('sin_error' => 0, //está en 1 cuando esta todo ok
@@ -258,6 +261,20 @@ class adminController extends Controllers implements IControllers {
         
 
     }
+
+
+    private function calcularSemana($fecha){
+        $f = explode("-", $fecha);
+        $a = $f[0];
+        $m = $f[1];
+        $d = $f[2]; 
+
+        $semana = ( ($m * 4 * 7 ) - (28.5 - $d ) ) / 7;
+        $semana = ceil($semana);
+        return intval($semana);
+    }
+
+
 
 
     private function autenticar($a){
