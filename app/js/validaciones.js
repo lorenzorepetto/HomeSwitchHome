@@ -91,8 +91,15 @@ function validarAgregarResidencia(){
 
 function validarToken(){
     var token = document.getElementById("valor_token").value;
+
+    var digitos = /^[0-9]$/;
+
     if (campoVacio(token)){
       document.getElementById("msjPassword1").style.display = "block";
+      return false;
+    }
+    else if (token.length != 6 || !digitos.test(token)) {
+      document.getElementById("msjPassword2").style.display = "block";
       return false;
     }
     return true;
