@@ -274,6 +274,7 @@ class adminController extends Controllers implements IControllers {
         #Guardo los valores del formulario
         $token= $_POST['valor_token'];
 
+
         $ok = $a->autenticar($token);
 
         if ($ok) {      

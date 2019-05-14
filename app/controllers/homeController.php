@@ -43,8 +43,8 @@ class homeController extends Controllers implements IControllers {
         	}
         }
         elseif($router->getMethod() == 'error_login') {
-            $error_login=1;
-            $this->renderHome($r, $error_login);
+
+            $this->renderHome($r, 1);
         }
         else{
             $this->renderHome($r);
@@ -64,6 +64,7 @@ class homeController extends Controllers implements IControllers {
                         'error_login' => $error_login);
 
         $this->template->display('home/home', $datos);
+        
 
     }
 
