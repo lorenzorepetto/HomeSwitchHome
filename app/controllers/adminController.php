@@ -319,8 +319,7 @@ class adminController extends Controllers implements IControllers {
     private function eliminarResidencia($r){
 
         $data = array('id_residencia' => $_GET['id_residencia'],
-                      'estadias_pendientes' => 0 ,
-                       'sin_error' => 0);
+                      'estadias_pendientes' => 0);
 
         //me fijo si hay estadias pendientes
         $resultado = $r->getEstadiasPendientes($_GET['id_residencia']);
@@ -331,12 +330,13 @@ class adminController extends Controllers implements IControllers {
         }
         else{
             //no se encontraron estadias, se puede eliminar
-
             $r->delete($_GET['id_residencia']);
-            $data['sin_error'] = 1;
         }
 
-        $this->template->display('home/homeBackend' , $data);
+        $estadias_pendientes = $data['estadias_pendientes'];
+
+        Functions::redir("http://localhost/HomeSwitchHome/residencias/listar?operacion=1&estadias_pendientes=$estadias_pendientes");
+        //$this->template->display('home/homeBackend' , $data);
 
     }
 

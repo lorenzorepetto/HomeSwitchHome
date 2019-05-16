@@ -98,9 +98,21 @@ class residenciasController extends Controllers implements IControllers {
 
         $residencias = $r->getResidencias();
 
+        $data = array('residencias' => $residencias,
+                      'estadias_pendientes' => 0, 
+                        'operacion'=> 0);
+        
+        if (isset($_GET['operacion'])){
 
+            $data['operacion'] =1;
+            if (isset($_GET['estadias_pendientes'])) {
+                $data['estadias_pendientes'] = $_GET['estadias_pendientes'];
+            }
+
+        }
+        
         if ($_SESSION['rol']== "ADMINISTRADOR") {
-            $this->template->display('residencias/editarResidencias',array('residencias' => $residencias));
+            $this->template->display('residencias/editarResidencias',$data);
         }
         else{
             $this->template->display('residencias/listarResidencias',array('residencias' => $residencias));

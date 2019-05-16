@@ -10,7 +10,7 @@
           <!-- Links -->
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" href="http://localhost/HomeSwitchHome/usuarios/cuenta/logout"><span class="glyphicon glyphicon-log-in"></span>   Cerrar Sesion</a>
+              <a class="nav-link" href="http://localhost/HomeSwitchHome/usuarios/cuenta/logout"><span class="glyphicon glyphicon-log-out"></span>   Cerrar Sesion</a>
             </li>
 
             <!-- Dropdown -->
@@ -35,7 +35,19 @@
 	
 	<div class="py-5 bg-light">
 	    <div class="container">
+	      {% if operacion == 1 and estadias_pendientes == 1 %}
+	        <div class="alert alert-danger alert-dismissible">
+	          <button type="button" class="close" data-dismiss="alert">&times;</button>
+	          <strong class="animated flash"><span class="glyphicon glyphicon-exclamation-sign"></span> Error: </strong> La residencia no se puede eliminar porque tiene estadías pendientes.
+	        </div>
+	      {% endif %}
 
+	      {% if operacion == 1 and estadias_pendientes == 0 %}
+	        <div class="alert alert-success alert-dismissible">
+	          <button type="button" class="close" data-dismiss="alert">&times;</button>
+	          <strong class="animated flash"> <span class='glyphicon glyphicon-ok-sign'></span> Nota:</strong> ¡Residencia eliminada con éxito!
+	        </div>
+	      {% endif %}
 	      <p class="lead text-muted">Lista de residencias: </p>
 
 
@@ -56,7 +68,7 @@
 		                	<a href="http://localhost/HomeSwitchHome/admin/operaciones/editarResidencia?id_residencia={{ r.id }}" class="btn btn-secondary my-2">Editar</a>
 		                	<a href="http://localhost/HomeSwitchHome/admin/operaciones/agregarEstadia?id_residencia={{ r.id }}" class="btn btn-secondary my-2">Crear estadía</a>
 		                	<a href="http://localhost/HomeSwitchHome/admin/residencias/eliminar?id_residencia={{ r.id }}" class="btn btn-secondary my-2" onclick="return confirmation();">
-		                	Eliminar</a>		                	
+		                	<span class="glyphicon glyphicon-trash"></span></a>		                	
 		                </div>
 	                </div>
 	            </div>

@@ -76,7 +76,7 @@ div .input_tarjeta{
 	text-align: justify;
 }
 
-#msjEmail, #msjPassword1, #msjPassword2, #msjNombre, #msjApellido, #msjFecha_nacimiento, #msjTelefono, #msjMarca, #msjNumero, #msjVencimiento, #msjTitular{
+#msjEmail, #msjPassword1, #msjPassword2, #msjToken1, #msjToken2, #msjNombre, #msjApellido, #msjFecha_nacimiento, #msjTelefono, #msjMarca, #msjNumero, #msjVencimiento, #msjTitular{
 	display:none;
 }
 

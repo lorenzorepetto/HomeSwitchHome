@@ -95,11 +95,13 @@ function validarToken(){
     var digitos = /^[0-9]+$/;
 
     if (campoVacio(token)){
-      document.getElementById("msjPassword1").style.display = "block";
+      document.getElementById("msjToken1").style.display = "block";
+      document.getElementById("msjToken2").style.display = "none";
       return false;
     }
     else if (token.length != 6 || !digitos.test(token)) {
-      document.getElementById("msjPassword2").style.display = "block";
+      document.getElementById("msjToken2").style.display = "block";
+      document.getElementById("msjToken1").style.display = "none";
       return false;
     }
     return true;
