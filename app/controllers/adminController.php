@@ -68,7 +68,7 @@ class adminController extends Controllers implements IControllers {
 
                     case 'agregarSubasta':
                         $estadias = $e->getEstadias();
-                        echo $this->template->display('subastas/agregarSubasta',array('estadias' => $estadias ));
+                        $this->template->display('subastas/agregarSubasta',array('estadias' => $estadias ));
                         break;
 
                     default:
@@ -254,7 +254,7 @@ class adminController extends Controllers implements IControllers {
         }
 
         $estadias= $e->getEstadias();
-        echo $this->template->display("subastas/agregarSubasta", array('estadias' => $estadias,'data' => $data)); 
+        $this->template->display("subastas/agregarSubasta", array('estadias' => $estadias,'data' => $data)); 
         
 
     }
