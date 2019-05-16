@@ -63,6 +63,10 @@ margin:auto;
 	background-color: #000d1a;
 }
 
+#body_registrar_residencia{
+	background-color: #000d1a;
+}
+
 div .input_tarjeta{
 	padding-left: 2.5px !important;
 	padding-right: 2.5px !important;
@@ -96,7 +100,7 @@ nav{
 	background-color: #000d1a;
 }
 
-a.comun{
+a.comun, a.comun:hover{
 	color: #000d1a;
 }
 
@@ -151,7 +155,7 @@ img .perfil{
 	padding-top: 5px !important;
 }
 
-#msjNombreR, #msjDescripcionR, #msjCapacidadR, #msjCalleR, #msjAlturaR, #msjProvinciaR, #msjCiudadR, #msjFotoR{
+#msjNombreR,#msjMontoS, #msjDescripcionR, #msjCapacidadR, #msjCalleR, #msjAlturaR, #msjProvinciaR, #msjCiudadR, #msjFotoR{
 	display: none;
 }
 
@@ -159,7 +163,7 @@ img .perfil{
 	background-color: #e6e6ff;
 	width: 800px;
 	border-radius: 15px;
-	height: 800px;
+	height: 860px;
 }
 
 #msjFechaE, #msjMontoE{
@@ -185,11 +189,16 @@ img .perfil{
 
 #card_residencia{
 	height: 600px;
-	padding-top: 30px;
+}
+
+#nombre_residencia{
+	margin-bottom: 0px;
+	padding-top: 3px;
+	padding-bottom: 3px;
 }
 
 #card_foto_residencia{
-	height: 50%;
+	height: 40%;
 	width: 100%;
 }
 
@@ -212,11 +221,19 @@ img .perfil{
 	padding-bottom: 20px;
 }
 
-#msjMontoS{
-	display: none;
-}
-
 #trash{
 	margin-top: 13px;
 	color: red;
+}
+
+#footer{
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+}
+
+#botones{
+	position: absolute;
+	bottom: 0;
+	display: center;
 }

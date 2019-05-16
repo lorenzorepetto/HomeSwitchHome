@@ -37,6 +37,22 @@
         <br>
         <form action="http://localhost/HomeSwitchHome/admin/residencias/editar?id_residencia={{ residencia.id }}" enctype="multipart/form-data" method="post">
           <img class="bd-placeholder-img rounded-circle" src="app/img/HSH-Logo.jpg" alt="" width="90" height="90">
+
+          {% if nombre_existente == 1 %}
+            <div class="alert alert-danger alert-dismissible">
+              <button type="button" class="close" data-dismiss="alert">&times;</button>
+              <strong class="animated flash"><span class="glyphicon glyphicon-exclamation-sign"></span> Error: </strong> No se puede editar la residencia porque ya existe una con ese nombre.
+            </div>
+          {% endif %}
+
+          {% if sin_error == 1 %}
+            <div class="alert alert-success alert-dismissible">
+              <button type="button" class="close" data-dismiss="alert">&times;</button>
+              <strong class="animated flash"> <span class='glyphicon glyphicon-ok-sign'></span> Nota:</strong> La residencia se ha modificado con éxito!
+              <a class="comun" href="http://localhost/HomeSwitchHome/admin/operaciones/editarResidencias"> Volver atrás</a>
+            </div>
+          {% endif %}
+
           <h1 id="titulo_form"class="h3 mb-3 font-weight-normal animated flash">Ingrese los nuevos datos de la residencia:</h1>
 
 

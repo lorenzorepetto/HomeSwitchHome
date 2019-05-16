@@ -90,7 +90,12 @@ class adminController extends Controllers implements IControllers {
                         break;
                     
                     case 'editar':
-                        $this->editarResidencia($r);
+                        $id = $_GET['id_residencia'];
+                        $resultado = $r->getResidencia($id);
+                        $data = array('residencia' => $resultado['0'], 
+                                        'nombre_existente' => 0, 
+                                        'sin_error' => 0);
+                        $this->editarResidencia($r, $data);
                         
                         break;
 
@@ -274,7 +279,6 @@ class adminController extends Controllers implements IControllers {
         #Guardo los valores del formulario
         $token= $_POST['valor_token'];
 
-
         $ok = $a->autenticar($token);
 
         if ($ok) {      
@@ -282,20 +286,17 @@ class adminController extends Controllers implements IControllers {
         }
         else{
             //Login fallido
-            
-            Functions::redir("http://localhost/HomeSwitchHome/home/error_token");
+            //$errores = array('error_login' => 1);
+            Functions::redir("http://localhost/HomeSwitchHome/home/error_login");
         }
     }
 
 
 
-    private function editarResidencia($r){
-
-        $data = array('id_residencia' => $_GET['id_residencia'],
-                      'nombre_existente' => 0 ,
-                       'sin_error' => 0);
+    private function editarResidencia($r, $data){
 
         $nombre=$_POST['nombre'];
+        $id_residencia=$data['residencia']['id'];
 
         //Valido el nombre
         if ($r->existe($nombre)) {
@@ -305,11 +306,11 @@ class adminController extends Controllers implements IControllers {
 
         if (!$data['nombre_existente']) {
             //Editar
-            $r->editar($r->getResidencia($data['id_residencia']));
+            $r->editar($r->getResidencia($id_residencia));
             $data['sin_error'] = 1;
         }
 
-        $this->template->display('home/homeBackend',$data);
+        $this->template->display('residencias/modificarResidencia',$data);
 
 
     }
@@ -319,7 +320,8 @@ class adminController extends Controllers implements IControllers {
     private function eliminarResidencia($r){
 
         $data = array('id_residencia' => $_GET['id_residencia'],
-                      'estadias_pendientes' => 0);
+                      'estadias_pendientes' => 0 ,
+                       'sin_error' => 0);
 
         //me fijo si hay estadias pendientes
         $resultado = $r->getEstadiasPendientes($_GET['id_residencia']);
@@ -330,13 +332,12 @@ class adminController extends Controllers implements IControllers {
         }
         else{
             //no se encontraron estadias, se puede eliminar
+
             $r->delete($_GET['id_residencia']);
+            $data['sin_error'] = 1;
         }
 
-        $estadias_pendientes = $data['estadias_pendientes'];
-
-        Functions::redir("http://localhost/HomeSwitchHome/residencias/listar?operacion=1&estadias_pendientes=$estadias_pendientes");
-        //$this->template->display('home/homeBackend' , $data);
+        $this->template->display('home/homeBackend' , $data);
 
     }
 

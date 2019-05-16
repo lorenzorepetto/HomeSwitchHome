@@ -57,21 +57,23 @@
 	      		
 	        <div id="card_residencia" class="col-md-4">
 	          <div  id="card_residencia" class="card mb-4 shadow-sm">
+	          	<p id="nombre_residencia" class="lead text-muted">{{ r.nombre }}:</p>
 	            <img id="card_foto_residencia" src="{{ r.foto }}" class="card-img-top" >
 	            <div class="card-body">
 	            	<div id="p_card">
+	            		<p><span class="glyphicon glyphicon-map-marker"></span> {{ r.calle }}, {{ r.altura }}, {{ r.ciudad }}, {{ r.provincia }}</p>
 	              		<p class="card-text"> {{ r.descripcion }}</p>
 	              	</div>
-	                <div class="d-flex justify-content-between align-items-left">
-		                <div class="container btn-group">
+	                <div  class="d-flex justify-content-between align-items-left">
+		                <div id="botones" class="container btn-group">
 		                	<a href="http://localhost/HomeSwitchHome/residencias/detalle/{{ r.id }}" class="btn btn-secondary my-2">Ver detalles</a>
 		                	<a href="http://localhost/HomeSwitchHome/admin/operaciones/editarResidencia?id_residencia={{ r.id }}" class="btn btn-secondary my-2">Editar</a>
-		                	<a href="http://localhost/HomeSwitchHome/admin/operaciones/agregarEstadia?id_residencia={{ r.id }}" class="btn btn-secondary my-2">Crear estadía</a>		                	
-		                </div class="center-block">
-		                <div>
-		                	<a href="http://localhost/HomeSwitchHome/admin/residencias/eliminar?id_residencia={{ r.id }}" onclick="return confirmation();"><span id="trash" class="glyphicon glyphicon-trash"></span></a>
+		                	<a href="http://localhost/HomeSwitchHome/admin/operaciones/agregarEstadia?id_residencia={{ r.id }}" class="btn btn-secondary my-2">Crear estadía</a>
+		                	<div id="">
+			                	<a title="Eliminar residencia" href="http://localhost/HomeSwitchHome/admin/residencias/eliminar?id_residencia={{ r.id }}" onclick="return confirmation();"><span id="trash" class="glyphicon glyphicon-trash"></span></a>
+			                </div>			                	
 		                </div>
-		                
+		                	                
 	                </div>
 	            </div>
 	          </div>
