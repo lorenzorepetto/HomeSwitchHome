@@ -46,13 +46,16 @@ class homeController extends Controllers implements IControllers {
 
             $this->renderHome($r, 1);
         }
+        elseif ($router->getMethod() == 'error_token') {
+            $this->renderHome($r,1,1);
+        }
         else{
             $this->renderHome($r);
         }
     }
     
 
-    public function renderHome($r,$error_login = 0){
+    public function renderHome($r,$error_login = 0, $error_token = 0){
 
 
 
@@ -61,7 +64,8 @@ class homeController extends Controllers implements IControllers {
         $residencia = Arrays::array_random_element($resultado);
 
         $datos = array('residencia' => $residencia,
-                        'error_login' => $error_login);
+                        'error_login' => $error_login,
+                        'error_token' => $error_token);
 
         $this->template->display('home/home', $datos);
         

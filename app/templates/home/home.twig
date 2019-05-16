@@ -43,6 +43,7 @@
             </div>
           {% endif %}
 
+          
           <div id="input_email" class="center-block form-group form">
             <label for="email">Email adress:</label>
             <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">           
@@ -59,7 +60,11 @@
         </form>
 
         
+        
+
+        
         {# TOKEN #}
+        
         <form action="http://localhost/HomeSwitchHome/admin/token" method="post" id="token" onsubmit="return validarToken();">
         <div class="center-block form-group form">
             <label for="password">Token:</label>
@@ -71,6 +76,8 @@
         </form>
 
         <button class="btn btn-secondary" id="boton_token" onclick="return mostrarToken();"> Tengo un token </button>
+          
+        
 
 
       </div>
