@@ -308,6 +308,8 @@ class adminController extends Controllers implements IControllers {
             //Editar
             $r->editar($r->getResidencia($id_residencia));
             $data['sin_error'] = 1;
+            $resultado = $r->getResidencia($id_residencia);
+            $data['residencia'] = $resultado['0'];
         }
 
         $this->template->display('residencias/modificarResidencia',$data);
