@@ -66,10 +66,12 @@
 		                <div class="container btn-group">
 		                	<a href="http://localhost/HomeSwitchHome/residencias/detalle/{{ r.id }}" class="btn btn-secondary my-2">Ver detalles</a>
 		                	<a href="http://localhost/HomeSwitchHome/admin/operaciones/editarResidencia?id_residencia={{ r.id }}" class="btn btn-secondary my-2">Editar</a>
-		                	<a href="http://localhost/HomeSwitchHome/admin/operaciones/agregarEstadia?id_residencia={{ r.id }}" class="btn btn-secondary my-2">Crear estadía</a>
-		                	<a href="http://localhost/HomeSwitchHome/admin/residencias/eliminar?id_residencia={{ r.id }}" class="btn btn-secondary my-2" onclick="return confirmation();">
-		                	<span class="glyphicon glyphicon-trash"></span></a>		                	
+		                	<a href="http://localhost/HomeSwitchHome/admin/operaciones/agregarEstadia?id_residencia={{ r.id }}" class="btn btn-secondary my-2">Crear estadía</a>		                	
+		                </div class="center-block">
+		                <div>
+		                	<a href="http://localhost/HomeSwitchHome/admin/residencias/eliminar?id_residencia={{ r.id }}" onclick="return confirmation();"><span id="trash" class="glyphicon glyphicon-trash"></span></a>
 		                </div>
+		                
 	                </div>
 	            </div>
 	          </div>

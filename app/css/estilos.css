@@ -215,3 +215,8 @@ img .perfil{
 #msjMontoS{
 	display: none;
 }
+
+#trash{
+	margin-top: 13px;
+	color: red;
+}
