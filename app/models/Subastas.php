@@ -59,6 +59,19 @@ class Subastas extends Models implements IModels {
 
     */
 
+    public function cerrar($subasta){
+        $id= $subasta['0']['id'];
+        $nuevosDatos = array('fecha_inicio' => $subasta['0']['id'],
+                                'fecha_fin' => $subasta['0']['fecha_inicio'],
+                                'estado' => 1,
+                                'usuario_ganador' => $subasta['0']['usuario_ganador'],
+                                'id_estadia' => $subasta['0']['id_estadia'],
+                                'monto' => $subasta['0']['monto'] );
+
+        
+        $this->db->update('subastas', $nuevosDatos, "id=$id");
+    
+    }
 
     /*
 
@@ -76,5 +89,12 @@ class Subastas extends Models implements IModels {
         $resultado = $this->db->select('*', 'subastas', null, "estado = 0");
         return $resultado;
     }
+
+    public function getSubasta($id_subasta){
+        $resultado=  $this->db->select('*', 'subastas', null, "id=$id_subasta");
+        return $resultado;
+    }
+
+
 
 }

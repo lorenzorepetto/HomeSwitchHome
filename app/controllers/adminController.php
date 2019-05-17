@@ -72,9 +72,8 @@ class adminController extends Controllers implements IControllers {
                         break;
 
                     case 'verSubastas':
-                        $estadias = $e->getEstadias();
                         $subastas= $s->getSubastas();
-                        $this->template->display('subastas/verSubastas',array('subastas' => $subastas ));
+                        $this->template->display('subastas/verSubastas',array('subastas' => $subastas));
                         break;
 
                     default:
@@ -137,6 +136,13 @@ class adminController extends Controllers implements IControllers {
                     case 'insertar':
                         $id_estadia= $_GET['id_estadia'];
                         $this->insertarSubasta($s, $id_estadia, $e);
+                        break;
+
+                    case 'cerrar':
+                        $id_subasta= $_GET['id_subasta'];
+                        $data = array('id_subasta' => $id_subasta,
+                                        'sin_error' =>0 );
+                        $this->cerrarSubasta($s, $id_subasta, $e, $data);
                         break;
 
                     default:
@@ -347,6 +353,22 @@ class adminController extends Controllers implements IControllers {
 
         $this->template->display('home/homeBackend' , $data);
 
+    }
+
+    private function cerrarSubasta($s, $id_subasta, $e, $data){
+
+        $subasta= $s->getSubasta($id_subasta);
+
+        if ($subasta) {
+            
+
+
+            $s->cerrar($subasta);
+            $data['sin_error']=1;
+        }
+
+        $subastas= $s->getSubastas();
+        $this->template->display('subastas/verSubastas',array('subastas' => $subastas, 'data'=> $data ));
     }
 
 }
