@@ -1,0 +1,77 @@
+{% extends 'overall/layout' %}
+{% block appHeader %}
+
+        <div id="navbar">
+
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+          <!-- Brand -->
+          <a class="navbar-brand" href="http://localhost/HomeSwitchHome/"><div><img src="app/img/HSH-Text.jpg" class="img-responsive" title="Logo Home Switch Home" style="width:180px;"></div></a>
+
+          <!-- Links -->
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="http://localhost/HomeSwitchHome/usuarios/cuenta/logout"><span class="glyphicon glyphicon-log-in"></span>   Cerrar Sesion</a>
+            </li>
+
+            <!-- Dropdown -->
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle my-2 my-lg-0" href="#" id="navbardrop" data-toggle="dropdown">
+                More
+              </a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="#"><span class="glyphicon glyphicon-question-sign"> FAQs</a>
+                <a class="dropdown-item" href="#"><span class="glyphicon glyphicon-envelope"> Contacto</a>
+                <a class="dropdown-item" href="#"><span class="glyphicon glyphicon-fire"></span> Subastas</a>
+                <a class="dropdown-item" href="#"><span class="glyphicon glyphicon-fire"></span> Hotsales</a>
+              </div>
+            </li>
+          </ul>
+        </nav>
+
+        </div> 
+    {% endblock %}
+
+{% block carrousel %}
+  
+  <div class="py-5 bg-light">
+      <div class="container">
+        {% if data.sin_error == 1 %}
+          <div class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong class="animated flash"> <span class='glyphicon glyphicon-ok-sign'></span> Nota:</strong> La subasta se ha creado con éxito!
+          </div>
+        {% endif %}
+
+        <p class="lead text-muted">Lista de subastas: </p>
+
+        <div class="row">
+
+          {% for s in subastas %}
+
+          <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+              
+              <div class="card-body">
+                <p class="card-text"> ID subasta: {{ s.id }}</p>
+                <p class="card-text"> ID estadia: {{ s.id_estadia }}</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <a href="http://localhost/HomeSwitchHome/admin/subastas/cerrar?id_subasta={{ s.id }}"><button class="btn btn-secondary my-2">Cerrar subasta</button></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {% endfor %}
+      
+        </div>
+
+        
+      </div>
+  </div>
+  
+     
+{% endblock %}
+{% block appContenido%} {% endblock %}
+{% block appBody%} {% endblock %}

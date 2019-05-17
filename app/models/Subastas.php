@@ -55,6 +55,13 @@ class Subastas extends Models implements IModels {
 
     /*
 
+    ------------------------  ELIMINAR SUBASTA  ---------------------------------------------------------------------
+
+    */
+
+
+    /*
+
     ------------------------  CONSULTAS  ----------------------------------------------------------
 
     */
@@ -63,4 +70,11 @@ class Subastas extends Models implements IModels {
         $resultado = $this->db->select('*', 'subastas', null, "estado = 0 and id_estadia = '$id_estadia'");
         return $resultado;
     }
+
+    public function getSubastas(){
+
+        $resultado = $this->db->select('*', 'subastas', null, "estado = 0");
+        return $resultado;
+    }
+
 }

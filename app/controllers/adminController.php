@@ -71,6 +71,12 @@ class adminController extends Controllers implements IControllers {
                         $this->template->display('subastas/agregarSubasta',array('estadias' => $estadias ));
                         break;
 
+                    case 'verSubastas':
+                        $estadias = $e->getEstadias();
+                        $subastas= $s->getSubastas();
+                        $this->template->display('subastas/verSubastas',array('subastas' => $subastas ));
+                        break;
+
                     default:
                         $this->template->display('home/home');
                         break;
@@ -132,7 +138,7 @@ class adminController extends Controllers implements IControllers {
                         $id_estadia= $_GET['id_estadia'];
                         $this->insertarSubasta($s, $id_estadia, $e);
                         break;
-                    
+
                     default:
                         $this->template->display('home/home');
                         break;
@@ -342,6 +348,5 @@ class adminController extends Controllers implements IControllers {
         $this->template->display('home/homeBackend' , $data);
 
     }
-
 
 }
