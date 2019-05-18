@@ -45,7 +45,7 @@ class Subastas extends Models implements IModels {
         $subasta = array('fecha_inicio' => date("m.d.y"),
                         'fecha_fin' => date("m.d.y"),
                         'estado' => 0,
-                        'usuario_ganador' => 'meli',
+                        'usuario_ganador' => ' ',
                         'id_estadia' => $id_estadia,
                         'monto' => $monto);
 
@@ -90,8 +90,20 @@ class Subastas extends Models implements IModels {
         return $resultado;
     }
 
+    public function getSubastasConEstadiaYResidencia(){
+
+        $resultado = $this->db->select('e.id as id_estadia, e.semana, e.monto as monto_estadia, r.id as id_residencia, r.nombre,s.id as id_subasta,  s.monto as monto_subasta', 'subastas s', 'INNER JOIN estadias e ON (s.id_estadia = e.id) INNER JOIN residencias r ON (e.id_residencia = r.id)', "s.estado = 0");
+        return $resultado;
+    }
+
     public function getSubasta($id_subasta){
         $resultado=  $this->db->select('*', 'subastas', null, "id=$id_subasta");
+        return $resultado;
+    }
+
+    public function getPujas($id){
+
+        $resultado = $this->db->select('*', 'usuarios_subastas', null, "id_subasta = $id");
         return $resultado;
     }
 

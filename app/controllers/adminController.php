@@ -67,12 +67,12 @@ class adminController extends Controllers implements IControllers {
                         break;
 
                     case 'agregarSubasta':
-                        $estadias = $e->getEstadias();
+                        $estadias = $e->getEstadiasConResidencia();
                         $this->template->display('subastas/agregarSubasta',array('estadias' => $estadias ));
                         break;
 
                     case 'verSubastas':
-                        $subastas= $s->getSubastas();
+                        $subastas= $s->getSubastasConEstadiaYResidencia();
                         $this->template->display('subastas/verSubastas',array('subastas' => $subastas));
                         break;
 
@@ -244,7 +244,7 @@ class adminController extends Controllers implements IControllers {
                         'error_anticipacion' => 0, 
                       'subasta_existente'=> 0);
 
-        $monto= $_POST['monto'];
+        $monto= $_POST['monto'.$id_estadia];
 
         //debe crearse con al menos 6 meses de anticipacion (es igual a 52/2=26 semanas)
         $semana_estadia = $e->getSemana($id_estadia);
@@ -259,13 +259,13 @@ class adminController extends Controllers implements IControllers {
         if($s->existe($id_estadia)){
             $data['subasta_existente'] = 1;
         }
-    
+        
         if (!$data['error_anticipacion'] && !$data['subasta_existente']){
             $s->insertar($id_estadia, $monto);
             $data['sin_error'] = 1;
         }
 
-        $estadias= $e->getEstadias();
+        $estadias= $e->getEstadiasConResidencia();
         $this->template->display("subastas/agregarSubasta", array('estadias' => $estadias,'data' => $data)); 
         
 

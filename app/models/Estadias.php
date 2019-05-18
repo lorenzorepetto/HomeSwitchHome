@@ -42,6 +42,12 @@ class Estadias extends Models implements IModels {
         return $resultado;
     }
 
+    public function getEstadiasConResidencia(){
+
+        $resultado = $this->db->select('e.id as id_estadia, e.semana, e.monto, r.id as id_residencia, r.nombre', 'estadias e', 'INNER JOIN residencias r ON (e.id_residencia = r.id)', "e.estado_logico = 0 and e.ocupada=0 and e.caducada=0");
+        return $resultado;
+    }
+
     public function getSemana($id){
 
         $resultado = $this->db->select('semana', 'estadias', null, "estado_logico = 0 and id = '$id'");

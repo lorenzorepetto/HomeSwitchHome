@@ -122,11 +122,11 @@ function mostrarToken(){
     return true;
 }
 
-function validarAgregarSubasta(){
-  var monto = document.getElementById("monto").value;
+function validarAgregarSubasta(id){
+  var monto = document.getElementById("monto"+id).value;
+
 
   if (campoVacio(monto) || monto <= 0){
-    document.getElementById("msjMontoS").style.display = "block";
     return false;
   }
 

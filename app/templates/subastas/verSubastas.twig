@@ -52,11 +52,14 @@
             <div class="card mb-4 shadow-sm">
               
               <div class="card-body">
-                <p class="card-text"> ID subasta: {{ s.id }}</p>
+                <p class="card-text"> ID subasta: {{ s.id_subasta }}</p>
                 <p class="card-text"> ID estadia: {{ s.id_estadia }}</p>
+                <p class="card-text"> ID subasta: {{ s.id_residencia }}</p>
+                <p class="card-text"> semana: {{ s.semana }}</p>
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group">
-                    <a href="http://localhost/HomeSwitchHome/admin/subastas/cerrar?id_subasta={{ s.id }}"><button class="btn btn-secondary my-2">Cerrar subasta</button></a>
+                    <a href="http://localhost/HomeSwitchHome/subastas/detalle/{{ s.id_subasta }}"><button class="btn btn-secondary my-2">Ver detalles</button></a>
+                    <a href="http://localhost/HomeSwitchHome/admin/subastas/cerrar?id_subasta={{ s.id_subasta }}"><button class="btn btn-secondary my-2">Cerrar subasta</button></a>
                   </div>
                 </div>
               </div>
