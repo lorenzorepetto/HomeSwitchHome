@@ -351,7 +351,9 @@ class adminController extends Controllers implements IControllers {
             $data['sin_error'] = 1;
         }
 
-        $this->template->display('home/homeBackend' , $data);
+        $estadias_pendientes = $data['estadias_pendientes'];
+
+        Functions::redir("http://localhost/HomeSwitchHome/residencias/listar?operacion=1&estadias_pendientes=$estadias_pendientes");
 
     }
 
