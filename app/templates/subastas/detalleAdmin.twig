@@ -36,33 +36,45 @@
 
 {% block appContenido %}    
 		
-	<div class="border container">
-	   	 <h2>Detalles de la subasta</h2>
-	    <div class_"row">
-	      <ul class="list-group list-group-flush col-lg-8">
-	        <li class="list-group-item"><span class="glyphicon glyphicon-ok"></span> <strong> Semana: </strong>{{ subasta.semana }}</li>
-	        <li class="list-group-item"><span class="glyphicon glyphicon-ok"></span> <strong> Residencia: </strong>{{ subasta.nombre }}</li>
-	        <li class="list-group-item"><span class="glyphicon glyphicon-map-marker"></span><strong> Dirección:</strong> {{ subasta.calle }} {{ subasta.altura }}, {{ subasta.ciudad }}, {{ subasta.provincia }}</li>
-	        <li class="list-group-item"><span class="glyphicon glyphicon-user"></span> <strong>Capacidad:</strong> {{ subasta.capacidad }}</li>         
-	      </ul>
-	      <img id="foto_detalle_residencia" src="{{ subasta.foto }}" class="perfil float-right col-lg-4" alt="Foto de perfil">
+	<div id="div_detalle" class="border container">
+	   	<h2 class="detalle">Detalles de la subasta</h2>
 
-	      <h2>Pujas</h2>
-	      
-        <li class="list-group-item"><span class="glyphicon glyphicon-fire"></span> <strong> Monto original de la estadía: </strong>{{ subasta.monto_estadia }}</li>
-        <li class="list-group-item"><span class="glyphicon glyphicon-fire"></span> <strong> Monto inicial de la subasta: </strong>{{ subasta.monto_subasta }}</li>
-        <li class="list-group-item"><span class="glyphicon glyphicon-fire"></span> <strong> Monto actual de la subasta: </strong>{{ subasta.monto_actual }}</li>
-        <li class="list-group-item">
-          <form action="" enctype="multipart/form-data" method="post"> 
-            <div class="form-group form">
-              <label for="puja">Monto:</label>                      
-              <input type="text" id="puja" name="puja"> 
-            </div>
-            <button type="submit" class="btn btn-secondary my-2">Pujar!</button>
-          </form>
-        </li>  
+      <div class="col-lg-8">
 
-	    </div>
+
+  	    <div class_"row">
+  	      <ul class="list-group list-group-flush">
+            <li class="list-group-item"><span class="glyphicon glyphicon-ok"></span> <strong> Residencia: </strong>{{ subasta.nombre }}</li>
+  	        <li class="list-group-item"><span class="glyphicon glyphicon-map-marker"></span><strong> Dirección:</strong> {{ subasta.calle }} {{ subasta.altura }}, {{ subasta.ciudad }}, {{ subasta.provincia }}</li>
+  	        <li class="list-group-item"><span class="glyphicon glyphicon-user"></span> <strong>Capacidad:</strong> {{ subasta.capacidad }}</li>      
+            <li class="list-group-item"><span class="glyphicon glyphicon-ok"></span> <strong> Semana: </strong>{{ subasta.semana }}</li>   
+  	      </ul> 
+
+  	    
+          <h2 id="pujas">Pujas</h2>
+            <ul class="list-group list-group-flush">      
+              <li class="list-group-item"><span class="glyphicon glyphicon-fire"></span> <strong> Monto original de la estadía: </strong>{{ subasta.monto_estadia }}</li>
+              <li class="list-group-item"><span class="glyphicon glyphicon-fire"></span> <strong> Monto inicial de la subasta: </strong>{{ subasta.monto_subasta }}</li>
+              <li class="list-group-item"><span class="glyphicon glyphicon-fire"></span> <strong> Monto actual de la subasta: </strong>{{ subasta.monto_actual }}</li>
+              <li class="list-group-item">
+                <form action="" enctype="multipart/form-data" method="post">
+                  <div class="row"> 
+                    <div id="form_detalle_residencia" class="form-group form">
+                      <label for="puja">Monto:</label>                      
+                      <input type="text" id="puja" name="puja"> 
+                    </div>                  
+                    <button id="pujar" type="submit" class="btn btn-secondary my-2">Pujar!</button>
+                  </div>
+                </form>
+              </li>
+            </ul>
+        </div>
+
+      </div>
+      <div id="img_detalle_residencia" class="col-lg-4">
+        <img id="foto_detalle_residencia" src="{{ subasta.foto }}" class="perfil float-right" alt="Foto de perfil"> 
+      </div>
+
  	</div>
 		
 
