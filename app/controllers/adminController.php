@@ -141,9 +141,7 @@ class adminController extends Controllers implements IControllers {
                     case 'cerrar':
                         $id_subasta= $_GET['id_subasta'];
 
-                        $data = array('id_subasta' => $id_subasta,
-                                        'sin_error' =>0 );
-                        $this->cerrarSubasta($u, $s, $id_subasta, $e, $data);
+                        $this->cerrarSubasta($u, $s, $id_subasta, $e);
                         break;
 
                     default:
@@ -359,34 +357,25 @@ class adminController extends Controllers implements IControllers {
 
     }
 
-    private function cerrarSubasta($u, $s, $id_subasta, $e, $data){
+    private function cerrarSubasta($u, $s, $id_subasta, $e){
+
+        $data = array('id_subasta' => $id_subasta,
+                      'sin_error' =>0, 
+                      'usuario_ganador' => 0);
 
         $subasta= $s->getSubasta($id_subasta);
 
         if ($subasta) {
-            
-            if ($subasta[0]['usuario_ganador']<> ' ') {
-                //la subasta tuvo alguna puja, hay que chequear si el usuario ganador tiene creditos
-                echo "hpñ"; exit();
-                if ($u->tieneCredito($subasta[0]['usuario_ganador'])) {
-                    //el usuario tiene creditos, se informa que es el ganador y se cierra
-                    $s->cerrar($subasta);
-                    $data['sin_error']=1;
-                }
-            }else{
 
-                //la subasta no tuvo ninguna puja
-                $s->cerrar($subasta);
-                $data['sin_error']=1;
-
-
+            $data=$s->cerrar($e, $u, $subasta);
+            if ($data['usuario_ganador']) {
+                $usuario=$u->getUsuario($data['usuario_ganador']);
             }
-
             
         }
 
         $subastas= $s->getSubastasConEstadiaYResidencia();
-        $this->template->display('subastas/verSubastas',array('subastas' => $subastas, 'data'=> $data ));
+        $this->template->display('subastas/verSubastas',array('subastas' => $subastas, 'data'=> $data, 'usuario' => $usuario['0'] ));
     }
 
 }

@@ -35,10 +35,17 @@
   
   <div class="py-5 bg-light">
       <div class="container">
-        {% if data.sin_error == 1 %}
+        {% if data.sin_error == 1 and data.usuario_ganador != 0 %}
           <div class="alert alert-success alert-dismissible">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <strong class="animated flash"> <span class='glyphicon glyphicon-ok-sign'></span> Nota:</strong> La subasta se ha cerrado con éxito! Se eliminará de la lista de subastas.
+            <strong class="animated flash"> <span class='glyphicon glyphicon-ok-sign'></span> Nota:</strong> La subasta se ha cerrado con éxito! Se le ha restado un crédito al usuario ganador: <strong>{{ usuario.apellido }}, {{ usuario.nombre }}</strong>
+          </div>
+        {% endif %}
+
+        {% if data.sin_error == 1 and data.usuario_ganador == 0 %}
+          <div class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong class="animated flash"> <span class='glyphicon glyphicon-ok-sign'></span> Nota:</strong> La subasta se ha cerrado con éxito! No hubo ganador.
           </div>
         {% endif %}
 
@@ -55,13 +62,17 @@
               <div class="card-body">
                 <p class="card-text"> ID subasta: {{ s.id_subasta }}</p>
                 <p class="card-text"> ID estadia: {{ s.id_estadia }}</p>
-                <p class="card-text"> ID subasta: {{ s.id_residencia }}</p>
-                <p class="card-text"> semana: {{ s.semana }}</p>
-                <p class="card-text"> monto actual: {{ s.monto_actual }}</p>
+                <p class="card-text"> Nombre residencia: {{ s.nombre }}</p>
+                <p class="card-text"> Semana de la estadía: {{ s.semana }}</p>
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group">
                     <a href="http://localhost/HomeSwitchHome/subastas/detalle/{{ s.id_subasta }}"><button class="btn btn-secondary my-2">Ver detalles</button></a>
-                    <a href="http://localhost/HomeSwitchHome/admin/subastas/cerrar?id_subasta={{ s.id_subasta }}"><button class="btn btn-secondary my-2">Cerrar subasta</button></a>
+                    {% if s.estado == 0 %}
+                      <a href="http://localhost/HomeSwitchHome/admin/subastas/cerrar?id_subasta={{ s.id_subasta }}"><button class="btn btn-secondary my-2">Cerrar subasta</button></a>
+                    {% else %}
+                      <strong> Subasta cerrada. </strong>  
+                    {% endif %}
+
                   </div>
                 </div>
               </div>

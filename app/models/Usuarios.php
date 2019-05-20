@@ -61,10 +61,17 @@ class Usuarios extends Models implements IModels {
     */
 
     public function tieneCredito($id){
-        $resultado = $this->db->select('*', 'usuarios', null, "estado_logico = 0 and creditos >= 1");
-        var_dump($resultado[0]); exit();
+        $resultado = $this->db->select('*', 'usuarios', null, "estado_logico = 0 and creditos >= 1 and id='$id'");
+        dump($resultado[0]); exit();
         return $resultado[0];
 
+    }
+
+
+    public function restarCredito($id){
+        $resultado = $this->db->select('creditos', 'usuarios', null, "estado_logico = 0 and id='$id'");
+        $datos_nuevos = array('creditos' => $resultado[0]['creditos']-1 );
+        $this->db->update('usuarios', $datos_nuevos, "id = '$id'");
     }
 
 
