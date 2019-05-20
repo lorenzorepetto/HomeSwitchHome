@@ -38,6 +38,15 @@ class subastasController extends Controllers implements IControllers {
 	                $this->detalleSubasta($_SESSION['rol'],$s, $router->getId(true));
 	                break;
 
+                case 'pujar':
+                    
+                    $s->pujar($router->getId(true), $_SESSION['id'] ,$_POST['puja']);
+                    $this->detalleSubasta($_SESSION['rol'],$s, $router->getId(true), true);
+
+
+                    break;
+
+
 	        	default:
 	        		$this->template->display('home/home');
 	        		break;
@@ -50,28 +59,30 @@ class subastasController extends Controllers implements IControllers {
 
 
 
-    public function detalleSubasta($rol, $s, $id){
+    public function detalleSubasta($rol, $s, $id, $operacion = 0){
         
         $resultado = $s->getSubasta($id);
         
         if ($resultado) {
 
                 $subasta = $resultado['0'];
-                $mis_pujas = $s->getPujas($id);
+                $puja = $s->getPuja($id);
+
                                
         }
 
         switch ($rol) {
 
             case 'ADMINISTRADOR':       
-                $this->template->display('subastas/detalleAdmin', array('subasta' => $subasta, 'pujas' => $mis_pujas));
+                $this->template->display('subastas/detalleAdmin', array('subasta' => $subasta, 'puja' => $puja['0'], 'operacion' => $operacion));
                 break;
             
             default:
-                $this->template->display('subastas/detalle');
+                $this->template->display('subastas/detalle', array('subasta' => $subasta, 'puja' => $puja['0']));
                 break;
         } 
         
     }
+
 
 }

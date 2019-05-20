@@ -139,5 +139,39 @@ class Subastas extends Models implements IModels {
     }
 
 
+    public function getPuja($id){
+
+        $resultado = $this->db->select('MAX(monto_apostado) as monto_apostado, 
+                                        u.id as usuario_id,
+                                        u.nombre,
+                                        u.apellido,
+                                        u.creditos,
+                                        u.foto', 
+                                        'pujas p', 
+                                        'INNER JOIN usuarios u ON (u.id = p.id_usuario)', 
+                                        "id_subasta = $id");
+
+
+        return $resultado;
+    }
+
+
+    /*
+
+    ------------------------  PUJAS  ----------------------------------------------------------
+
+    */
+
+
+    public function pujar($id_subasta, $id_usuario, $monto){
+
+        $puja = array('id_subasta' => $id_subasta,
+                       'id_usuario' => $id_usuario,
+                       'monto_apostado' => $monto );
+
+        $this->db->insert('pujas',$puja);
+
+    }
+
 
 }

@@ -144,3 +144,21 @@ function confirmation(){
   }
 
 }
+
+  function validarPuja(monto_validacion){
+    var monto = document.getElementById("puja").value;
+
+    if (campoVacio(monto)) {
+      document.getElementById("errorPujaMonto").style.display = "none";
+      document.getElementById("errorPujaVacia").style.display = "block";
+      return false;
+    }
+    else if (monto <= monto_validacion) {
+      document.getElementById("errorPujaVacia").style.display = "none";
+      document.getElementById("errorPujaMonto").style.display = "block";
+      return false;
+    }
+
+    return true;
+
+  }

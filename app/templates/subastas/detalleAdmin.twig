@@ -36,35 +36,65 @@
 
 {% block appContenido %}    
 		
+  {% if operacion == 1 %}
+      <div class="alert alert-success alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong class="animated flash"> <span class='glyphicon glyphicon-ok-sign'></span> Nota:</strong> La puja se ha registrado con éxito!
+      </div>
+  {% endif %}
+
 	<div id="div_detalle" class="border container">
+
 	   	<h2 class="detalle">Detalles de la subasta</h2>
 
       <div class="col-lg-8">
 
 
   	    <div class_"row">
+
   	      <ul class="list-group list-group-flush">
             <li class="list-group-item"><span class="glyphicon glyphicon-ok"></span> <strong> Residencia: </strong>{{ subasta.nombre }}</li>
   	        <li class="list-group-item"><span class="glyphicon glyphicon-map-marker"></span><strong> Dirección:</strong> {{ subasta.calle }} {{ subasta.altura }}, {{ subasta.ciudad }}, {{ subasta.provincia }}</li>
   	        <li class="list-group-item"><span class="glyphicon glyphicon-user"></span> <strong>Capacidad:</strong> {{ subasta.capacidad }}</li>      
-            <li class="list-group-item"><span class="glyphicon glyphicon-ok"></span> <strong> Semana: </strong>{{ subasta.semana }}</li>   
+            <li class="list-group-item"><span class="glyphicon glyphicon-ok"></span> <strong> Semana: </strong>{{ subasta.semana }}</li>
+            <li class="list-group-item"><span class="glyphicon glyphicon-usd"></span> <strong> Monto original de la estadía: </strong><strike>${{ subasta.monto_estadia|number_format(2, ',', '.') }}</strike></li>
+
+            {% set porcentaje = (1 - (subasta.monto_subasta / subasta.monto_estadia)) * 100 %}
+
+
+            <li class="list-group-item"><span class="glyphicon glyphicon-fire"></span> <strong> Monto inicial de la subasta: </strong>${{ subasta.monto_subasta|number_format(2, ',', '.') }} <p style="color:#11af1f"> {{ porcentaje|number_format(2) }}% OFF</p></li>
+
   	      </ul> 
 
-  	    
+    
           <h2 id="pujas">Pujas</h2>
             <ul class="list-group list-group-flush">      
-              <li class="list-group-item"><span class="glyphicon glyphicon-fire"></span> <strong> Monto original de la estadía: </strong>{{ subasta.monto_estadia }}</li>
-              <li class="list-group-item"><span class="glyphicon glyphicon-fire"></span> <strong> Monto inicial de la subasta: </strong>{{ subasta.monto_subasta }}</li>
-              <li class="list-group-item"><span class="glyphicon glyphicon-fire"></span> <strong> Monto actual de la subasta: </strong>{{ subasta.monto_actual }}</li>
-              <li class="list-group-item">
-                <form action="" enctype="multipart/form-data" method="post">
-                  <div class="row"> 
-                    <div id="form_detalle_residencia" class="form-group form">
+              
+              {% if puja.usuario_id != null %}
+
+                  {% set monto_validacion = puja.monto_apostado %}
+
+                  <li class="list-group-item"><span class="glyphicon glyphicon-usd"></span> <strong> Monto actual de la subasta: </strong>${{ puja.monto_apostado|number_format(2, ',', '.') }}</li>
+                  <li class="list-group-item"><span class="glyphicon glyphicon-user"></span> <strong> Usuario: </strong>{{ puja.apellido }}, {{ puja.nombre }}</li>
+                  <li class="list-group-item">
+
+              {% else %}
+
+                  {% set monto_validacion = subasta.monto_subasta %}
+
+                  <li class="list-group-item"><span class="glyphicon glyphicon-usd"></span> Aún no existen pujas, podés ser el primero!</li>
+              {% endif %}
+
+                
+                <form action="http://localhost/HomeSwitchHome/subastas/pujar/{{ subasta.id_subasta }}" onsubmit="return validarPuja({{ monto_validacion }});" enctype="multipart/form-data" method="post">
+                  
                       <label for="puja">Monto:</label>                      
                       <input type="text" id="puja" name="puja"> 
-                    </div>                  
+                                     
                     <button id="pujar" type="submit" class="btn btn-secondary my-2">Pujar!</button>
-                  </div>
+                    <p class="animated shake" id="errorPujaVacia" name="errorPujaVacia"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
+                    <p class="animated shake" id="errorPujaMonto" name="errorPujaMonto"><span class="glyphicon glyphicon-exclamation-sign"></span> Debe ingresar un valor mayor al actual!</p>
+                  
                 </form>
               </li>
             </ul>
