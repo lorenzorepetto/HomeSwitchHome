@@ -1,1 +1,73 @@
-{{ subasta.id }}
+{% extends 'overall/layout' %}
+{% block appHeader %}
+
+        <div id="navbar">
+
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+          <!-- Brand -->
+          <a class="navbar-brand" href="http://localhost/HomeSwitchHome/"><div><img src="app/img/HSH-Text.jpg" class="img-responsive" title="Logo Home Switch Home" style="width:180px;"></div></a>
+
+          <!-- Links -->
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="http://localhost/HomeSwitchHome/usuarios/logout"><span class="glyphicon glyphicon-log-in"></span>   Cerrar Sesion</a>
+            </li>
+
+            <!-- Dropdown -->
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle my-2 my-lg-0" href="#" id="navbardrop" data-toggle="dropdown">
+                More
+              </a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="#"><span class="glyphicon glyphicon-question-sign"> FAQs</a>
+                <a class="dropdown-item" href="#"><span class="glyphicon glyphicon-envelope"> Contacto</a>
+                <a class="dropdown-item" href="#"><span class="glyphicon glyphicon-fire"></span> Subastas</a>
+                <a class="dropdown-item" href="#"><span class="glyphicon glyphicon-fire"></span> Hotsales</a>
+              </div>
+            </li>
+          </ul>
+        </nav>
+
+        </div> 
+{% endblock %}
+
+{% block carrousel %}
+{% endblock %}
+
+{% block appContenido %}    
+		
+	<div class="border container">
+	   	 <h2>Detalles de la subasta</h2>
+	    <div class_"row">
+	      <ul class="list-group list-group-flush col-lg-8">
+	        <li class="list-group-item"><span class="glyphicon glyphicon-ok"></span> <strong> Semana: </strong>{{ subasta.semana }}</li>
+	        <li class="list-group-item"><span class="glyphicon glyphicon-ok"></span> <strong> Residencia: </strong>{{ subasta.nombre }}</li>
+	        <li class="list-group-item"><span class="glyphicon glyphicon-map-marker"></span><strong> Dirección:</strong> {{ subasta.calle }} {{ subasta.altura }}, {{ subasta.ciudad }}, {{ subasta.provincia }}</li>
+	        <li class="list-group-item"><span class="glyphicon glyphicon-user"></span> <strong>Capacidad:</strong> {{ subasta.capacidad }}</li>         
+	      </ul>
+	      <img id="foto_detalle_residencia" src="{{ subasta.foto }}" class="perfil float-right col-lg-4" alt="Foto de perfil">
+
+	      <h2>Pujas</h2>
+	      
+        <li class="list-group-item"><span class="glyphicon glyphicon-fire"></span> <strong> Monto original de la estadía: </strong>{{ subasta.monto_estadia }}</li>
+        <li class="list-group-item"><span class="glyphicon glyphicon-fire"></span> <strong> Monto inicial de la subasta: </strong>{{ subasta.monto_subasta }}</li>
+        <li class="list-group-item"><span class="glyphicon glyphicon-fire"></span> <strong> Monto actual de la subasta: </strong>{{ subasta.monto_actual }}</li>
+        <li class="list-group-item">
+          <form action="" enctype="multipart/form-data" method="post"> 
+            <div class="form-group form">
+              <label for="puja">Monto:</label>                      
+              <input type="text" id="puja" name="puja"> 
+            </div>
+            <button type="submit" class="btn btn-secondary my-2">Pujar!</button>
+          </form>
+        </li>  
+
+	    </div>
+ 	</div>
+		
+
+
+{% endblock %}
+
+{% block appBody %}
+{% endblock %}

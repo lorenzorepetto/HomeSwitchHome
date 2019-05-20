@@ -246,7 +246,7 @@ class adminController extends Controllers implements IControllers {
 
         $monto= $_POST['monto'.$id_estadia];
 
-        //debe crearse con al menos 6 meses de anticipacion (es igual a 52/2=26 semanas)
+        /*debe crearse con al menos 6 meses de anticipacion (es igual a 52/2=26 semanas)
         $semana_estadia = $e->getSemana($id_estadia);
 
         $hoy= date("Y-m-d");        
@@ -255,6 +255,7 @@ class adminController extends Controllers implements IControllers {
         if ($semana_hoy > ($semana_estadia - 26)) {
             $data['error_anticipacion'] = 1;
         }
+        */
 
         if($s->existe($id_estadia)){
             $data['subasta_existente'] = 1;

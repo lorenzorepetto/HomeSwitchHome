@@ -47,7 +47,8 @@ class Subastas extends Models implements IModels {
                         'estado' => 0,
                         'usuario_ganador' => ' ',
                         'id_estadia' => $id_estadia,
-                        'monto' => $monto);
+                        'monto' => $monto,
+                        'monto_actual' => $monto);
 
         $this->db->insert('subastas',$subasta);
 
@@ -66,7 +67,8 @@ class Subastas extends Models implements IModels {
                                 'estado' => 1,
                                 'usuario_ganador' => $subasta['0']['usuario_ganador'],
                                 'id_estadia' => $subasta['0']['id_estadia'],
-                                'monto' => $subasta['0']['monto'] );
+                                'monto' => $subasta['0']['monto'],
+                                'monto_actual' => $subasta['0']['monto'] );
 
         
         $this->db->update('subastas', $nuevosDatos, "id=$id");
@@ -92,18 +94,47 @@ class Subastas extends Models implements IModels {
 
     public function getSubastasConEstadiaYResidencia(){
 
-        $resultado = $this->db->select('e.id as id_estadia, e.semana, e.monto as monto_estadia, r.id as id_residencia, r.nombre,s.id as id_subasta,  s.monto as monto_subasta', 'subastas s', 'INNER JOIN estadias e ON (s.id_estadia = e.id) INNER JOIN residencias r ON (e.id_residencia = r.id)', "s.estado = 0");
+        $resultado = $this->db->select('e.id as id_estadia, 
+                                        e.semana, 
+                                        e.monto as monto_estadia, 
+                                        r.id as id_residencia, 
+                                        r.nombre,
+                                        s.id as id_subasta,  
+                                        s.monto as monto_subasta,
+                                        s.monto_actual'
+                                        , 'subastas s', 
+                                        'INNER JOIN estadias e ON (s.id_estadia = e.id) INNER JOIN residencias r ON (e.id_residencia = r.id)');
         return $resultado;
     }
 
     public function getSubasta($id_subasta){
-        $resultado=  $this->db->select('*', 'subastas', null, "id=$id_subasta");
+        
+       
+        $resultado = $this->db->select('e.id as id_estadia,
+                                        e.semana,
+                                        e.monto as monto_estadia,
+                                        r.id as id_residencia, 
+                                        r.nombre,
+                                        s.id as id_subasta,  
+                                        s.monto as monto_subasta, 
+                                        s.monto_actual, 
+                                        r.calle, 
+                                        r.altura, 
+                                        r.ciudad, 
+                                        r.provincia,
+                                        r.foto, 
+                                        r.capacidad' , 
+                                        'subastas s' , 
+                                        'INNER JOIN estadias e ON (s.id_estadia = e.id) INNER JOIN residencias r ON (e.id_residencia = r.id)', 
+                                        "s.id = '$id_subasta'");
+        
         return $resultado;
+        
     }
 
     public function getPujas($id){
 
-        $resultado = $this->db->select('*', 'usuarios_subastas', null, "id_subasta = $id");
+        $resultado = $this->db->select('*', 'pujas', null, "id_subasta = $id");
         return $resultado;
     }
 
