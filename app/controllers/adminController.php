@@ -140,9 +140,10 @@ class adminController extends Controllers implements IControllers {
 
                     case 'cerrar':
                         $id_subasta= $_GET['id_subasta'];
+
                         $data = array('id_subasta' => $id_subasta,
                                         'sin_error' =>0 );
-                        $this->cerrarSubasta($s, $id_subasta, $e, $data);
+                        $this->cerrarSubasta($u, $s, $id_subasta, $e, $data);
                         break;
 
                     default:
@@ -262,7 +263,7 @@ class adminController extends Controllers implements IControllers {
         }
         
         if (!$data['error_anticipacion'] && !$data['subasta_existente']){
-            $s->insertar($id_estadia, $monto);
+            $s->insertar($e, $id_estadia, $monto);
             $data['sin_error'] = 1;
         }
 
@@ -358,19 +359,33 @@ class adminController extends Controllers implements IControllers {
 
     }
 
-    private function cerrarSubasta($s, $id_subasta, $e, $data){
+    private function cerrarSubasta($u, $s, $id_subasta, $e, $data){
 
         $subasta= $s->getSubasta($id_subasta);
 
         if ($subasta) {
             
+            if ($subasta[0]['usuario_ganador']<> ' ') {
+                //la subasta tuvo alguna puja, hay que chequear si el usuario ganador tiene creditos
+                echo "hpñ"; exit();
+                if ($u->tieneCredito($subasta[0]['usuario_ganador'])) {
+                    //el usuario tiene creditos, se informa que es el ganador y se cierra
+                    $s->cerrar($subasta);
+                    $data['sin_error']=1;
+                }
+            }else{
+
+                //la subasta no tuvo ninguna puja
+                $s->cerrar($subasta);
+                $data['sin_error']=1;
 
 
-            $s->cerrar($subasta);
-            $data['sin_error']=1;
+            }
+
+            
         }
 
-        $subastas= $s->getSubastas();
+        $subastas= $s->getSubastasConEstadiaYResidencia();
         $this->template->display('subastas/verSubastas',array('subastas' => $subastas, 'data'=> $data ));
     }
 

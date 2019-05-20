@@ -41,7 +41,7 @@ class Subastas extends Models implements IModels {
     */
 
     
-    public function insertar($id_estadia, $monto){
+    public function insertar($e, $id_estadia, $monto){
         $subasta = array('fecha_inicio' => date("m.d.y"),
                         'fecha_fin' => date("m.d.y"),
                         'estado' => 0,
@@ -52,6 +52,9 @@ class Subastas extends Models implements IModels {
 
         $this->db->insert('subastas',$subasta);
 
+        $e->cambiarEstado($id_estadia, 'SUBASTA');
+
+
     }
 
     /*
@@ -61,17 +64,11 @@ class Subastas extends Models implements IModels {
     */
 
     public function cerrar($subasta){
-        $id= $subasta['0']['id'];
-        $nuevosDatos = array('fecha_inicio' => $subasta['0']['id'],
-                                'fecha_fin' => $subasta['0']['fecha_inicio'],
-                                'estado' => 1,
-                                'usuario_ganador' => $subasta['0']['usuario_ganador'],
-                                'id_estadia' => $subasta['0']['id_estadia'],
-                                'monto' => $subasta['0']['monto'],
-                                'monto_actual' => $subasta['0']['monto'] );
+        $id= $subasta['0']['id_subasta'];
+        $nuevosDatos = array('estado' => 1 );
 
         
-        $this->db->update('subastas', $nuevosDatos, "id=$id");
+        $this->db->update('subastas', $nuevosDatos, "id='$id'");
     
     }
 
@@ -118,6 +115,7 @@ class Subastas extends Models implements IModels {
                                         s.id as id_subasta,  
                                         s.monto as monto_subasta, 
                                         s.monto_actual, 
+                                        s.usuario_ganador,
                                         r.calle, 
                                         r.altura, 
                                         r.ciudad, 

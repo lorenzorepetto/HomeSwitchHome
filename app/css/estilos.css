@@ -263,3 +263,11 @@ button#pujar{
 	height: 30px;
 	margin-top: .1rem !important;
 }
+
+p#descuento{
+	color:#11af1f;
+}
+
+li#descuento{
+	padding-left: 30px;
+}

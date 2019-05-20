@@ -38,32 +38,35 @@ class Estadias extends Models implements IModels {
 
      public function getEstadias(){
 
-        $resultado = $this->db->select('*', 'estadias', null, "estado_logico = 0 and ocupada=0 and caducada=0 ORDER BY estadias.semana");
+        $resultado = $this->db->select('*', 'estadias', null, "estado='LIBRE' ORDER BY estadias.semana");
         return $resultado;
     }
 
     public function getEstadiasConResidencia(){
 
-        $resultado = $this->db->select('e.id as id_estadia, e.semana, e.monto, r.id as id_residencia, r.nombre', 'estadias e', 'INNER JOIN residencias r ON (e.id_residencia = r.id)', "e.estado_logico = 0 and e.ocupada=0 and e.caducada=0");
+        $resultado = $this->db->select('e.id as id_estadia, e.semana, e.monto, r.id as id_residencia, r.nombre', 'estadias e', 'INNER JOIN residencias r ON (e.id_residencia = r.id)', "e.estado='LIBRE'");
         return $resultado;
     }
 
     public function getSemana($id){
 
-        $resultado = $this->db->select('semana', 'estadias', null, "estado_logico = 0 and id = '$id'");
+        $resultado = $this->db->select('semana', 'estadias', null, "estado='LIBRE' and id = '$id'");
         return $resultado[0]['semana'];
     }
 
 
     public function existe($semana, $id_residencia){
 
-        $resultado= $this->db->select('*', 'estadias', null, "id_residencia = '$id_residencia' AND estado_logico = 0 and semana = '$semana'");
+        $resultado= $this->db->select('*', 'estadias', null, "id_residencia = '$id_residencia' AND estado<> 'CANCELADA' and semana = '$semana'");
 
-        if ($resultado){
-            return true;
-        }
+        return $resultado;
+    }
 
-        return false;
+    public function cambiarEstado($id, $estado){
+
+        $estadia = array('estado' => $estado );
+        $this->db->update('estadias', $estadia, "id='$id'");
+
     }
 
     /*
@@ -74,12 +77,9 @@ class Estadias extends Models implements IModels {
         
 
         $e = array(
-        	'caducada' => 0,
         	'id_residencia' => $id_residencia,
             'semana' => $semana,
-            'ocupada'=> 0,
             'monto' => $monto,
-            'estado_logico' => 0
         );
 
 

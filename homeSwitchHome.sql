@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-05-2019 a las 02:33:17
+-- Tiempo de generación: 20-05-2019 a las 21:34:41
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 7.3.2
 
@@ -30,23 +30,23 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `estadias` (
   `id` int(10) UNSIGNED NOT NULL,
-  `caducada` tinyint(1) NOT NULL DEFAULT '0',
+  `estado` varchar(20) COLLATE utf8_spanish_ci NOT NULL DEFAULT 'LIBRE',
   `id_residencia` int(10) UNSIGNED NOT NULL,
   `semana` int(2) NOT NULL,
-  `ocupada` tinyint(1) NOT NULL DEFAULT '0',
-  `monto` float NOT NULL,
-  `estado_logico` tinyint(1) NOT NULL DEFAULT '0'
+  `monto` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `estadias`
 --
 
-INSERT INTO `estadias` (`id`, `caducada`, `id_residencia`, `semana`, `ocupada`, `monto`, `estado_logico`) VALUES
-(1, 0, 1, 100, 0, 1000, 0),
-(2, 0, 1, 21, 0, 15000, 0),
-(3, 0, 1, 41, 0, 2000, 0),
-(4, 0, 2, 19, 0, 10000, 0);
+INSERT INTO `estadias` (`id`, `estado`, `id_residencia`, `semana`, `monto`) VALUES
+(1, 'SUBASTA', 1, 100, 1000),
+(2, 'SUBASTA', 1, 21, 15000),
+(3, 'LIBRE', 1, 41, 2000),
+(4, 'SUBASTA', 2, 19, 10000),
+(5, 'LIBRE', 0, 0, 0),
+(6, 'LIBRE', 1, 19, 45);
 
 -- --------------------------------------------------------
 
@@ -75,6 +75,19 @@ CREATE TABLE `pujas` (
   `id_subasta` int(10) UNSIGNED NOT NULL,
   `monto_apostado` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `pujas`
+--
+
+INSERT INTO `pujas` (`id`, `id_usuario`, `id_subasta`, `monto_apostado`) VALUES
+(1, 1, 7, 5500),
+(2, 1, 7, 5600),
+(3, 1, 7, 5700),
+(4, 1, 7, 5800),
+(5, 1, 7, 5900),
+(6, 1, 7, 5901),
+(7, 1, 8, 4500);
 
 -- --------------------------------------------------------
 
@@ -140,7 +153,9 @@ CREATE TABLE `subastas` (
 --
 
 INSERT INTO `subastas` (`id`, `fecha_inicio`, `fecha_fin`, `estado`, `usuario_ganador`, `id_estadia`, `monto`, `monto_actual`) VALUES
-(7, '0000-00-00', '0000-00-00', 0, ' ', 2, 5000, 5000);
+(7, '0000-00-00', '0000-00-00', 1, ' ', 2, 5000, 5000),
+(8, '0000-00-00', '0000-00-00', 0, ' 1', 4, 4000, 4000),
+(9, '0000-00-00', '0000-00-00', 1, ' ', 1, 800, 800);
 
 -- --------------------------------------------------------
 
@@ -172,7 +187,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `email`, `password`, `nombre`, `apellido`, `fecha_nacimiento`, `foto`, `telefono`, `creditos`, `marca_tarjeta`, `numero_tarjeta`, `titular_tarjeta`, `fecha_vencimiento_tarjeta`, `rol`, `estado_logico`, `token`) VALUES
-(1, 'admin@homeswitchhome.com', 'admin1234', 'Administrador', 'Administrador', '0000-00-00', NULL, '111', 0, 'no corresponde', 'no corresponde', 'no corresponde', '0000-00-00', 'ADMINISTRADOR', 0, '123456'),
+(1, 'admin@homeswitchhome.com', 'admin1234', 'Administrador', 'Administrador', '0000-00-00', NULL, '111', 1000, 'no corresponde', 'no corresponde', 'no corresponde', '0000-00-00', 'ADMINISTRADOR', 0, '123456'),
 (2, 'loren@mail.com', 'loren1234', 'Lorenzo', 'Repetto', '1994-04-28', 'app/img/usuarios/user.png', '452710', 1, 'VISA', '444', 'Lorenzo Repetto', '2021-08-16', 'ESTANDAR', 0, NULL),
 (3, 'prueba@mail.com', 'prueba1234', 'Prueba', 'SubirUsuario', '1992-04-18', '', '11111', 2, 'AAA', '111', '', '1/2020', 'ESTANDAR', 0, NULL),
 (4, 'asdasdasd@asdas.asd', 'asdasdasd', 'asdasdas', 'asdasdasd', '2000-04-05', '', 'asdasd', 2, 'asdasdas', 'asdad', '', 'asdasd', 'ESTANDAR', 0, NULL),
@@ -235,7 +250,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `estadias`
 --
 ALTER TABLE `estadias`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `hotsales`
@@ -247,7 +262,7 @@ ALTER TABLE `hotsales`
 -- AUTO_INCREMENT de la tabla `pujas`
 --
 ALTER TABLE `pujas`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `reservas`
@@ -265,7 +280,7 @@ ALTER TABLE `residencias`
 -- AUTO_INCREMENT de la tabla `subastas`
 --
 ALTER TABLE `subastas`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`

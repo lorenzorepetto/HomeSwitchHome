@@ -60,6 +60,13 @@ class Usuarios extends Models implements IModels {
 
     */
 
+    public function tieneCredito($id){
+        $resultado = $this->db->select('*', 'usuarios', null, "estado_logico = 0 and creditos >= 1");
+        var_dump($resultado[0]); exit();
+        return $resultado[0];
+
+    }
+
 
 
     public function getUsuario($id){

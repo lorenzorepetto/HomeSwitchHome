@@ -61,8 +61,12 @@
 
             {% set porcentaje = (1 - (subasta.monto_subasta / subasta.monto_estadia)) * 100 %}
 
-
-            <li class="list-group-item"><span class="glyphicon glyphicon-fire"></span> <strong> Monto inicial de la subasta: </strong>${{ subasta.monto_subasta|number_format(2, ',', '.') }} <p style="color:#11af1f"> {{ porcentaje|number_format(2) }}% OFF</p></li>
+              <li id="descuento" class="list-group-item">
+                <div class="row">
+                  <span class="glyphicon glyphicon-fire"></span> <strong> &nbsp;Monto inicial de la subasta: </strong>${{ subasta.monto_subasta|number_format(2, ',', '.') }}
+                  <p id="descuento"> &nbsp;&nbsp;&nbsp;{{ porcentaje|number_format(2) }}% OFF</p>
+                </div>
+              </li>
 
   	      </ul> 
 
