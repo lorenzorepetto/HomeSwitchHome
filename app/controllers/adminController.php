@@ -332,12 +332,15 @@ class adminController extends Controllers implements IControllers {
 
     private function editarResidencia($r, $data){
 
-        $nombre=$_POST['nombre'];
+        $nombre=$_POST['nombreM'];
         $id_residencia=$data['residencia']['id'];
 
+        $residenciaActual= $r->getResidencia($id_residencia); 
         //Valido el nombre
-        if ($r->existe($nombre)) {
-            $data['nombre_existente'] = 1;            
+        if ($nombre != $residenciaActual[0]['nombre']) {
+            if ($r->existe($nombre)) {
+                $data['nombre_existente'] = 1;            
+            }
         }
 
 

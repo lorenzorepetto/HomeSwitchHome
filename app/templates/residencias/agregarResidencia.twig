@@ -62,6 +62,7 @@
             <label for="nombre">Nombre:</label>
             <input type="text" class="form-control" id="nombre" placeholder="Ingrese el nombre de la residencia" name="nombre">
             <p class="animated shake" id="msjNombreR"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
+            <p class="animated shake" id="msjNombreR2"><span class="glyphicon glyphicon-exclamation-sign"></span> Debe ingresar solo letras.</p>
             
           </div>
 
@@ -75,28 +76,32 @@
           <div class="center-block form-group form">
           	<label for="direccion">Direccion:</label>
             <div class="row">
-                <div class="col">
-                  	<input type="text" class="form-control" id="calle" placeholder="Calle" name="calle">
-            		<p class="animated shake" id="msjCalleR"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
-                    
-                </div>
-                <div class="col">
-                	<input type="text" class="form-control" id="altura" placeholder="Altura" name="altura">
-            		<p class="animated shake" id="msjAlturaR"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
-            	</div>
+              <div class="col">
+                <input type="text" class="form-control" id="calle" placeholder="Calle" name="calle">
+          		  <p class="animated shake" id="msjCalleR"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
+                <p class="animated shake" id="msjCalleR2"><span class="glyphicon glyphicon-exclamation-sign"></span> Debe ingresar solo caracteres alfanuméricos.</p>
+                  
+              </div>
+              <div class="col">
+              	<input type="text" class="form-control" id="altura" placeholder="Altura" name="altura">
+        		    <p class="animated shake" id="msjAlturaR"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
+                <p class="animated shake" id="msjAlturaR2"><span class="glyphicon glyphicon-exclamation-sign"></span> Debe ingresar solo números.</p>
+          	  </div>
             </div>
           </div>
 
           <div class="center-block form-group form">
           	<div class="row">
-                <div class="col">
-                  	<input type="text" class="form-control" id="ciudad" placeholder="Ciudad" name="ciudad">
-            		<p class="animated shake" id="msjCiudadR"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
-                    
-                </div>
-                <div class="col">
-                	<input type="text" class="form-control" id="provincia" placeholder="Provincia" name="provincia">
+              <div class="col">
+                <input type="text" class="form-control" id="ciudad" placeholder="Ciudad" name="ciudad">
+          		  <p class="animated shake" id="msjCiudadR"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
+                <p class="animated shake" id="msjCiudadR2"><span class="glyphicon glyphicon-exclamation-sign"></span> Debe ingresar solo letras.</p>
+                  
+              </div>
+              <div class="col">
+              	<input type="text" class="form-control" id="provincia" placeholder="Provincia" name="provincia">
             		<p class="animated shake" id="msjProvinciaR"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
+                <p class="animated shake" id="msjProvinciaR2"><span class="glyphicon glyphicon-exclamation-sign"></span> Debe ingresar solo letras.</p>
             	</div>
             </div>
            </div>
@@ -106,6 +111,7 @@
 	            <label for="capacidad">Capacidad:</label>
 	            <input type="text" class="form-control" id="capacidad" placeholder="Ingrese la capacidad" name="capacidad">
 	            <p class="animated shake" id="msjCapacidadR"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
+              <p class="animated shake" id="msjCapacidadR2"><span class="glyphicon glyphicon-exclamation-sign"></span> Debe ingresar un número mayor a 0.</p>
 	           </div>
 
 	           <div class="center-block form-group form">

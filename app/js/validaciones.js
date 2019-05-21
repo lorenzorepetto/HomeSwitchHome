@@ -68,6 +68,8 @@ function validarAgregarResidencia(){
   var provincia = document.getElementById("provincia").value;
   var capacidad = document.getElementById("capacidad").value;
   var foto = document.getElementById("foto").value;
+  var digitos = /^[0-9]+$/;
+  var carac_especiales=/[$@\!#]/;
 
   if (campoVacio(nombre) || campoVacio(descripcion)|| campoVacio(calle)|| campoVacio(altura)
     || campoVacio(ciudad)|| campoVacio(provincia)|| campoVacio(capacidad)
@@ -84,7 +86,80 @@ function validarAgregarResidencia(){
 
   }
 
+  if (!digitos.test(capacidad) || capacidad<=0) {
+    document.getElementById("msjCapacidadR2").style.display = "block";
+    return false;
+  }
 
+  if (digitos.test(nombre) || carac_especiales.test(nombre)) {
+    document.getElementById("msjNombreR2").style.display = "block";
+    return false;
+  }
+
+  if (digitos.test(ciudad) || carac_especiales.test(ciudad)) {
+    document.getElementById("msjCiudadR2").style.display = "block";
+    return false;
+  }
+
+  if (digitos.test(provincia) || carac_especiales.test(provincia)) {
+    document.getElementById("msjProvinciaR2").style.display = "block";
+    return false;
+  }
+
+  if (carac_especiales.test(calle)) {
+    document.getElementById("msjCalleR2").style.display = "block";
+    return false;
+  }
+
+  if (!digitos.test(altura)) {
+    document.getElementById("msjAlturaR2").style.display = "block";
+    return false;
+  }
+  return true;
+}
+
+function validarModificarResidencia(){
+
+  var nombre = document.getElementById("nombreM").value;
+  var descripcion = document.getElementById("descripcionM").value;
+  var calle = document.getElementById("calleM").value;
+  var altura = document.getElementById("alturaM").value;
+  var ciudad = document.getElementById("ciudadM").value
+  var provincia = document.getElementById("provinciaM").value;
+  var capacidad = document.getElementById("capacidadM").value;
+  var digitos = /^[0-9]+$/;
+  var carac_especiales=/[$@\!#]/;
+
+
+  if (!digitos.test(capacidad) || capacidad<=0) {
+    document.getElementById("msjCapacidadM2").style.display = "block";
+    return false;
+  }
+
+  if (digitos.test(nombre) || carac_especiales.test(nombre)) {
+    document.getElementById("msjNombreM2").style.display = "block";
+    return false;
+  }
+
+  if (digitos.test(ciudad) || carac_especiales.test(ciudad)) {
+    document.getElementById("msjCiudadM2").style.display = "block";
+    return false;
+  }
+
+  if (digitoss.test(provincia) || carac_especiales.test(provincia)) {
+    document.getElementById("msjProvinciaM2").style.display = "block";
+    return false;
+  }
+
+  if (carac_especiales.test(calle)) {
+    document.getElementById("msjCalleM2").style.display = "block";
+    return false;
+  }
+
+  if (!digitos.test(altura)) {
+    document.getElementById("msjAlturaM2").style.display = "block";
+    return false;
+  }
   return true;
 }
 

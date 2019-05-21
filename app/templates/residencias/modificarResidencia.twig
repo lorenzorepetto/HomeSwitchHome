@@ -35,7 +35,7 @@
   <body class="text-center" id="body_registrar">
       <div class="container" id="div_agregar_residencia">  
         <br>
-        <form action="http://localhost/HomeSwitchHome/admin/residencias/editar?id_residencia={{ residencia.id }}" enctype="multipart/form-data" method="post">
+        <form action="http://localhost/HomeSwitchHome/admin/residencias/editar?id_residencia={{ residencia.id }}" enctype="multipart/form-data" onsubmit="return validarModificarResidencia();" method="post">
           <img class="bd-placeholder-img rounded-circle" src="app/img/HSH-Logo.jpg" alt="" width="90" height="90">
 
           {% if nombre_existente == 1 %}
@@ -57,27 +57,30 @@
 
 
           <div class="center-block form-group form">
-            <label for="nombre">Nombre:</label>
-            <input type="text" class="form-control" id="nombre" placeholder="{{ residencia.nombre }}" name="nombre">
+            <label for="nombreM">Nombre:</label>
+            <input type="text" class="form-control" id="nombreM" placeholder="{{ residencia.nombre }}" value="{{ residencia.nombre }}" name="nombreM">
+            <p class="animated shake" id="msjNombreM2"><span class="glyphicon glyphicon-exclamation-sign"></span> Debe ingresar solo letras.</p>
             
           </div>
 
           <div class="center-block form-group form">
-            <label for="descripcion">Descripcion:</label>
-            <input type="text" class="form-control" id="descripcion" placeholder="{{ residencia.descripcion }}" name="descripcion">
+            <label for="descripcionM">Descripcion:</label>
+            <input type="text" class="form-control" id="descripcionM" placeholder="{{ residencia.descripcion }}" value="{{ residencia.descripcion }}" name="descripcionM">
             
           </div>
 
           <div class="center-block form-group form">
-          	<label for="direccion">Direccion:</label>
+          	<label for="direccionM">Direccion:</label>
             <div class="row">
                 <div class="col">
-                  	<input type="text" class="form-control" id="calle" placeholder="{{ residencia.calle }}" name="calle">
+                  	<input type="text" class="form-control" id="calleM" placeholder="{{ residencia.calle }}" value="{{ residencia.calle }}" name="calleM">
+                    <p class="animated shake" id="msjCalleM2"><span class="glyphicon glyphicon-exclamation-sign"></span> Debe ingresar solo caracteres alfanuméricos.</p>
  
                     
                 </div>
                 <div class="col">
-                	<input type="text" class="form-control" id="altura" placeholder="{{ residencia.altura }}" name="altura">
+                	<input type="text" class="form-control" id="alturaM" placeholder="{{ residencia.altura }}" value="{{ residencia.altura }}" name="alturaM">
+                  <p class="animated shake" id="msjAlturaM2"><span class="glyphicon glyphicon-exclamation-sign"></span> Debe ingresar solo números.</p>
 
             	</div>
             </div>
@@ -86,12 +89,14 @@
           <div class="center-block form-group form">
           	<div class="row">
                 <div class="col">
-                  	<input type="text" class="form-control" id="ciudad" placeholder="{{ residencia.ciudad }}" name="ciudad">
+                  	<input type="text" class="form-control" id="ciudadM" placeholder="{{ residencia.ciudad }}" value="{{ residencia.ciudad }}" name="ciudadM">
+                    <p class="animated shake" id="msjCiudadM2"><span class="glyphicon glyphicon-exclamation-sign"></span> Debe ingresar solo letras.</p>
 
                     
                 </div>
                 <div class="col">
-                	<input type="text" class="form-control" id="provincia" placeholder="{{ residencia.provincia }}" name="provincia">
+                	<input type="text" class="form-control" id="provinciaM" placeholder="{{ residencia.provincia }}" value="{{ residencia.provincia }}" name="provinciaM">
+                  <p class="animated shake" id="msjProvinciaM2"><span class="glyphicon glyphicon-exclamation-sign"></span> Debe ingresar solo letras.</p>
 
             	</div>
             </div>
@@ -99,8 +104,9 @@
 
 	          <div class="center-block form-group form">
 	          	
-	            <label for="capacidad">Capacidad:</label>
-	            <input type="text" class="form-control" id="capacidad" placeholder="{{ residencia.capacidad }}" name="capacidad">
+	            <label for="capacidadM">Capacidad:</label>
+	            <input type="text" class="form-control" id="capacidadM" placeholder="{{ residencia.capacidad }}" value="{{ residencia.capacidad }}" name="capacidadM">
+              <p class="animated shake" id="msjCapacidadM2"><span class="glyphicon glyphicon-exclamation-sign"></span> Debe ingresar un número mayor a 0.</p>
 
 	           </div>
 

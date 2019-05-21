@@ -186,14 +186,14 @@ class Residencias extends Models implements IModels {
         }
 
         $nuevosDatos = array(
-            'nombre' => !empty($_POST['nombre']) ? $_POST['nombre'] : $r['0']['nombre'],
-            'descripcion' => !empty($_POST['descripcion']) ? $_POST['descripcion'] : $r['0']['descripcion'],
+            'nombre' => !empty($_POST['nombreM']) ? $_POST['nombreM'] : $r['0']['nombre'],
+            'descripcion' => !empty($_POST['descripcionM']) ? $_POST['descripcionM'] : $r['0']['descripcion'],
             'foto' => $foto,
-            'capacidad' => !empty($_POST['capacidad']) ? $_POST['capacidad'] : $r['0']['capacidad'],
-            'calle' => !empty($_POST['calle']) ? $_POST['calle'] : $r['0']['calle'],
-            'altura' => !empty($_POST['altura']) ? $_POST['altura'] : $r['0']['altura'],
-            'ciudad' => !empty($_POST['ciudad']) ? $_POST['ciudad'] : $r['0']['ciudad'],
-            'provincia' => !empty($_POST['provincia']) ? $_POST['provincia'] : $r['0']['provincia']
+            'capacidad' => !empty($_POST['capacidadM']) ? $_POST['capacidadM'] : $r['0']['capacidad'],
+            'calle' => !empty($_POST['calleM']) ? $_POST['calleM'] : $r['0']['calle'],
+            'altura' => !empty($_POST['alturaM']) ? $_POST['alturaM'] : $r['0']['altura'],
+            'ciudad' => !empty($_POST['ciudadM']) ? $_POST['ciudadM'] : $r['0']['ciudad'],
+            'provincia' => !empty($_POST['provinciaM']) ? $_POST['provinciaM'] : $r['0']['provincia']
         );
 
 
