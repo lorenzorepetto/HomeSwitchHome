@@ -36,6 +36,13 @@ class Estadias extends Models implements IModels {
 
     /*--------------------------CONSULTAS--------------------------*/
 
+
+    public function estaOcupada($id){
+        $resultado = $this->db->select('*', 'estadias', null, "estado='OCUPADA' and id = '$id_estadia'");
+        return $resultado;
+
+    }
+
      public function getEstadias(){
 
         $resultado = $this->db->select('*', 'estadias', null, "estado='LIBRE' ORDER BY estadias.semana");

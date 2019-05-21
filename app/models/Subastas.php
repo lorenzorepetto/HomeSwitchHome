@@ -70,9 +70,11 @@ class Subastas extends Models implements IModels {
                         'usuario_ganador'=> 0, 
                         'id_subasta' => $id );
         
-        if ($this->getPuja($id)) {
-            $ganador= $this->getGanador($u, $id);
+        $ganador= null;
+        $hay_puja= $this->getPuja($id);
 
+        if ($hay_puja) {
+            $ganador= $this->getGanador($u, $id);
             if ($ganador) { //se cierra la subasta y se informa el ganador
                 $data['sin_error']=1;
                 $data['usuario_ganador']=$ganador;
@@ -80,14 +82,16 @@ class Subastas extends Models implements IModels {
                 $e->cambiarEstado($subasta['0']['id_estadia'], "OCUPADA");
             }else{
                 $data['sin_error'] = 1; //no hay ganador pero la subasta se cierra igual
+                $e->cambiarEstado($subasta['0']['id_estadia'], "LIBRE");
             }
         }else{ //no hay pujas
             $data['sin_error']=1;
+            $e->cambiarEstado($subasta['0']['id_estadia'], "LIBRE");
         }
 
         //setear el estado
         if ($data['sin_error']) {
-            $this->actualizarEstado($id);
+            $this->actualizarEstado($id,$ganador);
         }
 
         return $data;
@@ -118,8 +122,8 @@ class Subastas extends Models implements IModels {
 
     }
 
-    public function actualizarEstado($id){
-        $datos_nuevos = array('estado' => 1 );
+    public function actualizarEstado($id, $ganador){
+        $datos_nuevos = array('estado' => 1, 'usuario_ganador' => $ganador );
         $this->db->update('subastas', $datos_nuevos, "id = '$id'");
     }
 
@@ -127,6 +131,8 @@ class Subastas extends Models implements IModels {
         $resultado = $this->db->select('*', 'subastas', null, "estado = 0 and id_estadia = '$id_estadia'");
         return $resultado;
     }
+
+
 
     public function getSubastas(){
 
@@ -139,7 +145,9 @@ class Subastas extends Models implements IModels {
         $resultado = $this->db->select('e.id as id_estadia, 
                                         e.semana, 
                                         e.monto as monto_estadia, 
-                                        r.id as id_residencia, 
+                                        r.id as id_residencia,
+                                        r.ciudad,
+                                        r.provincia, 
                                         r.nombre,
                                         s.id as id_subasta,  
                                         s.monto as monto_subasta,
@@ -196,8 +204,7 @@ class Subastas extends Models implements IModels {
                                         'INNER JOIN usuarios u ON (u.id = p.id_usuario)', 
                                         "id_subasta = $id");
 
-
-        if (!$resultado['0']['monto_apostado']) {
+        if ($resultado['0']['monto_apostado'] == null) {
             return false;
         }
         return $resultado;

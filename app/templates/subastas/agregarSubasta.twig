@@ -38,15 +38,15 @@
         {% if data.sin_error == 1 %}
           <div class="alert alert-success alert-dismissible">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <strong class="animated flash"> <span class='glyphicon glyphicon-ok-sign'></span> Nota:</strong> La subasta se ha creado con éxito!
+            <strong class="animated flash"> <span class='glyphicon glyphicon-ok-sign'></span> Nota:</strong> La subasta se ha creado con éxito! <a href="http://localhost/HomeSwitchHome/subastas/detalle/{{ subasta.id }}">Ver detalles</a> 
           </div>
         {% endif %}
 
          <!-- error por falta de anticipacion-->
-        {% if data.error_anticipacion == 1 %}
+        {% if data.estadia_pendiente == 1 %}
           <div class="alert alert-danger alert-dismissible">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <strong class="animated flash"><span class="glyphicon glyphicon-exclamation-sign"></span> Error: </strong> Las subastas deben crearse con un minimo de 6 meses de anticipación.
+            <strong class="animated flash"><span class="glyphicon glyphicon-exclamation-sign"></span> Error: </strong> La estadía está reservada!
           </div>
         {% endif %}
 
@@ -59,6 +59,7 @@
         {% endif %}
 
         <p class="lead text-muted">Lista de estadías: </p>
+        <a href="http://localhost/HomeSwitchHome"><button class="btn btn-secondary my-2">Atrás</button></a>
 
         <div class="row">
 
@@ -68,9 +69,10 @@
             <div class="card mb-4 shadow-sm">
               
               <div class="card-body">
-                <p class="card-text"> Semana de la estadia: {{ e.semana }}</p>
-                <p class="card-text"> Monto de la estadía: {{ e.monto }}</p>
-                <p class="card-text"> Residencia: {{ e.nombre }}</p>
+                <p class="card-text"><span class="glyphicon glyphicon-ok"></span><strong> Semana:</strong> {{ e.semana }}</p>
+                <p class="card-text"><span class="glyphicon glyphicon-ok"></span><strong> Residencia: </strong>{{ e.nombre }}</p>
+                <p class="card-text"><span class="glyphicon glyphicon-usd"></span><strong> Monto: </strong>${{ e.monto|number_format(2, ',', '.') }}</p>
+                
                 <div>
                   
                   <form action="http://localhost/HomeSwitchHome/admin/subastas/insertar?id_estadia={{ e.id_estadia }}" onsubmit="return validarAgregarSubasta({{ e.id_estadia }});" enctype="multipart/form-data" method="post"> 
@@ -88,7 +90,7 @@
           </div>
 
           {% endfor %}
-      
+          
         </div>
 
         

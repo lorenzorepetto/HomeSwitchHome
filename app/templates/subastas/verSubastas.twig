@@ -50,6 +50,7 @@
         {% endif %}
 
         <p class="lead text-muted">Lista de subastas: </p>
+        <a href="http://localhost/HomeSwitchHome"><button class="btn btn-secondary my-2">Atrás</button></a>
 
         <div class="row">
           
@@ -60,10 +61,12 @@
             <div class="card mb-4 shadow-sm">
               
               <div class="card-body">
-                <p class="card-text"> ID subasta: {{ s.id_subasta }}</p>
-                <p class="card-text"> ID estadia: {{ s.id_estadia }}</p>
-                <p class="card-text"> Nombre residencia: {{ s.nombre }}</p>
-                <p class="card-text"> Semana de la estadía: {{ s.semana }}</p>
+                <p class="card-text"><span class="glyphicon glyphicon-ok"></span><strong> Semana:</strong> {{ s.semana }}</p>
+                <p class="card-text"><span class="glyphicon glyphicon-ok"></span><strong> Residencia: </strong>{{ s.nombre }}</p>
+                <p class="card-text"><span class="glyphicon glyphicon-map-marker"></span><strong> Ciudad:</strong> {{ s.ciudad }}</p>
+                <p class="card-text"><span class="glyphicon glyphicon-map-marker"></span><strong> Provincia:</strong> {{ s.provincia }}</p>
+                
+
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group">
                     <a href="http://localhost/HomeSwitchHome/subastas/detalle/{{ s.id_subasta }}"><button class="btn btn-secondary my-2">Ver detalles</button></a>
@@ -81,6 +84,7 @@
 
           {% endfor %}
       
+
        
         </div>
 

@@ -240,7 +240,7 @@ class adminController extends Controllers implements IControllers {
 
     private function insertarSubasta($s, $id_estadia, $e){
         $data = array('sin_error' => 0, //está en 1 cuando esta todo ok
-                        'error_anticipacion' => 0, 
+                        'estadia_ocupada' => 0, 
                       'subasta_existente'=> 0);
 
         $monto= $_POST['monto'.$id_estadia];
@@ -260,13 +260,20 @@ class adminController extends Controllers implements IControllers {
             $data['subasta_existente'] = 1;
         }
         
-        if (!$data['error_anticipacion'] && !$data['subasta_existente']){
+        /*
+        if($e->estaOcupada($id_estadia)){
+            $data['estadia_ocupada']=1;
+        }
+        */
+        $subasta=null;
+        if (!$data['estadia_ocupada'] && !$data['subasta_existente']){
             $s->insertar($e, $id_estadia, $monto);
+            $subasta= $s->existe($id_estadia);
             $data['sin_error'] = 1;
         }
 
         $estadias= $e->getEstadiasConResidencia();
-        $this->template->display("subastas/agregarSubasta", array('estadias' => $estadias,'data' => $data)); 
+        $this->template->display("subastas/agregarSubasta", array('estadias' => $estadias,'data' => $data, 'subasta' => $subasta['0'])); 
         
 
     }
@@ -364,18 +371,22 @@ class adminController extends Controllers implements IControllers {
                       'usuario_ganador' => 0);
 
         $subasta= $s->getSubasta($id_subasta);
+        $usuario= null;
 
         if ($subasta) {
 
             $data=$s->cerrar($e, $u, $subasta);
+
             if ($data['usuario_ganador']) {
                 $usuario=$u->getUsuario($data['usuario_ganador']);
             }
             
         }
+        $subasta= $s->getSubasta($id_subasta);
+        $puja = $s->getPuja($id_subasta);
 
         $subastas= $s->getSubastasConEstadiaYResidencia();
-        $this->template->display('subastas/verSubastas',array('subastas' => $subastas, 'data'=> $data, 'usuario' => $usuario['0'] ));
+        $this->template->display('subastas/detalleAdmin',array('subasta' => $subasta['0'], 'puja' => $puja['0'], 'data'=> $data, 'usuario' => $usuario['0'], 'operacion' => 0 ));
     }
 
 }

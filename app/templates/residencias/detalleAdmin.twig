@@ -51,22 +51,28 @@
 		<br>
 
     <section class="jumbotron text-center">
-    <div class="container">
-      <h1 id="h1_detalle" class="jumbotron">Estadías: </h1>
-      <p id="p_detalle" class="lead text-muted">Usted puede editar las estadias para esta residencia</p>
-      <ul>
-        {% for e in estadias %}
-            <div class="row">
-              <p>Semana: {{ e.semana }}, monto: {{ e.monto }}, ocupada: {{ e.ocupada }}, caducada: {{ e.caducada }} </p>
-              <div class="btn-group">
-                <a href="#"><button type="button" class="btn btn-secondary">Cancelar estadía</button></a>
-              </div>
-            
-            </div>
-        {% endfor %}
+      <div class="container">
+      <h2 id="h1_detalle" class="jumbotron">Estadías: </h2>
+        <div class="row">
 
-      </ul>
-    </div>
+          {% for e in estadias %}
+
+          <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+              
+              <div class="card-body">
+                <p class="card-text"><strong><span class="glyphicon glyphicon-ok"></span> Semana:</strong> {{ e.semana }}</p>
+                <p class="card-text"><strong><span class="glyphicon glyphicon-usd"></span> Monto:</strong> {{ e.monto|number_format(2, ',', '.') }}</p>
+                <a href="#"><button type="button" class="btn btn-secondary">Reservar</button></a>
+
+              </div>
+            </div>
+          </div>
+
+          {% endfor %}
+          
+        </div>
+     </div>   
   </section>
    
 

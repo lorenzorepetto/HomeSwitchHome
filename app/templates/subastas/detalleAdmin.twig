@@ -36,16 +36,31 @@
 
 {% block appContenido %}    
 		
-  {% if operacion == 1 %}
-      <div class="alert alert-success alert-dismissible">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <strong class="animated flash"> <span class='glyphicon glyphicon-ok-sign'></span> Nota:</strong> La puja se ha registrado con éxito!
-      </div>
-  {% endif %}
+  
 
 	<div id="div_detalle" class="border container">
 
 	   	<h2 class="detalle">Detalles de la subasta</h2>
+      {% if operacion == 1 %}
+          <div class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong class="animated flash"> <span class='glyphicon glyphicon-ok-sign'></span> Nota:</strong> La puja se ha registrado con éxito!
+          </div>
+      {% endif %}
+
+      {% if data.sin_error == 1 and data.usuario_ganador != 0 %}
+          <div class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong class="animated flash"> <span class='glyphicon glyphicon-ok-sign'></span> Nota:</strong> La subasta se ha cerrado con éxito! Se le ha restado un crédito al usuario ganador: <strong>{{ usuario.apellido }}, {{ usuario.nombre }}</strong>
+          </div>
+      {% endif %}
+
+      {% if data.sin_error == 1 and data.usuario_ganador == 0 %}
+          <div class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong class="animated flash"> <span class='glyphicon glyphicon-ok-sign'></span> Nota:</strong> La subasta se ha cerrado con éxito! No hubo ganador.
+          </div>
+      {% endif %}
 
       <div class="col-lg-8">
 
@@ -72,13 +87,16 @@
 
     
           <h2 id="pujas">Pujas</h2>
+
+            {% if subasta.estado == 0 %}
+
             <ul class="list-group list-group-flush">      
               
               {% if puja.usuario_id != null %}
 
                   {% set monto_validacion = puja.monto_apostado %}
 
-                  <li class="list-group-item"><span class="glyphicon glyphicon-usd"></span> <strong> Monto actual de la subasta: </strong>${{ puja.monto_apostado|number_format(2, ',', '.') }}</li>
+                  <li class="list-group-item"><span class="glyphicon glyphicon-usd"></span> <strong> Monto actual de la subasta: </strong>&nbsp;${{ puja.monto_apostado|number_format(2, ',', '.') }}</li>
                   <li class="list-group-item"><span class="glyphicon glyphicon-user"></span> <strong> Usuario: </strong>{{ puja.apellido }}, {{ puja.nombre }}</li>
                   <li class="list-group-item">
 
@@ -102,12 +120,30 @@
                 </form>
               </li>
             </ul>
-        </div>
 
+            <a href="http://localhost/HomeSwitchHome/admin/subastas/cerrar?id_subasta={{ subasta.id_subasta }}"><button class="btn btn-secondary my-2">Cerrar subasta</button></a>
+
+            {% else %}
+
+                <li class="list-group-item"><span class="glyphicon glyphicon-thumbs-down"></span><strong>&nbsp;La subasta ya cerró!</strong></li>
+
+                {% if usuario != null %}
+                  <li class="list-group-item"><span class="glyphicon glyphicon-user"></span><strong>&nbsp;Usuario ganador:</strong> {{ usuario.apellido }}, {{ usuario.nombre}}</li>
+                  <li class="list-group-item"><span class="glyphicon glyphicon-usd"></span> <strong> Monto final: </strong>&nbsp;${{ puja.monto_apostado|number_format(2, ',', '.') }}</li>
+                {% else %}
+                  <li class="list-group-item"><span class="glyphicon glyphicon-user"></span><strong>&nbsp;No hubo ganador</strong></li>
+                {% endif %}
+                  
+            {% endif %}
+
+        </div>
+        <a href="http://localhost/HomeSwitchHome/admin/operaciones/verSubastas"><button class="btn btn-secondary my-2">Atrás</button></a>
       </div>
       <div id="img_detalle_residencia" class="col-lg-4">
         <img id="foto_detalle_residencia" src="{{ subasta.foto }}" class="perfil float-right" alt="Foto de perfil"> 
       </div>
+
+
 
  	</div>
 		

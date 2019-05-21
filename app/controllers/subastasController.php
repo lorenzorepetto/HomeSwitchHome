@@ -25,7 +25,7 @@ class subastasController extends Controllers implements IControllers {
     public function __construct(IRouter $router) {
         parent::__construct($router);
         $s = new Model\Subastas;
-
+        $u = new Model\Usuarios;
 
 
 
@@ -35,13 +35,13 @@ class subastasController extends Controllers implements IControllers {
 
 	            case 'detalle':
 
-	                $this->detalleSubasta($_SESSION['rol'],$s, $router->getId(true));
+	                $this->detalleSubasta($_SESSION['rol'],$s, $router->getId(true), 0, $u);
 	                break;
 
                 case 'pujar':
                     
                     $s->pujar($router->getId(true), $_SESSION['id'] ,$_POST['puja']);
-                    $this->detalleSubasta($_SESSION['rol'],$s, $router->getId(true), true);
+                    $this->detalleSubasta($_SESSION['rol'],$s, $router->getId(true), true,$u);
 
 
                     break;
@@ -59,14 +59,21 @@ class subastasController extends Controllers implements IControllers {
 
 
 
-    public function detalleSubasta($rol, $s, $id, $operacion = 0){
+    public function detalleSubasta($rol, $s, $id, $operacion = 0, $u){
         
         $resultado = $s->getSubasta($id);
-        
+        $usuario = null;
         if ($resultado) {
 
                 $subasta = $resultado['0'];
                 $puja = $s->getPuja($id);
+
+                
+                if ($subasta['usuario_ganador'] != null) {
+                   $query = $u->getUsuario($subasta['usuario_ganador']);
+                  
+                   $usuario = $query['0'];
+                }
 
                                
         }
@@ -74,7 +81,7 @@ class subastasController extends Controllers implements IControllers {
         switch ($rol) {
 
             case 'ADMINISTRADOR':       
-                $this->template->display('subastas/detalleAdmin', array('subasta' => $subasta, 'puja' => $puja['0'], 'operacion' => $operacion));
+                $this->template->display('subastas/detalleAdmin', array('subasta' => $subasta, 'puja' => $puja['0'], 'operacion' => $operacion, 'usuario' => $usuario));
                 break;
             
             default:
