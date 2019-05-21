@@ -285,3 +285,7 @@ li#descuento{
 #error_campo_vacio_subasta{
 	display: none;
 }
+
+#div_crear_subasta{
+	height: 380px;
+}

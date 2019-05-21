@@ -73,11 +73,13 @@
           {% for e in estadias %}
 
           <div class="col-md-4">
-            <div class="card mb-4 shadow-sm">
+            <div id="div_crear_subasta" class="card mb-4 shadow-sm">
               
               <div class="card-body">
-                <p class="card-text"><span class="glyphicon glyphicon-ok"></span><strong> Semana:</strong> {{ e.semana }}</p>
+                <img id="card_foto_residencia" src="{{ e.foto }}" class="card-img-top" >
+                <p class="card-text">&nbsp;</p>
                 <p class="card-text"><span class="glyphicon glyphicon-ok"></span><strong> Residencia: </strong>{{ e.nombre }}</p>
+                <p class="card-text"><span class="glyphicon glyphicon-ok"></span><strong> Semana:</strong> {{ e.semana }}</p>
                 <p class="card-text"><span class="glyphicon glyphicon-usd"></span><strong> Monto: </strong>${{ e.monto|number_format(2, ',', '.') }}</p>
                 
                 <div>
@@ -87,7 +89,7 @@
                       <label for="monto{{ e.id_estadia }}">Monto minimo:</label>                      
                       <input type="text" id="monto{{ e.id_estadia }}" name="monto{{ e.id_estadia }}"> 
                     </div>
-                    <button type="submit" class="btn btn-secondary my-2">Crear subasta</button>
+                    <button id="botones" type="submit" class="btn btn-secondary my-2">Crear subasta</button>
                   </form>
 
                 </div>
