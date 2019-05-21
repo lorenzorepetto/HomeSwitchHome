@@ -49,13 +49,16 @@ class homeController extends Controllers implements IControllers {
         elseif ($router->getMethod() == 'error_token') {
             $this->renderHome($r,1,1);
         }
+        elseif ($router->getMethod() == 'token') {
+           $this->renderHome($r,0,0,1);
+        }
         else{
             $this->renderHome($r);
         }
     }
     
 
-    public function renderHome($r,$error_login = 0, $error_token = 0){
+    public function renderHome($r,$error_login = 0, $error_token = 0, $token = 0){
 
 
 
@@ -67,8 +70,21 @@ class homeController extends Controllers implements IControllers {
                         'error_login' => $error_login,
                         'error_token' => $error_token);
 
-        $this->template->display('home/home', $datos);
+
+        if ($error_token) {
+            $this->template->display('home/homeToken', $datos);
+        }
+        elseif ($error_login) {
+            $this->template->display('home/home', $datos);
+        }
+        elseif ($token) {
+            $this->template->display('home/homeToken', $datos);
+        }
+        else{
+            $this->template->display('home/home',$datos);
+        }
         
+
 
     }
 
