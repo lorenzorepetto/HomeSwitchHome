@@ -324,7 +324,7 @@ class adminController extends Controllers implements IControllers {
         else{
             //Login fallido
             //$errores = array('error_login' => 1);
-            Functions::redir("http://localhost/HomeSwitchHome/home/error_login");
+            Functions::redir("http://localhost/HomeSwitchHome/home/error_token");
         }
     }
 

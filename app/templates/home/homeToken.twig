@@ -27,11 +27,18 @@
 {% block carrousel %}
 
   <body class="text-center" id="body_iniciar">
+
     <div class="row">
 
+
       <div class="container " id="div_iniciar">
+
         <br>
-        <form action="http://localhost/HomeSwitchHome/usuarios/cuenta/autenticar" method="post" onsubmit="return validarIniciar();">
+      
+        {# TOKEN #}
+        
+        <form action="http://localhost/HomeSwitchHome/admin/token" method="post" onsubmit="return validarToken();">
+
           <img class="bd-placeholder-img rounded-circle" src="app/img/HSH-Logo.jpg" alt="" width="90" height="90">
           <h1 id="titulo_form" class="h3 mb-3 font-weight-normal animated wobble">Iniciar Sesión</h1>
           <p id="texto_iniciar"><i class="glyphicon glyphicon-question-sign animated flash"></i> Si ya te registraste como usuario, ingresa a continuación tu nombre de usuario y clave. ¿Todavia no lo has hecho? <a href="http://localhost/HomeSwitchHome/usuarios/registro/registrar" class="comun animated flash"><big>Regístrate!</big></a> Es rápido y sencillo.</p>
@@ -43,28 +50,19 @@
             </div>
           {% endif %}
 
-          
-          <div id="input_email" class="center-block form-group form">
-            <label for="email">Email adress:</label>
-            <input type="email" class="form-control" id="email" placeholder="Ingrese su dirección de email" name="email">           
-          </div>
-          <p class="animated shake" id="msjEmail"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
+        <div class="center-block form-group form">
+            <label for="password">Token:</label>
+            <input type="password" class="form-control" id="valor_token" placeholder="Ingrese el token" name="valor_token">
 
-          <div id="input_password" class="center-block form-group form">
-            <label for="password">Password:</label>
-            <input type="password" class="form-control" id="password" placeholder="Ingrese la contraseña" name="password">          
-          </div>
-          <p class="animated shake" id="msjPassword1"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
+        </div>
 
-          <button id="boton_form_iniciar" type="submit" class="btn btn-secondary">Iniciar sesión</button>
+            <p class="animated shake" id="msjToken1"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
+            <p class="animated shake" id="msjToken2"><span class="glyphicon glyphicon-exclamation-sign"></span> El token debe contener 6 dígitos</p>
+            <button type="submit" class="btn btn-secondary">Enviar token</button>
+            <a href="http://localhost/HomeSwitchHome"><button type="button" class="btn btn-secondary my-2">Volver atrás</button></a>
+                
         </form>
-
-        
-
-        <a href="http://localhost/HomeSwitchHome/home/token"><button class="btn btn-secondary" id="boton_token"> Tengo un token </button></a>
           
-        
-
 
       </div>
 
