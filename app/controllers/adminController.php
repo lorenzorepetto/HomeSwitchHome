@@ -33,6 +33,19 @@ class adminController extends Controllers implements IControllers {
         $s = new Model\Subastas;
 
 
+        if($router->getMethod() and !isset($_SESSION['id'])){
+            switch ($router->getMethod()) {
+                case 'token':
+                    $this->autenticar($a);
+                    break;
+                
+                default:
+                    $this->template->display('home/home');
+                    break;
+            }
+        }
+        else{
+
         switch ($router->getMethod()) {
 
             case 'token':
@@ -171,7 +184,7 @@ class adminController extends Controllers implements IControllers {
 
         }
 
-
+    } //end else
 
     }
 
@@ -241,9 +254,14 @@ class adminController extends Controllers implements IControllers {
     private function insertarSubasta($s, $id_estadia, $e){
         $data = array('sin_error' => 0, //está en 1 cuando esta todo ok
                         'estadia_ocupada' => 0, 
-                      'subasta_existente'=> 0);
+                      'subasta_existente'=> 0, 
+                        'falta_monto' =>0);
 
         $monto= $_POST['monto'.$id_estadia];
+
+        if ($monto == ' ' or $monto<= 0) {
+            $data['falta_monto'] =1;
+        }
 
         /*debe crearse con al menos 6 meses de anticipacion (es igual a 52/2=26 semanas)
         $semana_estadia = $e->getSemana($id_estadia);
@@ -260,13 +278,13 @@ class adminController extends Controllers implements IControllers {
             $data['subasta_existente'] = 1;
         }
         
-        /*
+        
         if($e->estaOcupada($id_estadia)){
             $data['estadia_ocupada']=1;
         }
-        */
+        
         $subasta=null;
-        if (!$data['estadia_ocupada'] && !$data['subasta_existente']){
+        if (!$data['estadia_ocupada'] && !$data['subasta_existente'] && !$data['falta_monto']){
             $s->insertar($e, $id_estadia, $monto);
             $subasta= $s->existe($id_estadia);
             $data['sin_error'] = 1;

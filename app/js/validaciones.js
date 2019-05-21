@@ -124,6 +124,7 @@ function mostrarToken(){
 
 function validarAgregarSubasta(id){
   var monto = document.getElementById("monto"+id).value;
+  document.getElementById("error_campo_vacio_subasta").style.display = "none";
 
   if (campoVacio(monto) || monto <= 0){
     document.getElementById("error_campo_vacio_subasta").style.display = "block";

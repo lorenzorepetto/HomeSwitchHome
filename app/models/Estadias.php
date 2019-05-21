@@ -38,7 +38,7 @@ class Estadias extends Models implements IModels {
 
 
     public function estaOcupada($id){
-        $resultado = $this->db->select('*', 'estadias', null, "estado='OCUPADA' and id = '$id_estadia'");
+        $resultado = $this->db->select('*', 'estadias', null, "estado='OCUPADA' and id = '$id'");
         return $resultado;
 
     }
