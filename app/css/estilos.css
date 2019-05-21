@@ -271,3 +271,17 @@ p#descuento{
 li#descuento{
 	padding-left: 30px;
 }
+
+#atras{
+	padding-top: 0px;
+	padding-bottom: 0px;
+	margin-left: -15px;
+}
+
+#div_subasta{
+	height: 370px;
+}
+
+#error_campo_vacio_subasta{
+	display: none;
+}

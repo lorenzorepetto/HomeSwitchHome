@@ -49,8 +49,10 @@
           </div>
         {% endif %}
 
+        <div class="container">
+          <a href="http://localhost/HomeSwitchHome"><button id="atras" class="btn btn-secondary my-2">Atrás</button></a>
+        </div>
         <p class="lead text-muted">Lista de subastas: </p>
-        <a href="http://localhost/HomeSwitchHome"><button class="btn btn-secondary my-2">Atrás</button></a>
 
         <div class="row">
           
@@ -58,17 +60,19 @@
           {% for s in subastas %}
 
           <div class="col-md-4">
-            <div class="card mb-4 shadow-sm">
+            <div id="div_subasta" class="card mb-4 shadow-sm">
               
               <div class="card-body">
-                <p class="card-text"><span class="glyphicon glyphicon-ok"></span><strong> Semana:</strong> {{ s.semana }}</p>
+                <img id="card_foto_residencia" src="{{ s.foto }}" class="card-img-top" >
+                <p class="card-text"> &nbsp; </p>
                 <p class="card-text"><span class="glyphicon glyphicon-ok"></span><strong> Residencia: </strong>{{ s.nombre }}</p>
+                <p class="card-text"><span class="glyphicon glyphicon-ok"></span><strong> Semana:</strong> {{ s.semana }}</p>
                 <p class="card-text"><span class="glyphicon glyphicon-map-marker"></span><strong> Ciudad:</strong> {{ s.ciudad }}</p>
                 <p class="card-text"><span class="glyphicon glyphicon-map-marker"></span><strong> Provincia:</strong> {{ s.provincia }}</p>
                 
 
                 <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
+                  <div id="botones" class="btn-group">
                     <a href="http://localhost/HomeSwitchHome/subastas/detalle/{{ s.id_subasta }}"><button class="btn btn-secondary my-2">Ver detalles</button></a>
                     {% if s.estado == 0 %}
                       <a href="http://localhost/HomeSwitchHome/admin/subastas/cerrar?id_subasta={{ s.id_subasta }}"><button class="btn btn-secondary my-2">Cerrar subasta</button></a>

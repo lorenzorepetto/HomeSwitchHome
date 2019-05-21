@@ -38,7 +38,7 @@
         {% if data.sin_error == 1 %}
           <div class="alert alert-success alert-dismissible">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <strong class="animated flash"> <span class='glyphicon glyphicon-ok-sign'></span> Nota:</strong> La subasta se ha creado con éxito! <a href="http://localhost/HomeSwitchHome/subastas/detalle/{{ subasta.id }}">Ver detalles</a> 
+            <strong class="animated flash"> <span class='glyphicon glyphicon-ok-sign'></span> Nota:</strong> La subasta se ha creado con éxito! <a class="comun" href="http://localhost/HomeSwitchHome/subastas/detalle/{{ subasta.id }}">Ver detalles</a> 
           </div>
         {% endif %}
 
@@ -58,8 +58,15 @@
           </div>
         {% endif %}
 
+        <div id="error_campo_vacio_subasta" class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong class="animated flash"><span class="glyphicon glyphicon-exclamation-sign"></span> Error: </strong> Debe completar el campo con un monto mayor a 0 para poder crear la subasta.
+        </div>
+
+        <div class="container">
+          <a href="http://localhost/HomeSwitchHome"><button id="atras" class="btn btn-secondary my-2">Atrás</button></a>
+        </div>
         <p class="lead text-muted">Lista de estadías: </p>
-        <a href="http://localhost/HomeSwitchHome"><button class="btn btn-secondary my-2">Atrás</button></a>
 
         <div class="row">
 

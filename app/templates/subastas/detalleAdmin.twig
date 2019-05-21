@@ -36,8 +36,9 @@
 
 {% block appContenido %}    
 		
-  
-
+  <div clasS="container">
+    <a href="http://localhost/HomeSwitchHome/admin/operaciones/verSubastas"><button id="atras" class="btn btn-secondary my-2">Atrás</button></a>
+  </div>
 	<div id="div_detalle" class="border container">
 
 	   	<h2 class="detalle">Detalles de la subasta</h2>
@@ -137,7 +138,6 @@
             {% endif %}
 
         </div>
-        <a href="http://localhost/HomeSwitchHome/admin/operaciones/verSubastas"><button class="btn btn-secondary my-2">Atrás</button></a>
       </div>
       <div id="img_detalle_residencia" class="col-lg-4">
         <img id="foto_detalle_residencia" src="{{ subasta.foto }}" class="perfil float-right" alt="Foto de perfil"> 

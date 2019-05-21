@@ -149,6 +149,7 @@ class Subastas extends Models implements IModels {
                                         r.ciudad,
                                         r.provincia, 
                                         r.nombre,
+                                        r.foto,
                                         s.id as id_subasta,  
                                         s.monto as monto_subasta,
                                         s.monto_actual, 
