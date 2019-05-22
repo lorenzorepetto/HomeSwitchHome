@@ -51,7 +51,7 @@ class Estadias extends Models implements IModels {
 
     public function getEstadiasConResidencia(){
 
-        $resultado = $this->db->select('e.id as id_estadia, e.semana, e.monto, r.id as id_residencia, r.nombre, r.foto', 'estadias e', 'INNER JOIN residencias r ON (e.id_residencia = r.id)', "e.estado='LIBRE'");
+        $resultado = $this->db->select('e.id as id_estadia, e.semana, r.id as id_residencia, r.nombre, r.foto', 'estadias e', 'INNER JOIN residencias r ON (e.id_residencia = r.id)', "e.estado='LIBRE'");
         return $resultado;
     }
 
@@ -80,13 +80,12 @@ class Estadias extends Models implements IModels {
     ----------------------------------INSERTAR ESTADIA----------------------------------------
     */
 
-    public function insertar($semana, $monto, $id_residencia){
+    public function insertar($semana, $id_residencia){
         
 
         $e = array(
         	'id_residencia' => $id_residencia,
-            'semana' => $semana,
-            'monto' => $monto,
+            'semana' => $semana
         );
 
 

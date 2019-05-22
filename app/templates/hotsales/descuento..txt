@@ -1,0 +1,9 @@
+<li class="list-group-item"><span class="glyphicon glyphicon-ok"></span> <strong> Semana: </strong>{{ subasta.semana }}</li>
+            {% set porcentaje = (1 - (subasta.monto_subasta / subasta.monto_estadia)) * 100 %}
+
+              <li id="descuento" class="list-group-item">
+                <div class="row">
+                  <span class="glyphicon glyphicon-fire"></span> <strong> &nbsp;Monto inicial de la subasta: </strong>${{ subasta.monto_subasta|number_format(2, ',', '.') }}
+                  <p class="animated flash" id="descuento"> &nbsp;&nbsp;&nbsp;{{ porcentaje|number_format(2) }}% OFF</p>
+                </div>
+              </li>

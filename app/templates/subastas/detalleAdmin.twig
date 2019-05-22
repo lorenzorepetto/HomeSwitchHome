@@ -72,18 +72,6 @@
             <li class="list-group-item"><span class="glyphicon glyphicon-ok"></span> <strong> Residencia: </strong>{{ subasta.nombre }}</li>
   	        <li class="list-group-item"><span class="glyphicon glyphicon-map-marker"></span><strong> Dirección:</strong> {{ subasta.calle }} {{ subasta.altura }}, {{ subasta.ciudad }}, {{ subasta.provincia }}</li>
   	        <li class="list-group-item"><span class="glyphicon glyphicon-user"></span> <strong>Capacidad:</strong> {{ subasta.capacidad }}</li>      
-            <li class="list-group-item"><span class="glyphicon glyphicon-ok"></span> <strong> Semana: </strong>{{ subasta.semana }}</li>
-            <li class="list-group-item"><span class="glyphicon glyphicon-usd"></span> <strong> Monto original de la estadía: </strong><strike>${{ subasta.monto_estadia|number_format(2, ',', '.') }}</strike></li>
-
-            {% set porcentaje = (1 - (subasta.monto_subasta / subasta.monto_estadia)) * 100 %}
-
-              <li id="descuento" class="list-group-item">
-                <div class="row">
-                  <span class="glyphicon glyphicon-fire"></span> <strong> &nbsp;Monto inicial de la subasta: </strong>${{ subasta.monto_subasta|number_format(2, ',', '.') }}
-                  <p class="animated flash" id="descuento"> &nbsp;&nbsp;&nbsp;{{ porcentaje|number_format(2) }}% OFF</p>
-                </div>
-              </li>
-
   	      </ul> 
 
     

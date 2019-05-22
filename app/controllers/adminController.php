@@ -197,11 +197,25 @@ class adminController extends Controllers implements IControllers {
 
 
     public function insertarResidencia($r){
-
-        $errores= array('nombre_existente' => 0,
-                         'sin_error' => 0);
         
         $nombre=$_POST['nombre'];
+        $descripcion=$_POST['descripcion'];
+        $calle=$_POST['calle'];
+        $altura=$_POST['altura'];
+        $ciudad=$_POST['ciudad'];
+        $provincia=$_POST['provincia'];
+        $capacidad=$_POST['capacidad'];
+
+        $errores= array('nombre_existente' => 0,
+                          'sin_error' => 0, 
+                          'nombre' => $nombre,
+                          'descripcion' => $descripcion,
+                          'calle' => $calle,
+                          'altura' => $altura,
+                          'ciudad' => $ciudad,
+                          'provincia' => $provincia,
+                          'capacidad' => $capacidad);
+
 
         //Valido el nombre
         if ($r->existe($nombre)) {
@@ -227,7 +241,6 @@ class adminController extends Controllers implements IControllers {
                         'semana_ocupada' => 0,
                         'id_residencia'=> $_GET['id_residencia']);
 
-        $monto=$_POST['monto'];
         $fecha_inicio= $_POST['fecha_inicio'];
         $id_residencia = $_GET['id_residencia'];
 
@@ -240,7 +253,7 @@ class adminController extends Controllers implements IControllers {
         }
         else{
             //puedo crear la estadia  
-            $e->insertar($semana, $monto, $id_residencia);
+            $e->insertar($semana, $id_residencia);
             $data['sin_error'] = 1;
         }
 

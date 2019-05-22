@@ -40,6 +40,12 @@
 	    <div class="container">
 
         <p class="lead text-muted">Lista de residencias: </p>
+        {% if residencias == false %}
+          <div class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong class="animated flash"><span class="glyphicon glyphicon-exclamation-sign"></span></strong> ¡Lo sentimos! No hay residencias cargadas para mostrar.
+          </div>
+        {% endif %}
 
 	      <div class="row">
                 

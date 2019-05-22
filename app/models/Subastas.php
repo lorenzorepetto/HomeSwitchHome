@@ -143,8 +143,7 @@ class Subastas extends Models implements IModels {
     public function getSubastasConEstadiaYResidencia(){
 
         $resultado = $this->db->select('e.id as id_estadia, 
-                                        e.semana, 
-                                        e.monto as monto_estadia, 
+                                        e.semana,
                                         r.id as id_residencia,
                                         r.ciudad,
                                         r.provincia, 
@@ -164,7 +163,6 @@ class Subastas extends Models implements IModels {
        
         $resultado = $this->db->select('e.id as id_estadia,
                                         e.semana,
-                                        e.monto as monto_estadia,
                                         r.id as id_residencia, 
                                         r.nombre,
                                         s.id as id_subasta,  
