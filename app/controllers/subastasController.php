@@ -77,7 +77,7 @@ class subastasController extends Controllers implements IControllers {
 
                                
         }
-
+        
         switch ($rol) {
 
             case 'ADMINISTRADOR':       
