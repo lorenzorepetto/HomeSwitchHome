@@ -81,8 +81,7 @@ class adminController extends Controllers implements IControllers {
 
                     case 'agregarSubasta':
                         //FILTRO LAS ESTADIAS POSIBLES PARA SUBASTAR
-
-                        $estadias = $e->getEstadiasConResidencia();
+                        $estadias = $e->getEstadiasParaSubastar();
                         $this->template->display('subastas/agregarSubasta',array('estadias' => $estadias ));
                         break;
 
@@ -247,7 +246,6 @@ class adminController extends Controllers implements IControllers {
         $id_residencia = $_GET['id_residencia'];
 
         $semana = $this->calcularSemana($fecha_inicio);
-        
 
         //Valido si ya existe una estadia para esa residencia y semana
         if ($e->existe($semana, $id_residencia)) {
@@ -313,14 +311,13 @@ class adminController extends Controllers implements IControllers {
 
 
     private function calcularSemana($fecha){
-        $f = explode("-", $fecha);
-        $a = $f[0];
-        $m = $f[1];
-        $d = $f[2]; 
+        $mes=date("m", strtotime($fecha)); 
+        $anio=date("Y", strtotime($fecha));
+        $dia=date("d", strtotime($fecha));
 
-        $semana = ( ($m * 4 * 7 ) - (28.5 - $d ) ) / 7;
-        $semana = ceil($semana);
-        return intval($semana);
+        $semana = date('W', mktime(0, 0, 0, $mes, $dia, $anio));
+
+        return $semana;
     }
 
 

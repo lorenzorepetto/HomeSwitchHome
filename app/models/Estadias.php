@@ -79,7 +79,8 @@ class Estadias extends Models implements IModels {
 
     public function getEstadiasParaSubastar(){
         //necesito saber como filtrar las fechas
-
+        $fecha=date('Y-m-d', strtotime('+6 month'));
+        
         $resultado = $this->db->select('e.id as id_estadia, 
                                         e.semana,
                                         e.fecha, 
@@ -88,7 +89,7 @@ class Estadias extends Models implements IModels {
                                         r.foto', 
                                         'estadias e', 
                                         'INNER JOIN residencias r ON (e.id_residencia = r.id)', 
-                                        "e.estado='LIBRE'");
+                                        "e.estado='LIBRE' AND e.fecha > '$fecha'");
         return $resultado;
     }
 

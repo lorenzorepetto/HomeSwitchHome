@@ -76,6 +76,13 @@
         </div>
         <p class="lead text-muted">Lista de estadías: </p>
 
+        {% if estadias == false %}
+           <p>Lo sentimos! No hay estadías disponibles para subastar</p>
+        
+        {% else %}
+
+
+
         <div class="row">
 
           {% for e in estadias %}
@@ -88,6 +95,8 @@
                 <p class="card-text">&nbsp;</p>
                 <p class="card-text"><span class="glyphicon glyphicon-ok"></span><strong> Residencia: </strong>{{ e.nombre }}</p>
                 <p class="card-text"><span class="glyphicon glyphicon-ok"></span><strong> Semana:</strong> {{ e.semana }}</p>
+                <p class="card-text"><span class="glyphicon glyphicon-ok"></span><strong> Fecha:</strong> {{ e.fecha|date("d/m/Y") }}</p>
+                <p class="card-text"><span class="glyphicon glyphicon-ok"></span><strong> Fecha inicio de subasta:</strong> {{ e.fecha|date_modify("-6 month")|date("d/m/Y") }}</p>
                 
                 <div>
                   
@@ -109,6 +118,7 @@
           
         </div>
 
+        {% endif %}
         
       </div>
   </div>
