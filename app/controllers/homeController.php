@@ -28,7 +28,7 @@ class homeController extends Controllers implements IControllers {
     public function __construct(IRouter $router) {
         parent::__construct($router);
 
-        $r = new Model\Residencias;
+        $s = new Model\Subastas;
 
 
         
@@ -44,29 +44,32 @@ class homeController extends Controllers implements IControllers {
         }
         elseif($router->getMethod() == 'error_login') {
 
-            $this->renderHome($r, 1);
+            $this->renderHome($s, 1);
         }
         elseif ($router->getMethod() == 'error_token') {
-            $this->renderHome($r,1,1);
+            $this->renderHome($s,1,1);
         }
         elseif ($router->getMethod() == 'token') {
-           $this->renderHome($r,0,0,1);
+           $this->renderHome($s,0,0,1);
         }
         else{
-            $this->renderHome($r);
+            $this->renderHome($s);
         }
     }
     
 
-    public function renderHome($r,$error_login = 0, $error_token = 0, $token = 0){
+    public function renderHome($s,$error_login = 0, $error_token = 0, $token = 0){
 
 
+        //ESTO MUESTRA UNA RESIDENCIA ALEATORIA
+        //$resultado = $r->getResidencias();
+        //$residencia = Arrays::array_random_element($resultado);
 
-        $resultado = $r->getResidencias();
+        //ESTO MUESTRA UN ASUBASTSA ALEATORIA
+        $resultado = $s->getSubastasConEstadiaYResidencia();
+        $subasta = Arrays::array_random_element($resultado);
 
-        $residencia = Arrays::array_random_element($resultado);
-
-        $datos = array('residencia' => $residencia,
+        $datos = array('subasta' => $subasta,
                         'error_login' => $error_login,
                         'error_token' => $error_token);
 
