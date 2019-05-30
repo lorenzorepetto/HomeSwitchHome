@@ -76,16 +76,33 @@ class Estadias extends Models implements IModels {
 
     }
 
+
+    public function getEstadiasParaSubastar(){
+        //necesito saber como filtrar las fechas
+
+        $resultado = $this->db->select('e.id as id_estadia, 
+                                        e.semana,
+                                        e.fecha, 
+                                        r.id as id_residencia, 
+                                        r.nombre, 
+                                        r.foto', 
+                                        'estadias e', 
+                                        'INNER JOIN residencias r ON (e.id_residencia = r.id)', 
+                                        "e.estado='LIBRE'");
+        return $resultado;
+    }
+
     /*
     ----------------------------------INSERTAR ESTADIA----------------------------------------
     */
 
-    public function insertar($semana, $id_residencia){
+    public function insertar($semana, $id_residencia, $fecha_inicio){
         
 
         $e = array(
         	'id_residencia' => $id_residencia,
-            'semana' => $semana
+            'semana' => $semana,
+            'fecha' => $fecha_inicio
         );
 
 

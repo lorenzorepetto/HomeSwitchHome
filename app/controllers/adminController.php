@@ -80,6 +80,8 @@ class adminController extends Controllers implements IControllers {
                         break;
 
                     case 'agregarSubasta':
+                        //FILTRO LAS ESTADIAS POSIBLES PARA SUBASTAR
+
                         $estadias = $e->getEstadiasConResidencia();
                         $this->template->display('subastas/agregarSubasta',array('estadias' => $estadias ));
                         break;
@@ -253,7 +255,7 @@ class adminController extends Controllers implements IControllers {
         }
         else{
             //puedo crear la estadia  
-            $e->insertar($semana, $id_residencia);
+            $e->insertar($semana, $id_residencia, $fecha_inicio);
             $data['sin_error'] = 1;
         }
 
