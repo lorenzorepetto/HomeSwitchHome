@@ -66,8 +66,15 @@ class homeController extends Controllers implements IControllers {
         //$residencia = Arrays::array_random_element($resultado);
 
         //ESTO MUESTRA UN ASUBASTSA ALEATORIA
+
         $resultado = $s->getSubastasConEstadiaYResidencia();
-        $subasta = Arrays::array_random_element($resultado);
+        if ($resultado) {
+            $subasta = Arrays::array_random_element($resultado);
+        }else{
+            $subasta = null;
+        }
+        
+
 
         $datos = array('subasta' => $subasta,
                         'error_login' => $error_login,
