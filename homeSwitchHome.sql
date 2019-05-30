@@ -2,10 +2,10 @@
 -- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 20-05-2019 a las 21:34:41
--- Versión del servidor: 10.1.38-MariaDB
--- Versión de PHP: 7.3.2
+-- Servidor: localhost
+-- Tiempo de generación: 30-05-2019 a las 02:12:37
+-- Versión del servidor: 10.1.40-MariaDB
+-- Versión de PHP: 7.3.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -33,6 +33,7 @@ CREATE TABLE `estadias` (
   `estado` varchar(20) COLLATE utf8_spanish_ci NOT NULL DEFAULT 'LIBRE',
   `id_residencia` int(10) UNSIGNED NOT NULL,
   `semana` int(2) NOT NULL,
+  `fecha` date NOT NULL,
   `monto` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
@@ -40,13 +41,8 @@ CREATE TABLE `estadias` (
 -- Volcado de datos para la tabla `estadias`
 --
 
-INSERT INTO `estadias` (`id`, `estado`, `id_residencia`, `semana`, `monto`) VALUES
-(1, 'SUBASTA', 1, 100, 1000),
-(2, 'SUBASTA', 1, 21, 15000),
-(3, 'LIBRE', 1, 41, 2000),
-(4, 'SUBASTA', 2, 19, 10000),
-(5, 'LIBRE', 0, 0, 0),
-(6, 'LIBRE', 1, 19, 45);
+INSERT INTO `estadias` (`id`, `estado`, `id_residencia`, `semana`, `fecha`, `monto`) VALUES
+(7, 'LIBRE', 2, 24, '2019-06-24', 0);
 
 -- --------------------------------------------------------
 
@@ -75,19 +71,6 @@ CREATE TABLE `pujas` (
   `id_subasta` int(10) UNSIGNED NOT NULL,
   `monto_apostado` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `pujas`
---
-
-INSERT INTO `pujas` (`id`, `id_usuario`, `id_subasta`, `monto_apostado`) VALUES
-(1, 1, 7, 5500),
-(2, 1, 7, 5600),
-(3, 1, 7, 5700),
-(4, 1, 7, 5800),
-(5, 1, 7, 5900),
-(6, 1, 7, 5901),
-(7, 1, 8, 4500);
 
 -- --------------------------------------------------------
 
@@ -147,15 +130,6 @@ CREATE TABLE `subastas` (
   `monto` int(10) NOT NULL,
   `monto_actual` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `subastas`
---
-
-INSERT INTO `subastas` (`id`, `fecha_inicio`, `fecha_fin`, `estado`, `usuario_ganador`, `id_estadia`, `monto`, `monto_actual`) VALUES
-(7, '0000-00-00', '0000-00-00', 1, ' ', 2, 5000, 5000),
-(8, '0000-00-00', '0000-00-00', 0, ' 1', 4, 4000, 4000),
-(9, '0000-00-00', '0000-00-00', 1, ' ', 1, 800, 800);
 
 -- --------------------------------------------------------
 
@@ -250,7 +224,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `estadias`
 --
 ALTER TABLE `estadias`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `hotsales`
