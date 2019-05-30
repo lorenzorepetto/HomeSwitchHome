@@ -29,6 +29,7 @@ class usuariosController extends Controllers implements IControllers {
         
         #Instancio un objeto Usuario
         $u = new Model\Usuarios;
+        $s = new Model\Subastas;
 
              
                 
@@ -57,7 +58,7 @@ class usuariosController extends Controllers implements IControllers {
                         
                     }
 
-                break;
+            break;
 
 
         	
@@ -107,7 +108,23 @@ class usuariosController extends Controllers implements IControllers {
 
                    
 
-                break;
+            break;
+
+            case 'subastas':
+
+                switch ($router->getId()) {
+
+                    case 'verSubastas':
+                        $subastas= $s->getSubastasConEstadiaYResidencia();
+                        $this->template->display('subastas/verSubastasLogged', array('subastas' => $subastas));
+
+                    break;
+                    
+                    default:
+                        echo $this->template->display('home/home');
+                    break;
+                }
+            break;
 
             
 

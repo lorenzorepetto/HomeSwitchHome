@@ -1,0 +1,123 @@
+{% extends 'overall/layout' %}
+{% block appHeader %}
+
+        <div id="navbar">
+
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+          <!-- Brand -->
+          <a class="navbar-brand" href="http://localhost/HomeSwitchHome/"><div><img src="app/img/HSH-Text.jpg" class="img-responsive" title="Logo Home Switch Home" style="width:180px;"></div></a>
+
+          <!-- Links -->
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="http://localhost/HomeSwitchHome/usuarios/logout"><span class="glyphicon glyphicon-log-in"></span>   Cerrar Sesion</a>
+            </li>
+
+            <!-- Dropdown -->
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle my-2 my-lg-0" href="#" id="navbardrop" data-toggle="dropdown">
+                More
+              </a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="#"><span class="glyphicon glyphicon-question-sign"> FAQs</a>
+                <a class="dropdown-item" href="#"><span class="glyphicon glyphicon-envelope"> Contacto</a>
+                <a class="dropdown-item" href="#"><span class="glyphicon glyphicon-fire"></span> Subastas</a>
+                <a class="dropdown-item" href="#"><span class="glyphicon glyphicon-fire"></span> Hotsales</a>
+              </div>
+            </li>
+          </ul>
+        </nav>
+
+        </div> 
+{% endblock %}
+
+{% block carrousel %}
+{% endblock %}
+
+{% block appContenido %}    
+		
+  <div clasS="container">
+    <a href="http://localhost/HomeSwitchHome/usuarios/subastas/verSubastas"><button id="atras" class="btn btn-secondary my-2">Atrás</button></a>
+  </div>
+	<div id="div_detalle" class="border container">
+
+	   	<h2 class="detalle">Detalles de la subasta</h2>
+
+      <div class="col-lg-8">
+
+
+  	    <div class_"row">
+
+  	      <ul class="list-group list-group-flush">
+            <li class="list-group-item"><span class="glyphicon glyphicon-ok"></span> <strong> Residencia: </strong>{{ subasta.nombre }}</li>
+  	        <li class="list-group-item"><span class="glyphicon glyphicon-map-marker"></span><strong> Dirección:</strong> {{ subasta.calle }} {{ subasta.altura }}, {{ subasta.ciudad }}, {{ subasta.provincia }}</li>
+  	        <li class="list-group-item"><span class="glyphicon glyphicon-user"></span> <strong>Capacidad:</strong> {{ subasta.capacidad }}</li>      
+  	      </ul> 
+
+    
+          <h2 id="pujas">Pujas</h2>
+
+            {% if subasta.estado == 0 %}
+
+            <ul class="list-group list-group-flush">      
+              
+              {% if puja.usuario_id != null %}
+
+                  {% set monto_validacion = puja.monto_apostado %}
+
+                  <li class="list-group-item"><span class="glyphicon glyphicon-usd"></span> <strong> Monto actual de la subasta: </strong>&nbsp;${{ puja.monto_apostado|number_format(2, ',', '.') }}</li>
+                  <li class="list-group-item"><span class="glyphicon glyphicon-user"></span> <strong> Usuario: </strong>{{ puja.apellido }}, {{ puja.nombre }}</li>
+                  <li class="list-group-item">
+
+              {% else %}
+
+                  {% set monto_validacion = subasta.monto_subasta %}
+
+                  <li class="list-group-item"><span class="glyphicon glyphicon-usd"></span> Aún no existen pujas, podés ser el primero!</li>
+              {% endif %}
+
+                
+                <form action="http://localhost/HomeSwitchHome/subastas/pujar/{{ subasta.id_subasta }}" onsubmit="return validarPuja({{ monto_validacion }});" enctype="multipart/form-data" method="post">
+                  
+                      <label for="puja">Monto:</label>                      
+                      <input type="text" id="puja" name="puja"> 
+                                     
+                    <button id="pujar" type="submit" class="btn btn-secondary my-2">Pujar!</button>
+                    <p class="animated shake" id="errorPujaVacia" name="errorPujaVacia"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
+                    <p class="animated shake" id="errorPujaMonto" name="errorPujaMonto"><span class="glyphicon glyphicon-exclamation-sign"></span> Debe ingresar un valor mayor al actual!</p>
+                  
+                </form>
+              </li>
+            </ul>
+
+            <a href="http://localhost/HomeSwitchHome/admin/subastas/cerrar?id_subasta={{ subasta.id_subasta }}"><button class="btn btn-secondary my-2">Cerrar subasta</button></a>
+
+            {% else %}
+
+                <li class="list-group-item"><span class="glyphicon glyphicon-thumbs-down"></span><strong>&nbsp;La subasta ya cerró!</strong></li>
+
+                {% if usuario != null %}
+                  <li class="list-group-item"><span class="glyphicon glyphicon-user"></span><strong>&nbsp;Usuario ganador:</strong> {{ usuario.apellido }}, {{ usuario.nombre}}</li>
+                  <li class="list-group-item"><span class="glyphicon glyphicon-usd"></span> <strong> Monto final: </strong>&nbsp;${{ puja.monto_apostado|number_format(2, ',', '.') }}</li>
+                {% else %}
+                  <li class="list-group-item"><span class="glyphicon glyphicon-user"></span><strong>&nbsp;No hubo ganador</strong></li>
+                {% endif %}
+                  
+            {% endif %}
+
+        </div>
+      </div>
+      <div id="img_detalle_residencia" class="col-lg-4">
+        <img id="foto_detalle_residencia" src="{{ subasta.foto }}" class="perfil float-right" alt="Foto de perfil"> 
+      </div>
+
+
+
+ 	</div>
+		
+
+
+{% endblock %}
+
+{% block appBody %}
+{% endblock %}

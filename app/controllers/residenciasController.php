@@ -84,10 +84,14 @@ class residenciasController extends Controllers implements IControllers {
             case 'ADMINISTRADOR':
                 $this->template->display('residencias/detalleAdmin', array('residencia' => $residencia, 'estadias' => $mis_estadias));
                 break;
+
+            case 'PREMIUM':
+                $this->template->display('residencias/detalle', array('residencia' => $residencia, 'estadias' => $mis_estadias, 'premium' => 1));
+            break;
             
             default:
-                $this->template->display('residencias/detalle', array('residencia' => $residencia, 'estadias' => $mis_estadias));
-                break;
+                $this->template->display('residencias/detalle', array('residencia' => $residencia, 'estadias' => $mis_estadias, 'premium' => 0));
+            break;
         } 
         
     }

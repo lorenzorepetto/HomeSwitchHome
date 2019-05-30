@@ -85,7 +85,7 @@ class subastasController extends Controllers implements IControllers {
                 break;
             
             default:
-                $this->template->display('subastas/detalle', array('subasta' => $subasta, 'puja' => $puja['0']));
+                $this->template->display('subastas/detalleLogged', array('subasta' => $subasta, 'puja' => $puja['0']));
                 break;
         } 
         

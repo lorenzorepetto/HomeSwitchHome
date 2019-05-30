@@ -11,6 +11,14 @@ display:block;
 margin:auto;
 }
 
+#fotoRedondelHL{
+display:block;
+margin:auto;
+width: 140px;
+height: 140px;
+}
+
+
 .btn-secondary{
 	background-color: #000d1a;
 }
@@ -89,6 +97,10 @@ div .input_tarjeta{
 }
 
 h2.detalle{
+	text-align: center;
+}
+
+h2.center-block{
 	text-align: center;
 }
 
@@ -288,4 +300,8 @@ li#descuento{
 
 #div_crear_subasta{
 	height: 380px;
+}
+
+#div_estadias{
+	height: 180px;
 }
