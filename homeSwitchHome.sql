@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 30-05-2019 a las 02:12:37
+-- Tiempo de generación: 01-06-2019 a las 19:17:19
 -- Versión del servidor: 10.1.40-MariaDB
 -- Versión de PHP: 7.3.5
 
@@ -33,16 +33,18 @@ CREATE TABLE `estadias` (
   `estado` varchar(20) COLLATE utf8_spanish_ci NOT NULL DEFAULT 'LIBRE',
   `id_residencia` int(10) UNSIGNED NOT NULL,
   `semana` int(2) NOT NULL,
-  `fecha` date NOT NULL,
-  `monto` float NOT NULL
+  `fecha` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `estadias`
 --
 
-INSERT INTO `estadias` (`id`, `estado`, `id_residencia`, `semana`, `fecha`, `monto`) VALUES
-(7, 'LIBRE', 2, 24, '2019-06-24', 0);
+INSERT INTO `estadias` (`id`, `estado`, `id_residencia`, `semana`, `fecha`) VALUES
+(11, 'LIBRE', 1, 33, '2019-08-15'),
+(12, 'SUBASTA', 1, 50, '2019-12-12'),
+(13, 'SUBASTA', 1, 18, '2020-05-01'),
+(14, 'LIBRE', 1, 5, '2020-01-30');
 
 -- --------------------------------------------------------
 
@@ -122,14 +124,20 @@ INSERT INTO `residencias` (`id`, `nombre`, `descripcion`, `foto`, `capacidad`, `
 
 CREATE TABLE `subastas` (
   `id` int(10) UNSIGNED NOT NULL,
-  `fecha_inicio` date NOT NULL,
-  `fecha_fin` date NOT NULL,
-  `estado` tinyint(1) NOT NULL,
+  `estado` varchar(15) COLLATE utf8_spanish_ci NOT NULL DEFAULT 'PENDIENTE',
   `usuario_ganador` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
   `id_estadia` int(10) UNSIGNED NOT NULL,
   `monto` int(10) NOT NULL,
   `monto_actual` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `subastas`
+--
+
+INSERT INTO `subastas` (`id`, `estado`, `usuario_ganador`, `id_estadia`, `monto`, `monto_actual`) VALUES
+(1, 'PENDIENTE', ' ', 12, 10000, 10000),
+(2, 'PENDIENTE', ' ', 13, 5000, 5000);
 
 -- --------------------------------------------------------
 
@@ -224,7 +232,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `estadias`
 --
 ALTER TABLE `estadias`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `hotsales`
@@ -236,7 +244,7 @@ ALTER TABLE `hotsales`
 -- AUTO_INCREMENT de la tabla `pujas`
 --
 ALTER TABLE `pujas`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `reservas`
@@ -254,7 +262,7 @@ ALTER TABLE `residencias`
 -- AUTO_INCREMENT de la tabla `subastas`
 --
 ALTER TABLE `subastas`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`

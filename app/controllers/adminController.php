@@ -75,7 +75,12 @@ class adminController extends Controllers implements IControllers {
                     case 'editarResidencia':
                         $id = $_GET['id_residencia'];
                         $resultado = $r->getResidencia($id);
-                        $data = array('residencia' => $resultado['0']);
+                        //aca necesito saber si tiene cosas pendientes
+                        $pendientes = $r->tienePendientes($id);
+                        $data = array('residencia' => $resultado['0'],
+                                      'pendientes' => $pendientes);
+
+                        
                         $this->template->display('residencias/modificarResidencia', $data);
                         break;
 

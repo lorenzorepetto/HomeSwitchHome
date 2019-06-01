@@ -102,6 +102,25 @@ class Residencias extends Models implements IModels {
 
 
 
+    public function tienePendientes($id){
+
+        //puede tener estadias reservadas, en subasta o hotsale
+        $resultado = $this->db->select('e.id as id_estadia,  
+                                        r.id as id_residencia', 
+                                        'residencias r', 
+                                        'INNER JOIN estadias e ON (e.id_residencia = r.id)', 
+                                        "r.id = '$id' AND (e.estado = 'SUBASTA' OR e.estado = 'HOTSALE' OR e.estado = 'OCUPADA')");
+
+        if ($resultado) {
+            //tiene pendientes
+            return true;
+        }
+        
+        return false; //no tiene pendientes
+
+    }
+
+
      /*
 
     ------------------------  CREAR RESIDENCIA  ---------------------------------------------------------------------
