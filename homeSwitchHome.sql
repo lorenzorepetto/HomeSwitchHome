@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 01-06-2019 a las 19:17:19
+-- Tiempo de generación: 02-06-2019 a las 01:40:10
 -- Versión del servidor: 10.1.40-MariaDB
 -- Versión de PHP: 7.3.5
 
@@ -161,21 +161,25 @@ CREATE TABLE `usuarios` (
   `fecha_vencimiento_tarjeta` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
   `rol` varchar(20) COLLATE utf8_spanish_ci NOT NULL DEFAULT 'ESTANDAR',
   `estado_logico` tinyint(1) NOT NULL DEFAULT '0',
-  `token` varchar(10) COLLATE utf8_spanish_ci DEFAULT NULL
+  `token` varchar(10) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `fecha_registro` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`id`, `email`, `password`, `nombre`, `apellido`, `fecha_nacimiento`, `foto`, `telefono`, `creditos`, `marca_tarjeta`, `numero_tarjeta`, `titular_tarjeta`, `fecha_vencimiento_tarjeta`, `rol`, `estado_logico`, `token`) VALUES
-(1, 'admin@homeswitchhome.com', 'admin1234', 'Administrador', 'Administrador', '0000-00-00', NULL, '111', 1000, 'no corresponde', 'no corresponde', 'no corresponde', '0000-00-00', 'ADMINISTRADOR', 0, '123456'),
-(2, 'loren@mail.com', 'loren1234', 'Lorenzo', 'Repetto', '1994-04-28', 'app/img/usuarios/user.png', '452710', 1, 'VISA', '444', 'Lorenzo Repetto', '2021-08-16', 'ESTANDAR', 0, NULL),
-(3, 'prueba@mail.com', 'prueba1234', 'Prueba', 'SubirUsuario', '1992-04-18', '', '11111', 2, 'AAA', '111', '', '1/2020', 'ESTANDAR', 0, NULL),
-(4, 'asdasdasd@asdas.asd', 'asdasdasd', 'asdasdas', 'asdasdasd', '2000-04-05', '', 'asdasd', 2, 'asdasdas', 'asdad', '', 'asdasd', 'ESTANDAR', 0, NULL),
-(5, 'pieri@mail.com', 'pieri1234', 'Pierina', 'Tufillaro', '1999-01-13', '', '411872', 2, 'VISA', '1111', '', '13/2022', 'ESTANDAR', 0, NULL),
-(6, 'jorge@gmail.com', 'jorge1234', 'Jorge', 'Paulos', '1980-04-13', 'app/img/usuarios/jorge.jpg', '0113751314', 2, 'MASTERCARD', '8254435411', '', '04/2022', 'ESTANDAR', 0, NULL),
-(7, 'julia@gmail.com', 'julia1234', 'Julia', 'Rosales', '1990-09-04', 'app/img/usuarios/julia.jpg', '0113441586', 2, 'VISA', '512497543', '', '04/2022', 'ESTANDAR', 0, NULL);
+INSERT INTO `usuarios` (`id`, `email`, `password`, `nombre`, `apellido`, `fecha_nacimiento`, `foto`, `telefono`, `creditos`, `marca_tarjeta`, `numero_tarjeta`, `titular_tarjeta`, `fecha_vencimiento_tarjeta`, `rol`, `estado_logico`, `token`, `fecha_registro`) VALUES
+(1, 'admin@homeswitchhome.com', 'admin1234', 'Administrador', 'Administrador', '0000-00-00', NULL, '111', 1000, 'no corresponde', 'no corresponde', 'no corresponde', '0000-00-00', 'ADMINISTRADOR', 0, '123456', '0000-00-00'),
+(2, 'loren@mail.com', 'loren1234', 'Lorenzo', 'Repetto', '1994-04-28', 'app/img/usuarios/user.png', '452710', 1, 'VISA', '444', 'Lorenzo Repetto', '2021-08-16', 'ESTANDAR', 0, NULL, '0000-00-00'),
+(3, 'prueba@mail.com', 'prueba1234', 'Prueba', 'SubirUsuario', '1992-04-18', '', '11111', 2, 'AAA', '111', '', '1/2020', 'ESTANDAR', 0, NULL, '0000-00-00'),
+(4, 'asdasdasd@asdas.asd', 'asdasdasd', 'asdasdas', 'asdasdasd', '2000-04-05', '', 'asdasd', 2, 'asdasdas', 'asdad', '', 'asdasd', 'ESTANDAR', 0, NULL, '0000-00-00'),
+(5, 'pieri@mail.com', 'pieri1234', 'Pierina', 'Tufillaro', '1999-01-13', '', '411872', 2, 'VISA', '1111', '', '13/2022', 'ESTANDAR', 0, NULL, '0000-00-00'),
+(6, 'jorge@gmail.com', 'jorge1234', 'Jorge', 'Paulos', '1980-04-13', 'app/img/usuarios/jorge.jpg', '0113751314', 2, 'MASTERCARD', '8254435411', '', '04/2022', 'ESTANDAR', 0, NULL, '1999-05-10'),
+(7, 'julia@gmail.com', 'julia1234', 'Julia', 'Rosales', '1990-09-04', 'app/img/usuarios/julia.jpg', '0113441586', 2, 'VISA', '512497543', '', '04/2022', 'ESTANDAR', 0, NULL, '0000-00-00'),
+(10, 'm@k', 'kdfhdhffhd', 'k', 'k', '1999-09-06', 'app/img/usuarios/user.png', '4', 2, '4', '4', '', '4', 'ESTANDAR', 0, NULL, '0000-00-00'),
+(11, 'm@kk', '45821693587', 'k', 'k', '1999-09-06', 'app/img/usuarios/user.png', '4', 2, '4', '4', '', '4', 'ESTANDAR', 0, NULL, '0000-00-00'),
+(12, 'm@kk5', '45821693587', 'k', 'k', '1888-09-06', 'app/img/usuarios/user.png', '4', 2, '4', '4', '', '4', 'ESTANDAR', 0, NULL, '2019-06-01');
 
 --
 -- Índices para tablas volcadas
@@ -268,7 +272,7 @@ ALTER TABLE `subastas`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

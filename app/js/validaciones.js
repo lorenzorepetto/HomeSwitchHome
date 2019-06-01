@@ -52,7 +52,10 @@ function validarRegistrar(){
     document.getElementById("msjVencimiento").style.display = "block";
     document.getElementById("msjNumero").style.display = "block";
     return false;
-  }
+  }else if (pass.length < 6){
+      document.getElementById("msjPassword2").style.display = "block";
+      return false;
+   }
   return true;
 
 }

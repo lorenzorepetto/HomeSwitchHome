@@ -148,6 +148,8 @@ class Usuarios extends Models implements IModels {
         else{
             $foto="app/img/usuarios/user.png";
         }
+
+        $fecha_registro = Date("Y-m-d");
         
 
         $u = array(
@@ -162,7 +164,8 @@ class Usuarios extends Models implements IModels {
             'marca_tarjeta' => $_POST['marca_tarjeta'],
             'numero_tarjeta' => $_POST['numero_tarjeta'],
             'fecha_vencimiento_tarjeta' => $_POST['fecha_vencimiento_tarjeta'],
-            'rol' => "ESTANDAR"
+            'rol' => "ESTANDAR", 
+            'fecha_registro' => $fecha_registro
         );
 
         $this->db->insert('usuarios',$u);

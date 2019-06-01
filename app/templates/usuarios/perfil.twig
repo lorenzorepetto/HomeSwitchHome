@@ -39,19 +39,30 @@
 {% endblock %}
 
 {% block appContenido %}
+
+    <div class="container">
+      <a href="http://localhost/HomeSwitchHome"><button id="atras" class="btn btn-secondary my-2">Atrás</button></a>
+    </div>
 		
 	<div class="border container">
-    <h2>{{ nombre }} {{ apellido }}</h2>
+    <div class="container center-block">
+      <h2 class="perfil center-block">{{ nombre }} {{ apellido }}</h2>     
+    </div>
     <div class_"row">
       <ul class="list-group list-group-flush col-lg-8">
-        <li class="list-group-item"><span class="glyphicon glyphicon-envelope"></span><strong> Email:</strong> {{ email }}</li>
-        <li class="list-group-item"><span class="glyphicon glyphicon-user"></span><strong> Tipo de usuario:</strong> {{ rol }}</li>
-        <li class="list-group-item"><span class="glyphicon glyphicon-earphone"></span><strong> Teléfono:</strong> {{ telefono }}</li>
-        <li class="list-group-item"><span class="glyphicon glyphicon-calendar"></span><strong> Fecha de nacimiento:</strong> {{ fecha_nacimiento|date("d/m/Y") }}</li>
-        <li class="list-group-item"><span class="glyphicon glyphicon-usd"></span><strong> Créditos:</strong> <span class="badge badge-primary badge-pill creditos">{{ creditos }}</span></li>
-        <li class="list-group-item"><span class="glyphicon glyphicon-envelope"></span> <strong>Marca tarjeta:</strong> {{ marca_tarjeta }}</li>
+        <li class="perfil list-group-item"><span class="glyphicon glyphicon-envelope"></span><strong> Email:</strong> {{ email }}</li>
+        <li class="perfil list-group-item"><span class="glyphicon glyphicon-user"></span><strong> Tipo de usuario:</strong> {{ rol }}</li>
+        <li class="perfil list-group-item"><span class="glyphicon glyphicon-earphone"></span><strong> Teléfono:</strong> {{ telefono }}</li>
+        <li class="perfil list-group-item"><span class="glyphicon glyphicon-calendar"></span><strong> Fecha de nacimiento:</strong> {{ fecha_nacimiento|date("d/m/Y") }}</li>
+        <li class="perfil list-group-item"><span class="glyphicon glyphicon-usd"></span><strong> Créditos:</strong> <span class="badge badge-primary badge-pill creditos">{{ creditos }}</span> &nbsp;Vencimiento: {{ fecha_registro|date_modify("+1 year")|date("d/m/Y") }}</li>
+        <li class="perfil list-group-item"><span class="glyphicon glyphicon-envelope"></span> <strong>Marca tarjeta:</strong> {{ marca_tarjeta }}</li>
+        <li class="perfil list-group-item">
+          <div class="perfil center-block">
+            <a class="center-block" href="http://localhost/HomeSwitchHome"><button id="atras" class="center-block btn btn-secondary my-2">Quiero ser premium</button></a>
+          </div>
+        </li>
       </ul>
-      <img src="{{ foto }}" class="perfil float-right col-lg-4" alt="Foto de perfil">  
+      <img src="{{ foto }}" class="perfil float-right col-lg-4" alt="Foto de perfil">
     </div>
   </div>
   <br>

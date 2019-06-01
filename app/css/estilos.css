@@ -305,3 +305,20 @@ li#descuento{
 #div_estadias{
 	height: 180px;
 }
+
+img.perfil{
+	margin-bottom: 30px;
+	margin-top: 30px;
+}
+
+h2.perfil{
+	margin-bottom: 30px;
+}
+
+li.perfil{
+	margin-bottom: 15px;
+}
+
+div.perfil{
+	margin-left: 18px;
+}

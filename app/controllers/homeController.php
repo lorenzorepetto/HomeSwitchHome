@@ -31,8 +31,6 @@ class homeController extends Controllers implements IControllers {
         $s = new Model\Subastas;
 
 
-        
-
 
         if (isset($_SESSION['id'])) {
         	if ($_SESSION['rol']=='ADMINISTRADOR') {
@@ -65,7 +63,7 @@ class homeController extends Controllers implements IControllers {
         //$resultado = $r->getResidencias();
         //$residencia = Arrays::array_random_element($resultado);
 
-        //ESTO MUESTRA UN ASUBASTSA ALEATORIA
+        //ESTO MUESTRA UN ASUBASTA ALEATORIA
 
         $resultado = $s->getSubastasConEstadiaYResidencia();
         if ($resultado) {
@@ -73,8 +71,6 @@ class homeController extends Controllers implements IControllers {
         }else{
             $subasta = null;
         }
-        
-
 
         $datos = array('subasta' => $subasta,
                         'error_login' => $error_login,

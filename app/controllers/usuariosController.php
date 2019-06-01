@@ -31,8 +31,7 @@ class usuariosController extends Controllers implements IControllers {
         $u = new Model\Usuarios;
         $s = new Model\Subastas;
 
-             
-                
+               
         switch ($router->getMethod()) {
 
             case 'cuenta':
@@ -170,6 +169,7 @@ class usuariosController extends Controllers implements IControllers {
         else{
             //Login fallido
             //$errores = array('error_login' => 1);
+
             Functions::redir("http://localhost/HomeSwitchHome/home/error_login");
         }
     }
@@ -198,16 +198,33 @@ class usuariosController extends Controllers implements IControllers {
 
     public function insertar($u){
 
-        $errores= array('email_existente' => 0,
-                        'edad_invalida' => 0,
-                        'sin_error' => 0);
-
-
         $email=$_POST['email'];
+        $password=$_POST['password'];
+        $nombre=$_POST['nombre'];
+        $apellido=$_POST['apellido'];
+        $telefono=$_POST['telefono'];
+        $marca_tarjeta=$_POST['marca_tarjeta'];
+        $numero_tarjeta=$_POST['numero_tarjeta'];
+        $titular_tarjeta=$_POST['titular_tarjeta'];
+        $vencimiento_tarjeta=$_POST['fecha_vencimiento_tarjeta'];
+
         $originalDate = $_POST['fecha_nacimiento'];
         $newDate = date("d/m/Y", strtotime($originalDate));
         $edad = Strings::calculate_age($newDate);
 
+        $errores= array('email_existente' => 0,
+                        'edad_invalida' => 0,
+                        'sin_error' => 0, 
+                        'email' => $email,
+                        'password' => $password,
+                        'nombre' => $nombre,
+                        'apellido' => $apellido,
+                        'fecha_nacimiento' => $originalDate,
+                        'telefono' => $telefono,
+                        'marca_tarjeta' => $marca_tarjeta,
+                        'numero_tarjeta' => $numero_tarjeta,
+                        'titular_tarjeta' => $titular_tarjeta,
+                        'vencimiento_tarjeta' => $vencimiento_tarjeta);
 
         //Valido el email
         if ($u->existe($email)) {
@@ -261,7 +278,8 @@ class usuariosController extends Controllers implements IControllers {
                 'rol' => $resultado['0']['rol'],
                 'telefono' => $resultado['0']['telefono'],
                 'fecha_nacimiento' => $resultado['0']['fecha_nacimiento'],
-                'marca_tarjeta' => $resultado['0']['marca_tarjeta']
+                'marca_tarjeta' => $resultado['0']['marca_tarjeta'], 
+                'fecha_registro' => $resultado['0']['fecha_registro']
                  );
             }
 
