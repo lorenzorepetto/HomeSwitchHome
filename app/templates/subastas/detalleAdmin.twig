@@ -75,9 +75,11 @@
   	      </ul> 
 
     
-          <h2 id="pujas">Pujas</h2>
+         
 
-            {% if subasta.estado == 0 %}
+            {% if subasta.estado == 'ACTIVA' %}
+
+            <h2 id="pujas">Pujas</h2>
 
             <ul class="list-group list-group-flush">      
               
@@ -114,13 +116,20 @@
 
             {% else %}
 
-                <li class="list-group-item"><span class="glyphicon glyphicon-thumbs-down"></span><strong>&nbsp;La subasta ya cerró!</strong></li>
+                {% if subasta.estado == 'CERRADA' %}
 
-                {% if usuario != null %}
-                  <li class="list-group-item"><span class="glyphicon glyphicon-user"></span><strong>&nbsp;Usuario ganador:</strong> {{ usuario.apellido }}, {{ usuario.nombre}}</li>
-                  <li class="list-group-item"><span class="glyphicon glyphicon-usd"></span> <strong> Monto final: </strong>&nbsp;${{ puja.monto_apostado|number_format(2, ',', '.') }}</li>
+                  <li class="list-group-item"><span class="glyphicon glyphicon-thumbs-down"></span><strong>&nbsp;La subasta ya cerró!</strong></li>
+
+                    {% if usuario != null %}
+                        <li class="list-group-item"><span class="glyphicon glyphicon-user"></span><strong>&nbsp;Usuario ganador:</strong> {{ usuario.apellido }}, {{ usuario.nombre}}</li>
+                        <li class="list-group-item"><span class="glyphicon glyphicon-usd"></span> <strong> Monto final: </strong>&nbsp;${{ puja.monto_apostado|number_format(2, ',', '.') }}</li>
+                    {% else %}
+                        <li class="list-group-item"><span class="glyphicon glyphicon-user"></span><strong>&nbsp;No hubo ganador</strong></li>
+                    {% endif %}
+
                 {% else %}
-                  <li class="list-group-item"><span class="glyphicon glyphicon-user"></span><strong>&nbsp;No hubo ganador</strong></li>
+                    La subasta comenzara el {{ subasta.fecha|date("d/m/Y") }} y terminará el día {{ subasta.fecha|date_modify("+3 day")|date("d/m/Y") }}
+
                 {% endif %}
                   
             {% endif %}

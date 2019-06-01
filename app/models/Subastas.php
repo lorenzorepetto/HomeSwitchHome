@@ -42,10 +42,7 @@ class Subastas extends Models implements IModels {
 
     
     public function insertar($e, $id_estadia, $monto){
-        $subasta = array('fecha_inicio' => date("m.d.y"),
-                        'fecha_fin' => date("m.d.y"),
-                        'estado' => 0,
-                        'usuario_ganador' => ' ',
+        $subasta = array('usuario_ganador' => ' ',
                         'id_estadia' => $id_estadia,
                         'monto' => $monto,
                         'monto_actual' => $monto);
@@ -123,12 +120,12 @@ class Subastas extends Models implements IModels {
     }
 
     public function actualizarEstado($id, $ganador){
-        $datos_nuevos = array('estado' => 1, 'usuario_ganador' => $ganador );
+        $datos_nuevos = array('estado' => 'CERRADA', 'usuario_ganador' => $ganador );
         $this->db->update('subastas', $datos_nuevos, "id = '$id'");
     }
 
     public function existe($id_estadia){
-        $resultado = $this->db->select('*', 'subastas', null, "estado = 0 and id_estadia = '$id_estadia'");
+        $resultado = $this->db->select('*', 'subastas', null, "id_estadia = '$id_estadia'");
         return $resultado;
     }
 
@@ -136,7 +133,7 @@ class Subastas extends Models implements IModels {
 
     public function getSubastas(){
 
-        $resultado = $this->db->select('*', 'subastas', null, "estado = 0");
+        $resultado = $this->db->select('*', 'subastas', null);
         return $resultado;
     }
 
@@ -144,6 +141,7 @@ class Subastas extends Models implements IModels {
 
         $resultado = $this->db->select('e.id as id_estadia, 
                                         e.semana,
+                                        e.fecha,
                                         r.id as id_residencia,
                                         r.ciudad,
                                         r.provincia, 
@@ -163,6 +161,7 @@ class Subastas extends Models implements IModels {
        
         $resultado = $this->db->select('e.id as id_estadia,
                                         e.semana,
+                                        e.fecha,
                                         r.id as id_residencia, 
                                         r.nombre,
                                         s.id as id_subasta,  

@@ -54,6 +54,16 @@
         </div>
         <p class="lead text-muted">Lista de subastas: </p>
 
+        {% if subastas == false %}
+          <div class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong class="animated flash"><span class="glyphicon glyphicon-exclamation-sign"></span></strong> ¡Lo sentimos! Todavía no hay ninguna subasta creada.
+          </div>
+
+        {% else %}
+        
+
+
         <div class="row">
           
 
@@ -66,18 +76,27 @@
                 <img id="card_foto_residencia" src="{{ s.foto }}" class="card-img-top" >
                 <p class="card-text"> &nbsp; </p>
                 <p class="card-text"><span class="glyphicon glyphicon-ok"></span><strong> Residencia: </strong>{{ s.nombre }}</p>
-                <p class="card-text"><span class="glyphicon glyphicon-ok"></span><strong> Semana:</strong> {{ s.semana }}</p>
+                <p class="card-text"><span class="glyphicon glyphicon-ok"></span><strong> Semana:</strong> {{ s.semana }} ({{ s.fecha|date("d/m/Y") }})</p>
                 <p class="card-text"><span class="glyphicon glyphicon-map-marker"></span><strong> Ciudad:</strong> {{ s.ciudad }}</p>
                 <p class="card-text"><span class="glyphicon glyphicon-map-marker"></span><strong> Provincia:</strong> {{ s.provincia }}</p>
+                <p class="card-text"><span class="glyphicon glyphicon-ok"></span><strong> Estado:</strong> {{ s.estado|capitalize }}</p>
                 
 
                 <div class="d-flex justify-content-between align-items-center">
                   <div id="botones" class="btn-group">
                     <a href="http://localhost/HomeSwitchHome/subastas/detalle/{{ s.id_subasta }}"><button class="btn btn-secondary my-2">Ver detalles</button></a>
-                    {% if s.estado == 0 %}
+                    {% if s.estado == 'ACTIVA' %}
                       <a href="http://localhost/HomeSwitchHome/admin/subastas/cerrar?id_subasta={{ s.id_subasta }}"><button class="btn btn-secondary my-2">Cerrar subasta</button></a>
                     {% else %}
-                      <strong> Subasta cerrada. </strong>  
+
+                      {% if s.estado == 'CERRADA' %}
+                          <strong> Subasta cerrada. </strong>
+                      {% else %}
+                           <strong> Subasta pendiente ({{ s.fecha|date_modify('-6 month')|date("d/m/Y") }}) </strong>
+                      {% endif %}
+
+
+                        
                     {% endif %}
 
                   </div>
@@ -92,6 +111,8 @@
        
         </div>
 
+
+        {% endif %}
         
       </div>
   </div>

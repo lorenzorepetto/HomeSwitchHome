@@ -44,7 +44,7 @@ class adminController extends Controllers implements IControllers {
                     break;
             }
         }
-        else{
+        elseif (isset($_SESSION['id']) and $_SESSION['rol'] == 'ADMINISTRADOR') {
 
         switch ($router->getMethod()) {
 
@@ -185,7 +185,11 @@ class adminController extends Controllers implements IControllers {
 
         }
 
-    } //end else
+    } //end elseif
+    else{
+       $this->template->display('home/home'); 
+    }
+
 
     }
 
@@ -303,7 +307,7 @@ class adminController extends Controllers implements IControllers {
             $data['sin_error'] = 1;
         }
 
-        $estadias= $e->getEstadiasConResidencia();
+        $estadias= $e->getEstadiasParaSubastar();
         $this->template->display("subastas/agregarSubasta", array('estadias' => $estadias,'data' => $data, 'subasta' => $subasta['0'])); 
         
 
