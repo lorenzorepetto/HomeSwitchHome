@@ -48,10 +48,30 @@
 	          <strong class="animated flash"> <span class='glyphicon glyphicon-ok-sign'></span> Nota:</strong> ¡Residencia eliminada con éxito!
 	        </div>
 	      {% endif %}
+
 	      <div class="container">
 	      	<a href="http://localhost/HomeSwitchHome"><button id="atras" class="btn btn-secondary my-2">Atrás</button></a>
 	      </div>
-	      <p class="lead text-muted">Lista de residencias: </p>
+
+	      <p class="lead text-muted">Filtrar residencias: </p>
+
+	       <form action="">
+	        <div class="input-group mb-3">
+	          <div class="input-group-prepend">
+	            <span class="input-group-text">Nombre</span><input type="text" class="form-control" placeholder="Nombre de la residencia" id="nombre" name="nombre">
+	          </div>          
+	        </div>
+
+	        <div class="input-group mb-3">
+	          <div class="input-group-append">
+	            <input type="text" class="form-control" placeholder="Ubicacion de la residencia" id="ubicacion" name="ubicacion"><span class="input-group-text">Ubicacion</span>
+	          </div>
+	        </div>
+	        
+	        <button type="submit" class="btn btn-secondary my-2">Filtrar</button>
+
+	      </form>
+	      <br>
 
 	      {% if residencias == false %}
 	        <div class="alert alert-danger alert-dismissible">

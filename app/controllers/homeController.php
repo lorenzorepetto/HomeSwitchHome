@@ -42,7 +42,9 @@ class homeController extends Controllers implements IControllers {
         }
         elseif($router->getMethod() == 'error_login') {
 
-            $this->renderHome($s, 1);
+            $email = $_GET['email'];
+
+            $this->renderHome($s, 1, 0, 0, $email);
         }
         elseif ($router->getMethod() == 'error_token') {
             $this->renderHome($s,1,1);
@@ -56,7 +58,7 @@ class homeController extends Controllers implements IControllers {
     }
     
 
-    public function renderHome($s,$error_login = 0, $error_token = 0, $token = 0){
+    public function renderHome($s,$error_login = 0, $error_token = 0, $token = 0, $email=""){
 
 
         //ESTO MUESTRA UNA RESIDENCIA ALEATORIA
@@ -74,7 +76,8 @@ class homeController extends Controllers implements IControllers {
 
         $datos = array('subasta' => $subasta,
                         'error_login' => $error_login,
-                        'error_token' => $error_token);
+                        'error_token' => $error_token,
+                        'email' => $email);
 
 
         if ($error_token) {

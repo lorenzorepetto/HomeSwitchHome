@@ -46,7 +46,7 @@
           
           <div id="input_email" class="center-block form-group form">
             <label for="email">Email adress:</label>
-            <input type="email" class="form-control" id="email" placeholder="Ingrese su dirección de email" name="email">           
+            <input type="email" class="form-control" id="email" placeholder="Ingrese su dirección de email" value="{{ email }}" name="email">           
           </div>
           <p class="animated shake" id="msjEmail"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
 
@@ -75,7 +75,9 @@
             <img id="residencia_home" src="{{ subasta.foto }}" class="card-img-top">
             <div class="card-body">
               <p class="card-text"> Subasta en la residencia: {{ subasta.nombre }}</p>
-              <p class="card-text"> {{ subasta.monto_actual }}</p>
+              <p class="card-text"><span class="glyphicon glyphicon-map-marker"></span><strong> Dirección:</strong> {{ subasta.calle }}, {{ subasta.altura }}, {{ subasta.ciudad }}, {{ subasta.provincia }}</p>
+              <p class="card-text"> Monto ganador: {{ subasta.monto_actual }}</p>
+              <p class="card-text"> Bueno no se como armar esto aiuda</p>
             </div>          
           </div>
         </div>

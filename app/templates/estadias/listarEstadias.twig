@@ -1,0 +1,123 @@
+{% extends 'overall/layout' %}
+{% block appHeader %}
+
+  <div id="navbar">
+
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <!-- Brand -->
+    <a class="navbar-brand" href="http://localhost/HomeSwitchHome/"><div><img src="app/img/HSH-Text.jpg" class="img-responsive" title="Logo Home Switch Home" style="width:180px;"></div></a>
+
+    <!-- Links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="http://localhost/HomeSwitchHome/usuarios/operaciones/perfil"><span class="glyphicon glyphicon-user"></span>  Mi perfil</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="http://localhost/HomeSwitchHome/usuarios/cuenta/logout"><span class="glyphicon glyphicon-log-out"></span>   Cerrar Sesion</a>
+      </li>
+
+      <!-- Dropdown -->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle my-2 my-lg-0" href="#" id="navbardrop" data-toggle="dropdown">
+          More
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="#"><span class="glyphicon glyphicon-question-sign"> FAQs</a>
+          <a class="dropdown-item" href="#"><span class="glyphicon glyphicon-envelope"> Contacto</a>
+          <a class="dropdown-item" href="#"><span class="glyphicon glyphicon-fire"></span> Subastas</a>
+          <a class="dropdown-item" href="#"><span class="glyphicon glyphicon-fire"></span> Hotsales</a>
+        </div>
+      </li>
+    </ul>
+  </nav>
+
+  </div> 
+{% endblock %}
+
+{% block carrousel %}
+  
+  <div class="py-5 bg-light">
+      <div class="container">
+
+        <div class="container">
+          <a href="http://localhost/HomeSwitchHome"><button id="atras" class="btn btn-secondary my-2">Atrás</button></a>
+        </div>
+
+        <p class="lead text-muted">Filtrar estadias: </p>
+
+       <form action="">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Ubicación</span><input type="text" class="form-control" placeholder="Ubicacion de la residencia" id="ubicacion" name="ubicacion">
+          </div>          
+        </div>
+
+        <div class="input-group mb-3">
+          <div class="input-group-append">
+            <input type="date" class="form-control" placeholder="Fecha desde" id="fecha_desde" name="fecha_desde"><span class="input-group-text">Fecha desde</span>
+          </div>
+        </div>
+
+        <div class="input-group mb-3">
+          <div class="input-group-append">
+            <span class="input-group-text">Fecha hasta</span><input type="date" class="form-control" placeholder="Fecha hasta" id="fecha_hasta" name="fecha_hasta">
+          </div>
+        </div>
+        <button type="submit" class="btn btn-secondary my-2">Filtrar</button>
+
+      </form>
+      <br>
+
+
+        {% if estadias == false %}
+
+          <div class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong class="animated flash"><span class="glyphicon glyphicon-exclamation-sign"></span></strong> ¡Lo sentimos! No hay estadías disponibles para mostrar.
+          </div>
+        
+        {% else %}
+
+          {% if premium == 0 %}
+            <p class="lead text-muted animated shake" id="msj_estadias"><span class="glyphicon glyphicon-exclamation-sign"></span> Para poder adjudicar alguna estadía, usted debe ser un usuario PREMIUM.</p>
+          {% else %}
+            <p id="msj_estadias" class="lead text-muted">Usted puede reservar cualquier estadía</p>
+          {% endif %}
+
+          <div class="row">
+
+            {% for e in estadias %}
+
+            <div class="col-md-4">
+              <div id="div_crear_subasta" class="card mb-4 shadow-sm">
+                
+                <div class="card-body">
+                  <img id="card_foto_residencia" src="{{ e.foto }}" class="card-img-top" >
+                  <p class="card-text">&nbsp;</p>
+                  <p class="card-text"><span class="glyphicon glyphicon-ok"></span><strong> Residencia: </strong>{{ e.nombre }}</p>
+                  <p><span class="glyphicon glyphicon-map-marker"></span> {{ e.calle }}, {{ e.altura }}, {{ e.ciudad }}, {{ e.provincia }}</p>
+                  <p class="card-text"><span class="glyphicon glyphicon-ok"></span><strong> Semana:</strong> {{ e.semana }}</p>
+
+                  {% if premium == 0 %}
+                    <a href="#" class="btn btn-secondary my-2" disabled>Adjudicar</a>
+                  {% else %}
+                    <a href="#" class="btn btn-secondary my-2">Adjudicar</a>
+                  {% endif %}
+                  
+                </div>
+              </div>
+            </div>
+
+            {% endfor %}
+            
+          </div>
+
+        {% endif %}
+        
+      </div>
+  </div>
+  
+     
+{% endblock %}
+{% block appContenido%} {% endblock %}
+{% block appBody%} {% endblock %}

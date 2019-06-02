@@ -38,43 +38,63 @@
 	
 	<div id="div_listar_residencias" class="py-5 bg-light">
 	    <div class="container">
+        
+       <p class="lead text-muted">Filtrar residencias: </p>
 
-        <p class="lead text-muted">Lista de residencias: </p>
-        {% if residencias == false %}
-          <div class="alert alert-danger alert-dismissible">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <strong class="animated flash"><span class="glyphicon glyphicon-exclamation-sign"></span></strong> ¡Lo sentimos! No hay residencias cargadas para mostrar.
+       <form action="">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Nombre</span><input type="text" class="form-control" placeholder="Nombre de la residencia" id="nombre" name="nombre">
+          </div>          
+        </div>
+
+        <div class="input-group mb-3">
+          <div class="input-group-append">
+            <input type="text" class="form-control" placeholder="Ubicacion de la residencia" id="ubicacion" name="ubicacion"><span class="input-group-text">Ubicacion</span>
           </div>
-        {% endif %}
+        </div>
 
-	      <div class="row">
-                
-	      	{% for r in residencias %}
+        <button type="submit" class="btn btn-secondary my-2">Filtrar</button>
 
-	        <div id="card_residencia" class="col-md-4">
-	          <div id="card_residencia" class="card mb-4 shadow-sm">
-              <p id="nombre_residencia" class="lead text-muted">{{ r.nombre }}:</p>
-	            <img src="{{ r.foto }}" class="card-img-top">
-	            <div class="card-body">
-                <div id="p_card">
-                  <p><span class="glyphicon glyphicon-map-marker"></span> {{ r.calle }}, {{ r.altura }}, {{ r.ciudad }}, {{ r.provincia }}</p>
-	                <p class="card-text"> {{ r.descripcion }}</p>
+      </form>
+
+        
+      <br>
+      {% if residencias == false %}
+        <div class="alert alert-danger alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <strong class="animated flash"><span class="glyphicon glyphicon-exclamation-sign"></span></strong> ¡Lo sentimos! No hay residencias cargadas para mostrar.
+        </div>
+      {% endif %}
+
+      <div class="row">
+              
+      	{% for r in residencias %}
+
+        <div id="card_residencia" class="col-md-4">
+          <div id="card_residencia" class="card mb-4 shadow-sm">
+            <p id="nombre_residencia" class="lead text-muted">{{ r.nombre }}:</p>
+            <img src="{{ r.foto }}" class="card-img-top">
+            <div class="card-body">
+              <div id="p_card">
+                <p><span class="glyphicon glyphicon-map-marker"></span> {{ r.calle }}, {{ r.altura }}, {{ r.ciudad }}, {{ r.provincia }}</p>
+                <p class="card-text"> {{ r.descripcion }}</p>
+              </div>
+              <div class="center-block">
+                <div id="botones" class="container btn-group">
+                  <a href="http://localhost/HomeSwitchHome/residencias/detalle/{{ r.id }}"><button type="button" class="btn btn-secondary my-2">Ver detalles</button></a>
                 </div>
-	              <div class="center-block">
-	                <div id="botones" class="container btn-group">
-	                  <a href="http://localhost/HomeSwitchHome/residencias/detalle/{{ r.id }}"><button type="button" class="btn btn-secondary my-2">Ver detalles</button></a>
-	                </div>
-	              </div>
-	            </div>
-	          </div>
-	        </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-	        {% endfor %}
-	    
-	      </div>
+        {% endfor %}
+    
+      </div>
 
-	      
-	    </div>
+      
+    </div>
 	</div>
 	
 	   

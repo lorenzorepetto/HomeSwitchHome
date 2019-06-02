@@ -30,7 +30,7 @@ class usuariosController extends Controllers implements IControllers {
         #Instancio un objeto Usuario
         $u = new Model\Usuarios;
         $s = new Model\Subastas;
-
+        $e = new Model\Estadias;
                
         switch ($router->getMethod()) {
 
@@ -93,7 +93,14 @@ class usuariosController extends Controllers implements IControllers {
                         $this->perfil($u);
                         break;
 
-                    
+                    case 'modificar_perfil':
+                        $id_usuario = $_GET['id'];
+                        $this->modificar_perfil($u, $id_usuario);
+                        break;
+
+                    case 'ver_estadias':
+                        $this->verEstadias($e);
+                        break;
 
                     case 'descontarCredito':
                         $this->descontarCredito($u);
@@ -170,7 +177,7 @@ class usuariosController extends Controllers implements IControllers {
             //Login fallido
             //$errores = array('error_login' => 1);
 
-            Functions::redir("http://localhost/HomeSwitchHome/home/error_login");
+            Functions::redir("http://localhost/HomeSwitchHome/home/error_login?email=$email");
         }
     }
 
@@ -310,6 +317,58 @@ class usuariosController extends Controllers implements IControllers {
         }
         
         $this->perfil($u);
+    }
+
+    public function modificar_perfil($u, $id_usuario){
+
+
+        if ($_SESSION['id']==$id_usuario) {
+
+            $resultado = $u->getUsuario($id_usuario);
+
+            if ($resultado) {
+
+                $usuario = array(
+                'id' => $resultado['0']['id'],
+                'email' => $resultado['0']['email'],
+                'nombre' => $resultado['0']['nombre'],
+                'apellido' => $resultado['0']['apellido'],
+                'foto' => $resultado['0']['foto'],
+                'creditos' => $resultado['0']['creditos'],
+                'rol' => $resultado['0']['rol'],
+                'telefono' => $resultado['0']['telefono'],
+                'fecha_nacimiento' => $resultado['0']['fecha_nacimiento'],
+                'marca_tarjeta' => $resultado['0']['marca_tarjeta']
+                 );
+            }
+
+            $this->template->display('usuarios/modificar_perfil', $usuario);
+        }
+        else{
+            $this->template->display('home/home');    
+        }
+    }
+
+    public function verEstadias($e){
+
+        if (isset($_SESSION['rol'])) {
+            if ($_SESSION['rol'] != 'ADMINISTRADOR') {
+                $estadias = $e->getEstadiasConResidencia();
+                $data = array('estadias' => $estadias, 
+                                'premium' => 0);
+
+                if ($_SESSION['rol']== 'PREMIUM') {
+                    $data['premium']=1;
+                }
+                $this->template->display('estadias/listarEstadias', $data);
+            }
+            else{
+                $this->template->display('home/home');
+            }
+        }else{
+            $this->template->display('home/home');
+        }
+
     }
 
 
