@@ -181,8 +181,25 @@ class adminController extends Controllers implements IControllers {
                 switch ($router->getId()) {
                     
                     case 'cambiarRol':
-                            //$a->cambiarRol($router->getId(true));
-                            $this->template->display('home/homeBackend');
+                            $id_usuario=$_GET['id'];
+
+                            $resultado=$u->cambiarRol($id_usuario);
+
+                            $usuario= $u->getUsuario($id_usuario)[0];
+
+                            $data = array('usuario' => $usuario,
+                                            'resultado' => $resultado);
+
+                            $this->template->display('usuarios/detalleAdmin', $data);
+                        break;
+
+                    case 'detalle':
+                        $id_usuario = $_GET['id'];
+                        $usuario= $u->getUsuario($id_usuario)[0];
+
+                        $data = array('usuario' => $usuario,
+                                        'resultado' => 1);
+                        $this->template->display('usuarios/detalleAdmin', $data);
                         break;
                     
                     default:
