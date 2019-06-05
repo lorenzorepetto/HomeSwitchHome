@@ -354,13 +354,33 @@ class adminController extends Controllers implements IControllers {
     private function editarResidencia($r, $data){
 
         $nombre=$_POST['nombreM'];
+        $descripcion=$_POST['descripcionM'];
+        $calle=$_POST['calleM'];
+        $altura=$_POST['alturaM'];
+        $ciudad=$_POST['ciudadM'];
+        $provincia=$_POST['provinciaM'];
+        $capacidad=$_POST['capacidadM'];
+
         $id_residencia=$data['residencia']['id'];
 
         $residenciaActual= $r->getResidencia($id_residencia); 
         //Valido el nombre
         if ($nombre != $residenciaActual[0]['nombre']) {
             if ($r->existe($nombre)) {
-                $data['nombre_existente'] = 1;            
+                $data['nombre_existente'] = 1;
+                //creo el array para recordar los datos ingresados
+               
+                $res = array('nombre' => $nombre,
+                             'descripcion' => $descripcion,
+                             'calle' => $calle,
+                             'altura' => $altura,
+                             'ciudad' => $ciudad,
+                             'provincia' => $provincia,
+                             'capacidad' => $capacidad);
+                
+
+                $data['residencia'] = $res;
+
             }
         }
 

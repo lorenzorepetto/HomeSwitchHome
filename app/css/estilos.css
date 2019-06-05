@@ -172,7 +172,7 @@ img .perfil{
 	padding-top: 5px !important;
 }
 
-#msjNombreR,#msjMontoS, #msjDescripcionR, #msjCapacidadR, #msjCapacidadR2,#msjAlturaR2,#msjNombreM2, #msjAlturaM2, #msjCalleM2, #msjCiudadM2, #msjProvinciaM2,#msjCapacidadM2, #msjNombreR2, #msjProvinciaR2, #msjCiudadR2, #msjCalleR2, #msjCalleR, #msjAlturaR, #msjProvinciaR, #msjCiudadR, #msjFotoR{
+#msjNombreR,#msjMontoS, #msjDescripcionR, #msjCapacidadR, #msjCapacidadR2,#msjAlturaR2, #msjBlancosM2, #msjNombreM2, #msjAlturaM2, #msjCalleM2, #msjCiudadM2, #msjProvinciaM2,#msjCapacidadM2, #msjNombreR2, #msjProvinciaR2, #msjCiudadR2, #msjCalleR2, #msjCalleR, #msjAlturaR, #msjProvinciaR, #msjCiudadR, #msjFotoR{
 	display: none;
 }
 
@@ -323,3 +323,23 @@ li.perfil{
 	text-align: center;
 }
 
+
+
+#nombreM:invalid {
+    border-color: red;
+}
+#calleM:invalid {
+    border-color: red;
+}
+#alturaM:invalid {
+    border-color: red;
+}
+#ciudadM:invalid {
+    border-color: red;
+}
+#provinciaM:invalid {
+    border-color: red;
+}
+#capacidadM:invalid {
+    border-color: red;
+}

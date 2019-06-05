@@ -138,13 +138,20 @@ function validarAgregarResidencia(){
 
 function validarModificarResidencia(){
 
+
   var nombre = document.getElementById("nombreM").value;
+
+  nombre.oninvalid = function(event) {
+    event.target.setCustomValidity('Username should only contain lowercase letters. e.g. john');
+  }
+  
   var descripcion = document.getElementById("descripcionM").value;
   var calle = document.getElementById("calleM").value;
   var altura = document.getElementById("alturaM").value;
   var ciudad = document.getElementById("ciudadM").value
   var provincia = document.getElementById("provinciaM").value;
   var capacidad = document.getElementById("capacidadM").value;
+  var foto = document.getElementById("fotoM").value;
   var digitos = /^[0-9]+$/;
   var carac_especiales=/[$@\!#]/;
 

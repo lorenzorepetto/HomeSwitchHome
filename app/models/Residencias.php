@@ -195,8 +195,8 @@ class Residencias extends Models implements IModels {
     public function editar($r){
 
 
-        if (is_uploaded_file($_FILES["foto"]["tmp_name"])) {
-            $nombrefoto = $_FILES["foto"]["name"];
+        if (is_uploaded_file($_FILES["fotoM"]["tmp_name"])) {
+            $nombrefoto = $_FILES["fotoM"]["name"];
             $foto = "app/img/residencias/" . $nombrefoto; 
             $foto = $this->db->scape($foto);
         }
