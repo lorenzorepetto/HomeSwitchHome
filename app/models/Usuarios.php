@@ -96,7 +96,7 @@ class Usuarios extends Models implements IModels {
 
     public function getUsuarios(){
 
-        $resultado = $this->db->select('*', 'usuarios', null, "estado_logico = 0 ORDER BY fecha_registro");
+        $resultado = $this->db->select('*', 'usuarios', null, "estado_logico = 0 and rol != 'ADMINISTRADOR' ORDER BY fecha_registro");
         return $resultado;
     }
 
@@ -238,6 +238,7 @@ class Usuarios extends Models implements IModels {
         }
 
         $this->update($id, array('rol' => $nuevo_rol)); 
+        return true;
 
     }
     
