@@ -40,14 +40,14 @@
 {% block appContenido %}    
 		
 		<div class="border container">
-		   	 <h2>{{ residencia.nombre }}</h2>
+		   	 <h2 class="residencia center-block">{{ residencia.nombre }}</h2>
 		    <div class_"row">
 		      <ul class="list-group list-group-flush col-lg-8">
-		        <li class="list-group-item"><span class="glyphicon glyphicon-ok"></span> <strong> Descripción: </strong>{{ residencia.descripcion }}</li>
-		        <li class="list-group-item"><span class="glyphicon glyphicon-map-marker"></span><strong> Dirección:</strong> {{ residencia.calle }}, {{ residencia.altura }}, {{ residencia.ciudad }}, {{ residencia.provincia }}</li>
-		        <li class="list-group-item"><span class="glyphicon glyphicon-user"></span> <strong>Capacidad:</strong> {{ residencia.capacidad }}</li>  
+		        <li class="residencia list-group-item"><span class="glyphicon glyphicon-ok"></span> <strong> Descripción: </strong>{{ residencia.descripcion }}</li>
+		        <li class="residencia list-group-item"><span class="glyphicon glyphicon-map-marker"></span><strong> Dirección:</strong> {{ residencia.calle }}, {{ residencia.altura }}, {{ residencia.ciudad }}, {{ residencia.provincia }}</li>
+		        <li class="residencia list-group-item"><span class="glyphicon glyphicon-user"></span> <strong>Capacidad:</strong> {{ residencia.capacidad }}</li>  
 		      </ul>
-		      <img id="foto_detalle_residencia" src="{{ residencia.foto }}" class="perfil float-right col-lg-4" alt="Foto de perfil">  
+		      <img id="foto_detalle_residencia" src="{{ residencia.foto }}" class="residencia float-right col-lg-4" alt="Foto de residencia">  
 		    </div>
 	 	</div>
 		<br>

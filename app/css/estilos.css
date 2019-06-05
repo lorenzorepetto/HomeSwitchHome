@@ -323,6 +323,24 @@ li.perfil{
 	text-align: center;
 }
 
+img.residencia{
+	margin-bottom: 50px;
+	margin-top: 0;
+}
+
+img.residencia2{
+	margin-bottom: 50px;
+	margin-top: 30px;
+}
+
+h2.residencia{
+	margin-bottom: 30px;
+}
+
+li.residencia{
+	margin-bottom: 20px;
+}
+
 
 
 #nombreM:invalid {

@@ -95,6 +95,12 @@ class adminController extends Controllers implements IControllers {
                         $this->template->display('subastas/verSubastas',array('subastas' => $subastas));
                         break;
 
+                    case 'verUsuarios':
+
+                        $usuarios = $u->getUsuarios();
+                        echo $this->template->display('usuarios/listarUsuarios', array('usuarios' => $usuarios));
+                        break;
+
                     default:
                         $this->template->display('home/home');
                         break;

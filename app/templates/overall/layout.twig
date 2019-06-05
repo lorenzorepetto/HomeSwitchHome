@@ -105,7 +105,7 @@
     <div class="container-fluid row">
       <div class="container-fluid col-lg-4">
         <div class="container-fluid">
-            <img id="fotoRedondelHL" src="app/img/residencia2.jpeg" class="bd-placeholder-img rounded-circle" >
+            <img id="fotoRedondelHL" src="app/img/home/subastas.png" class="bd-placeholder-img rounded-circle" >
         </div>
         <h2 class="center-block"><span class="glyphicon glyphicon-fire animated flash"></span> Subastas <span class="glyphicon glyphicon-fire animated flash"></h2>
         <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
@@ -113,15 +113,15 @@
       </div>
       <div class="col-lg-4">
         <div class="container-fluid">
-            <img id="fotoRedondelHL" src="app/img/residencia2.jpeg" class="bd-placeholder-img rounded-circle">
+            <img id="fotoRedondelHL" src="app/img/home/faqs.jpeg" class="bd-placeholder-img rounded-circle">
         </div>
-        <h2 class="center-block"><span class="glyphicon glyphicon-question-sign animated flash"></span> FAQs <span class="glyphicon glyphicon-question-sign animated flash"></h2>
+        <h2 class="center-block"><span class="glyphicon glyphicon-question-sign animated flash"></span> FAQ <span class="glyphicon glyphicon-question-sign animated flash"></h2>
         <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
-        <p><a class="center-block btn btn-secondary" href="#" role="button">Ver FAQs</a></p>
+        <p><a class="center-block btn btn-secondary" href="#" role="button">Ver FAQ</a></p>
       </div>
       <div class="col-lg-4">
         <div class="container-fluid">
-            <img id="fotoRedondelHL" src="app/img/residencia2.jpeg" class="bd-placeholder-img rounded-circle">
+            <img id="fotoRedondelHL" src="app/img/home/hotsale2.jpeg" class="bd-placeholder-img rounded-circle">
         </div>
         <h2 class="center-block"><span class="glyphicon glyphicon-fire animated flash"></span> Hotsales<span class="glyphicon glyphicon-fire animated flash"></h2>
         <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
@@ -135,10 +135,34 @@
         <section class="jumbotron text-center">
             <div class="container">
               <h1 class="jumbotron">Nuestras residencias</h1>
-              <p class="lead text-muted">Vea la lista de residencias disponibles en nuestra agencia, para obtener toda la información de las mismas: ubicación, descripción, capcacidad y más detalles.</p>
+              <p class="lead text-muted">Vea la lista de residencias disponibles en nuestra agencia, para obtener toda la información de las mismas: ubicación, descripción, capcacidad y más detalles; o use el buscador de residencias para....</p>
               <p>
-                <a href="http://localhost/HomeSwitchHome/residencias/listar" class="btn btn-secondary my-2">Ver residencias</a>
+                <a href="http://localhost/HomeSwitchHome/residencias/listar" class="btn btn-secondary my-2">Ver listado de residencias</a>
+                
               </p>
+              
+               <form action="">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Ubicación</span><input type="text" class="form-control" placeholder="Ubicacion de la residencia" id="ubicacion" name="ubicacion">
+                  </div>          
+                </div>
+
+                <div class="input-group mb-3">
+                  <div class="input-group-append">
+                    <input type="date" class="form-control" placeholder="Fecha desde" id="fecha_desde" name="fecha_desde"><span class="input-group-text">Fecha desde</span>
+                  </div>
+                </div>
+
+                <div class="input-group mb-3">
+                  <div class="input-group-append">
+                    <span class="input-group-text">Fecha hasta</span><input type="date" class="form-control" placeholder="Fecha hasta" id="fecha_hasta" name="fecha_hasta">
+                  </div>
+                </div>
+
+                <a href="#" class="btn btn-secondary my-2"><span class="glyphicon glyphicon-search"></span> Buscar residencias</a>
+
+      </form>
             </div>
         </section>
 

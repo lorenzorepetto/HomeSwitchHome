@@ -69,7 +69,7 @@ class Residencias extends Models implements IModels {
 
     public function getResidencias(){
 
-        $resultado = $this->db->select('*', 'residencias', null, "estado_logico = 0");
+        $resultado = $this->db->select('*', 'residencias', null, "estado_logico = 0 ORDER BY nombre");
         return $resultado;
     }
 

@@ -35,45 +35,14 @@
 	
 	<div id="div_listar_residencias" class="py-5 bg-light">
 	    <div class="container">
-	      {% if operacion == 1 and estadias_pendientes == 1 %}
-	        <div class="alert alert-danger alert-dismissible">
-	          <button type="button" class="close" data-dismiss="alert">&times;</button>
-	          <strong class="animated flash"><span class="glyphicon glyphicon-exclamation-sign"></span> Error: </strong> La residencia no se puede eliminar porque tiene estadías pendientes, en subasta o Hotsale.
-	        </div>
-	      {% endif %}
-
-	      {% if operacion == 1 and estadias_pendientes == 0 %}
-	        <div class="alert alert-success alert-dismissible">
-	          <button type="button" class="close" data-dismiss="alert">&times;</button>
-	          <strong class="animated flash"> <span class='glyphicon glyphicon-ok-sign'></span> Nota:</strong> ¡Residencia eliminada con éxito!
-	        </div>
-	      {% endif %}
-
+	      
 	      <div class="container">
 	      	<a href="http://localhost/HomeSwitchHome"><button id="atras" class="btn btn-secondary my-2">Atrás</button></a>
 	      </div>
 
-	      <p class="lead text-muted">Filtrar residencias: </p>
+	      <p class="lead text-muted">Lista de usuarios: </p>
 
-	       <form action="">
-	        <div class="input-group mb-3">
-	          <div class="input-group-prepend">
-	            <span class="input-group-text">Nombre</span><input type="text" class="form-control" placeholder="Nombre de la residencia" id="nombre" name="nombre">
-	          </div>          
-	        </div>
-
-	        <div class="input-group mb-3">
-	          <div class="input-group-append">
-	            <input type="text" class="form-control" placeholder="Localidad de la residencia" id="localidad" name="localidad"><span class="input-group-text">Localidad</span>
-	          </div>
-	        </div>
-	        
-	        <button type="submit" class="btn btn-secondary my-2">Filtrar</button>
-
-	      </form>
-	      <br>
-
-	      {% if residencias == false %}
+	      {% if usuarios == false %}
 	        <div class="alert alert-danger alert-dismissible">
 	          <button type="button" class="close" data-dismiss="alert">&times;</button>
 	          <strong class="animated flash"><span class="glyphicon glyphicon-exclamation-sign"></span></strong> ¡Lo sentimos! No hay residencias cargadas para mostrar.
@@ -83,7 +52,7 @@
 
 	      <div class="row">
 
-	      	{% for r in residencias %}
+	      	{% for u in usuarios %}
 	      		
 	        <div id="card_residencia" class="col-md-4">
 	          <div  id="card_residencia" class="card mb-4 shadow-sm">

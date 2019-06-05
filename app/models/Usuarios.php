@@ -94,6 +94,12 @@ class Usuarios extends Models implements IModels {
         return false;
     }
 
+    public function getUsuarios(){
+
+        $resultado = $this->db->select('*', 'usuarios', null, "estado_logico = 0 ORDER BY fecha_registro");
+        return $resultado;
+    }
+
 
 
     /*
