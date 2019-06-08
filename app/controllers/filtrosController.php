@@ -16,6 +16,7 @@ use Ocrend\Kernel\Helpers as Helper;
 use Ocrend\Kernel\Controllers\Controllers;
 use Ocrend\Kernel\Controllers\IControllers;
 use Ocrend\Kernel\Router\IRouter;
+use Ocrend\Kernel\Helpers\Strings;
 
 /**
  * Controlador filtros/
@@ -52,9 +53,33 @@ class filtrosController extends Controllers implements IControllers {
     	$fecha_desde = $_POST['fecha_desde'];
     	$fecha_hasta = $_POST['fecha_hasta'];
 
+
+        $fecha_limite = $_GET['fecha'];
+        if ($fecha_desde >= $fecha_limite) {
+            echo "pero claro";
+        }
+
+        //$cumpleMinimo = $this->validarFecha($fecha_desde);
+        $rangoValido = $this->validarRango($fecha_desde, $fecha_hasta);
+        dump($rangoValido); exit;
+
+
     	$f->filtrarEstadias($ciudad,$fecha_desde,$fecha_hasta);
     }
 
+
+
+    public function validarRango($desde, $hasta){
+
+        $rango= Strings::date_difference($desde,$hasta);
+        dump($rango); exit;
+
+        if ($rango >= 7 && $rango <= 62 ) {
+            return true;
+        }
+        
+        return false;
+    }
 
 
 }

@@ -263,3 +263,9 @@ function confirmation(){
     return true;
 
   }
+
+
+
+  function habilitarSubmit(){
+    document.getElementById('submitModificar').disabled=false;
+  }
