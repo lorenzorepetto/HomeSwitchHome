@@ -269,3 +269,4 @@ function confirmation(){
   function habilitarSubmit(){
     document.getElementById('submitModificar').disabled=false;
   }
+

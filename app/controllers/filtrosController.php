@@ -53,32 +53,55 @@ class filtrosController extends Controllers implements IControllers {
     	$fecha_desde = $_POST['fecha_desde'];
     	$fecha_hasta = $_POST['fecha_hasta'];
 
+        $data = array('residencias' => null,
+                      'fecha_desde' => $fecha_desde,
+                      'fecha_hasta' => $fecha_hasta,
+                      'ciudad' => $ciudad);
 
-        $fecha_limite = $_GET['fecha'];
-        if ($fecha_desde >= $fecha_limite) {
-            echo "pero claro";
+        $desde = date_create($fecha_desde);
+        $hasta = date_create($fecha_hasta);
+
+        //valido fecha inicio y rango
+        $fecha_inicio = $this->validarFechaInicio($desde);
+        $rango_valido = $this->validarRango($desde,$hasta);
+
+        if ($fecha_inicio && $rango_valido) {
+            
+            $residencias = $f->filtrarEstadias($ciudad,$fecha_desde,$fecha_hasta);            
+            $data['residencias'] = $residencias;
+
+            $this->template->display('filtros/resultadosFiltro', $data);    
+        
+        }else{
+
+            $this->template->display('home/homeLogged', $data); // para guardar los valores en el form
         }
-
-        //$cumpleMinimo = $this->validarFecha($fecha_desde);
-        $rangoValido = $this->validarRango($fecha_desde, $fecha_hasta);
-        dump($rangoValido); exit;
-
-
-    	$f->filtrarEstadias($ciudad,$fecha_desde,$fecha_hasta);
+    	
     }
 
 
 
     public function validarRango($desde, $hasta){
 
-        $rango= Strings::date_difference($desde,$hasta);
-        dump($rango); exit;
+        $interval = date_diff($desde, $hasta);
 
-        if ($rango >= 7 && $rango <= 62 ) {
+        if ($interval->days >= 7 && $interval->days <= 62 ) {
             return true;
         }
         
         return false;
+    }
+
+
+    public function validarFechaInicio($desde){
+        
+        $hoy = date_create();
+        
+        $fecha_minima=date('Y-m-d', strtotime('+6 month'));
+        $fecha_minima = date_create($fecha_minima);
+
+        return $desde >= $fecha_minima;
+    
     }
 
 

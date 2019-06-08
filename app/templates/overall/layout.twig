@@ -141,10 +141,10 @@
                 
               </p>
               
-               <form action="http://localhost/HomeSwitchHome/filtros/filtrarEstadias?fecha={{ "now"|date_modify("+6 month")|date("d/m/Y") }}" method="post">
+               <form action="http://localhost/HomeSwitchHome/filtros/filtrarEstadias" method="post">
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
-                    <span class="input-group-text">Ubicación</span><input type="text" pattern="[A-Za-z ñÑáéíóúÁÉÍÓÚ\s]+" title="Ingrese sólo letras" class="form-control" placeholder="Ingrese una ciudad" id="ubicacion" name="ubicacion" required>
+                    <span class="input-group-text">Ubicación</span><input type="text" pattern="[A-Za-z ñÑáéíóúÁÉÍÓÚ\s]+" title="Ingrese sólo letras" class="form-control" placeholder="Ingrese una ciudad" value="{{ ciudad }}" id="ubicacion" name="ubicacion" required>
                   </div>          
                 </div>
 
@@ -153,13 +153,13 @@
 
                 <div class="input-group mb-3">
                   <div class="input-group-append">
-                    <input type="date" class="form-control" placeholder="Fecha desde" id="fecha_desde" name="fecha_desde" required><span class="input-group-text">Fecha desde</span>
+                    <input type="date" class="form-control" value="{{ fecha_desde }}" placeholder="Fecha desde" id="fecha_desde" name="fecha_desde" required><span class="input-group-text">Fecha desde</span>
                   </div>
                 </div>
 
                 <div class="input-group mb-3">
                   <div class="input-group-append">
-                    <span class="input-group-text">Fecha hasta</span><input type="date" class="form-control" placeholder="Fecha hasta" id="fecha_hasta" name="fecha_hasta" required>
+                    <span class="input-group-text">Fecha hasta</span><input type="date" class="form-control" value="{{ fecha_hasta }}" placeholder="Fecha hasta" id="fecha_hasta" name="fecha_hasta" required>
                   </div>
                 </div>
 

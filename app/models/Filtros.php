@@ -45,7 +45,8 @@ class Filtros extends Models implements IModels {
     	
     	$resultado = $this->db->select('e.id as id_estadia,
     									e.fecha,
-    									e.semana,  
+    									e.semana,
+                                        COUNT(r.id) AS cantidad_disponibles,  
                                         r.id as id_residencia,
                                         r.nombre,
                                         r.descripcion,
@@ -60,9 +61,13 @@ class Filtros extends Models implements IModels {
 
                                         'INNER JOIN estadias e ON (e.id_residencia = r.id)', 
 
-                                        "e.estado = 'LIBRE' AND r.ciudad LIKE '$like' AND (e.fecha BETWEEN '$desde' and '$hasta') AND r.estado_logico = 0");
+                                        "e.estado = 'LIBRE' AND r.ciudad LIKE '$like' AND (e.fecha BETWEEN '$desde' and '$hasta') AND r.estado_logico = 0",
 
-    	dump($resultado); exit;
+                                        null,
+
+                                        "GROUP BY id_residencia");
+
+    	return $resultado;
 
 
     }
