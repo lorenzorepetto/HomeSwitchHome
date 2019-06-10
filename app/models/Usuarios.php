@@ -96,7 +96,7 @@ class Usuarios extends Models implements IModels {
 
     public function getUsuarios(){
 
-        $resultado = $this->db->select('*', 'usuarios', null, "estado_logico = 0 and rol != 'ADMINISTRADOR' ORDER BY fecha_registro");
+        $resultado = $this->db->select('*', 'usuarios', null, "estado_logico = 0 and rol != 'ADMINISTRADOR' ORDER BY fecha_registro DESC");
         return $resultado;
     }
 

@@ -197,8 +197,7 @@ class adminController extends Controllers implements IControllers {
                         $id_usuario = $_GET['id'];
                         $usuario= $u->getUsuario($id_usuario)[0];
 
-                        $data = array('usuario' => $usuario,
-                                        'resultado' => 1);
+                        $data = array('usuario' => $usuario);
                         $this->template->display('usuarios/detalleAdmin', $data);
                         break;
                     
