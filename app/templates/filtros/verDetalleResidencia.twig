@@ -1,0 +1,97 @@
+{% extends 'overall/layout' %}
+{% block appHeader %}
+
+  <div id="navbar">
+
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <!-- Brand -->
+    <a class="navbar-brand" href="http://localhost/HomeSwitchHome/"><div><img src="app/img/HSH-Text.jpg" class="img-responsive" title="Logo Home Switch Home" style="width:180px;"></div></a>
+
+    <!-- Links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="http://localhost/HomeSwitchHome/usuarios/operaciones/perfil"><span class="glyphicon glyphicon-user"></span>  Mi perfil</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="http://localhost/HomeSwitchHome/usuarios/logout"><span class="glyphicon glyphicon-log-out"></span>   Cerrar Sesion</a>
+      </li>
+
+      <!-- Dropdown -->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle my-2 my-lg-0" href="#" id="navbardrop" data-toggle="dropdown">
+          More
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="#"><span class="glyphicon glyphicon-question-sign"> FAQs</a>
+          <a class="dropdown-item" href="#"><span class="glyphicon glyphicon-envelope"> Contacto</a>
+          <a class="dropdown-item" href="#"><span class="glyphicon glyphicon-fire"></span> Subastas</a>
+          <a class="dropdown-item" href="#"><span class="glyphicon glyphicon-fire"></span> Hotsales</a>
+        </div>
+      </li>
+    </ul>
+  </nav>
+
+  </div> 
+{% endblock %}
+
+{% block carrousel %}
+{% endblock %}
+
+{% block appContenido %}   
+  <div clasS="container">
+    <a href="http://localhost/HomeSwitchHome/"><button id="atras" class="btn btn-secondary my-2">Atrás</button></a>
+  </div> 
+		
+		<div class="border container">
+		   	 <h2 class="residencia center-block">{{ residencia.nombre }}</h2>
+		    <div class_"row">
+		      <ul class="list-group list-group-flush col-lg-8">
+		        <li class="residencia list-group-item"><span class="glyphicon glyphicon-ok"></span> <strong> Descripción: </strong>{{ residencia.descripcion }}</li>
+		        <li class="residencia list-group-item"><span class="glyphicon glyphicon-map-marker"></span><strong> Dirección:</strong> {{ residencia.calle }}, {{ residencia.altura }}, {{ residencia.ciudad }}, {{ residencia.provincia }}</li>
+		        <li class="residencia list-group-item"><span class="glyphicon glyphicon-user"></span> <strong>Capacidad:</strong> {{ residencia.capacidad }}</li>  
+		      </ul>
+		      <img id="foto_detalle_residencia" src="{{ residencia.foto }}" class="residencia float-right col-lg-4" alt="Foto de residencia">  
+		    </div>
+	 	</div>
+    <br>
+
+    <div class="py-5 bg-light">
+      <div class="container">
+        <p class="lead text-muted">Estadias disponibles de la residencia {{ residencia.nombre }}: </p>
+        {% if premium == false %}
+          <p class="lead text-muted animated shake" id="msj_estadias"><span class="glyphicon glyphicon-exclamation-sign"></span> Para poder adjudicar alguna estadía, usted debe ser un usuario PREMIUM.</p>
+        {% else %}
+          <p id="msj_estadias" class="lead text-muted">Usted puede reservar cualquier estadía por ser un usuario PREMIUM</p>
+        {% endif %}
+        <div class="row">
+
+          {% for e in estadias %}
+
+            <div class="col-md-4">
+              <div class="card mb-4 shadow-sm">
+                
+                <div class="card-body">
+                  <p class="card-text"><span class="glyphicon glyphicon-ok"></span><strong> Semana:</strong> {{ e.semana }}</p>
+                  <p class="card-text"><span class="glyphicon glyphicon-ok"></span><strong> Fecha inicio:</strong> {{ e.fecha|date("d/m/Y") }}</p>
+                  
+                  {% if premium == false %}
+                    <a class="btn btn-secondary my-2" disabled>¡La quiero!</a>
+                  {% else %}
+                    <a href="#" class="btn btn-secondary my-2">¡La quiero!</a>
+                  {% endif %}              
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+            
+        </div>
+      </div>
+    </div>
+		<br>
+
+{% endblock %}
+
+{% block appBody %}
+
+{% endblock %}
+

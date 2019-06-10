@@ -73,7 +73,7 @@ class filtrosController extends Controllers implements IControllers {
             $this->template->display('filtros/resultadosFiltro', $data);    
         
         }else{
-
+            $data['error'] = 1;
             $this->template->display('home/homeLogged', $data); // para guardar los valores en el form
         }
     	

@@ -31,6 +31,7 @@ class usuariosController extends Controllers implements IControllers {
         $u = new Model\Usuarios;
         $s = new Model\Subastas;
         $e = new Model\Estadias;
+        $r = new Model\Residencias;
                
         switch ($router->getMethod()) {
 
@@ -136,6 +137,13 @@ class usuariosController extends Controllers implements IControllers {
 
             case 'cambiarRol':
                     $this->cambiarRol($u);
+                break;
+
+
+            case 'verDetalleResidencia':
+                $id= $router->getId();
+
+                $this->verDetalleResidencia($r,$id);
                 break;
 
              
@@ -349,25 +357,21 @@ class usuariosController extends Controllers implements IControllers {
         }
     }
 
-    public function verEstadias($e){
-
-        if (isset($_SESSION['rol'])) {
-            if ($_SESSION['rol'] != 'ADMINISTRADOR') {
-                $estadias = $e->getEstadiasConResidencia();
-                $data = array('estadias' => $estadias, 
-                                'premium' => 0);
-
-                if ($_SESSION['rol']== 'PREMIUM') {
-                    $data['premium']=1;
-                }
-                $this->template->display('estadias/listarEstadias', $data);
-            }
-            else{
-                $this->template->display('home/home');
+    public function verDetalleResidencia($r, $id){
+        $residencia = $r->getResidencia($id)[0];
+        $estadias = $r->getEstadias($id);
+        $premium=false;
+        
+        if ($_SESSION['rol'] != 'ADMINISTRADOR') {
+            if ($_SESSION['rol'] == 'PREMIUM') {
+                $premium=true;
             }
         }else{
-            $this->template->display('home/home');
+            $this->template->display('home/home');  
         }
+
+        $data = array('residencia' => $residencia, 'estadias' => $estadias, 'premium' => $premium);
+        $this->template->display('filtros/verDetalleResidencia', $data);
 
     }
 

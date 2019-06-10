@@ -52,40 +52,6 @@
 	 	</div>
 		<br>
 
-    <section class="jumbotron text-center">
-    <div class="container">
-      <h1 id="h1_detalle" class="jumbotron">Estadías: </h1>
-      {% if premium == 0 %}
-        <p class="animated shake"><span class="glyphicon glyphicon-exclamation-sign"></span> Para poder reservar alguna estadía, usted debe ser un usuario PREMIUM.</p>
-      {% else %}
-        <p id="p_detalle" class="lead text-muted">Usted puede reservar cualquier estadía</p>
-      {% endif %}
-        {% for e in estadias %}
-
-          <div class="col-md-4">
-            <div id="div_estadias" class="card mb-4 shadow-sm">
-              
-              <div class="card-body">
-                <p class="card-text"><span class="glyphicon glyphicon-ok"></span><strong> Semana:</strong> {{ e.semana }}</p>
-                <p class="card-text"><span class="glyphicon glyphicon-ok"></span><strong> Fecha de inicio:</strong> {{ e.semana }}</p>
-                {% if premium == 1 %}
-                <div class="btn-group">
-                  <a href="#"><button type="button" class="btn btn-secondary">Reservar estadía</button></a>
-                </div>   
-              {% else %}   
-                <div class="btn-group">
-                  <a href="#"><button type="button" class="btn btn-secondary" disabled>Reservar estadía</button></a>
-                </div>   
-              {% endif %}    
-              </div>
-            </div>
-          </div>
-        {% endfor %}
-
-    </div>
-  </section>
-   
-
 {% endblock %}
 
 {% block appBody %}

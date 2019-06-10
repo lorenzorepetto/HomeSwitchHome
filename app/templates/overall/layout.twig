@@ -101,55 +101,27 @@
     <br>
 
    {% block appContenido %} 
-
-    <div class="container-fluid row">
-      <div class="container-fluid col-lg-4">
-        <div class="container-fluid">
-            <img id="fotoRedondelHL" src="app/img/home/subastas.png" class="bd-placeholder-img rounded-circle" >
-        </div>
-        <h2 class="center-block"><span class="glyphicon glyphicon-fire animated flash"></span> Subastas <span class="glyphicon glyphicon-fire animated flash"></h2>
-        <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
-        <p><a class="center-block btn btn-secondary" href="http://localhost/HomeSwitchHome/usuarios/subastas/verSubastas" role="button">Ver subastas</a></p>
-      </div>
-      <div class="col-lg-4">
-        <div class="container-fluid">
-            <img id="fotoRedondelHL" src="app/img/home/faqs.jpeg" class="bd-placeholder-img rounded-circle">
-        </div>
-        <h2 class="center-block"><span class="glyphicon glyphicon-question-sign animated flash"></span> FAQ <span class="glyphicon glyphicon-question-sign animated flash"></h2>
-        <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
-        <p><a class="center-block btn btn-secondary" href="#" role="button">Ver FAQ</a></p>
-      </div>
-      <div class="col-lg-4">
-        <div class="container-fluid">
-            <img id="fotoRedondelHL" src="app/img/home/hotsale2.jpeg" class="bd-placeholder-img rounded-circle">
-        </div>
-        <h2 class="center-block"><span class="glyphicon glyphicon-fire animated flash"></span> Hotsales<span class="glyphicon glyphicon-fire animated flash"></h2>
-        <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-        <p><a class="center-block btn btn-secondary" href="#" role="button">Ver Hotsales</a></p>
-      </div>
-    </div>
-    <br>
-    {% endblock %}
-
-    {% block appBody %}
-        <section class="jumbotron text-center">
+        <section id="home" class="jumbotron text-center">
             <div class="container">
-              <h1 class="jumbotron">Nuestras residencias</h1>
-              <p class="lead text-muted">Vea la lista de residencias disponibles en nuestra agencia, para obtener toda la información de las mismas: ubicación, descripción, capcacidad y más detalles; o use el buscador de residencias para....</p>
-              <p>
-                <a href="http://localhost/HomeSwitchHome/residencias/listar" class="btn btn-secondary my-2">Ver listado de residencias</a>
-                
-              </p>
-              
+              <h1 class="jumbotron">Nuestras residencias:</h1>
+              <p class="lead text-muted">Vea la lista de residencias disponibles en nuestra agencia para obtener toda la información de las mismas: ubicación, descripción, capcacidad y más detalles; o use el buscador de residencias para encontrar más rápido todo lo que busca.</p>
+
+              {% if error == 1 %}
+                <div class="alert alert-danger alert-dismissible">
+                  <button type="button" class="close" data-dismiss="alert">&times;</button>
+                  <strong class="animated flash"><span class="glyphicon glyphicon-exclamation-sign"></span> Error:</strong> Usted debe ingresar una 'fecha desde' mayor a {{ "now"|date_modify("+6 month")|date("d/m/Y") }}, y debe haber un rango menor o igual a 2 meses entre las fechas ingreadas.
+                </div>
+              {% endif %}
+
                <form action="http://localhost/HomeSwitchHome/filtros/filtrarEstadias" method="post">
+
+                <p id="small" class="text-muted"><span class="glyphicon glyphicon-alert animated flash"></span> Buscar desde la fecha: {{ "now"|date_modify("+6 month")|date("d/m/Y") }}</p>
+
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text">Ubicación</span><input type="text" pattern="[A-Za-z ñÑáéíóúÁÉÍÓÚ\s]+" title="Ingrese sólo letras" class="form-control" placeholder="Ingrese una ciudad" value="{{ ciudad }}" id="ubicacion" name="ubicacion" required>
                   </div>          
                 </div>
-
-
-                buscar desde {{ "now"|date_modify("+6 month")|date("d/m/Y") }}
 
                 <div class="input-group mb-3">
                   <div class="input-group-append">
@@ -164,20 +136,43 @@
                 </div>
 
                 <button class="btn btn-secondary my-2" type="submit"><span class="glyphicon glyphicon-search"></span> Buscar residencias</button>
+                <a href="http://localhost/HomeSwitchHome/residencias/listar" class="btn btn-secondary my-2">Ver listado de residencias</a>
 
               </form>
             </div>
         </section>
 
-        <section class="jumbotron text-center">
-            <div class="container">
-              <h1 class="jumbotron">Nuestras estadías</h1>
-              <p class="lead text-muted">Vea la lista de estadías disponibles en nuestra agencia, para obtener información sobre las mismas: residencia a la que corresponde, ubicación y fecha de inicio. Así podrá realizar reservas.</p>
-              <p>
-                <a href="http://localhost/HomeSwitchHome/usuarios/operaciones/ver_estadias" class="btn btn-secondary my-2">Ver estadías disponibles</a>
-              </p>
+    {% endblock %}
+
+    {% block appBody %}
+        <div class="container-fluid row">
+          <div class="container-fluid col-lg-4">
+            <div class="container-fluid">
+                <img id="fotoRedondelHL" src="app/img/home/subastas.png" class="bd-placeholder-img rounded-circle" >
             </div>
-        </section>
+            <h2 class="center-block"><span class="glyphicon glyphicon-fire animated flash"></span> Subastas <span class="glyphicon glyphicon-fire animated flash"></h2>
+            <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
+            <p><a class="center-block btn btn-secondary" href="http://localhost/HomeSwitchHome/usuarios/subastas/verSubastas" role="button">Ver subastas</a></p>
+          </div>
+          <div class="col-lg-4">
+            <div class="container-fluid">
+                <img id="fotoRedondelHL" src="app/img/home/faqs.jpeg" class="bd-placeholder-img rounded-circle">
+            </div>
+            <h2 class="center-block"><span class="glyphicon glyphicon-question-sign animated flash"></span> FAQ <span class="glyphicon glyphicon-question-sign animated flash"></h2>
+            <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
+            <p><a class="center-block btn btn-secondary" href="#" role="button">Ver FAQ</a></p>
+          </div>
+          <div class="col-lg-4">
+            <div class="container-fluid">
+                <img id="fotoRedondelHL" src="app/img/home/hotsale2.jpeg" class="bd-placeholder-img rounded-circle">
+            </div>
+            <h2 class="center-block"><span class="glyphicon glyphicon-fire animated flash"></span> Hotsales<span class="glyphicon glyphicon-fire animated flash"></h2>
+            <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+            <p><a class="center-block btn btn-secondary" href="#" role="button">Ver Hotsales</a></p>
+          </div>
+        </div>
+        <br>
+        
     {% endblock %}
         
     {% block appFooter %}

@@ -49,30 +49,6 @@
 		    </div>
 	 	</div>
 		<br>
-
-    <section class="jumbotron text-center">
-      <div class="container">
-      <h2 id="h1_detalle" class="jumbotron">Estadías: </h2>
-        <div class="row">
-
-          {% for e in estadias %}
-
-          <div class="col-md-4">
-            <div class="card mb-4 shadow-sm">
-              
-              <div class="card-body">
-                <p class="card-text"><strong><span class="glyphicon glyphicon-ok"></span> Semana:</strong> {{ e.semana }}</p>
-                <a href="#"><button type="button" class="btn btn-secondary">Reservar</button></a>
-
-              </div>
-            </div>
-          </div>
-
-          {% endfor %}
-          
-        </div>
-     </div>   
-  </section>
    
 
 {% endblock %}
