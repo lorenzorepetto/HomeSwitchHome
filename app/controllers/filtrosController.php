@@ -17,6 +17,7 @@ use Ocrend\Kernel\Controllers\Controllers;
 use Ocrend\Kernel\Controllers\IControllers;
 use Ocrend\Kernel\Router\IRouter;
 use Ocrend\Kernel\Helpers\Strings;
+use Ocrend\Kernel\Helpers\Functions;
 
 /**
  * Controlador filtros/
@@ -74,7 +75,8 @@ class filtrosController extends Controllers implements IControllers {
         
         }else{
             $data['error'] = 1;
-            $this->template->display('home/homeLogged', $data); // para guardar los valores en el form
+            Functions::redir("http://localhost/HomeSwitchHome?ciudad=$ciudad&fecha_desde=$fecha_desde&fecha_hasta=$fecha_hasta&error=1");
+            //$this->template->display('home/homeLogged?ciudad=$ciudad&fecha_desde=$fecha_desde&fecha_hasta=$fecha_hasta', $data); // para guardar los valores en el form
         }
     	
     }

@@ -39,10 +39,11 @@
 	<div id="div_listar_residencias" class="py-5 bg-light">
 	    <div class="container">
         <div class="container">
-          <a href="http://localhost/HomeSwitchHome"><button id="atras" class="btn btn-secondary my-2">Atrás</button></a>
+          <a href="http://localhost/HomeSwitchHome?ciudad={{ ciudad }}&fecha_desde={{ fecha_desde }}&fecha_hasta={{ fecha_hasta }}"><button id="atras" class="btn btn-secondary my-2">Atrás</button></a>
         </div>
         <br>
         
+
        <p class="lead text-muted">Resultados para "{{ ciudad }}" entre las fechas "{{ fecha_desde|date("d/m/Y") }}" y "{{ fecha_hasta|date("d/m/Y") }}": </p>
 
         

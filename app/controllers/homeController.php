@@ -37,6 +37,7 @@ class homeController extends Controllers implements IControllers {
         		$this->template->display('home/homeBackend');
         	}
         	else{
+                //loggeado
         		$this->template->display('home/homeLogged');
         	}
         }

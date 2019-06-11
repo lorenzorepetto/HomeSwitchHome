@@ -104,12 +104,14 @@
         <section id="home" class="jumbotron text-center">
             <div class="container">
               <h1 class="jumbotron">Nuestras residencias:</h1>
-              <p class="lead text-muted">Vea la lista de residencias disponibles en nuestra agencia para obtener toda la información de las mismas: ubicación, descripción, capcacidad y más detalles; o use el buscador de residencias para encontrar más rápido todo lo que busca.</p>
+              <p class="lead text-muted">Vea la lista de residencias disponibles en nuestra agencia para obtener toda la información de las mismas: ubicación, descripción, capacidad y más detalles; o use el buscador de residencias para encontrar más rápido todo lo que busca.</p>
 
-              {% if error == 1 %}
+      
+
+              {% if get.error %}
                 <div class="alert alert-danger alert-dismissible">
                   <button type="button" class="close" data-dismiss="alert">&times;</button>
-                  <strong class="animated flash"><span class="glyphicon glyphicon-exclamation-sign"></span> Error:</strong> Usted debe ingresar una 'fecha desde' mayor a {{ "now"|date_modify("+6 month")|date("d/m/Y") }}, y debe haber un rango menor o igual a 2 meses entre las fechas ingreadas.
+                  <strong class="animated flash"><span class="glyphicon glyphicon-exclamation-sign"></span> Error:</strong> La búsqueda se debe realizar con un mínimo de 6 meses de anticipación, comenzando desde la fecha {{ "now"|date_modify("+6 month")|date("d/m/Y") }}, y el rango de fechas ingresado debe ser mayor o igual a una semana, y menor o igual a 2 meses.
                 </div>
               {% endif %}
 
@@ -119,19 +121,19 @@
 
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
-                    <span class="input-group-text">Ubicación</span><input type="text" pattern="[A-Za-z ñÑáéíóúÁÉÍÓÚ\s]+" title="Ingrese sólo letras" class="form-control" placeholder="Ingrese una ciudad" value="{{ ciudad }}" id="ubicacion" name="ubicacion" required>
+                    <span class="input-group-text">Ubicación</span><input type="text" pattern="[A-Za-z ñÑáéíóúÁÉÍÓÚ\s]+" title="Ingrese sólo letras" class="form-control" placeholder="Ingrese una ciudad" value="{{ get.ciudad }}" id="ubicacion" name="ubicacion" required>
                   </div>          
                 </div>
 
                 <div class="input-group mb-3">
                   <div class="input-group-append">
-                    <input type="date" class="form-control" value="{{ fecha_desde }}" placeholder="Fecha desde" id="fecha_desde" name="fecha_desde" required><span class="input-group-text">Fecha desde</span>
+                    <input type="date" class="form-control" value="{{ get.fecha_desde }}" placeholder="Fecha desde" id="fecha_desde" name="fecha_desde" required><span class="input-group-text">Fecha desde</span>
                   </div>
                 </div>
 
                 <div class="input-group mb-3">
                   <div class="input-group-append">
-                    <span class="input-group-text">Fecha hasta</span><input type="date" class="form-control" value="{{ fecha_hasta }}" placeholder="Fecha hasta" id="fecha_hasta" name="fecha_hasta" required>
+                    <span class="input-group-text">Fecha hasta</span><input type="date" class="form-control" value="{{ get.fecha_hasta }}" placeholder="Fecha hasta" id="fecha_hasta" name="fecha_hasta" required>
                   </div>
                 </div>
 
