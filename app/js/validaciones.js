@@ -75,31 +75,11 @@ function validarAgregarResidencia(){
   var carac_especiales=/[$@\!#]/;
 
   document.getElementById("msjNombreR").style.display = "none";
-  document.getElementById("msjDescripcionR").style.display = "none";
-  document.getElementById("msjCalleR").style.display = "none";
-  document.getElementById("msjAlturaR").style.display = "none";
-  document.getElementById("msjCiudadR").style.display = "none";
-  document.getElementById("msjProvinciaR").style.display = "none";
-  document.getElementById("msjCapacidadR").style.display = "none";
-  document.getElementById("msjFotoR").style.display = "none";
-  document.getElementById("msjCapacidadR2").style.display = "none";
-  document.getElementById("msjNombreR2").style.display = "none";
-  document.getElementById("msjCiudadR2").style.display = "none";
-  document.getElementById("msjProvinciaR2").style.display = "none";
-  document.getElementById("msjCalleR2").style.display = "none";
-  document.getElementById("msjAlturaR2").style.display = "none";
 
   if (campoVacio(nombre) || campoVacio(descripcion)|| campoVacio(calle)|| campoVacio(altura)
     || campoVacio(ciudad)|| campoVacio(provincia)|| campoVacio(capacidad)
     || campoVacio(foto)){
     document.getElementById("msjNombreR").style.display = "block";
-    document.getElementById("msjDescripcionR").style.display = "block";
-    document.getElementById("msjCalleR").style.display = "block";
-    document.getElementById("msjAlturaR").style.display = "block";
-    document.getElementById("msjCiudadR").style.display = "block";
-    document.getElementById("msjProvinciaR").style.display = "block";
-    document.getElementById("msjCapacidadR").style.display = "block";
-    document.getElementById("msjFotoR").style.display = "block";
     return false;
 
   }

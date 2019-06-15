@@ -156,7 +156,8 @@ class Residencias extends Models implements IModels {
         );
 
 
-        $this->db->insert('residencias',$r);
+        $id= $this->db->insert('residencias',$r);
+        return $id;
 
     }
 

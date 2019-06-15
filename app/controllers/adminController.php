@@ -246,7 +246,8 @@ class adminController extends Controllers implements IControllers {
                           'altura' => $altura,
                           'ciudad' => $ciudad,
                           'provincia' => $provincia,
-                          'capacidad' => $capacidad);
+                          'capacidad' => $capacidad,
+                          'id' => 0);
 
 
         //Valido el nombre
@@ -257,8 +258,9 @@ class adminController extends Controllers implements IControllers {
 
         if (!$errores['nombre_existente']) {
             //Registro exitoso
-            $r->insertar();
+            $id=$r->insertar();
             $errores['sin_error'] = 1;
+            $errores['id'] = $id;
         }
 
         echo $this->template->display('residencias/agregarResidencia',$errores); 

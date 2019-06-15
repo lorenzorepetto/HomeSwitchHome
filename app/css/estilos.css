@@ -357,6 +357,25 @@ li.residencia{
     border-color: red;
 }
 
+#nombre:invalid {
+    border-color: red;
+}
+#calle:invalid {
+    border-color: red;
+}
+#altura:invalid {
+    border-color: red;
+}
+#ciudad:invalid {
+    border-color: red;
+}
+#provincia:invalid {
+    border-color: red;
+}
+#capacidad:invalid {
+    border-color: red;
+}
+
 #lista_usuarios{
 	margin-bottom: 5px;
 }

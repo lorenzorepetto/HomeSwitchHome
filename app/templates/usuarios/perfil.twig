@@ -58,7 +58,10 @@
         <li class="perfil list-group-item"><span class="glyphicon glyphicon-envelope"></span> <strong>Marca tarjeta:</strong> {{ marca_tarjeta }}</li>
         <li class="perfil list-group-item">
           <div class="row center-block">
-            <a class="col-sm-3 center-block" href="http://localhost/HomeSwitchHome"><button id="atras" class="center-block btn btn-secondary my-2">Quiero ser premium</button></a>
+
+            {% if rol == "ESTANDAR" %}
+              <a class="col-sm-3 center-block" href="http://localhost/HomeSwitchHome"><button id="atras" class="center-block btn btn-secondary my-2">¡Quiero ser Premium!</button></a>
+            {% endif %}
             <a class="col-sm-3 center-block" href="http://localhost/HomeSwitchHome/usuarios/operaciones/modificar_perfil?id={{ id }}"><button id="atras" class="center-block btn btn-secondary my-2">Modificar mi perfil</button></a>
           </div>
         </li>

@@ -29,15 +29,18 @@
             </div>
           {% endif %}
 
+
+          <span class="glyphicon glyphicon-exclamation-sign"></span> Campos obligatorios (*)</p>
+
           <div class="center-block form-group form">
-            <label for="email">Email adress:</label>
+            <label for="email">Email adress:</label>  (*)
             <input type="email" class="form-control" id="email" placeholder="Ingrese su email" value="{{ email }}" name="email">
             <p class="animated shake" id="msjEmail"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
             
           </div>
 
           <div class="center-block form-group form">
-            <label for="password">Password:</label>
+            <label for="password">Password:</label>  (*)
             <input type="password" class="form-control" id="password" placeholder="Ingrese una contraseña" value="{{ password }}" name="password">
             <p class="animated shake" id="msjPassword1"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
             <p class="animated shake" id="msjPassword2"><span class="glyphicon glyphicon-exclamation-sign"></span> La contraseña debe contener más de 6 caracteres</p>
@@ -47,13 +50,13 @@
           <div class="center-block form-group form">
             <div class="row">
                 <div class="col">
-                  <label for="nombre">Nombre:</label>
+                  <label for="nombre">Nombre:</label>  (*)
                   <input type="text" class="form-control" id="nombre" placeholder="Ingrese su nombre" value="{{ nombre }}" name="nombre">
                   <p class="animated shake" id="msjNombre"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
                     
                 </div>
                 <div class="col">
-                  <label for="apellido">Apellido:</label>
+                  <label for="apellido">Apellido:</label>  (*)
                   <input type="text" class="form-control" id="apellido" placeholder="Ingrese su apellido" value="{{ apellido }}" name="apellido">
                   <p class="animated shake" id="msjApellido"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
                     
@@ -62,7 +65,7 @@
           </div>
 
           <div class="center-block form-group form">
-            <label for="fecha_nacimiento">Fecha nacimiento:</label>
+            <label for="fecha_nacimiento">Fecha nacimiento:</label>  (*)
             <input type="date" class="form-control" id="fecha_nacimiento" value="{{ fecha_nacimiento }}" name="fecha_nacimiento">
             <p class="animated shake" id="msjFecha_nacimiento"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
       
@@ -74,12 +77,12 @@
           </div>
 
           <div class="center-block form-group form">
-            <label for="telefono">Telefono:</label>
+            <label for="telefono">Telefono:</label>  (*)
             <input type="text" class="form-control" id="telefono" placeholder="Ingrese un teléfono" value="{{ telefono }}" name="telefono">
             <p class="animated shake" id="msjTelefono"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
             
           </div>
-          <label>Información de la tarjeta: </label>
+          <label>Información de la tarjeta: </label>  (*)
           <div class="center-block form-group form">
             <div class="row">
               <div class="col-md-3 input_tarjeta">

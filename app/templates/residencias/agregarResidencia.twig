@@ -45,7 +45,7 @@
           {% if sin_error == 1 %}
             <div class="alert alert-success alert-dismissible">
               <button type="button" class="close" data-dismiss="alert">&times;</button>
-              <strong class="animated flash"> <span class='glyphicon glyphicon-ok-sign'></span> Nota:</strong> La residencia se ha registrado con éxito!
+              <strong class="animated flash"> <span class='glyphicon glyphicon-ok-sign'></span> Nota:</strong> La residencia se ha registrado con éxito! <a href="http://localhost/HomeSwitchHome/residencias/detalle/{{ id }}"> Ver detalles</a>
             </div>
           {% endif %}
 
@@ -57,33 +57,33 @@
             </div>
           {% endif %}
 
+          <span class="glyphicon glyphicon-exclamation-sign"></span> Tenga en cuenta que debe completar todos los campos (*)</p>
+
+          <p class="animated shake" id="msjNombreR"><span class="glyphicon glyphicon-exclamation-sign"></span> Ha dejado uno o más campos vacíos, complete todos los campos.</p>
+
 
           <div class="center-block form-group form">
-            <label for="nombre">Nombre:</label>
-            <input type="text" class="form-control" id="nombre" placeholder="Ingrese el nombre de la residencia" name="nombre" value="{{ nombre }}">
-            <p class="animated shake" id="msjNombreR"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
+            <label for="nombre">Nombre: </label>  (*)
+            <input type="text" class="form-control" pattern="[A-Za-z ñÑáéíóúÁÉÍÓÚ\s]+" title="Ingrese sólo letras" id="nombre" placeholder="Ingrese el nombre de la residencia" name="nombre" value="{{ nombre }}">
             <p class="animated shake" id="msjNombreR2"><span class="glyphicon glyphicon-exclamation-sign"></span> Debe ingresar solo letras.</p>
             
           </div>
 
           <div class="center-block form-group form">
-            <label for="descripcion">Descripcion:</label>
+            <label for="descripcion">Descripción:</label>  (*)
             <input type="text" class="form-control" id="descripcion" value="{{ descripcion }}" placeholder="Ingrese una descripcion de la residencia" name="descripcion">
-            <p class="animated shake" id="msjDescripcionR"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
           </div>
 
           <div class="center-block form-group form">
-          	<label for="direccion">Direccion:</label>
+          	<label for="direccion">Dirección:</label>  (*)
             <div class="row">
               <div class="col">
                 <input type="text" class="form-control" id="calle" placeholder="Calle" value="{{ calle }}" name="calle">
-          		  <p class="animated shake" id="msjCalleR"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
                 <p class="animated shake" id="msjCalleR2"><span class="glyphicon glyphicon-exclamation-sign"></span> Debe ingresar solo caracteres alfanuméricos.</p>
                   
               </div>
               <div class="col">
-              	<input type="text" class="form-control" id="altura" placeholder="Altura" value="{{ altura }}" name="altura">
-        		    <p class="animated shake" id="msjAlturaR"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
+              	<input type="number" min="1" pattern="[A-Za-z ñÑáéíóúÁÉÍÓÚ\s]+" class="form-control" id="altura" placeholder="Altura" value="{{ altura }}" name="altura">
                 <p class="animated shake" id="msjAlturaR2"><span class="glyphicon glyphicon-exclamation-sign"></span> Debe ingresar solo números.</p>
           	  </div>
             </div>
@@ -92,14 +92,12 @@
           <div class="center-block form-group form">
           	<div class="row">
               <div class="col">
-                <input type="text" class="form-control" id="ciudad" placeholder="Ciudad" value="{{ ciudad }}" name="ciudad">
-          		  <p class="animated shake" id="msjCiudadR"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
+                <input type="text" class="form-control" pattern="[A-Za-z ñÑáéíóúÁÉÍÓÚ\s]+" title="Ingrese sólo letras" id="ciudad" placeholder="Ciudad" value="{{ ciudad }}" name="ciudad">
                 <p class="animated shake" id="msjCiudadR2"><span class="glyphicon glyphicon-exclamation-sign"></span> Debe ingresar solo letras.</p>
                   
               </div>
               <div class="col">
-              	<input type="text" class="form-control" id="provincia" placeholder="Provincia" value="{{ provincia }}" name="provincia">
-            		<p class="animated shake" id="msjProvinciaR"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
+              	<input type="text" class="form-control" pattern="[A-Za-z ñÑáéíóúÁÉÍÓÚ\s]+" title="Ingrese sólo letras" id="provincia" placeholder="Provincia" value="{{ provincia }}" name="provincia">
                 <p class="animated shake" id="msjProvinciaR2"><span class="glyphicon glyphicon-exclamation-sign"></span> Debe ingresar solo letras.</p>
             	</div>
             </div>
@@ -107,16 +105,14 @@
 
 	          <div class="center-block form-group form">
 	          	
-	            <label for="capacidad">Capacidad:</label>
-	            <input type="text" class="form-control" id="capacidad" placeholder="Ingrese la capacidad" value="{{ capacidad }}" name="capacidad">
-	            <p class="animated shake" id="msjCapacidadR"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
+	            <label for="capacidad">Capacidad:</label>  (*)
+	            <input type="number" min="1" pattern="[A-Za-z ñÑáéíóúÁÉÍÓÚ\s]+" class="form-control" id="capacidad" placeholder="Ingrese la capacidad" value="{{ capacidad }}" name="capacidad">
               <p class="animated shake" id="msjCapacidadR2"><span class="glyphicon glyphicon-exclamation-sign"></span> Debe ingresar un número mayor a 0.</p>
 	           </div>
 
 	           <div class="center-block form-group form">
-		            <label for="foto">Foto:</label>
+		            <label for="foto">Foto:</label>  (*)
 		            <input type="file" class="form-control-file border" id="foto" name="foto">
-                <p class="animated shake" id="msjFotoR"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
 				        
 	            </div>
 	   
