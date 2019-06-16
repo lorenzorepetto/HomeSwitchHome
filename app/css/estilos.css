@@ -437,3 +437,10 @@ li.subasta{
     border-color: red;
 }
 
+form.buscador{
+	z-index: -3;
+}
+
+footer{
+	z-index: 3;
+}
