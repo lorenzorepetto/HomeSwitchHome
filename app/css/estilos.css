@@ -168,7 +168,7 @@ img .perfil{
 	width: 150px;
 }
 
-#msjNombreR,#msjMontoS, #msjDescripcionR, #msjCapacidadR, #msjCapacidadR2,#msjAlturaR2, #msjBlancosM2, #msjNombreM2, #msjAlturaM2, #msjCalleM2, #msjCiudadM2, #msjProvinciaM2,#msjCapacidadM2, #msjNombreR2, #msjProvinciaR2, #msjCiudadR2, #msjCalleR2, #msjCalleR, #msjAlturaR, #msjProvinciaR, #msjCiudadR, #msjFotoR{
+#msjNombreR,#msjMontoS, #msjDescripcionR, #msjCapacidadR, #msjCapacidadR2,#msjAlturaR2, #msjBlancosM2, #msjNombreP, #msjApellidoP, #msjPasswordP, #msjTelefonoP, #msjFecha_nacimientoP, #msjNombreM2, #msjAlturaM2, #msjCalleM2, #msjCiudadM2, #msjProvinciaM2,#msjCapacidadM2, #msjNombreR2, #msjProvinciaR2, #msjCiudadR2, #msjCalleR2, #msjCalleR, #msjAlturaR, #msjProvinciaR, #msjCiudadR, #msjFotoR{
 	display: none;
 }
 
@@ -211,7 +211,7 @@ img .perfil{
 }
 
 #card_foto_residencia{
-	height: 40%;
+	height: 260px;
 	width: 100%;
 }
 
@@ -287,7 +287,7 @@ li#descuento{
 }
 
 #div_subasta{
-	height: 400px;
+	height: 470px;
 }
 
 #error_campo_vacio_subasta{
@@ -295,7 +295,7 @@ li#descuento{
 }
 
 #div_crear_subasta{
-	height: 380px;
+	height: 420px;
 }
 
 #div_estadias{
@@ -400,3 +400,40 @@ h1.jumbotron{
 	padding-bottom: 20px;
 	padding-top: 15px;
 }
+
+li.subasta{
+	margin-bottom: 15px;
+}
+
+#foto_detalle_subasta{
+	margin-bottom: 30px;
+	margin-top: 30px;
+	width: 100%;
+	height: 100%;
+}
+
+#card_foto_subasta{
+	height: 170px;
+	width: 100%;
+}
+
+#nombreP:invalid{
+    border-color: red;
+}
+
+#apellidoP:invalid{
+    border-color: red;
+}
+
+#telefonoP:invalid{
+    border-color: red;
+}
+
+#marca_tarjetaP:invalid{
+    border-color: red;
+}
+
+#numero_tarjetaP:invalid{
+    border-color: red;
+}
+

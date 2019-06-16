@@ -65,15 +65,15 @@ class subastasController extends Controllers implements IControllers {
         $usuario = null;
         if ($resultado) {
 
-                $subasta = $resultado['0'];
-                $puja = $s->getPuja($id);
+            $subasta = $resultado['0'];
+            $puja = $s->getPuja($id);
 
-                
-                if ($subasta['usuario_ganador'] != null) {
-                   $query = $u->getUsuario($subasta['usuario_ganador']);
-                  
-                   $usuario = $query['0'];
-                }
+            
+            if ($subasta['usuario_ganador'] != null) {
+               $query = $u->getUsuario($subasta['usuario_ganador']);
+              
+               $usuario = $query['0'];
+            }
 
                                
         }

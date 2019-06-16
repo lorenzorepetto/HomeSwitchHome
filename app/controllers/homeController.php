@@ -61,13 +61,6 @@ class homeController extends Controllers implements IControllers {
 
     public function renderHome($s,$error_login = 0, $error_token = 0, $token = 0, $email=""){
 
-
-        //ESTO MUESTRA UNA RESIDENCIA ALEATORIA
-        //$resultado = $r->getResidencias();
-        //$residencia = Arrays::array_random_element($resultado);
-
-        //ESTO MUESTRA UN ASUBASTA ALEATORIA
-
         $resultado = $s->getSubastasConEstadiaYResidencia();
         if ($resultado) {
             $subasta = Arrays::array_random_element($resultado);

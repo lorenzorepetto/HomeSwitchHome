@@ -85,19 +85,13 @@
                 <div class="d-flex justify-content-between align-items-center">
                   <div id="botones" class="btn-group">
                     <a href="http://localhost/HomeSwitchHome/subastas/detalle/{{ s.id_subasta }}"><button class="btn btn-secondary my-2">Ver detalles</button></a>
-                    {% if s.estado == 'ACTIVA' %}
-                      <a href="http://localhost/HomeSwitchHome/admin/subastas/cerrar?id_subasta={{ s.id_subasta }}"><button class="btn btn-secondary my-2">Cerrar subasta</button></a>
-                    {% else %}
 
-                      {% if s.estado == 'CERRADA' %}
-                          <strong> Subasta cerrada. </strong>
-                      {% else %}
-                           <strong> Subasta pendiente ({{ s.fecha|date_modify('-6 month')|date("d/m/Y") }}) </strong>
-                      {% endif %}
-
-
-                        
+                    {% if s.estado == 'CERRADA' %}
+                        <strong> Subasta cerrada. </strong>
+                    {% elseif s.estado == 'PENDIENTE' %}
+                         <strong> Subasta pendiente ({{ s.fecha|date_modify('-6 month')|date("d/m/Y") }}) </strong>
                     {% endif %}
+
 
                   </div>
                 </div>

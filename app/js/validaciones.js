@@ -250,3 +250,16 @@ function confirmation(){
     document.getElementById('submitModificar').disabled=false;
   }
 
+function validarModificarPerfil(){
+  
+  var newPassword = document.getElementById("newPasswordP").value;
+
+  if (newPassword != "") {
+    if (!newPassword.length < 6) {
+      document.getElementById("msjPasswordP").style.display = "block";
+      return false;
+    }
+  }
+
+  return true;
+}

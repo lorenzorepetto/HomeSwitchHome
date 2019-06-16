@@ -75,31 +75,6 @@
           <a href="http://localhost/HomeSwitchHome"><button id="atras" class="btn btn-secondary my-2">Atrás</button></a>
         </div>
 
-        <p class="lead text-muted">Filtrar estadias: </p>
-
-       <form action="">
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text">Ubicación</span><input type="text" class="form-control" placeholder="Ubicacion de la residencia" id="ubicacion" name="ubicacion">
-          </div>          
-        </div>
-
-        <div class="input-group mb-3">
-          <div class="input-group-append">
-            <input type="date" class="form-control" placeholder="Fecha desde" id="fecha_desde" name="fecha_desde"><span class="input-group-text">Fecha desde</span>
-          </div>
-        </div>
-
-        <div class="input-group mb-3">
-          <div class="input-group-append">
-            <span class="input-group-text">Fecha hasta</span><input type="date" class="form-control" placeholder="Fecha hasta" id="fecha_hasta" name="fecha_hasta">
-          </div>
-        </div>
-        <button type="submit" class="btn btn-secondary my-2">Filtrar</button>
-
-      </form>
-      <br>
-
 
         {% if estadias == false %}
 
@@ -120,7 +95,7 @@
             <div id="div_crear_subasta" class="card mb-4 shadow-sm">
               
               <div class="card-body">
-                <img id="card_foto_residencia" src="{{ e.foto }}" class="card-img-top" >
+                <img id="card_foto_subasta" src="{{ e.foto }}" class="card-img-top" >
                 <p class="card-text">&nbsp;</p>
                 <p class="card-text"><span class="glyphicon glyphicon-ok"></span><strong> Residencia: </strong>{{ e.nombre }}</p>
                 <p class="card-text"><span class="glyphicon glyphicon-ok"></span><strong> Semana:</strong> {{ e.semana }}</p>

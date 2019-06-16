@@ -43,75 +43,74 @@
 
 	   	<h2 class="detalle">Detalles de la subasta</h2>
 
-      <div class="col-lg-8">
+	    <div class="col-lg-8">
+        <div class_"row">
 
+          <ul class="list-group list-group-flush">
+            <li class="subasta list-group-item"><span class="glyphicon glyphicon-ok"></span> <strong> Residencia: </strong>{{ subasta.nombre }}</li>
+            <li class="subasta list-group-item"><span class="glyphicon glyphicon-map-marker"></span><strong> Dirección:</strong> {{ subasta.calle }} {{ subasta.altura }}, {{ subasta.ciudad }}, {{ subasta.provincia }}</li>
+            <li class="subasta list-group-item"><span class="glyphicon glyphicon-user"></span> <strong>Capacidad:</strong> {{ subasta.capacidad }}</li>      
+          </ul>       
 
-  	    <div class_"row">
+            {% if subasta.estado == 'ACTIVA' %}
+              <br>
+              <h2 id="pujas">Pujas</h2>
 
-  	      <ul class="list-group list-group-flush">
-            <li class="list-group-item"><span class="glyphicon glyphicon-ok"></span> <strong> Residencia: </strong>{{ subasta.nombre }}</li>
-  	        <li class="list-group-item"><span class="glyphicon glyphicon-map-marker"></span><strong> Dirección:</strong> {{ subasta.calle }} {{ subasta.altura }}, {{ subasta.ciudad }}, {{ subasta.provincia }}</li>
-  	        <li class="list-group-item"><span class="glyphicon glyphicon-user"></span> <strong>Capacidad:</strong> {{ subasta.capacidad }}</li>      
-  	      </ul> 
-
-    
-          <h2 id="pujas">Pujas</h2>
-
-            {% if subasta.estado == 0 %}
-
-            <ul class="list-group list-group-flush">      
-              
-              {% if puja.usuario_id != null %}
-
+              <ul class="list-group list-group-flush">      
+                
+                {% if puja.usuario_id != null %}
                   {% set monto_validacion = puja.monto_apostado %}
 
-                  <li class="list-group-item"><span class="glyphicon glyphicon-usd"></span> <strong> Monto actual de la subasta: </strong>&nbsp;${{ puja.monto_apostado|number_format(2, ',', '.') }}</li>
-                  <li class="list-group-item"><span class="glyphicon glyphicon-user"></span> <strong> Usuario: </strong>{{ puja.apellido }}, {{ puja.nombre }}</li>
-                  <li class="list-group-item">
+                  <li class="subasta list-group-item"><span class="glyphicon glyphicon-usd"></span> <strong> Monto actual de la subasta: </strong>&nbsp;${{ puja.monto_apostado|number_format(2, ',', '.') }}</li>
+                  <li class="subasta list-group-item"><span class="glyphicon glyphicon-user"></span> <strong> Usuario: </strong>{{ puja.apellido }}, {{ puja.nombre }}</li>
 
-              {% else %}
+                {% else %}
 
                   {% set monto_validacion = subasta.monto_subasta %}
 
-                  <li class="list-group-item"><span class="glyphicon glyphicon-usd"></span> Aún no existen pujas, podés ser el primero!</li>
-              {% endif %}
-
-                
+                  <li class="subasta list-group-item"><span class="glyphicon glyphicon-usd"></span> Aún no existen pujas, podés ser el primero! Monto a partir del cual se puede pujar: ${{ monto_validacion }}</li>
+                {% endif %}
+                 
                 <form action="http://localhost/HomeSwitchHome/subastas/pujar/{{ subasta.id_subasta }}" onsubmit="return validarPuja({{ monto_validacion }});" enctype="multipart/form-data" method="post">
                   
-                      <label for="puja">Monto:</label>                      
-                      <input type="text" id="puja" name="puja"> 
-                                     
-                    <button id="pujar" type="submit" class="btn btn-secondary my-2">Pujar!</button>
-                    <p class="animated shake" id="errorPujaVacia" name="errorPujaVacia"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
-                    <p class="animated shake" id="errorPujaMonto" name="errorPujaMonto"><span class="glyphicon glyphicon-exclamation-sign"></span> Debe ingresar un valor mayor al actual!</p>
+                  <label for="puja">Monto:</label>                      
+                  <input type="text" id="puja" name="puja"> 
+                                   
+                  <button id="pujar" type="submit" class="btn btn-secondary my-2">Pujar!</button>
+                  <p class="animated shake" id="errorPujaVacia" name="errorPujaVacia"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
+                  <p class="animated shake" id="errorPujaMonto" name="errorPujaMonto"><span class="glyphicon glyphicon-exclamation-sign"></span> Debe ingresar un valor mayor al actual!</p>
                   
                 </form>
-              </li>
-            </ul>
-
-            <a href="http://localhost/HomeSwitchHome/admin/subastas/cerrar?id_subasta={{ subasta.id_subasta }}"><button class="btn btn-secondary my-2">Cerrar subasta</button></a>
+              </ul>
 
             {% else %}
 
-                <li class="list-group-item"><span class="glyphicon glyphicon-thumbs-down"></span><strong>&nbsp;La subasta ya cerró!</strong></li>
+              {% if subasta.estado == 'CERRADA' %}
+                <ul class="list-group list-group-flush">
+                  <li class="subasta list-group-item"><span class="glyphicon glyphicon-thumbs-down"></span><strong>&nbsp;La subasta ya cerró!</strong></li>
 
-                {% if usuario != null %}
-                  <li class="list-group-item"><span class="glyphicon glyphicon-user"></span><strong>&nbsp;Usuario ganador:</strong> {{ usuario.apellido }}, {{ usuario.nombre}}</li>
-                  <li class="list-group-item"><span class="glyphicon glyphicon-usd"></span> <strong> Monto final: </strong>&nbsp;${{ puja.monto_apostado|number_format(2, ',', '.') }}</li>
-                {% else %}
-                  <li class="list-group-item"><span class="glyphicon glyphicon-user"></span><strong>&nbsp;No hubo ganador</strong></li>
-                {% endif %}
-                  
-            {% endif %}
+                  {% if usuario != null %}
+                    <li class="subasta list-group-item"><span class="glyphicon glyphicon-user"></span><strong>&nbsp;Usuario ganador:</strong> {{ usuario.apellido }}, {{ usuario.nombre}}</li>
+                    <li class="subasta list-group-item"><span class="glyphicon glyphicon-usd"></span> <strong> Monto final: </strong>&nbsp;${{ puja.monto_apostado|number_format(2, ',', '.') }}</li>
+                  {% else %}
+                    <li class="subasta list-group-item"><span class="glyphicon glyphicon-user"></span><strong>&nbsp;No hubo ganador</strong></li>
+                  {% endif %}
+                </ul>
+
+              {% else %}
+                <ul class="list-group list-group-flush">
+                  <li class="subasta list-group-item"><span class="glyphicon glyphicon-exclamation-sign"></span><strong> La subasta comenzara el {{ subasta.fecha|date("d/m/Y") }} y terminará el día {{ subasta.fecha|date_modify("+3 day")|date("d/m/Y") }}</strong></li>
+                </ul>
+
+              {% endif %}
+                
+          {% endif %}
 
         </div>
       </div>
-      <div id="img_detalle_residencia" class="col-lg-4">
-        <img id="foto_detalle_residencia" src="{{ subasta.foto }}" class="perfil float-right" alt="Foto de perfil"> 
-      </div>
-
-
+    <div class="col-lg-4">
+      <img id="foto_detalle_subasta" src="{{ subasta.foto }}" class="perfil float-right" alt="Foto de la subasta"> 
+    </div>
 
  	</div>
 		

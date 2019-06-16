@@ -146,6 +146,19 @@ class usuariosController extends Controllers implements IControllers {
                 $this->verDetalleResidencia($r,$id);
                 break;
 
+            case 'perfil':
+                switch ($router->getId()) {
+
+                    case 'modificar':
+
+                    break;
+                    
+                    default:
+                        echo $this->template->display('home/home');
+                    break;
+                }
+                break;
+
              
              default:
                 $this->template->display('home/home');
@@ -338,7 +351,7 @@ class usuariosController extends Controllers implements IControllers {
 
                 $usuario = array(
                 'id' => $resultado['0']['id'],
-                'email' => $resultado['0']['email'],
+                'password' => $resultado['0']['password'],
                 'nombre' => $resultado['0']['nombre'],
                 'apellido' => $resultado['0']['apellido'],
                 'foto' => $resultado['0']['foto'],
@@ -346,7 +359,10 @@ class usuariosController extends Controllers implements IControllers {
                 'rol' => $resultado['0']['rol'],
                 'telefono' => $resultado['0']['telefono'],
                 'fecha_nacimiento' => $resultado['0']['fecha_nacimiento'],
-                'marca_tarjeta' => $resultado['0']['marca_tarjeta']
+                'marca_tarjeta' => $resultado['0']['marca_tarjeta'],
+                'numero_tarjeta' => $resultado['0']['numero_tarjeta'],
+                'titular_tarjeta' => $resultado['0']['titular_tarjeta'],
+                'fecha_vencimiento_tarjeta' => $resultado['0']['fecha_vencimiento_tarjeta']
                  );
             }
 
