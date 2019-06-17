@@ -444,3 +444,7 @@ form.buscador{
 footer{
 	z-index: 3;
 }
+
+#div_subasta_admin{
+	height: 500px;
+}
