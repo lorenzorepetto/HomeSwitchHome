@@ -376,6 +376,26 @@ li.residencia{
     border-color: red;
 }
 
+#apellido:invalid{
+	border-color: red;
+}
+
+#telefono:invalid{
+	border-color: red;
+}
+
+#marca_tarjeta:invalid{
+	border-color: red;
+}
+
+#numero_tarjeta:invalid{
+	border-color: red;
+}
+
+#titular_tarjeta:invalid{
+	border-color: red;
+}
+
 #lista_usuarios{
 	margin-bottom: 5px;
 }
@@ -447,4 +467,8 @@ footer{
 
 #div_subasta_admin{
 	height: 500px;
+}
+
+#div_resultados_filtro{
+	height: 250px;
 }
