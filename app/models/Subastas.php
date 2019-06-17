@@ -54,6 +54,23 @@ class Subastas extends Models implements IModels {
 
     }
 
+
+
+    public function update($id, $datos){
+
+        $resultado = $this->db->update('subastas', $datos, "id = '$id'");
+
+        if ($resultado){
+            return true;
+        }
+
+        return false;
+    }
+
+
+
+
+
     /*
 
     ------------------------  ELIMINAR SUBASTA  ---------------------------------------------------------------------
@@ -75,8 +92,10 @@ class Subastas extends Models implements IModels {
             if ($ganador) { //se cierra la subasta y se informa el ganador
                 $data['sin_error']=1;
                 $data['usuario_ganador']=$ganador;
-                //la estadia pasa a estar ocupada
+                //la estadia pasa a estar ocupada y se crea la reserva
+                $this->insertarReserva($ganador,$subasta['0']['id_estadia']);
                 $e->cambiarEstado($subasta['0']['id_estadia'], "OCUPADA");
+
             }else{
                 $data['sin_error'] = 1; //no hay ganador pero la subasta se cierra igual
                 $e->cambiarEstado($subasta['0']['id_estadia'], "LIBRE");
@@ -95,6 +114,15 @@ class Subastas extends Models implements IModels {
     
     }
 
+
+
+    public function insertarReserva($id_ganador,$id_estadia){
+        $reserva = array('id_usuario' => $id_ganador,
+                          'id_estadia' => $id_estadia);
+
+        $this->db->insert('reservas',$reserva);
+    }
+
     /*
 
     ------------------------  CONSULTAS  ----------------------------------------------------------
@@ -110,6 +138,10 @@ class Subastas extends Models implements IModels {
             if ($u->tieneCredito($p['id_usuario'])) {
 
                 $u->restarCredito($p['id_usuario']);
+                
+                $subasta = array('monto_actual' => $p['monto_apostado']);
+                $this->update($p['id_subasta'],$subasta);
+                
                 return $p['id_usuario'];
             }
         }
@@ -186,14 +218,15 @@ class Subastas extends Models implements IModels {
 
     public function getPujas($id){
 
-        $resultado = $this->db->select('*', 'pujas', null, "id_subasta = $id ORDER BY monto_apostado");
+        $resultado = $this->db->select('*', 'pujas', null, "id_subasta = $id ORDER BY monto_apostado DESC");
         return $resultado;
     }
 
 
     public function getPuja($id){
 
-        $resultado = $this->db->select('MAX(monto_apostado) as monto_apostado, 
+        $resultado = $this->db->select('
+                                        p.monto_apostado, 
                                         u.id as usuario_id,
                                         u.nombre,
                                         u.apellido,
@@ -201,7 +234,9 @@ class Subastas extends Models implements IModels {
                                         u.foto', 
                                         'pujas p', 
                                         'INNER JOIN usuarios u ON (u.id = p.id_usuario)', 
-                                        "id_subasta = $id");
+                                        "id_subasta = $id ORDER BY p.id DESC");
+
+       
 
         if ($resultado['0']['monto_apostado'] == null) {
             return false;
@@ -224,6 +259,9 @@ class Subastas extends Models implements IModels {
                        'monto_apostado' => $monto );
 
         $this->db->insert('pujas',$puja);
+
+        $subasta = array('monto_actual' => $monto);
+        $this->update($id_subasta,$subasta);
 
     }
 

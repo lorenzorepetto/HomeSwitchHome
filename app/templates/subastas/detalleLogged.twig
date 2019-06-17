@@ -48,6 +48,7 @@
 
           <ul class="list-group list-group-flush">
             <li class="subasta list-group-item"><span class="glyphicon glyphicon-ok"></span> <strong> Residencia: </strong>{{ subasta.nombre }}</li>
+            <li class="subasta list-group-item"><span class="glyphicon glyphicon-ok"></span> <strong> Fecha: </strong>{{ subasta.fecha|date("d/m/Y") }}</li>
             <li class="subasta list-group-item"><span class="glyphicon glyphicon-map-marker"></span><strong> Dirección:</strong> {{ subasta.calle }} {{ subasta.altura }}, {{ subasta.ciudad }}, {{ subasta.provincia }}</li>
             <li class="subasta list-group-item"><span class="glyphicon glyphicon-user"></span> <strong>Capacidad:</strong> {{ subasta.capacidad }}</li>      
           </ul>       
@@ -99,7 +100,7 @@
 
               {% else %}
                 <ul class="list-group list-group-flush">
-                  <li class="subasta list-group-item"><span class="glyphicon glyphicon-exclamation-sign"></span><strong> La subasta comenzara el {{ subasta.fecha|date("d/m/Y") }} y terminará el día {{ subasta.fecha|date_modify("+3 day")|date("d/m/Y") }}</strong></li>
+                  <li class="subasta list-group-item"><span class="glyphicon glyphicon-exclamation-sign"></span><strong> La subasta comenzara el {{ subasta.fecha|date_modify("-6 month")|date("d/m/Y") }} y terminará el día {{ subasta.fecha|date_modify("-6 month")|date_modify("+3 day")|date("d/m/Y") }}</strong></li>
                 </ul>
 
               {% endif %}

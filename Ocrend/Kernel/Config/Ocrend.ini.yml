@@ -13,7 +13,7 @@ database:
       host: 127.0.0.1
       user: root
       pass:
-      name: homeSwitchHome
+      name: homeSwitchHomeDemo
       port: default
       socket: default
     sqlite3:
