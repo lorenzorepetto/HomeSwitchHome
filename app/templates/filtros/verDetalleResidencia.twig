@@ -38,9 +38,6 @@
 {% endblock %}
 
 {% block appContenido %}   
-  <div clasS="container">
-    <a href="http://localhost/HomeSwitchHome/"><button id="atras" class="btn btn-secondary my-2">Atrás</button></a>
-  </div> 
 		
 		<div class="border container">
 		   	 <h2 class="residencia center-block">{{ residencia.nombre }}</h2>
@@ -57,7 +54,7 @@
 
     <div class="py-5 bg-light">
       <div class="container">
-        <p class="lead text-muted">Estadias disponibles de la residencia {{ residencia.nombre }}: </p>
+        <p class="lead text-muted">Estadias/subastas disponibles para la residencia {{ residencia.nombre }}: </p>
         {% if premium == false %}
           <p class="lead text-muted animated shake" id="msj_estadias"><span class="glyphicon glyphicon-exclamation-sign"></span> Para poder adjudicar alguna estadía, usted debe ser un usuario PREMIUM.</p>
         {% else %}
@@ -70,14 +67,42 @@
             <div class="col-md-4">
               <div class="card mb-4 shadow-sm">
                 
-                <div class="card-body">
-                  <p class="card-text"><span class="glyphicon glyphicon-ok"></span><strong> Semana:</strong> {{ e.semana }}</p>
+                <div id="estadia_subasta" class="card-body">
+                  <p class="card-text"><span class="glyphicon glyphicon-ok"></span><strong> Estadía en semana:</strong> {{ e.semana }}</p>
                   <p class="card-text"><span class="glyphicon glyphicon-ok"></span><strong> Fecha inicio:</strong> {{ e.fecha|date("d/m/Y") }}</p>
+                  <p class="card-text"><span class="glyphicon glyphicon-ok"></span><strong> Fecha fin:</strong> {{ e.fecha|date_modify("+7 days")|date("d/m/Y") }}</p>
                   
                   {% if premium == false %}
-                    <a class="btn btn-secondary my-2" disabled>¡La quiero!</a>
+                    <a id="estadia_subasta" class="btn btn-secondary my-2" disabled>¡La quiero!</a>
                   {% else %}
-                    <a href="#" class="btn btn-secondary my-2">¡La quiero!</a>
+                    <a id="estadia_subasta" class="btn btn-secondary my-2">¡La quiero!</a>
+                  {% endif %}              
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+
+          {% for s in subastas %}
+
+            <div class="col-md-4">
+              <div class="card mb-4 shadow-sm">
+                
+                <div id="estadia_subasta" class="card-body">
+                  <p id="subasta" class="animated flash card-text"><span class="glyphicon glyphicon-fire"></span><strong> ¡Subasta!</p>
+                  <p class="card-text"><span class="glyphicon glyphicon-ok"></span><strong> Semana:</strong> {{ s.semana }}</p>
+                  <p class="card-text"><span class="glyphicon glyphicon-ok"></span><strong> Fecha inicio:</strong> {{ s.fecha|date("d/m/Y") }}</p>
+                  
+                  {% if premium == false %}
+                    {% if s.estado == 'ACTIVA' %}
+                      <a id="estadia_subasta" href="http://localhost/HomeSwitchHome/subastas/detalle/{{ s.id_subasta }}" class="btn btn-secondary my-2">Ir a pujar</a>
+                    {% else %}
+                      <a id="estadia_subasta" href="http://localhost/HomeSwitchHome/subastas/detalle/{{ s.id_subasta }}" class="btn btn-secondary my-2">Ver subasta</a>
+                    {% endif %}
+
+                  {% elseif s.estado == 'ACTIVA' %}
+                    <a id="estadia_subasta"  href="http://localhost/HomeSwitchHome/subastas/detalle/{{ s.id_subasta }}" class="btn btn-secondary my-2">Ir a pujar</a>
+                  {% else %}
+                    <a id="estadia_subasta" class="btn btn-secondary my-2">¡La quiero!</a>
                   {% endif %}              
                 </div>
               </div>

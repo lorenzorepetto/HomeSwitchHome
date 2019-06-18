@@ -221,8 +221,8 @@ img .perfil{
 
 #foto_detalle_residencia{
 	padding-bottom: 20px;
-	width: 100%;
-	height: 100%;
+	width: 400px;
+	height: 400px;
 }
 
 #h1_detalle{
@@ -424,8 +424,8 @@ li.subasta{
 #foto_detalle_subasta{
 	margin-bottom: 30px;
 	margin-top: 30px;
-	width: 100%;
-	height: 100%;
+	width: 350px;
+	height: 400px;
 }
 
 #card_foto_subasta{
@@ -484,4 +484,17 @@ div#home{
 
 div.panel{
 	margin-top: 15px;
+}
+
+div#estadia_subasta{
+	height: 150px;
+}
+
+a#estadia_subasta{
+	position: absolute;
+	bottom: 0;
+}
+
+p#subasta{
+	color: red;
 }
