@@ -396,10 +396,6 @@ li.residencia{
 	border-color: red;
 }
 
-#lista_usuarios{
-	margin-bottom: 5px;
-}
-
 li#rol{
 	text-align: center;
 }
@@ -471,4 +467,21 @@ footer{
 
 #div_resultados_filtro{
 	height: 250px;
+}
+
+section#backend{
+	margin-bottom: 0;
+}
+
+p#home{
+	margin-bottom: 5px;
+	margin-top: 0px;
+}
+
+div#home{
+	padding-top: 2px;
+}
+
+div.panel{
+	margin-top: 15px;
 }

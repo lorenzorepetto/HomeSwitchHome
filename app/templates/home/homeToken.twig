@@ -71,16 +71,15 @@
         <div class="row">        
           <div id="div_iniciar2_residencia" class="center-block card mb-4 shadow-sm">
             <img id="residencia_home" src="{{ subasta.foto }}" class="card-img-top">
-            <div class="card-body">
-              <p class="card-text"> Subasta en la residencia: {{ subasta.nombre }}</p>
-              <p class="card-text"><span class="glyphicon glyphicon-map-marker"></span><strong> Dirección:</strong> {{ subasta.calle }}, {{ subasta.altura }}, {{ subasta.ciudad }}, {{ subasta.provincia }}</p>
-              <p class="card-text"> Monto ganador: {{ subasta.monto_actual }}</p>
-              <p class="card-text"> Bueno no se como armar esto aiuda</p>
+            <div id="home" class="card-body">
+              <p id="home" class="lead animated flash card-text"> ¡Participe de ésta subasta imperdible!</p>
+              <p id="home" class="card-text"><span class="glyphicon glyphicon-home"></span><strong> Residencia: </strong>{{ subasta.nombre }}</p>
+              <p id="home" class="card-text"><span class="glyphicon glyphicon-map-marker"></span><strong> Dirección:</strong> {{ subasta.calle }}, {{ subasta.altura }}, {{ subasta.ciudad }}, {{ subasta.provincia }}</p>
+              <p id="home" class="card-text"><span class="glyphicon glyphicon-usd"></span><strong> Monto ganador: </strong>{{ subasta.monto_actual }}</p>
             </div>          
           </div>
         </div>
       </div>
-
     </div>
   </body>
  {% endblock %}
