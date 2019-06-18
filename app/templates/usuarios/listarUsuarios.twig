@@ -61,7 +61,7 @@
 			        <h2 class="center-block"><span class="glyphicon glyphicon-user"></span> {{ u.nombre }} {{ u.apellido }} </h2>
 			        <li class="list-group-item"><span class="glyphicon glyphicon-envelope"></span> Email: {{ u.email }}</li>
 			        <li class="list-group-item"><span class="glyphicon glyphicon-calendar"></span> Fecha de nacimiento: {{ u.fecha_nacimiento|date("d/m/y") }}</li>
-			        <li class="list-group-item"><span class="glyphicon glyphicon-calendar"></span> Fecha de regsitro: {{ u.fecha_registro|date("d/m/y") }}</li>
+			        <li class="list-group-item"><span class="glyphicon glyphicon-calendar"></span> Fecha de registro: {{ u.fecha_registro|date("d/m/y") }}</li>
 			        <li class="list-group-item"><span class="glyphicon glyphicon-phone"></span> Telefono: {{ u.telefono }}</li>
 			        <li id="rol" class="list-group-item">{{ u.rol }}</li>
 			        <p><a class="center-block btn btn-secondary" href="http://localhost/HomeSwitchHome/admin/usuarios/detalle?id={{ u.id }}" role="button">Ver detalle</a></p>

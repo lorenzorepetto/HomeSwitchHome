@@ -39,6 +39,13 @@
 
 	   	<h2 class="detalle">Detalles de la subasta</h2>
 
+      {% if operacion == 1 %}
+          <div class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong class="animated flash"> <span class='glyphicon glyphicon-ok-sign'></span> Nota:</strong> La puja se ha registrado con éxito!
+          </div>
+      {% endif %}
+
 	    <div class="col-lg-8">
         <div class_"row">
 

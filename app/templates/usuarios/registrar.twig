@@ -65,7 +65,7 @@
 
           <div class="center-block form-group form">
             <label for="password">Password:</label>  (*)
-            <input type="password" class="form-control" id="password" placeholder="Ingrese una contraseña" value="{{ password }}" name="password">
+            <input minlength="6" type="password" class="form-control" id="password" placeholder="Ingrese una contraseña" value="{{ password }}" name="password">
             <p class="animated shake" id="msjPassword1"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
             <p class="animated shake" id="msjPassword2"><span class="glyphicon glyphicon-exclamation-sign"></span> La contraseña debe contener más de 6 caracteres</p>
             

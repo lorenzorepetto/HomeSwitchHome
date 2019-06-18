@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 18-06-2019 a las 18:39:07
+-- Tiempo de generación: 18-06-2019 a las 20:59:07
 -- Versión del servidor: 10.1.40-MariaDB
 -- Versión de PHP: 7.3.5
 
@@ -57,7 +57,8 @@ INSERT INTO `estadias` (`id`, `estado`, `id_residencia`, `semana`, `fecha`) VALU
 (27, 'LIBRE', 6, 10, '2020-03-02'),
 (28, 'LIBRE', 7, 7, '2020-02-12'),
 (29, 'LIBRE', 7, 4, '2020-01-24'),
-(30, 'SUBASTA', 7, 3, '2020-01-15');
+(30, 'SUBASTA', 7, 3, '2020-01-15'),
+(31, 'SUBASTA', 3, 51, '2019-12-18');
 
 -- --------------------------------------------------------
 
@@ -172,7 +173,8 @@ INSERT INTO `subastas` (`id`, `estado`, `usuario_ganador`, `id_estadia`, `monto`
 (4, 'ACTIVA', ' ', 23, 2000, 2500),
 (5, 'ACTIVA', ' ', 15, 3500, 4500),
 (6, 'ACTIVA', ' ', 24, 1800, 2100),
-(7, 'PENDIENTE', ' ', 30, 3000, 3000);
+(7, 'PENDIENTE', ' ', 30, 3000, 3000),
+(8, 'ACTIVA', '', 31, 5000, 5000);
 
 -- --------------------------------------------------------
 
@@ -209,7 +211,7 @@ INSERT INTO `usuarios` (`id`, `email`, `password`, `nombre`, `apellido`, `fecha_
 (2, 'loren@mail.com', 'loren1234', 'Lorenzo', 'Repetto', '1994-04-28', 'app/img/usuarios/user.png', '452710', 1, 'VISA', '444', 'Lorenzo Repetto', '2021-08-16', 'ESTANDAR', 0, NULL, '2019-04-01'),
 (5, 'pieri@mail.com', 'pieri1234', 'Pierina', 'Tufillaro', '1999-01-13', 'app/img/usuarios/user.png', '411872', 0, 'VISA', '1111', '', '13/2022', 'ESTANDAR', 0, NULL, '2019-02-15'),
 (6, 'jorge@gmail.com', 'jorge1234', 'Jorge', 'Paulos', '1980-04-13', 'app/img/usuarios/jorge.jpg', '0113751314', 2, 'MASTERCARD', '8254435411', '', '04/2022', 'ESTANDAR', 0, NULL, '2019-05-10'),
-(7, 'julia@gmail.com', 'julia1234', 'Julia', 'Rosales', '1990-09-04', 'app/img/usuarios/julia.jpg', '0113441586', 2, 'VISA', '512497543', '', '04/2022', 'ESTANDAR', 0, NULL, '2019-01-12'),
+(7, 'julia@gmail.com', 'julia1234', 'Julia', 'Rosales', '1990-09-04', 'app/img/usuarios/julia.jpg', '0113441586', 2, 'VISA', '512497543', '', '04/2022', 'PREMIUM', 0, NULL, '2019-01-12'),
 (13, 'raul@gmail.com', 'raul1234', 'Raúl', 'López', '1987-04-15', 'app/img/usuarios/raul.png', '1137881012', 0, 'VISA', '111', '', '10/22', 'ESTANDAR', 0, NULL, '2019-06-15'),
 (14, 'melisa@gmail.com', 'melisa1234', 'Melisa', 'Onofri', '1999-11-05', 'app/img/usuarios/melisa.jpeg', '4586143', 2, 'MASTERCARD', '1456135', '', '05/23', 'ESTANDAR', 0, NULL, '2019-06-15');
 
@@ -268,7 +270,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `estadias`
 --
 ALTER TABLE `estadias`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT de la tabla `hotsales`
@@ -298,7 +300,7 @@ ALTER TABLE `residencias`
 -- AUTO_INCREMENT de la tabla `subastas`
 --
 ALTER TABLE `subastas`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
