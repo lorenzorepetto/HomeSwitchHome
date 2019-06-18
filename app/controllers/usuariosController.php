@@ -377,15 +377,15 @@ class usuariosController extends Controllers implements IControllers {
         $residencia = $r->getResidencia($id)[0];
         $estadias = $r->getEstadias($id);
         $premium=false;
+
         
-        if ($_SESSION['rol'] != 'ADMINISTRADOR') {
-            if ($_SESSION['rol'] == 'PREMIUM') {
+        if (isset($_SESSION['id']) && $_SESSION['rol'] != 'ADMINISTRADOR'){
+            if ($_SESSION['rol'] == 'PREMIUM'){
                 $premium=true;
             }
         }else{
             $this->template->display('home/home');  
         }
-
         $data = array('residencia' => $residencia, 'estadias' => $estadias, 'premium' => $premium);
         $this->template->display('filtros/verDetalleResidencia', $data);
 
