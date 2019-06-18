@@ -175,6 +175,7 @@ class Subastas extends Models implements IModels {
                                         e.semana,
                                         e.fecha,
                                         r.id as id_residencia,
+                                        r.calle,
                                         r.ciudad,
                                         r.provincia, 
                                         r.altura,

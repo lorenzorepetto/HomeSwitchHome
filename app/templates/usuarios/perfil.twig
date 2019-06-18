@@ -54,7 +54,7 @@
         <li class="perfil list-group-item"><span class="glyphicon glyphicon-user"></span><strong> Tipo de usuario:</strong> {{ rol }}</li>
         <li class="perfil list-group-item"><span class="glyphicon glyphicon-earphone"></span><strong> Teléfono:</strong> {{ telefono }}</li>
         <li class="perfil list-group-item"><span class="glyphicon glyphicon-calendar"></span><strong> Fecha de nacimiento:</strong> {{ fecha_nacimiento|date("d/m/Y") }}</li>
-        <li class="perfil list-group-item"><span class="glyphicon glyphicon-usd"></span><strong> Créditos:</strong> <span class="badge badge-primary badge-pill creditos">{{ creditos }}</span> &nbsp;Vencimiento: {{ fecha_registro|date_modify("+1 year")|date("d/m/Y") }}</li>
+        <li class="perfil list-group-item"><span class="glyphicon glyphicon-usd"></span><strong> Créditos:</strong> <span class="badge badge-primary badge-pill creditos">{{ creditos }}{% if creditos > 0 %}</span> &nbsp;Vencimiento: {{ fecha_registro|date_modify("+1 year")|date("d/m/Y") }}</li>{% endif %}
         <li class="perfil list-group-item"><span class="glyphicon glyphicon-envelope"></span> <strong>Marca tarjeta:</strong> {{ marca_tarjeta }}</li>
         <li class="perfil list-group-item">
           <div class="row center-block">

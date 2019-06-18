@@ -59,7 +59,7 @@
         <li class="perfil list-group-item"><span class="glyphicon glyphicon-earphone"></span><strong> Teléfono:</strong> {{ usuario.telefono }}</li>
         <li class="perfil list-group-item"><span class="glyphicon glyphicon-calendar"></span><strong> Fecha de nacimiento:</strong> {{ usuario.fecha_nacimiento|date("d/m/Y") }}</li>
         <li class="perfil list-group-item"><span class="glyphicon glyphicon-calendar"></span><strong> Fecha de registro:</strong> {{ usuario.fecha_registro|date("d/m/Y") }}</li>
-        <li class="perfil list-group-item"><span class="glyphicon glyphicon-usd"></span><strong> Créditos:</strong> <span class="badge badge-primary badge-pill creditos">{{ usuario.creditos }}</span> &nbsp;Vencimiento: {{ fecha_registro|date_modify("+1 year")|date("d/m/Y") }}</li>
+        <li class="perfil list-group-item"><span class="glyphicon glyphicon-usd"></span><strong> Créditos:</strong> <span class="badge badge-primary badge-pill creditos">{{ usuario.creditos }}</span>{% if usuario.creditos > 0 %}&nbsp;Vencimiento: {{ fecha_registro|date_modify("+1 year")|date("d/m/Y") }}{% endif %}</li>
         <li class="perfil list-group-item"><span class="glyphicon glyphicon-envelope"></span> <strong>Marca tarjeta:</strong> {{ usuario.marca_tarjeta }}</li>
         <li class="perfil list-group-item">
           <div class="row center-block">
