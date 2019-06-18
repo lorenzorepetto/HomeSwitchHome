@@ -75,8 +75,6 @@ class filtrosController extends Controllers implements IControllers {
 
         $data = array('residencia' => $residencia, 'estadias' => $estadias, 'subastas' => $subastas, 'premium' => $premium);
 
-        dump($data);
-
         $this->template->display('filtros/verDetalleResidencia', $data);
     }
 
