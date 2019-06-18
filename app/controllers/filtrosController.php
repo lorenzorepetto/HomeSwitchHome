@@ -26,6 +26,9 @@ class filtrosController extends Controllers implements IControllers {
 
     public function __construct(IRouter $router) {
         parent::__construct($router);
+        
+        $router->setRoute('/fecha_desde');
+        $router->setRoute('/fecha_hasta');
 
 
         $f = new Model\Filtros;
@@ -37,15 +40,46 @@ class filtrosController extends Controllers implements IControllers {
         switch ($router->getMethod()) {
         	
         	case 'filtrarEstadias':
+
         		$this->filtrarEstadias($f);
         		break;
         	
+            case 'detalleResidencia':
+                $this->detalleResidencia($r,$f,$router->getId(),$router->getRoute('/fecha_desde'),$router->getRoute('/fecha_hasta'));
+                break;
+
         	default:
         		# code...
         		break;
         }
       
     }
+
+
+    
+    public function detalleResidencia($r,$f,$id,$desde,$hasta){
+        
+        $residencia = $r->getResidencia($id)[0];
+        $estadias = $f->getEstadias($id,$desde,$hasta);
+        $subastas = $f->getSubastas($id,$desde,$hasta);
+        $premium=false;
+        
+
+        if (isset($_SESSION['id']) && $_SESSION['rol'] != 'ADMINISTRADOR'){
+            if ($_SESSION['rol'] == 'PREMIUM'){
+                $premium=true;
+            }
+        }else{
+            $this->template->display('home/home');  
+        }
+
+        $data = array('residencia' => $residencia, 'estadias' => $estadias, 'subastas' => $subastas, 'premium' => $premium);
+
+        dump($data); exit;
+
+        $this->template->display('filtros/verDetalleResidencia', $data);
+    }
+
 
 
     public function filtrarEstadias($f){
