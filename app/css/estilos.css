@@ -34,9 +34,11 @@ height: 140px;
 
 #div_registrar{
 	background-color: #e6e6ff;
-	width: 800px;
+	width: 95%;
 	border-radius: 15px;
 }
+
+
 
 #div_iniciar{
 	background-color: #e6e6ff;
@@ -88,7 +90,7 @@ div .input_tarjeta{
 	text-align: justify;
 }
 
-#msjEmail, #msjPassword1, #msjPassword2, #msjToken1, #msjToken2, #msjNombre, #msjApellido, #msjFecha_nacimiento, #msjTelefono, #msjMarca, #msjNumero, #msjVencimiento, #msjTitular, #errorPujaVacia, #errorPujaMonto{
+#msjEmail, #msjPassword1, #msjPassword2, #msjToken1, #msjToken2, #msjNombre, #msjApellido, #msjFecha_nacimiento, #msjTelefono, #msjMarca, #msjNumero, #msjVencimiento, #msjNumeroCantDigitos, #msjTitular, #errorPujaVacia, #errorPujaMonto{
 	display:none;
 }
 

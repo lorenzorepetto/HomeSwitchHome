@@ -56,84 +56,115 @@
 
           <span class="glyphicon glyphicon-exclamation-sign"></span> Campos obligatorios (*)</p>
 
-          <div class="center-block form-group form">
-            <label for="email">Email adress:</label>  (*)
-            <input type="email" class="form-control" id="email" placeholder="Ingrese su email" value="{{ email }}" name="email">
-            <p class="animated shake" id="msjEmail"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
-            
-          </div>
+          <label>Información de la cuenta: </label>
+          <br><br>
 
-          <div class="center-block form-group form">
-            <label for="password">Password:</label>  (*)
-            <input minlength="6" type="password" class="form-control" id="password" placeholder="Ingrese una contraseña" value="{{ password }}" name="password">
-            <p class="animated shake" id="msjPassword1"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
-            <p class="animated shake" id="msjPassword2"><span class="glyphicon glyphicon-exclamation-sign"></span> La contraseña debe contener más de 6 caracteres</p>
-            
-          </div>
+            <div class="row"> 
+          
+              <div class="col">
 
-          <div class="center-block form-group form">
-            <div class="row">
-                <div class="col">
-                  <label for="nombre">Nombre:</label>  (*)
-                  <input type="text" class="form-control" pattern="[A-Za-z ñÑáéíóúÁÉÍÓÚ\s]+" title="Ingrese sólo letras" id="nombre" placeholder="Ingrese su nombre" name="nombre" value="{{ nombre }}"><p class="animated shake" id="msjNombre"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
-                    
+                <div class="center-block form-group form">
+                  <label for="email">Email adress:</label>  (*)
+                  <input type="email" class="form-control" id="email" placeholder="Ingrese su email" value="{{ email }}" name="email">
+                  <p class="animated shake" id="msjEmail"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
+                  
                 </div>
-                <div class="col">
-                  <label for="apellido">Apellido:</label>  (*)
-                  <input type="text" class="form-control" id="apellido" placeholder="Ingrese su apellido" value="{{ apellido }}" name="apellido" pattern="[A-Za-z ñÑáéíóúÁÉÍÓÚ\s]+" title="Ingrese sólo letras">
-                  <p class="animated shake" id="msjApellido"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
-                    
+
+                <div class="center-block form-group form">
+                  <label for="password">Password:</label>  (*)
+                  <input minlength="6" type="password" class="form-control" id="password" placeholder="Ingrese una contraseña" value="{{ password }}" name="password">
+                  <p class="animated shake" id="msjPassword1"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
+                  <p class="animated shake" id="msjPassword2"><span class="glyphicon glyphicon-exclamation-sign"></span> La contraseña debe contener más de 6 caracteres</p>
+                  
                 </div>
-            </div>
-          </div>
 
-          <div class="center-block form-group form">
-            <label for="fecha_nacimiento">Fecha nacimiento:</label>  (*)
-            <input type="date" class="form-control" id="fecha_nacimiento" value="{{ fecha_nacimiento }}" name="fecha_nacimiento">
-            <p class="animated shake" id="msjFecha_nacimiento"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
-      
-          </div>
+                <div class="center-block form-group form">
+                  <label for="foto">Foto de perfil:</label>
+                  <input type="file" class="form-control-file border" id="foto" name="foto">
+                </div>
 
-          <div class="center-block form-group form">
-            <label for="foto">Foto de perfil:</label>
-            <input type="file" class="form-control-file border" id="foto" name="foto">
-          </div>
+              </div>  
 
-          <div class="center-block form-group form">
-            <label for="telefono">Telefono:</label>  (*)
-            <input type="number" class="form-control" id="telefono" placeholder="Ingrese su telefono" value="{{ telefono }}" name="telefono">
-            <p class="animated shake" id="msjTelefono"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
+
+              <div class="col">
+
+                <div class="center-block form-group form">
+                  <div class="row">
+                      <div class="col">
+                        <label for="nombre">Nombre:</label>  (*)
+                        <input type="text" class="form-control" pattern="[A-Za-z ñÑáéíóúÁÉÍÓÚ\s]+" title="Ingrese sólo letras" id="nombre" placeholder="Ingrese su nombre" name="nombre" value="{{ nombre }}"><p class="animated shake" id="msjNombre"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
+                          
+                      </div>
+                      <div class="col">
+                        <label for="apellido">Apellido:</label>  (*)
+                        <input type="text" class="form-control" id="apellido" placeholder="Ingrese su apellido" value="{{ apellido }}" name="apellido" pattern="[A-Za-z ñÑáéíóúÁÉÍÓÚ\s]+" title="Ingrese sólo letras">
+                        <p class="animated shake" id="msjApellido"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
+                          
+                      </div>
+                  </div>
+                </div>
+
+                <div class="center-block form-group form">
+                  <label for="fecha_nacimiento">Fecha nacimiento:</label>  (*)
+                  <input type="date" class="form-control" id="fecha_nacimiento" value="{{ fecha_nacimiento }}" name="fecha_nacimiento">
+                  <p class="animated shake" id="msjFecha_nacimiento"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
             
-          </div>
-          <label>Información de la tarjeta: </label>  (*)
-          <div class="center-block form-group form">
+                </div>
+
+                <div class="center-block form-group form">
+                  <label for="telefono">Telefono:</label>  (*)
+                  <input type="number" class="form-control" id="telefono" placeholder="Ingrese su telefono" value="{{ telefono }}" name="telefono">
+                  <p class="animated shake" id="msjTelefono"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
+                  
+                </div>
+
+              </div>
+
+            </div> <!-- cierre del row -->
+            <br><br>
+
+          
+
+              <label>Información de la tarjeta: </label>
+              <br><br>
+
             <div class="row">
-              <div class="col-md-3 input_tarjeta">
-                
-                <input type="text" class="form-control" id="marca_tarjeta" pattern="[A-Za-z ñÑáéíóúÁÉÍÓÚ\s]+" title="Ingrese sólo letras" placeholder="Marca" value="{{ marca_tarjeta }}" name="marca_tarjeta">
-                <p class="animated shake" id="msjMarca"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
+              
+              <div class="col">
+                 
+                  <div class="center-block form-group form">                    
+                      <label for="marca_tarjeta">Marca:</label>  (*)
+                      <input type="text" class="form-control" id="marca_tarjeta" pattern="[A-Za-z ñÑáéíóúÁÉÍÓÚ\s]+" title="Ingrese sólo letras" placeholder="Marca" value="{{ marca_tarjeta }}" name="marca_tarjeta">
+                      <p class="animated shake" id="msjMarca"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
+                  </div>
+
+                  <div class="center-block form-group form">      
+                      <label for="numero_tarjeta">Número:</label>  (*)
+                      <input type="number" maxlength="16" class="form-control" id="numero_tarjeta" placeholder="Número" value="{{ numero_tarjeta }}" name="numero_tarjeta">
+                      <p class="animated shake" id="msjNumero"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
+                      <p class="animated shake" id="msjNumeroCantDigitos"><span class="glyphicon glyphicon-exclamation-sign"></span> Debe ingresar exactamente 16 dígitos.</p>
+                  </div>
+              </div>    
                
+
+              <div class="col">
+
+                  <div class="center-block form-group form">  
+                      <label for="titular_tarjeta">Titular:</label>  (*)
+                      <input type="text" class="form-control" id="titular_tarjeta" pattern="[A-Za-z ñÑáéíóúÁÉÍÓÚ\s]+" title="Ingrese solo letras" placeholder="Titular" value="{{ titular_tarjeta }}" name="titular_tarjeta">
+                      <p class="animated shake" id="msjTitular"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
+                  </div>
+
+                  <div class="center-block form-group form">    
+                      <label for="vencimiento_tarjeta">Vencimiento:</label>  (*)
+                      <input type="month" class="form-control" id="fecha_vencimiento_tarjeta" placeholder="Vencimiento" value="{{ vencimiento_tarjeta }}" name="fecha_vencimiento_tarjeta">
+                      <p class="animated shake" id="msjVencimiento"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
+                  </div>
+                              
               </div>
-              <div class="col-md-3 input_tarjeta">
-                
-                <input type="number" class="form-control" id="numero_tarjeta" placeholder="Número" value="{{ numero_tarjeta }}" name="numero_tarjeta">
-                <p class="animated shake" id="msjNumero"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
-                
-              </div>
-              <div class="col-md-3 input_tarjeta">
-                
-                <input type="text" class="form-control" id="titular_tarjeta" pattern="[A-Za-z ñÑáéíóúÁÉÍÓÚ\s]+" title="Ingrese solo letras" placeholder="Titular" value="{{ titular_tarjeta }}" name="titular_tarjeta">
-                <p class="animated shake" id="msjTitular"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
-                
-              </div>
-            <div class="col-md-3 input_tarjeta">
-              
-              <input type="text" class="form-control" id="fecha_vencimiento_tarjeta" placeholder="Vencimiento" value="{{ vencimiento_tarjeta }}" name="fecha_vencimiento_tarjeta">
-              <p class="animated shake" id="msjVencimiento"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
-              
+            
             </div>
-          </div>
-        </div>       
+        <br>
         <button type="submit" class="btn btn-secondary">Registrarse</button>
       </form>
       <br>

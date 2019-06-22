@@ -51,6 +51,7 @@ function validarRegistrar(){
     document.getElementById("msjTitular").style.display = "block";
     document.getElementById("msjVencimiento").style.display = "block";
     document.getElementById("msjNumero").style.display = "block";
+    document.getElementById("msjNumeroCantDigitos").style.display = "none";
     return false;
   }else if (pass.length < 6){
       document.getElementById("msjEmail").style.display = "none";
@@ -64,8 +65,24 @@ function validarRegistrar(){
       document.getElementById("msjVencimiento").style.display = "none";
       document.getElementById("msjNumero").style.display = "none";
       document.getElementById("msjPassword2").style.display = "block";
+      document.getElementById("msjNumeroCantDigitos").style.display = "none";
+      return false;
+   }else if (numero_tarjeta.length != 16) {
+      document.getElementById("msjEmail").style.display = "none";
+      document.getElementById("msjNombre").style.display = "none";
+      document.getElementById("msjPassword1").style.display = "none";
+      document.getElementById("msjApellido").style.display = "none";
+      document.getElementById("msjTelefono").style.display = "none";
+      document.getElementById("msjFecha_nacimiento").style.display = "none";
+      document.getElementById("msjMarca").style.display = "none";
+      document.getElementById("msjTitular").style.display = "none";
+      document.getElementById("msjVencimiento").style.display = "none";
+      document.getElementById("msjNumero").style.display = "none";
+      document.getElementById("msjPassword2").style.display = "none";
+      document.getElementById("msjNumeroCantDigitos").style.display = "block";
       return false;
    }
+
   return true;
 
 }
