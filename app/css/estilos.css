@@ -500,3 +500,17 @@ a#estadia_subasta{
 p#subasta{
 	color: red;
 }
+
+p#tarjetas_perfil{
+	margin-left: 15px;
+}
+
+ul#lista_tarjeta{
+	margin-left: 20px;
+}
+
+li.list-group-item.active, li.list-group-item.active:hover{
+	background-color: #000d1a;
+	border-color: #000d1a;
+}
+

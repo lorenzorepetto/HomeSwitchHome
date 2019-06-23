@@ -24,6 +24,7 @@ use Ocrend\Kernel\Router\IRouter;
  */
 class Usuarios extends Models implements IModels {
     use DBModel;
+    
 
     /**
      * Respuesta generada por defecto para el endpoint
@@ -47,6 +48,7 @@ class Usuarios extends Models implements IModels {
     public function __construct(IRouter $router = null) {
         parent::__construct($router);
 		$this->startDBConexion();
+        
     }
 
     
@@ -143,8 +145,8 @@ class Usuarios extends Models implements IModels {
 
    
     
-    public function insertar(){
-        
+    public function insertar($t){
+    
 
         if (is_uploaded_file($_FILES["foto"]["tmp_name"])) {
             $nombrefoto = $_FILES["foto"]["name"];
@@ -167,14 +169,20 @@ class Usuarios extends Models implements IModels {
             'foto' => $foto,
             'telefono' => $_POST['telefono'],
             'creditos' => 2,
-            'marca_tarjeta' => $_POST['marca_tarjeta'],
-            'numero_tarjeta' => $_POST['numero_tarjeta'],
-            'fecha_vencimiento_tarjeta' => $_POST['fecha_vencimiento_tarjeta'],
             'rol' => "ESTANDAR", 
             'fecha_registro' => $fecha_registro
         );
 
-        $this->db->insert('usuarios',$u);
+        $id_usuario=$this->db->insert('usuarios',$u);
+
+        $tarjeta = array ('marca' => $_POST['marca_tarjeta'],
+                            'numero' => $_POST['numero_tarjeta'],
+                            'vencimiento' => $_POST['fecha_vencimiento_tarjeta'],
+                            'titular' => $_POST['titular_tarjeta'], 
+                            'id_usuario' => $id_usuario, 
+                            'principal' => true );
+
+        $t->insertar($tarjeta);
 
     }
 

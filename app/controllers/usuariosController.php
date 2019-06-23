@@ -32,6 +32,7 @@ class usuariosController extends Controllers implements IControllers {
         $s = new Model\Subastas;
         $e = new Model\Estadias;
         $r = new Model\Residencias;
+        $t = new Model\Tarjeta;
                
         switch ($router->getMethod()) {
 
@@ -71,7 +72,7 @@ class usuariosController extends Controllers implements IControllers {
                             break;
             
                         case 'insertar':
-                            $this->insertar($u);
+                            $this->insertar($u, $t);
                             break;
 
 
@@ -91,7 +92,7 @@ class usuariosController extends Controllers implements IControllers {
                 switch ($router->getId()) {
 
                     case 'perfil':
-                        $this->perfil($u);
+                        $this->perfil($u, $t);
                         break;
 
                     case 'modificar_perfil':
@@ -224,7 +225,7 @@ class usuariosController extends Controllers implements IControllers {
     */    
 
 
-    public function insertar($u){
+    public function insertar($u, $t){
 
         $email=$_POST['email'];
         $password=$_POST['password'];
@@ -267,7 +268,7 @@ class usuariosController extends Controllers implements IControllers {
 
         if (!$errores['email_existente'] && !$errores['edad_invalida']) {
             //Registro exitoso
-            $u->insertar();
+            $u->insertar($t);
             $errores['sin_error'] = 1;
         }
 
@@ -286,7 +287,7 @@ class usuariosController extends Controllers implements IControllers {
     
     */
 
-    public function perfil($u){
+    public function perfil($u, $t){
                 
         if (isset($_SESSION['id'])) {
             
@@ -305,13 +306,15 @@ class usuariosController extends Controllers implements IControllers {
                 'creditos' => $resultado['0']['creditos'],
                 'rol' => $resultado['0']['rol'],
                 'telefono' => $resultado['0']['telefono'],
-                'fecha_nacimiento' => $resultado['0']['fecha_nacimiento'],
-                'marca_tarjeta' => $resultado['0']['marca_tarjeta'], 
+                'fecha_nacimiento' => $resultado['0']['fecha_nacimiento'], 
                 'fecha_registro' => $resultado['0']['fecha_registro']
                  );
+
+                $tarjetas= $t->getTarjetas($id);
             }
 
-            $this->template->display('usuarios/perfil', $usuario);
+            $data = array('usuario' => $usuario, 'tarjetas' => $tarjetas );
+            $this->template->display('usuarios/perfil', $data);
         }
         else{
             $this->template->display('home/home');    
