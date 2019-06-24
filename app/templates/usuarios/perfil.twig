@@ -32,7 +32,7 @@
     </ul>
   </nav>
 
-  </div> 
+  </div>
 {% endblock %}
 
 {% block carrousel %}
@@ -43,10 +43,10 @@
     <div class="container">
       <a href="http://localhost/HomeSwitchHome"><button id="atras" class="btn btn-secondary my-2">Atrás</button></a>
     </div>
-		
+
 	<div class="border container">
     <div class="container center-block">
-      <h2 class="perfil center-block">{{ usuario.nombre }} {{ usuario.apellido }}</h2>     
+      <h2 class="perfil center-block">{{ usuario.nombre }} {{ usuario.apellido }}</h2>
     </div>
     <div class_"row">
       <ul class="list-group list-group-flush col-lg-8">
@@ -56,21 +56,27 @@
         <li class="perfil list-group-item"><span class="glyphicon glyphicon-calendar"></span><strong> Fecha de nacimiento:</strong> {{ usuario.fecha_nacimiento|date("d/m/Y") }}</li>
         <li class="perfil list-group-item"><span class="glyphicon glyphicon-usd"></span><strong> Créditos:</strong> <span class="badge badge-primary badge-pill creditos">{{ usuario.creditos }}{% if usuario.creditos > 0 %}</span> &nbsp;Vencimiento: {{ usuario.fecha_registro|date_modify("+1 year")|date("d/m/Y") }}</li>{% endif %}
 
-        {% if tarjetas != null %}       
+        {% if tarjetas != null %}
 
-          <p id="tarjetas_perfil" class="lead text-muted">Mis tarjetas asociadas: </p>
+          <p id="tarjetas_perfil" class="lead">Mis tarjetas asociadas: </p>
 
-          <ul id="lista_tarjeta" class="list-group col-lg-8">
+          <ul id="lista_tarjeta" class="list-group">
 
             {% for t in tarjetas %}
 
               {% if t.principal == 1 %}
 
-                <li id="tarjeta_principal" class="perfil list-group-item active col-lg-8">Número: {{ t.numero }}</li>
+                <li id="tarjeta_principal" class="perfil list-group-item active">Número: {{ t.numero }}</li>
 
               {% else %}
 
-                <li class="perfil list-group-item col-lg-8">Número: {{ t.numero }}</li>
+                <li class="perfil list-group-item">
+                  <div class="row">
+                    <p id="numero">Número: {{ t.numero }}</p>
+                    <a id="cambiar_principal" class="center-block" href="http://localhost/HomeSwitchHome/usuarios/operaciones/modificar_perfil?id={{ usuario.id }}"><button id="atras" class="center-block btn btn-secondary my-2">Cambiar a principal</button></a>
+                    <a id="trash" title="Eliminar tarjeta" href="http://localhost/HomeSwitchHome/usuarios/operaciones/eliminarTarjeta?id_tarjeta={{ t.id }}" onclick="return confirmation();"><span id="trash" class="glyphicon glyphicon-trash"></span></a>
+                  </div>
+                </li>
 
               {% endif %}
 
@@ -79,7 +85,7 @@
           </ul>
 
         {% endif %}
-        
+
 
         <li class="perfil list-group-item">
           <div class="row center-block">
@@ -87,7 +93,8 @@
             {% if usuario.rol == "ESTANDAR" %}
               <a class="col-sm-3 center-block" href="http://localhost/HomeSwitchHome"><button id="atras" class="center-block btn btn-secondary my-2">¡Quiero ser Premium!</button></a>
             {% endif %}
-            <a class="col-sm-3 center-block" href="http://localhost/HomeSwitchHome/usuarios/operaciones/modificar_perfil?id={{ usuario.id }}"><button id="atras" class="center-block btn btn-secondary my-2">Modificar mi perfil</button></a>
+            <a id="modificar" class="col-sm-3 center-block" href="http://localhost/HomeSwitchHome/usuarios/operaciones/modificar_perfil?id={{ usuario.id }}"><button id="atras" class="center-block btn btn-secondary my-2">Modificar mi perfil</button></a>
+            <a class="col-sm-3 center-block" href="http://localhost/HomeSwitchHome/usuarios/operaciones/modificar_perfil?id={{ usuario.id }}"><button id="atras" class="center-block btn btn-secondary my-2">Cambiar contraseña</button></a>
           </div>
         </li>
       </ul>
@@ -100,5 +107,3 @@
 {% endblock %}
 
 {% endblock %}
-
-

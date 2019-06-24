@@ -31,112 +31,65 @@
     </ul>
   </nav>
 
-  </div> 
+  </div>
 {% endblock %}
 
 {% block carrousel %}
 
   <body class="text-center" id="body_registrar">
-      <div class="container" id="div_agregar_residencia">  
+      <div class="container" id="div_modificar_perfil">
         <br>
 
-        <form action="http://localhost/HomeSwitchHome/usuarios/perfil/modificar?id_usuario={{ id }}" enctype="multipart/form-data" onsubmit="return validarModificarPerfil();" method="post">
+        <form action="http://localhost/HomeSwitchHome/usuarios/modificar_perfil/{{ usuario.id }}" enctype="multipart/form-data" onsubmit="return validarModificarPerfil();" method="post">
           <img class="bd-placeholder-img rounded-circle" src="app/img/HSH-Logo.jpg" alt="" width="90" height="90">
-
-          {% if nombre_existente == 1 %}
-            <div class="alert alert-danger alert-dismissible">
-              <button type="button" class="close" data-dismiss="alert">&times;</button>
-              <strong class="animated flash"><span class="glyphicon glyphicon-exclamation-sign"></span> Error: </strong> No se puede editar la residencia porque ya existe una con ese nombre.
-            </div>
-          {% endif %}
 
           {% if sin_error == 1 %}
             <div class="alert alert-success alert-dismissible">
               <button type="button" class="close" data-dismiss="alert">&times;</button>
               <strong class="animated flash"> <span class='glyphicon glyphicon-ok-sign'></span> Nota:</strong> La información del perfil se ha modificado con éxito!
-              <a class="comun" href="http://localhost/HomeSwitchHome/admin/operaciones/editarResidencias"> Volver atrás</a>
             </div>
           {% endif %}
 
-
-
           <h1 id="titulo_form"class="h3 mb-3 font-weight-normal animated flash">Ingrese los nuevos datos para actualizar el perfil:</h1>
 
-          <span class="glyphicon glyphicon-exclamation-sign"></span> Tenga en cuenta que debe modificar al menos un campo</p>
-          
+          <p><span class="glyphicon glyphicon-exclamation-sign"></span> Tenga en cuenta que debe modificar al menos un campo</p>
 
-          <div class="center-block form-group form">
-            <label for="nombreP">Nombre:</label>
-            <input type="text" pattern="[A-Za-z ñÑáéíóúÁÉÍÓÚ\s]+" title="Ingrese sólo letras" class="form-control" id="nombreP" placeholder="{{ nombre }}" value="{{ nombre }}" name="nombreP" oninput="habilitarSubmit();">
-            <p class="animated shake" id="msjNombreP"><span class="glyphicon glyphicon-exclamation-sign"></span> Debe ingresar solo letras.</p>
-            
-          </div>
+          <div class="container-fluid">
 
-          <div class="center-block form-group form">
-            <label for="apellidoP">Apellido:</label>
-            <input type="text" pattern="[A-Za-z ñÑáéíóúÁÉÍÓÚ\s]+" title="Ingrese sólo letras" class="form-control" id="apellidoP" placeholder="{{ apellido }}" value="{{ apellido }}" name="apellidoP" oninput="habilitarSubmit();">
-            <p class="animated shake" id="msjApellidoP"><span class="glyphicon glyphicon-exclamation-sign"></span> Debe ingresar solo letras.</p>
-            
-          </div>
+            <div class="container-fluid center-block form-group form">
+              <label for="nombreP">Nombre:</label>
+              <input type="text" pattern="[A-Za-z ñÑáéíóúÁÉÍÓÚ\s]+" title="Ingrese sólo letras" class="form-control" id="nombreP" placeholder="{{ usuario.nombre }}" value="{{ usuario.nombre }}" name="nombreP" oninput="habilitarSubmit();">
+              <p class="animated shake" id="msjNombreP"><span class="glyphicon glyphicon-exclamation-sign"></span> Debe ingresar solo letras.</p>
 
-          <div class="center-block form-group form">
-            <label for="newPasswordP">Nueva contraseña:</label> 
-
-            <input type="newPasswordP" class="form-control" oninput="habilitarSubmit();" id="newPasswordP" placeholder="Ingrese una contraseña nueva" value="{{ newPassword}}" name="newPasswordP">
-            <p class="animated shake" id="msjPasswordP"><span class="glyphicon glyphicon-exclamation-sign"></span> La contraseña nueva debe contener más de 6 caracteres</p>
-            
-          </div>
-
-          <div class="center-block form-group form">
-            <label for="telefonoP">Telefono:</label>
-            <input type="number" min="1" class="form-control" oninput="habilitarSubmit();" id="telefonoP" placeholder="{{ telefono }}" value="{{ telefono }}" name="telefonoP">
-            <p class="animated shake" id="msjTelefonoP"><span class="glyphicon glyphicon-exclamation-sign"></span> Debe ingresar solo números.</p>
-            
-          </div>
-
-          <div class="center-block form-group form">
-            <label for="fotoP">Foto de perfil:</label>
-            <input type="file" class="form-control-file border" value="{{ foto }}" oninput="habilitarSubmit();" id="fotoP" name="fotoP">
-		        
-          </div>
-
-          <div class="center-block form-group form">
-            <label for="fecha_nacimientoP">Fecha nacimiento:</label> 
-            <input type="date" class="form-control" oninput="habilitarSubmit();" id="fecha_nacimientoP" value="{{ fecha_nacimiento }}" name="fecha_nacimientoP">
-      
-          </div>
-
-          <label>Información de la tarjeta: </label>
-          <!-- falta poner solo numeros en numero_tarjeta y solo letras en marca_ tarjeta y titular_tarjeta -->
-          <div class="center-block form-group form">
-            <div class="row">
-              <div class="col-md-3 input_tarjeta">
-                
-                <input type="text" class="form-control" oninput="habilitarSubmit();" id="marca_tarjeta" placeholder="Marca" value="{{ marca_tarjeta }}" name="marca_tarjeta">
-               
-              </div>
-              <div class="col-md-3 input_tarjeta">
-                
-                <input type="number" min="1" class="form-control" oninput="habilitarSubmit();" id="numero_tarjeta" placeholder="Número" value="{{ numero_tarjeta }}" name="numero_tarjeta">   
-                
-              </div>
-              <div class="col-md-3 input_tarjeta">
-                
-                <input type="text" class="form-control" oninput="habilitarSubmit();" id="titular_tarjeta" placeholder="{{ titular_tarjeta }}" value="{{ titular_tarjeta }}" name="titular_tarjeta">   
-                
-              </div>
-
-              <div class="col-md-3 input_tarjeta">
-              
-              	<input type="text" class="form-control" oninput="habilitarSubmit();" id="fecha_vencimiento_tarjeta" placeholder="{{ fecha_vencimiento_tarjeta }}" value="{{ fecha_vencimiento_tarjeta }}" name="fecha_vencimiento_tarjeta">
-              </div>
-              
             </div>
-          </div>
-          <br>
-	      
 
-	       <button id="submitModificar" type="submit" class="btn btn-secondary" disabled>Modificar perfil</button>
+            <div class="container-fluid center-block form-group form">
+              <label for="apellidoP">Apellido:</label>
+              <input type="text" pattern="[A-Za-z ñÑáéíóúÁÉÍÓÚ\s]+" title="Ingrese sólo letras" class="form-control" id="apellidoP" placeholder="{{ usuario.apellido }}" value="{{ usuario.apellido }}" name="apellidoP" oninput="habilitarSubmit();">
+              <p class="animated shake" id="msjApellidoP"><span class="glyphicon glyphicon-exclamation-sign"></span> Debe ingresar solo letras.</p>
+
+            </div>
+
+            <div class="container-fluid center-block form-group form">
+              <label for="telefonoP">Telefono:</label>
+              <input type="number" min="1" class="form-control" oninput="habilitarSubmit();" id="telefonoP" placeholder="{{ usuario.telefono }}" value="{{ usuario.telefono }}" name="telefonoP">
+              <p class="animated shake" id="msjTelefonoP"><span class="glyphicon glyphicon-exclamation-sign"></span> Debe ingresar solo números.</p>
+
+            </div>
+
+            <div class="container-fluid center-block form-group form">
+              <label for="fotoP">Foto de perfil:</label>
+              <input type="file" class="form-control-file border" oninput="habilitarSubmit();" id="fotoP" name="fotoP">
+
+            </div>
+
+            <div class="container-fluid center-block form-group form">
+              <label for="fecha_nacimientoP">Fecha nacimiento:</label>
+              <input type="date" class="form-control" oninput="habilitarSubmit();" id="fecha_nacimientoP" value="{{ usuario.fecha_nacimiento }}" name="fecha_nacimientoP">
+
+            </div>
+            <br>
+  	        <button id="submitModificar" type="submit" class="btn btn-secondary" disabled>Modificar perfil</button>
 
           </div>
 
@@ -151,7 +104,7 @@
 {% block appContenido %}
 
 {% endblock %}
-    
+
 {% block appBody %}
 
 {% endblock %}

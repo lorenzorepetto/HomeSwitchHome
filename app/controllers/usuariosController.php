@@ -26,51 +26,51 @@ class usuariosController extends Controllers implements IControllers {
 
     public function __construct(IRouter $router) {
         parent::__construct($router);
-        
+
         #Instancio un objeto Usuario
         $u = new Model\Usuarios;
         $s = new Model\Subastas;
         $e = new Model\Estadias;
         $r = new Model\Residencias;
         $t = new Model\Tarjeta;
-               
+
         switch ($router->getMethod()) {
 
             case 'cuenta':
-                
+
                     switch ($router->getId()) {
 
                         case 'iniciar':
                             echo $this->template->display('home/home');
                             break;
-                        
+
                         case 'logout':
-                            $this->logout();    
-                            break;  
+                            $this->logout();
+                            break;
 
                         case 'autenticar':
                             $this->autenticar($u);
                             break;
 
-                        
+
                         default:
                             echo $this->template->display('home/home');
                             break;
-                        
+
                     }
 
             break;
 
 
-        	
+
             case 'registro':
-                
+
                     switch ($router->getId()) {
 
                         case 'registrar':
                             echo $this->template->display('usuarios/registrar');
                             break;
-            
+
                         case 'insertar':
                             $this->insertar($u, $t);
                             break;
@@ -79,16 +79,16 @@ class usuariosController extends Controllers implements IControllers {
                         default:
                             echo $this->template->display('home/home');
                             break;
-                        
+
                     }
 
 
                 break;
 
 
-        	
+
             case 'operaciones':
-                
+
                 switch ($router->getId()) {
 
                     case 'perfil':
@@ -97,7 +97,7 @@ class usuariosController extends Controllers implements IControllers {
 
                     case 'modificar_perfil':
                         $id_usuario = $_GET['id'];
-                        $this->modificar_perfil($u, $id_usuario);
+                        $this->modificar_perfil($u, $id_usuario, $data = array('sin_error' => 0 ));
                         break;
 
                     case 'ver_estadias':
@@ -106,7 +106,7 @@ class usuariosController extends Controllers implements IControllers {
 
                     case 'descontarCredito':
                         $this->descontarCredito($u);
-                        break; 
+                        break;
 
                     default:
                         echo $this->template->display('home/home');
@@ -114,7 +114,7 @@ class usuariosController extends Controllers implements IControllers {
                 }
 
 
-                   
+
 
             break;
 
@@ -127,14 +127,14 @@ class usuariosController extends Controllers implements IControllers {
                         $this->template->display('subastas/verSubastasLogged', array('subastas' => $subastas));
 
                     break;
-                    
+
                     default:
                         echo $this->template->display('home/home');
                     break;
                 }
             break;
 
-            
+
 
             case 'cambiarRol':
                     $this->cambiarRol($u);
@@ -147,23 +147,16 @@ class usuariosController extends Controllers implements IControllers {
                 $this->verDetalleResidencia($r,$id);
                 break;
 
-            case 'perfil':
-                switch ($router->getId()) {
-
-                    case 'modificar':
-
-                    break;
-                    
-                    default:
-                        echo $this->template->display('home/home');
-                    break;
-                }
+            case 'modificar_perfil':
+                $id= $router->getId();
+                $data= array('sin_error' => 0);
+                $this->modificar($id, $u, $data);
                 break;
 
-             
+
              default:
                 $this->template->display('home/home');
-                break; 
+                break;
 
     	}
 
@@ -186,7 +179,7 @@ class usuariosController extends Controllers implements IControllers {
 
         $ok = $u->autenticar($email,$pass);
 
-        if ($ok) {      
+        if ($ok) {
 
             if ($_SESSION['rol']=='ADMINISTRADOR') {
                 $this->template->display('home/homeBackend');
@@ -208,10 +201,10 @@ class usuariosController extends Controllers implements IControllers {
     private function logout(){
 
         if (isset($_SESSION['id'])) {
-           
+
             #Destruir la sesión
             session_destroy();
-           
+
         }
         Functions::redir("http://localhost/HomeSwitchHome/home");
     }
@@ -222,7 +215,7 @@ class usuariosController extends Controllers implements IControllers {
 
     -------------------------------------------REGISTRO-------------------------------
 
-    */    
+    */
 
 
     public function insertar($u, $t){
@@ -243,7 +236,7 @@ class usuariosController extends Controllers implements IControllers {
 
         $errores= array('email_existente' => 0,
                         'edad_invalida' => 0,
-                        'sin_error' => 0, 
+                        'sin_error' => 0,
                         'email' => $email,
                         'password' => $password,
                         'nombre' => $nombre,
@@ -257,7 +250,7 @@ class usuariosController extends Controllers implements IControllers {
 
         //Valido el email
         if ($u->existe($email)) {
-            $errores['email_existente'] = 1;            
+            $errores['email_existente'] = 1;
         }
 
         //Valido la edad
@@ -284,13 +277,13 @@ class usuariosController extends Controllers implements IControllers {
     /*
 
     ----------------------------OPERACIONES--------------------------------------------
-    
+
     */
 
     public function perfil($u, $t){
-                
+
         if (isset($_SESSION['id'])) {
-            
+
             $id=$_SESSION['id'];
 
             $resultado = $u->getUsuario($id);
@@ -306,7 +299,7 @@ class usuariosController extends Controllers implements IControllers {
                 'creditos' => $resultado['0']['creditos'],
                 'rol' => $resultado['0']['rol'],
                 'telefono' => $resultado['0']['telefono'],
-                'fecha_nacimiento' => $resultado['0']['fecha_nacimiento'], 
+                'fecha_nacimiento' => $resultado['0']['fecha_nacimiento'],
                 'fecha_registro' => $resultado['0']['fecha_registro']
                  );
 
@@ -317,9 +310,9 @@ class usuariosController extends Controllers implements IControllers {
             $this->template->display('usuarios/perfil', $data);
         }
         else{
-            $this->template->display('home/home');    
+            $this->template->display('home/home');
         }
-        
+
     }
 
 
@@ -339,11 +332,11 @@ class usuariosController extends Controllers implements IControllers {
                 $u->cambiarRol($_SESSION['id']);
             }
         }
-        
+
         $this->perfil($u);
     }
 
-    public function modificar_perfil($u, $id_usuario){
+    public function modificar_perfil($u, $id_usuario, $data){
 
 
         if ($_SESSION['id']==$id_usuario) {
@@ -361,18 +354,15 @@ class usuariosController extends Controllers implements IControllers {
                 'creditos' => $resultado['0']['creditos'],
                 'rol' => $resultado['0']['rol'],
                 'telefono' => $resultado['0']['telefono'],
-                'fecha_nacimiento' => $resultado['0']['fecha_nacimiento'],
-                'marca_tarjeta' => $resultado['0']['marca_tarjeta'],
-                'numero_tarjeta' => $resultado['0']['numero_tarjeta'],
-                'titular_tarjeta' => $resultado['0']['titular_tarjeta'],
-                'fecha_vencimiento_tarjeta' => $resultado['0']['fecha_vencimiento_tarjeta']
+                'fecha_nacimiento' => $resultado['0']['fecha_nacimiento']
                  );
             }
 
-            $this->template->display('usuarios/modificar_perfil', $usuario);
+            $data['usuario'] = $usuario;
+            $this->template->display('usuarios/modificar_perfil', $data);
         }
         else{
-            $this->template->display('home/home');    
+            $this->template->display('home/home');
         }
     }
 
@@ -381,18 +371,44 @@ class usuariosController extends Controllers implements IControllers {
         $estadias = $r->getEstadias($id);
         $premium=false;
 
-        
+
         if (isset($_SESSION['id']) && $_SESSION['rol'] != 'ADMINISTRADOR'){
             if ($_SESSION['rol'] == 'PREMIUM'){
                 $premium=true;
             }
         }else{
-            $this->template->display('home/home');  
+            $this->template->display('home/home');
         }
         $data = array('residencia' => $residencia, 'estadias' => $estadias, 'premium' => $premium);
         $this->template->display('filtros/verDetalleResidencia', $data);
 
     }
 
+    public function modificar($id, $u){
+
+      if ($_SESSION['id'] == $id) {
+
+        $usuario = array('nombre' => $_POST['nombreP'],
+                          'apellido' => $_POST['apellidoP'],
+                          'telefono' => $_POST['telefonoP'],
+                          'fecha_nacimiento' => $_POST['fecha_nacimientoP']);
+
+      /*  if (is_uploaded_file($_FILES["fotoP"]["tmp_name"])) {
+            $nombrefoto = $_FILES["fotoP"]["name"];
+            $foto = "app/img/usuarios/" . $nombrefoto;
+            $foto = $this->db->scape($foto);
+            $usuario['foto']=$foto;
+        } */
+
+        if ($u->update($id, $usuario)) {
+          $data = array('sin_error' => 1 );
+          $this->modificar_perfil($u, $id, $data);
+        }
+
+      }else{
+        $this->template->display('home/home');
+      }
+
+    }
 
 }

@@ -514,3 +514,35 @@ li.list-group-item.active, li.list-group-item.active:hover{
 	border-color: #000d1a;
 }
 
+a#modificar{
+	padding-right: 0;
+	width: 150px;
+}
+
+a#cambiar_principal{
+  margin-left: 25px;
+  margin-right: 10px;
+}
+
+a#trash, p#numero, a#cambiar_principal{
+  padding-left: 0;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  height: 22px;
+  padding-right: 0;
+}
+
+p#numero{
+  margin-top: 10px;
+}
+
+a#trash{
+  margin-top: 0px;
+}
+
+#div_modificar_perfil{
+	background-color: #e6e6ff;
+	width: 800px;
+	border-radius: 15px;
+	height: 700px;
+}
