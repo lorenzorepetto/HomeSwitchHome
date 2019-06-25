@@ -9,7 +9,7 @@
 database:
   default_driver: mysql
   drivers:
-    mysql: 
+    mysql:
       host: 127.0.0.1
       user: root
       pass:
@@ -18,12 +18,12 @@ database:
       socket: default
     sqlite3:
       file: '___ROOT___Ocrend/Kernel/Database/Drivers/Sqlite/db.sqlite3'
-      
+
 # Configuración de servidor SMTP
 mailer:
-  host: 
-  user: 
-  pass: 
+  host:
+  user:
+  pass:
   port: 587
   logo:
 
@@ -34,7 +34,7 @@ twig:
   charset: UTF-8
   strict_variables: false
   autoescape: html
-  
+
 # Configuración del sitio
 build:
   production: true

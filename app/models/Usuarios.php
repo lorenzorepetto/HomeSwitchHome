@@ -24,17 +24,17 @@ use Ocrend\Kernel\Router\IRouter;
  */
 class Usuarios extends Models implements IModels {
     use DBModel;
-    
+
 
     /**
      * Respuesta generada por defecto para el endpoint
-     * 
+     *
      * @return array
-    */ 
+    */
     public function foo() : array {
         try {
             global $http;
-                    
+
             return array('success' => 0, 'message' => 'Funcionando');
         } catch(ModelsException $e) {
             return array('success' => 0, 'message' => $e->getMessage());
@@ -48,11 +48,11 @@ class Usuarios extends Models implements IModels {
     public function __construct(IRouter $router = null) {
         parent::__construct($router);
 		$this->startDBConexion();
-        
+
     }
 
-    
-   
+
+
 
 
 
@@ -78,7 +78,7 @@ class Usuarios extends Models implements IModels {
 
 
     public function getUsuario($id){
-        
+
         $resultado = $this->db->select('*', 'usuarios', null, "id = '$id' AND estado_logico = 0");
         return $resultado;
 
@@ -121,9 +121,9 @@ class Usuarios extends Models implements IModels {
 
         return false;
     }
-    
-    
-     private function generarSesion($usuario){  
+
+
+     private function generarSesion($usuario){
         global $session;
 
         # Generar la sesión del usuario
@@ -143,14 +143,14 @@ class Usuarios extends Models implements IModels {
 
     */
 
-   
-    
+
+
     public function insertar($t){
-    
+
 
         if (is_uploaded_file($_FILES["foto"]["tmp_name"])) {
             $nombrefoto = $_FILES["foto"]["name"];
-            $foto = "app/img/usuarios/" . $nombrefoto; 
+            $foto = "app/img/usuarios/" . $nombrefoto;
             $foto = $this->db->scape($foto);
         }
         else{
@@ -158,7 +158,7 @@ class Usuarios extends Models implements IModels {
         }
 
         $fecha_registro = Date("Y-m-d");
-        
+
 
         $u = array(
             'email' => $_POST['email'],
@@ -169,7 +169,7 @@ class Usuarios extends Models implements IModels {
             'foto' => $foto,
             'telefono' => $_POST['telefono'],
             'creditos' => 2,
-            'rol' => "ESTANDAR", 
+            'rol' => "ESTANDAR",
             'fecha_registro' => $fecha_registro
         );
 
@@ -178,8 +178,8 @@ class Usuarios extends Models implements IModels {
         $tarjeta = array ('marca' => $_POST['marca_tarjeta'],
                             'numero' => $_POST['numero_tarjeta'],
                             'vencimiento' => $_POST['fecha_vencimiento_tarjeta'],
-                            'titular' => $_POST['titular_tarjeta'], 
-                            'id_usuario' => $id_usuario, 
+                            'titular' => $_POST['titular_tarjeta'],
+                            'id_usuario' => $id_usuario,
                             'principal' => true );
 
         $t->insertar($tarjeta);
@@ -194,6 +194,14 @@ class Usuarios extends Models implements IModels {
     */
 
     public function update($id, $datos){
+
+        if (is_uploaded_file($_FILES["fotoP"]["tmp_name"])) {
+            $nombrefoto = $_FILES["fotoP"]["name"];
+            $foto = "app/img/usuarios/" . $nombrefoto;
+            $foto = $this->db->scape($foto);
+            $datos['foto']=$foto;
+        }
+        
 
         $resultado = $this->db->update('usuarios', $datos, "id = '$id' AND estado_logico = 0");
 
@@ -245,17 +253,17 @@ class Usuarios extends Models implements IModels {
             $nuevo_rol = 'ESTANDAR';
         }
 
-        $this->update($id, array('rol' => $nuevo_rol)); 
+        $this->update($id, array('rol' => $nuevo_rol));
         return true;
 
     }
-    
 
 
-    
 
 
-    
 
-    
+
+
+
+
 }

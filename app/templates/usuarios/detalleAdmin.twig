@@ -29,7 +29,7 @@
     </ul>
   </nav>
 
-    </div> 
+    </div>
 {% endblock %}
 
 {% block carrousel %}
@@ -47,10 +47,10 @@
         <strong class="animated flash"> <span class='glyphicon glyphicon-ok-sign'></span> Nota:</strong> Has cambiado el rol del usuario {{ usuario.email }} a {{ usuario.rol }} con éxito!
       </div>
     {% endif %}
-		
+
 	<div class="border container">
     <div class="container center-block">
-      <h2 class="perfil center-block">{{ usuario.nombre }} {{ usuario.apellido }}</h2>     
+      <h2 class="perfil center-block">{{ usuario.nombre }} {{ usuario.apellido }}</h2>
     </div>
     <div class_"row">
       <ul class="list-group list-group-flush col-lg-8">
@@ -60,7 +60,6 @@
         <li class="perfil list-group-item"><span class="glyphicon glyphicon-calendar"></span><strong> Fecha de nacimiento:</strong> {{ usuario.fecha_nacimiento|date("d/m/Y") }}</li>
         <li class="perfil list-group-item"><span class="glyphicon glyphicon-calendar"></span><strong> Fecha de registro:</strong> {{ usuario.fecha_registro|date("d/m/Y") }}</li>
         <li class="perfil list-group-item"><span class="glyphicon glyphicon-usd"></span><strong> Créditos:</strong> <span class="badge badge-primary badge-pill creditos">{{ usuario.creditos }}</span>{% if usuario.creditos > 0 %}&nbsp;Vencimiento: {{ fecha_registro|date_modify("+1 year")|date("d/m/Y") }}{% endif %}</li>
-        <li class="perfil list-group-item"><span class="glyphicon glyphicon-envelope"></span> <strong>Marca tarjeta:</strong> {{ usuario.marca_tarjeta }}</li>
         <li class="perfil list-group-item">
           <div class="row center-block">
             {% if usuario.rol == 'ESTANDAR' %}
@@ -80,5 +79,3 @@
 {% endblock %}
 
 {% endblock %}
-
-

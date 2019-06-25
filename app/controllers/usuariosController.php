@@ -393,13 +393,7 @@ class usuariosController extends Controllers implements IControllers {
                           'telefono' => $_POST['telefonoP'],
                           'fecha_nacimiento' => $_POST['fecha_nacimientoP']);
 
-      /*  if (is_uploaded_file($_FILES["fotoP"]["tmp_name"])) {
-            $nombrefoto = $_FILES["fotoP"]["name"];
-            $foto = "app/img/usuarios/" . $nombrefoto;
-            $foto = $this->db->scape($foto);
-            $usuario['foto']=$foto;
-        } */
-
+      
         if ($u->update($id, $usuario)) {
           $data = array('sin_error' => 1 );
           $this->modificar_perfil($u, $id, $data);

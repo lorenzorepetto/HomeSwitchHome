@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 18-06-2019 a las 20:59:07
+-- Tiempo de generación: 25-06-2019 a las 03:27:01
 -- Versión del servidor: 10.1.40-MariaDB
 -- Versión de PHP: 7.3.5
 
@@ -179,6 +179,31 @@ INSERT INTO `subastas` (`id`, `estado`, `usuario_ganador`, `id_estadia`, `monto`
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `tarjetas`
+--
+
+CREATE TABLE `tarjetas` (
+  `id` int(50) NOT NULL,
+  `marca` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  `numero` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  `titular` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  `vencimiento` varchar(11) COLLATE utf8_spanish_ci NOT NULL,
+  `id_usuario` int(11) NOT NULL,
+  `estado_logico` int(11) NOT NULL DEFAULT '0',
+  `principal` int(11) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `tarjetas`
+--
+
+INSERT INTO `tarjetas` (`id`, `marca`, `numero`, `titular`, `vencimiento`, `id_usuario`, `estado_logico`, `principal`) VALUES
+(1, 'MASTERCARD', '4444444444444444', 'JORGE PAULOS', '12/23', 6, 0, 1),
+(2, 'VISA', '8888888888888894', 'JORGE PAULOS', '05/22', 6, 0, 0);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `usuarios`
 --
 
@@ -192,10 +217,6 @@ CREATE TABLE `usuarios` (
   `foto` varchar(250) COLLATE utf8_spanish_ci DEFAULT 'app/img/usuarios/user.png',
   `telefono` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
   `creditos` int(11) NOT NULL DEFAULT '0',
-  `marca_tarjeta` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
-  `numero_tarjeta` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
-  `titular_tarjeta` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
-  `fecha_vencimiento_tarjeta` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
   `rol` varchar(20) COLLATE utf8_spanish_ci NOT NULL DEFAULT 'ESTANDAR',
   `estado_logico` tinyint(1) NOT NULL DEFAULT '0',
   `token` varchar(10) COLLATE utf8_spanish_ci DEFAULT NULL,
@@ -206,14 +227,14 @@ CREATE TABLE `usuarios` (
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`id`, `email`, `password`, `nombre`, `apellido`, `fecha_nacimiento`, `foto`, `telefono`, `creditos`, `marca_tarjeta`, `numero_tarjeta`, `titular_tarjeta`, `fecha_vencimiento_tarjeta`, `rol`, `estado_logico`, `token`, `fecha_registro`) VALUES
-(1, 'admin@homeswitchhome.com', 'admin1234', 'Administrador', 'Administrador', '0000-00-00', NULL, '111', 1000, 'no corresponde', 'no corresponde', 'no corresponde', '0000-00-00', 'ADMINISTRADOR', 0, '123456', '0000-00-00'),
-(2, 'loren@mail.com', 'loren1234', 'Lorenzo', 'Repetto', '1994-04-28', 'app/img/usuarios/user.png', '452710', 1, 'VISA', '444', 'Lorenzo Repetto', '2021-08-16', 'ESTANDAR', 0, NULL, '2019-04-01'),
-(5, 'pieri@mail.com', 'pieri1234', 'Pierina', 'Tufillaro', '1999-01-13', 'app/img/usuarios/user.png', '411872', 0, 'VISA', '1111', '', '13/2022', 'ESTANDAR', 0, NULL, '2019-02-15'),
-(6, 'jorge@gmail.com', 'jorge1234', 'Jorge', 'Paulos', '1980-04-13', 'app/img/usuarios/jorge.jpg', '0113751314', 2, 'MASTERCARD', '8254435411', '', '04/2022', 'ESTANDAR', 0, NULL, '2019-05-10'),
-(7, 'julia@gmail.com', 'julia1234', 'Julia', 'Rosales', '1990-09-04', 'app/img/usuarios/julia.jpg', '0113441586', 2, 'VISA', '512497543', '', '04/2022', 'PREMIUM', 0, NULL, '2019-01-12'),
-(13, 'raul@gmail.com', 'raul1234', 'Raúl', 'López', '1987-04-15', 'app/img/usuarios/raul.png', '1137881012', 0, 'VISA', '111', '', '10/22', 'ESTANDAR', 0, NULL, '2019-06-15'),
-(14, 'melisa@gmail.com', 'melisa1234', 'Melisa', 'Onofri', '1999-11-05', 'app/img/usuarios/melisa.jpeg', '4586143', 2, 'MASTERCARD', '1456135', '', '05/23', 'ESTANDAR', 0, NULL, '2019-06-15');
+INSERT INTO `usuarios` (`id`, `email`, `password`, `nombre`, `apellido`, `fecha_nacimiento`, `foto`, `telefono`, `creditos`, `rol`, `estado_logico`, `token`, `fecha_registro`) VALUES
+(1, 'admin@homeswitchhome.com', 'admin1234', 'Administrador', 'Administrador', '0000-00-00', NULL, '111', 1000, 'ADMINISTRADOR', 0, '123456', '0000-00-00'),
+(2, 'loren@mail.com', 'loren1234', 'Lorenzo', 'Repetto', '1994-04-28', 'app/img/usuarios/user.png', '452710', 1, 'ESTANDAR', 0, NULL, '2019-04-01'),
+(5, 'pieri@mail.com', 'pieri1234', 'Pierina', 'Tufillaro', '1999-01-13', 'app/img/usuarios/user.png', '411872', 0, 'ESTANDAR', 0, NULL, '2019-02-15'),
+(6, 'jorge@gmail.com', 'jorge1234', 'Jorge', 'Paulos', '1980-04-13', 'app/img/usuarios/jorge.jpg', '0113751314', 2, 'ESTANDAR', 0, NULL, '2019-05-10'),
+(7, 'julia@gmail.com', 'julia1234', 'Julia', 'Rosales', '1990-09-04', 'app/img/usuarios/julia.jpg', '0113441586', 2, 'PREMIUM', 0, NULL, '2019-01-12'),
+(13, 'raul@gmail.com', 'raul1234', 'Raúl', 'López', '1987-04-15', 'app/img/usuarios/raul.png', '1137881012', 0, 'ESTANDAR', 0, NULL, '2019-06-15'),
+(14, 'melisa@gmail.com', 'melisa1234', 'Melisa', 'Onofri', '1999-11-05', 'app/img/usuarios/melisa.jpeg', '4586143', 2, 'ESTANDAR', 0, NULL, '2019-06-15');
 
 --
 -- Índices para tablas volcadas
@@ -253,6 +274,12 @@ ALTER TABLE `residencias`
 -- Indices de la tabla `subastas`
 --
 ALTER TABLE `subastas`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `tarjetas`
+--
+ALTER TABLE `tarjetas`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -301,6 +328,12 @@ ALTER TABLE `residencias`
 --
 ALTER TABLE `subastas`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT de la tabla `tarjetas`
+--
+ALTER TABLE `tarjetas`
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
