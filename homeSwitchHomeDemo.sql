@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 25-06-2019 a las 03:27:01
+-- Tiempo de generación: 25-06-2019 a las 19:03:04
 -- Versión del servidor: 10.1.40-MariaDB
 -- Versión de PHP: 7.3.5
 
@@ -43,22 +43,22 @@ CREATE TABLE `estadias` (
 INSERT INTO `estadias` (`id`, `estado`, `id_residencia`, `semana`, `fecha`) VALUES
 (11, 'LIBRE', 1, 33, '2019-08-15'),
 (14, 'LIBRE', 1, 5, '2020-01-30'),
-(15, 'SUBASTA', 2, 51, '2019-12-18'),
+(15, 'SUBASTA', 2, 52, '2019-12-25'),
 (16, 'LIBRE', 2, 2, '2020-01-10'),
 (18, 'LIBRE', 3, 7, '2020-02-15'),
 (19, 'LIBRE', 1, 23, '2020-06-04'),
 (20, 'LIBRE', 6, 33, '2019-08-18'),
 (21, 'SUBASTA', 3, 21, '2020-05-19'),
-(22, 'SUBASTA', 7, 51, '2019-12-18'),
-(23, 'SUBASTA', 8, 51, '2019-12-18'),
-(24, 'SUBASTA', 9, 51, '2019-12-18'),
+(22, 'SUBASTA', 7, 52, '2019-12-25'),
+(23, 'SUBASTA', 8, 52, '2019-12-25'),
+(24, 'SUBASTA', 9, 52, '2019-12-25'),
 (25, 'LIBRE', 6, 4, '2020-01-20'),
 (26, 'LIBRE', 6, 6, '2020-02-05'),
 (27, 'LIBRE', 6, 10, '2020-03-02'),
 (28, 'LIBRE', 7, 7, '2020-02-12'),
 (29, 'LIBRE', 7, 4, '2020-01-24'),
 (30, 'SUBASTA', 7, 3, '2020-01-15'),
-(31, 'SUBASTA', 3, 51, '2019-12-18');
+(31, 'SUBASTA', 3, 52, '2019-12-25');
 
 -- --------------------------------------------------------
 
@@ -333,7 +333,7 @@ ALTER TABLE `subastas`
 -- AUTO_INCREMENT de la tabla `tarjetas`
 --
 ALTER TABLE `tarjetas`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`

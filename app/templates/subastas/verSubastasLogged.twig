@@ -28,11 +28,11 @@
         </li>
       </ul>
     </nav>
-  </div> 
+  </div>
 {% endblock %}
 
 {% block carrousel %}
-  
+
   <div class="py-5 bg-light">
       <div class="container">
 
@@ -41,22 +41,30 @@
         </div>
         <p class="lead text-muted">Lista de subastas: </p>
 
+        {% if subastas == false %}
+          <div class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong class="animated flash"><span class="glyphicon glyphicon-exclamation-sign"></span></strong> ¡Lo sentimos! Todavía no hay ninguna subasta creada.
+          </div>
+
+        {% else %}
+
         <div class="row">
-          
+
 
           {% for s in subastas %}
 
           <div class="col-md-4">
             <div id="div_subasta" class="card mb-4 shadow-sm">
-              
+
               <div class="card-body">
                 <img id="card_foto_residencia" src="{{ s.foto }}" class="card-img-top" >
                 <p class="card-text"> &nbsp; </p>
                 <p class="card-text"><span class="glyphicon glyphicon-ok"></span><strong> Residencia: </strong>{{ s.nombre }}</p>
-                <p class="card-text"><span class="glyphicon glyphicon-ok"></span><strong> Semana:</strong> {{ s.semana }} (fecha de inicio: )</p>
+                <p class="card-text"><span class="glyphicon glyphicon-ok"></span><strong> Semana:</strong> {{ s.semana }} (Fecha de inicio: {{ s.fecha|date("d/m/Y") }})</p>
                 <p class="card-text"><span class="glyphicon glyphicon-map-marker"></span><strong> Ciudad:</strong> {{ s.ciudad }}</p>
                 <p class="card-text"><span class="glyphicon glyphicon-map-marker"></span><strong> Provincia:</strong> {{ s.provincia }}</p>
-                
+
 
                 <div class="d-flex justify-content-between align-items-center">
                   <div id="botones" class="btn-group">
@@ -76,16 +84,16 @@
           </div>
 
           {% endfor %}
-      
 
-       
+
+          {% endif %}
         </div>
 
-        
+
       </div>
   </div>
-  
-     
+
+
 {% endblock %}
 {% block appContenido%} {% endblock %}
 {% block appBody%} {% endblock %}

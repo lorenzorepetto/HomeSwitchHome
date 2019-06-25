@@ -28,11 +28,11 @@
           </ul>
         </nav>
 
-        </div> 
+        </div>
     {% endblock %}
 
 {% block carrousel %}
-	
+
 	<div id="div_listar_residencias" class="py-5 bg-light">
 	    <div class="container">
 	      {% if operacion == 1 and estadias_pendientes == 1 %}
@@ -53,13 +53,20 @@
 	      	<a href="http://localhost/HomeSwitchHome"><button id="atras" class="btn btn-secondary my-2">Atrás</button></a>
 	      </div>
 
+        {% if residencias == false %}
+	        <div class="alert alert-danger alert-dismissible">
+	          <button type="button" class="close" data-dismiss="alert">&times;</button>
+	          <strong class="animated flash"><span class="glyphicon glyphicon-exclamation-sign"></span></strong> ¡Lo sentimos! No hay residencias cargadas para mostrar.
+	        </div>
+	      {% else %}
+
 	      <p class="lead text-muted">Filtrar residencias: </p>
 
 	       <form action="">
 	        <div class="input-group mb-3">
 	          <div class="input-group-prepend">
 	            <span class="input-group-text">Nombre</span><input type="text" class="form-control" placeholder="Nombre de la residencia" id="nombre" name="nombre">
-	          </div>          
+	          </div>
 	        </div>
 
 	        <div class="input-group mb-3">
@@ -67,24 +74,19 @@
 	            <input type="text" class="form-control" placeholder="Localidad de la residencia" id="localidad" name="localidad"><span class="input-group-text">Localidad</span>
 	          </div>
 	        </div>
-	        
+
 	        <button type="submit" class="btn btn-secondary my-2">Filtrar</button>
 
 	      </form>
 	      <br>
 
-	      {% if residencias == false %}
-	        <div class="alert alert-danger alert-dismissible">
-	          <button type="button" class="close" data-dismiss="alert">&times;</button>
-	          <strong class="animated flash"><span class="glyphicon glyphicon-exclamation-sign"></span></strong> ¡Lo sentimos! No hay residencias cargadas para mostrar.
-	        </div>
-	      {% endif %}
+
 
 
 	      <div class="row">
 
 	      	{% for r in residencias %}
-	      		
+
 	        <div id="card_residencia" class="col-md-4">
 	          <div  id="card_residencia" class="card mb-4 shadow-sm">
 	          	<p id="nombre_residencia" class="lead text-muted">{{ r.nombre }}:</p>
@@ -101,9 +103,9 @@
 		                	<a href="http://localhost/HomeSwitchHome/admin/operaciones/agregarEstadia?id_residencia={{ r.id }}" class="btn btn-secondary my-2">Crear estadía</a>
 		                	<div id="">
 			                	<a title="Eliminar residencia" href="http://localhost/HomeSwitchHome/admin/residencias/eliminar?id_residencia={{ r.id }}" onclick="return confirmation();"><span id="trash" class="glyphicon glyphicon-trash"></span></a>
-			                </div>			                	
+			                </div>
 		                </div>
-		                	                
+
 	                </div>
 	            </div>
 	          </div>
@@ -111,16 +113,16 @@
 
 	        {% endfor %}
 
-	    
-	   		 
-	     
+
+
+	     {% endif %}
 	      </div>
 
-	      
+
 	    </div>
 	</div>
-	
-	   
+
+
 {% endblock %}
 {% block appContenido%} {% endblock %}
 {% block appBody%} {% endblock %}
