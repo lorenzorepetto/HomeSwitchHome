@@ -67,24 +67,24 @@
 
               {% if t.principal == 1 %}
                 <h4>Tarjeta principal:</h4>
-                <!--<li id="numero" class="perfil list-group-item active"><span class="glyphicon glyphicon-ok"></span><strong> Terminada en:</strong> "{{ t.numero|slice(12,13,14,15) }}" <strong> - Marca:</strong> {{ t.marca }}</li>-->
                 <li class="perfil list-group-item">
-                  <div class="alert alert-info">
+                  <div id="tarjeta_principal" class="alert alert-info">
                   <p id="numero"><span class="glyphicon glyphicon-ok"></span><strong> Terminada en:</strong> "{{ t.numero|slice(12,13,14,15) }}" <strong> - Marca:</strong> {{ t.marca }}</p>
                 </div>
                 </li>
 
-                <h4>Tarjetas adicionales:</h4>
-                  <button type="button" class="btn btn-light text-dark" name="Agregar tarjeta"><strong>Agregar tarjeta</strong></button>
+                <div id="tarjeta_principal" class="row">
+                  <h4 class="adicionales">Tarjetas adicionales:</h4>
+                  <a id="agregar_tarjeta" class="center-block"><button id="atras" class="center-block btn btn-secondary my-2">Agregar tarjeta</button></a>
+                </div>
+
               {% else %}
 
                 <li class="perfil list-group-item">
-                  <div class="alert alert-secondary">
-                  <div class="row">
-                    <p id="numero"><strong>Terminada en:</strong> "{{ t.numero|slice(12,13,14,15) }}" <strong> - Marca:</strong> {{ t.marca }}</p>
-                    <a id="cambiar_principal" class="center-block" href="http://localhost/HomeSwitchHome/usuarios/operaciones/modificar_perfil?id={{ usuario.id }}"><button id="atras" type="button" class="center-block btn btn-info text-dark my-2"><strong>Cambiar a principal</strong></button></a>
-                    <a id="trash" title="Eliminar tarjeta" href="http://localhost/HomeSwitchHome/usuarios/operaciones/eliminarTarjeta?id_tarjeta={{ t.id }}" onclick="return confirmation();"><span id="trash" class="glyphicon glyphicon-trash"></span></a>
-                    </div>
+                  <div class="adicionales" class="row">
+                    <p class="col-lg-5" id="numero"><strong>Terminada en:</strong> "{{ t.numero|slice(12,13,14,15) }}" <strong> - Marca:</strong> {{ t.marca }}</p>
+                    <a id="cambiar_principal" class="col-lg-3 center-block" href="http://localhost/HomeSwitchHome/usuarios/operaciones/modificar_perfil?id={{ usuario.id }}"><button id="atras" type="button" class="cambiar_principal center-block btn btn-info my-2">Cambiar a principal</button></a>
+                    <a class="col-lg-3" id="trash" title="Eliminar tarjeta" href="http://localhost/HomeSwitchHome/usuarios/operaciones/eliminarTarjeta?id_tarjeta={{ t.id }}" onclick="return confirmation();"><span id="trash" class="glyphicon glyphicon-trash"></span></a>
                   </div>
                 </li>
 
@@ -97,14 +97,14 @@
         {% endif %}
 
 
-        <li class="perfil list-group-item">
+        <li class="perfil list-unstyled">
           <div class="row">
 
             {% if usuario.rol == "ESTANDAR" %}
-              <a class="col-md-3 center-block" href="http://localhost/HomeSwitchHome"><button id="atras" class="center-block btn btn-secondary my-2">¡Quiero ser Premium!</button></a>
+              <a class="premium col-md-3" href="http://localhost/HomeSwitchHome"><button id="atras" class="center-block btn btn-secondary my-2">¡Quiero ser Premium!</button></a>
             {% endif %}
-            <a id="modificar" class="col-md-3 center-block" href="http://localhost/HomeSwitchHome/usuarios/operaciones/modificar_perfil?id={{ usuario.id }}"><button id="atras" class="center-block btn btn-secondary my-2">Modificar datos personales</button></a>
-            <a class="col-md-3 center-block" href="http://localhost/HomeSwitchHome/usuarios/operaciones/modificar_perfil?id={{ usuario.id }}"><button id="atras" class="center-block btn btn-secondary my-2">Cambiar contraseña</button></a>
+            <a id="modificar" class="col-md-3" href="http://localhost/HomeSwitchHome/usuarios/operaciones/modificar_perfil?id={{ usuario.id }}"><button id="atras" class="center-block btn btn-secondary my-2">Modificar datos personales</button></a>
+            <a class="cambiar_contraseña col-md-3" href="http://localhost/HomeSwitchHome/usuarios/operaciones/modificar_perfil?id={{ usuario.id }}"><button id="atras" class="center-block btn btn-secondary my-2">Cambiar contraseña</button></a>
           <br><br><br>
           </div>
         </li>

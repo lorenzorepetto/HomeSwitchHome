@@ -519,10 +519,6 @@ a#modificar{
 	width: 150px;
 }
 
-a#cambiar_principal{
-  margin-left: 25px;
-  margin-right: 10px;
-}
 
 a#trash, p#numero, a#cambiar_principal{
   padding-left: 0;
@@ -530,6 +526,13 @@ a#trash, p#numero, a#cambiar_principal{
   margin-bottom: 5px;
   height: 22px;
   padding-right: 0;
+}
+
+a#cambiar_principal{
+  margin-left: 25px;
+  margin-right: 10px;
+  margin-top: 5px;
+  margin-bottom: 0;
 }
 
 p#numero{
@@ -545,4 +548,55 @@ a#trash{
 	width: 800px;
 	border-radius: 15px;
 	height: 700px;
+}
+
+button.cambiar_principal{
+	/*background-color: #bce8f1;
+	color: #31708f;
+	border-color: #bce8f1; */
+  color: #0c5460;
+  background-color: #d1ecf1;
+  border-color: #bee5eb;
+}
+
+button.cambiar_principal:hover{
+	background-color: #bce8f0;
+	color: #31708f;	
+}
+
+.text-dark{
+	color: #31708f;
+}
+
+a.cambiar_contraseña{
+	margin-left: 36px;
+}
+
+a.premium{
+	margin-left: 37px;
+}
+
+h4.adicionales{
+	margin-left: 15px;
+	padding-bottom: 10px;
+	padding-top: 5px;
+	margin-top: 0px;
+}
+
+div.adicionales{
+	margin-left: 30px;
+}
+
+div#tarjeta_principal{
+	margin-bottom: 0;
+}
+
+li#tarjeta_principal{
+	margin-bottom: 5px;
+	margin-top: 7px;
+}
+
+a#agregar_tarjeta{
+	margin-top: 0;
+	margin-left: 30px;
 }
