@@ -48,6 +48,11 @@
               <button type="button" class="close" data-dismiss="alert">&times;</button>
               <strong class="animated flash"> <span class='glyphicon glyphicon-ok-sign'></span> Nota:</strong> La información del perfil se ha modificado con éxito!
             </div>
+          {% else %}
+            <div class="alert alert-danger alert-dismissible">
+              <button type="button" class="close" data-dismiss="alert">&times;</button>
+              <strong class="animated flash"><span class="glyphicon glyphicon-exclamation-sign"></span> Error: </strong> No se modificaron los cambios. Debe ingresar una edad mayor a 18 años.
+            </div>
           {% endif %}
 
           <h1 id="titulo_form"class="h3 mb-3 font-weight-normal animated flash">Ingrese los nuevos datos para actualizar el perfil:</h1>
@@ -84,7 +89,7 @@
             </div>
 
             <div class="container-fluid center-block form-group form">
-              <label for="fecha_nacimientoP">Fecha nacimiento:</label>
+              <label for="fecha_nacimientoP">Fecha de nacimiento:</label>
               <input type="date" class="form-control" oninput="habilitarSubmit();" id="fecha_nacimientoP" value="{{ usuario.fecha_nacimiento }}" name="fecha_nacimientoP">
 
             </div>

@@ -516,7 +516,9 @@ li.list-group-item.active, li.list-group-item.active:hover{
 
 a#modificar{
 	padding-right: 0;
+  padding-left: 0;
 	width: 150px;
+  margin-left: 37px;
 }
 
 
@@ -561,7 +563,7 @@ button.cambiar_principal{
 
 button.cambiar_principal:hover{
 	background-color: #bce8f0;
-	color: #31708f;	
+	color: #31708f;
 }
 
 .text-dark{
@@ -599,4 +601,24 @@ li#tarjeta_principal{
 a#agregar_tarjeta{
 	margin-top: 0;
 	margin-left: 30px;
+}
+
+.faq{
+  width: 100%;
+}
+
+p.faq{
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+h1.faq{
+  margin-bottom: 30px;
+  margin-top: 10px;
+}
+
+button.faq{
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 16px;
 }

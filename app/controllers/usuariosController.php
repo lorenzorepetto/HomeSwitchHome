@@ -134,7 +134,9 @@ class usuariosController extends Controllers implements IControllers {
                 }
             break;
 
-
+            case 'faqs':
+              $this->template->display('usuarios/faqs');
+            break;
 
             case 'cambiarRol':
                     $this->cambiarRol($u);
@@ -237,6 +239,7 @@ class usuariosController extends Controllers implements IControllers {
         $errores= array('email_existente' => 0,
                         'edad_invalida' => 0,
                         'sin_error' => 0,
+                        'vencimiento_invalido' => 0,
                         'email' => $email,
                         'password' => $password,
                         'nombre' => $nombre,
@@ -248,6 +251,13 @@ class usuariosController extends Controllers implements IControllers {
                         'titular_tarjeta' => $titular_tarjeta,
                         'vencimiento_tarjeta' => $vencimiento_tarjeta);
 
+        //Valido la fecha de vencimiento de la tarjeta
+        $newDate2 = date("Y/m/d", strtotime($vencimiento_tarjeta));
+        $fecha_actual = date("Y/m/d");
+
+        if ($newDate2 < $fecha_actual) {
+          $errores['vencimiento_invalido'] = 1;
+        }
         //Valido el email
         if ($u->existe($email)) {
             $errores['email_existente'] = 1;
@@ -259,7 +269,7 @@ class usuariosController extends Controllers implements IControllers {
         }
 
 
-        if (!$errores['email_existente'] && !$errores['edad_invalida']) {
+        if (!$errores['email_existente'] && !$errores['edad_invalida'] && !$errores['vencimiento_invalido']) {
             //Registro exitoso
             $u->insertar($t);
             $errores['sin_error'] = 1;
@@ -393,11 +403,20 @@ class usuariosController extends Controllers implements IControllers {
                           'telefono' => $_POST['telefonoP'],
                           'fecha_nacimiento' => $_POST['fecha_nacimientoP']);
 
-      
-        if ($u->update($id, $usuario)) {
-          $data = array('sin_error' => 1 );
+        $originalDate = $_POST['fecha_nacimientoP'];
+        $newDate = date("d/m/Y", strtotime($originalDate));
+        $edad = Strings::calculate_age($newDate);
+
+        if ($edad < 18) {
+          $data = array('sin_error' => 0 );
           $this->modificar_perfil($u, $id, $data);
+        }else {
+          if ($u->update($id, $usuario)) {
+            $data = array('sin_error' => 1 );
+            $this->modificar_perfil($u, $id, $data);
+          }
         }
+
 
       }else{
         $this->template->display('home/home');
