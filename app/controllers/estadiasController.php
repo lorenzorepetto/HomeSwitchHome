@@ -24,7 +24,44 @@ class estadiasController extends Controllers implements IControllers {
 
     public function __construct(IRouter $router) {
         parent::__construct($router);
+
+        $router->setRoute('/fecha_desde');
+        $router->setRoute('/fecha_hasta');
+        $router->setRoute('/ciudad');
+
         $e = new Model\Estadias;
-		
+        $u = new Model\Usuarios;
+
+        switch ($router->getMethod()) {
+          case 'adquirir':
+            $id = $router->getId();
+            $this->adquirir($e,$u,$id,$router->getRoute('/fecha_desde'),$router->getRoute('/fecha_hasta'),$router->getRoute('/ciudad'));
+            break;
+
+          default:
+            // code...
+            break;
+        }
     }
+
+
+    public function adquirir($e, $u, $id , $desde , $hasta,$ciudad){
+
+      $estadia = $e->getEstadiaConResidencia($id);
+      $usuario = $u->getUsuario($_SESSION['id']);
+      dump($estadia);
+      dump($usuario);
+
+      $data = array('estadia' => $estadia[0],
+                    'usuario' => $usuario[0],
+                    'fecha_desde' => $desde,
+                    'fecha_hasta' => $hasta,
+                    'ciudad' => $ciudad);
+
+      $this->template->display('estadias/adquirirEstadia', $data);
+
+    }
+
+
+
 }

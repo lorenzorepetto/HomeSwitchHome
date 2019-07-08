@@ -37,8 +37,8 @@ function validarRegistrar(){
   var titular_tarjeta = document.getElementById("titular_tarjeta").value;
   var fecha_vencimiento_tarjeta = document.getElementById("fecha_vencimiento_tarjeta").value;
 
-  if (campoVacio(email) || campoVacio(pass) || campoVacio(nombre) || campoVacio(apellido) || campoVacio(telefono) 
-    || campoVacio(fecha_nacimiento) || campoVacio(marca_tarjeta) || campoVacio(numero_tarjeta) || campoVacio(titular_tarjeta) || 
+  if (campoVacio(email) || campoVacio(pass) || campoVacio(nombre) || campoVacio(apellido) || campoVacio(telefono)
+    || campoVacio(fecha_nacimiento) || campoVacio(marca_tarjeta) || campoVacio(numero_tarjeta) || campoVacio(titular_tarjeta) ||
     campoVacio(fecha_vencimiento_tarjeta)){
 
     document.getElementById("msjEmail").style.display = "block";
@@ -151,7 +151,7 @@ function validarModificarResidencia(){
   nombre.oninvalid = function(event) {
     event.target.setCustomValidity('Username should only contain lowercase letters. e.g. john');
   }
-  
+
   var descripcion = document.getElementById("descripcionM").value;
   var calle = document.getElementById("calleM").value;
   var altura = document.getElementById("alturaM").value;
@@ -242,8 +242,22 @@ function validarAgregarSubasta(id){
 }
 
 function confirmation(){
-  
+
   if(confirm("¿Está seguro que desea realizar esta operación?")){
+     return true;
+  }
+  else
+  {
+     return false;
+  }
+}
+
+
+function confirmarEstadia(){
+
+  console.log("aca");
+
+  if(confirm("¿Está seguro que desea adquirir esta estadía?")){
      return true;
   }
   else
@@ -252,6 +266,7 @@ function confirmation(){
   }
 
 }
+
 
   function validarPuja(monto_validacion){
     var monto = document.getElementById("puja").value;
@@ -278,7 +293,7 @@ function confirmation(){
   }
 
 function validarModificarPerfil(){
-  
+
   var newPassword = document.getElementById("newPasswordP").value;
 
   if (newPassword != "") {

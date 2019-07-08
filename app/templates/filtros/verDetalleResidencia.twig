@@ -31,23 +31,28 @@
     </ul>
   </nav>
 
-  </div> 
+  </div>
 {% endblock %}
 
 {% block carrousel %}
 {% endblock %}
 
-{% block appContenido %}   
-		
+{% block appContenido %}
+
+
+
 		<div class="border container">
+
+        <a href="http://localhost/HomeSwitchHome/filtros/filtrarEstadias?fecha_desde={{ fecha_desde }}&fecha_hasta={{ fecha_hasta }}&ubicacion={{ ciudad }}"><button type="button" name="button">Atrás</button></a>
+
 		   	 <h2 class="residencia center-block">{{ residencia.nombre }}</h2>
 		    <div class_"row">
 		      <ul class="list-group list-group-flush col-lg-8">
 		        <li class="residencia list-group-item"><span class="glyphicon glyphicon-ok"></span> <strong> Descripción: </strong>{{ residencia.descripcion }}</li>
 		        <li class="residencia list-group-item"><span class="glyphicon glyphicon-map-marker"></span><strong> Dirección:</strong> {{ residencia.calle }}, {{ residencia.altura }}, {{ residencia.ciudad }}, {{ residencia.provincia }}</li>
-		        <li class="residencia list-group-item"><span class="glyphicon glyphicon-user"></span> <strong>Capacidad:</strong> {{ residencia.capacidad }}</li>  
+		        <li class="residencia list-group-item"><span class="glyphicon glyphicon-user"></span> <strong>Capacidad:</strong> {{ residencia.capacidad }}</li>
 		      </ul>
-		      <img id="foto_detalle_residencia" src="{{ residencia.foto }}" class="residencia float-right col-lg-4" alt="Foto de residencia">  
+		      <img id="foto_detalle_residencia" src="{{ residencia.foto }}" class="residencia float-right col-lg-4" alt="Foto de residencia">
 		    </div>
 	 	</div>
     <br>
@@ -66,17 +71,17 @@
 
             <div class="col-md-4">
               <div class="card mb-4 shadow-sm">
-                
+
                 <div id="estadia_subasta" class="card-body">
                   <p class="card-text"><span class="glyphicon glyphicon-ok"></span><strong> Estadía en semana:</strong> {{ e.semana }}</p>
                   <p class="card-text"><span class="glyphicon glyphicon-ok"></span><strong> Fecha inicio:</strong> {{ e.fecha|date("d/m/Y") }}</p>
                   <p class="card-text"><span class="glyphicon glyphicon-ok"></span><strong> Fecha fin:</strong> {{ e.fecha|date_modify("+7 days")|date("d/m/Y") }}</p>
-                  
+
                   {% if premium == false %}
                     <a id="estadia_subasta" class="btn btn-secondary my-2" disabled>¡La quiero!</a>
                   {% else %}
-                    <a href="" id="estadia_subasta" class="btn btn-secondary my-2">¡La quiero!</a>
-                  {% endif %}              
+                    <a href="http://localhost/HomeSwitchHome/estadias/adquirir/{{ e.id }}/{{ fecha_desde }}/{{ fecha_hasta }}/{{ ciudad }}" id="estadia_subasta" class="btn btn-secondary my-2">¡La quiero!</a>
+                  {% endif %}
                 </div>
               </div>
             </div>
@@ -86,15 +91,15 @@
 
             <div class="col-md-4">
               <div class="card mb-4 shadow-sm">
-                
-                <div id="estadia_subasta" class="card-body">      
-                  
+
+                <div id="estadia_subasta" class="card-body">
+
                   {% if premium == false %}
-                    
+
                     {% if s.estado == 'ACTIVA' %}
                       <p id="subasta" class="animated flash card-text"><span class="glyphicon glyphicon-fire"></span><strong> ¡Subasta activa! </strong></p>
-                      <p class="card-text"><span class="glyphicon glyphicon-ok"></span><strong> Fecha estadía:</strong> {{ s.fecha|date("d/m/Y") }}</p>   
-                      <p class="card-text"><span class="glyphicon glyphicon-exclamation-sign"></span><strong> ¡Cierra el {{ s.fecha|date_modify("-6 month")|date_modify("+3 days")|date("d/m/Y") }}! </strong></p> 
+                      <p class="card-text"><span class="glyphicon glyphicon-ok"></span><strong> Fecha estadía:</strong> {{ s.fecha|date("d/m/Y") }}</p>
+                      <p class="card-text"><span class="glyphicon glyphicon-exclamation-sign"></span><strong> ¡Cierra el {{ s.fecha|date_modify("-6 month")|date_modify("+3 days")|date("d/m/Y") }}! </strong></p>
                       <a id="estadia_subasta" href="http://localhost/HomeSwitchHome/subastas/detalle/{{ s.id_subasta }}" class="btn btn-secondary my-2">¡Ir a pujar!</a>
                     {% else %}
                       <p class="card-text"><span class="glyphicon glyphicon-ok"></span><strong> Estadía en semana:</strong> {{ s.semana }}</p>
@@ -105,20 +110,20 @@
 
                   {% elseif s.estado == 'ACTIVA' %}
                     <p id="subasta" class="animated flash card-text"><span class="glyphicon glyphicon-fire"></span><strong> ¡Subasta activa! </strong></p>
-                    <p class="card-text"><span class="glyphicon glyphicon-ok"></span><strong> Fecha estadía:</strong> {{ s.fecha|date("d/m/Y") }}</p>  
-                    <p class="card-text"><span class="glyphicon glyphicon-exclamation-sign"></span><strong> ¡Cierra el {{ s.fecha|date_modify("-6 month")|date_modify("+3 days")|date("d/m/Y") }}! </strong></p> 
+                    <p class="card-text"><span class="glyphicon glyphicon-ok"></span><strong> Fecha estadía:</strong> {{ s.fecha|date("d/m/Y") }}</p>
+                    <p class="card-text"><span class="glyphicon glyphicon-exclamation-sign"></span><strong> ¡Cierra el {{ s.fecha|date_modify("-6 month")|date_modify("+3 days")|date("d/m/Y") }}! </strong></p>
                     <a id="estadia_subasta"  href="http://localhost/HomeSwitchHome/subastas/detalle/{{ s.id_subasta }}" class="btn btn-secondary my-2">¡Ir a pujar!</a>
                   {% else %}
                     <p class="card-text"><span class="glyphicon glyphicon-ok"></span><strong> Estadía en semana:</strong> {{ s.semana }}</p>
                     <p class="card-text"><span class="glyphicon glyphicon-ok"></span><strong> Fecha inicio:</strong> {{ s.fecha|date("d/m/Y") }}</p>
                     <p class="card-text"><span class="glyphicon glyphicon-ok"></span><strong> Fecha fin:</strong> {{ s.fecha|date_modify("+7 days")|date("d/m/Y") }}</p>
                     <a href="" id="estadia_subasta" class="btn btn-secondary my-2">¡La quiero!</a>
-                  {% endif %}              
+                  {% endif %}
                 </div>
               </div>
             </div>
           {% endfor %}
-            
+
         </div>
       </div>
     </div>
@@ -129,4 +134,3 @@
 {% block appBody %}
 
 {% endblock %}
-

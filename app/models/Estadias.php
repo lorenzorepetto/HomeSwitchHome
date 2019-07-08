@@ -55,6 +55,12 @@ class Estadias extends Models implements IModels {
         return $resultado;
     }
 
+    public function getEstadiaConResidencia($id){
+
+        $resultado = $this->db->select('e.id as id_estadia, e.semana, e.fecha, r.id as id_residencia, r.capacidad, r.nombre, r.descripcion, r.foto, r.calle, r.altura, r.ciudad, r.provincia', 'estadias e', 'INNER JOIN residencias r ON (e.id_residencia = r.id)', "e.estado='LIBRE' and e.id = '$id'");
+        return $resultado;
+    }
+
     public function getSemana($id){
 
         $resultado = $this->db->select('semana', 'estadias', null, "estado='LIBRE' and id = '$id'");
@@ -80,15 +86,15 @@ class Estadias extends Models implements IModels {
     public function getEstadiasParaSubastar(){
         //necesito saber como filtrar las fechas
         $fecha=date('Y-m-d', strtotime('+6 month'));
-        
-        $resultado = $this->db->select('e.id as id_estadia, 
+
+        $resultado = $this->db->select('e.id as id_estadia,
                                         e.semana,
-                                        e.fecha, 
-                                        r.id as id_residencia, 
-                                        r.nombre, 
-                                        r.foto', 
-                                        'estadias e', 
-                                        'INNER JOIN residencias r ON (e.id_residencia = r.id)', 
+                                        e.fecha,
+                                        r.id as id_residencia,
+                                        r.nombre,
+                                        r.foto',
+                                        'estadias e',
+                                        'INNER JOIN residencias r ON (e.id_residencia = r.id)',
                                         "e.estado='LIBRE' AND e.fecha > '$fecha'");
         return $resultado;
     }
@@ -98,7 +104,7 @@ class Estadias extends Models implements IModels {
     */
 
     public function insertar($semana, $id_residencia, $fecha_inicio){
-        
+
 
         $e = array(
         	'id_residencia' => $id_residencia,

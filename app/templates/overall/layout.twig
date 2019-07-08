@@ -115,7 +115,7 @@
                 </div>
               {% endif %}
 
-               <form class="buscador" action="http://localhost/HomeSwitchHome/filtros/filtrarEstadias" method="post">
+               <form class="buscador" action="http://localhost/HomeSwitchHome/filtros/filtrarEstadias" method="get">
 
                 <p id="small" class="text-muted"><span class="glyphicon glyphicon-alert animated flash"></span> Buscar desde la fecha: {{ "now"|date_modify("+6 month")|date("d/m/Y") }}</p>
 

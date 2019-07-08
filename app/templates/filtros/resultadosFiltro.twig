@@ -31,24 +31,24 @@
           </ul>
         </nav>
 
-        </div> 
+        </div>
     {% endblock %}
 
 {% block carrousel %}
-	
+
 	<div id="div_listar_residencias" class="py-5 bg-light">
 	    <div class="container">
         <div class="container">
           <a href="http://localhost/HomeSwitchHome?ciudad={{ ciudad }}&fecha_desde={{ fecha_desde }}&fecha_hasta={{ fecha_hasta }}"><button id="atras" class="btn btn-secondary my-2">Atrás</button></a>
         </div>
         <br>
-        
+
 
        <p class="lead text-muted">Resultados para "{{ ciudad }}" entre las fechas "{{ fecha_desde|date("d/m/Y") }}" y "{{ fecha_hasta|date("d/m/Y") }}": </p>
 
-        
+
       <br>
-      
+
       {% if residencias == null %}
         <div class="alert alert-danger alert-dismissible">
           <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -57,7 +57,7 @@
       {% endif %}
 
       <div class="row">
-              
+
       	{% for r in residencias %}
 
         <div id="card_residencia" class="col-md-4">
@@ -75,7 +75,7 @@
 
               <div class="center-block">
                 <div id="botones" class="container btn-group">
-                  <a href="http://localhost/HomeSwitchHome/filtros/detalleResidencia/{{ r.id_residencia }}/{{ fecha_desde }}/{{ fecha_hasta }}"><button type="button" class="btn btn-secondary my-2">Ver detalle de residencia</button></a>
+                  <a href="http://localhost/HomeSwitchHome/filtros/detalleResidencia/{{ r.id_residencia }}/{{ fecha_desde }}/{{ fecha_hasta }}/{{ ciudad }}"><button type="button" class="btn btn-secondary my-2">Ver detalle de residencia</button></a>
                 </div>
 
               </div>
@@ -84,14 +84,14 @@
         </div>
 
         {% endfor %}
-    
+
       </div>
 
-      
+
     </div>
 	</div>
-	
-	   
+
+
 {% endblock %}
 {% block appContenido%} {% endblock %}
 {% block appBody%} {% endblock %}
