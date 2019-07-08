@@ -195,13 +195,14 @@ class Usuarios extends Models implements IModels {
 
     public function update($id, $datos){
 
-        if (is_uploaded_file($_FILES["fotoP"]["tmp_name"])) {
+
+        if (isset($_FILES['fotoP']) and is_uploaded_file($_FILES["fotoP"]["tmp_name"])) {
+
             $nombrefoto = $_FILES["fotoP"]["name"];
             $foto = "app/img/usuarios/" . $nombrefoto;
             $foto = $this->db->scape($foto);
             $datos['foto']=$foto;
         }
-        
 
         $resultado = $this->db->update('usuarios', $datos, "id = '$id' AND estado_logico = 0");
 
@@ -246,6 +247,7 @@ class Usuarios extends Models implements IModels {
 
         $usuario = $this->db->select('rol', 'usuarios', null, "id = '$id' AND estado_logico = 0");
 
+
         if ($usuario['0']['rol'] == 'ESTANDAR'){
             $nuevo_rol = 'PREMIUM';
         }
@@ -253,7 +255,9 @@ class Usuarios extends Models implements IModels {
             $nuevo_rol = 'ESTANDAR';
         }
 
+
         $this->update($id, array('rol' => $nuevo_rol));
+
         return true;
 
     }
