@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 25-06-2019 a las 19:03:04
--- Versión del servidor: 10.1.40-MariaDB
--- Versión de PHP: 7.3.5
+-- Tiempo de generación: 11-07-2019 a las 02:21:05
+-- Versión del servidor: 10.1.38-MariaDB
+-- Versión de PHP: 7.3.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -48,7 +48,7 @@ INSERT INTO `estadias` (`id`, `estado`, `id_residencia`, `semana`, `fecha`) VALU
 (18, 'LIBRE', 3, 7, '2020-02-15'),
 (19, 'LIBRE', 1, 23, '2020-06-04'),
 (20, 'LIBRE', 6, 33, '2019-08-18'),
-(21, 'SUBASTA', 3, 21, '2020-05-19'),
+(21, 'LIBRE', 3, 21, '2020-05-19'),
 (22, 'SUBASTA', 7, 52, '2019-12-25'),
 (23, 'SUBASTA', 8, 52, '2019-12-25'),
 (24, 'SUBASTA', 9, 52, '2019-12-25'),
@@ -57,7 +57,7 @@ INSERT INTO `estadias` (`id`, `estado`, `id_residencia`, `semana`, `fecha`) VALU
 (27, 'LIBRE', 6, 10, '2020-03-02'),
 (28, 'LIBRE', 7, 7, '2020-02-12'),
 (29, 'LIBRE', 7, 4, '2020-01-24'),
-(30, 'SUBASTA', 7, 3, '2020-01-15'),
+(30, 'LIBRE', 7, 3, '2020-01-15'),
 (31, 'SUBASTA', 3, 52, '2019-12-25');
 
 -- --------------------------------------------------------
@@ -68,11 +68,9 @@ INSERT INTO `estadias` (`id`, `estado`, `id_residencia`, `semana`, `fecha`) VALU
 
 CREATE TABLE `hotsales` (
   `id` int(10) UNSIGNED NOT NULL,
-  `fecha_inicio` date NOT NULL,
-  `fecha_fin` date NOT NULL,
-  `estado` tinyint(1) NOT NULL,
-  `porcentaje` float NOT NULL,
-  `id_estadia` int(10) UNSIGNED NOT NULL
+  `id_estadia` int(10) UNSIGNED NOT NULL,
+  `monto` double NOT NULL,
+  `estado_logico` int(11) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
@@ -168,12 +166,10 @@ CREATE TABLE `subastas` (
 
 INSERT INTO `subastas` (`id`, `estado`, `usuario_ganador`, `id_estadia`, `monto`, `monto_actual`) VALUES
 (1, 'CERRADA', '', 20, 1500, 1500),
-(2, 'PENDIENTE', ' ', 21, 1000, 1000),
 (3, 'ACTIVA', ' ', 22, 1000, 1000),
 (4, 'ACTIVA', ' ', 23, 2000, 2500),
 (5, 'ACTIVA', ' ', 15, 3500, 4500),
 (6, 'ACTIVA', ' ', 24, 1800, 2100),
-(7, 'PENDIENTE', ' ', 30, 3000, 3000),
 (8, 'ACTIVA', '', 31, 5000, 5000);
 
 -- --------------------------------------------------------
@@ -231,7 +227,7 @@ INSERT INTO `usuarios` (`id`, `email`, `password`, `nombre`, `apellido`, `fecha_
 (1, 'admin@homeswitchhome.com', 'admin1234', 'Administrador', 'Administrador', '0000-00-00', NULL, '111', 1000, 'ADMINISTRADOR', 0, '123456', '0000-00-00'),
 (2, 'loren@mail.com', 'loren1234', 'Lorenzo', 'Repetto', '1994-04-28', 'app/img/usuarios/user.png', '452710', 1, 'ESTANDAR', 0, NULL, '2019-04-01'),
 (5, 'pieri@mail.com', 'pieri1234', 'Pierina', 'Tufillaro', '1999-01-13', 'app/img/usuarios/user.png', '411872', 0, 'ESTANDAR', 0, NULL, '2019-02-15'),
-(6, 'jorge@gmail.com', 'jorge1234', 'Jorge', 'Paulos', '1980-04-13', 'app/img/usuarios/jorge.jpg', '0113751314', 2, 'ESTANDAR', 0, NULL, '2019-05-10'),
+(6, 'jorge@gmail.com', 'jorge1234', 'Jorge', 'Paulos', '1980-04-13', 'app/img/usuarios/jorge.jpg', '0113751314', 0, 'PREMIUM', 0, NULL, '2019-05-10'),
 (7, 'julia@gmail.com', 'julia1234', 'Julia', 'Rosales', '1990-09-04', 'app/img/usuarios/julia.jpg', '0113441586', 2, 'PREMIUM', 0, NULL, '2019-01-12'),
 (13, 'raul@gmail.com', 'raul1234', 'Raúl', 'López', '1987-04-15', 'app/img/usuarios/raul.png', '1137881012', 0, 'ESTANDAR', 0, NULL, '2019-06-15'),
 (14, 'melisa@gmail.com', 'melisa1234', 'Melisa', 'Onofri', '1999-11-05', 'app/img/usuarios/melisa.jpeg', '4586143', 2, 'ESTANDAR', 0, NULL, '2019-06-15');

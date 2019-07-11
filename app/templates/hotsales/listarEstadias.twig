@@ -1,0 +1,87 @@
+{% extends 'overall/layout' %}
+{% block appHeader %}
+
+        <div id="navbar">
+
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+          <!-- Brand -->
+          <a class="navbar-brand" href="http://localhost/HomeSwitchHome/"><div><img src="app/img/HSH-Text.jpg" class="img-responsive" title="Logo Home Switch Home" style="width:180px;"></div></a>
+
+          <!-- Links -->
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="http://localhost/HomeSwitchHome/usuarios/cuenta/logout"><span class="glyphicon glyphicon-log-out"></span>   Cerrar Sesion</a>
+            </li>
+
+            <!-- Dropdown -->
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle my-2 my-lg-0" href="#" id="navbardrop" data-toggle="dropdown">
+                More
+              </a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="#"><span class="glyphicon glyphicon-question-sign"> FAQs</a>
+                <a class="dropdown-item" href="#"><span class="glyphicon glyphicon-envelope"> Contacto</a>
+                <a class="dropdown-item" href="#"><span class="glyphicon glyphicon-fire"></span> Subastas</a>
+                <a class="dropdown-item" href="#"><span class="glyphicon glyphicon-fire"></span> Hotsales</a>
+              </div>
+            </li>
+          </ul>
+        </nav>
+
+        </div>
+    {% endblock %}
+
+{% block carrousel %}
+
+  <div class="py-5 bg-light">
+      <div class="container">
+
+        {% if estadias == false %}
+
+          <div class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong class="animated flash"><span class="glyphicon glyphicon-exclamation-sign"></span></strong> ¡Lo sentimos! No hay estadías disponibles para mostrar.
+          </div>
+
+        {% else %}
+
+          <div class="row">
+
+            {% for e in estadias %}
+
+            <div class="col-md-4">
+              <div id="div_crear_hotsale" class="card mb-4 shadow-sm">
+
+                <div class="card-body">
+                  <p class="card-text">&nbsp;</p>
+                  <p class="card-text"><span class="glyphicon glyphicon-ok"></span><strong> Residencia: </strong>{{ residencia.nombre }}</p>
+                  <p><span class="glyphicon glyphicon-map-marker"></span> {{ residencia.calle }}, {{ residencia.altura }}, {{ residencia.ciudad }}, {{ residencia.provincia }}</p>
+                  <p class="card-text"><span class="glyphicon glyphicon-ok"></span><strong> Fecha:</strong> {{ e.fecha|date("d/m/Y") }}</p>
+
+                  <form action="http://localhost/HomeSwitchHome/admin/hotsales/crear?id_estadia={{ e.id }}" onsubmit="return validarCrearHotsale({{ e.id }});" enctype="multipart/form-data" method="post">
+                    <div class="center-block form-group form">
+                      <label for="monto">Monto:</label>                      
+                      <input type="text" id="monto" name="monto" required> 
+                      <br><br>
+                      <p class="animated shake" style="display:none" id="msjMontoH{{ e.id }}"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo con un monto mayor a 0.</p>
+                    </div>
+                    <button id="botones" type="submit" class="btn btn-secondary my-2">Crear Hotsale</button>
+                  </form>
+
+                </div>
+              </div>
+            </div>
+
+            {% endfor %}
+
+          </div>
+
+        {% endif %}
+
+      </div>
+  </div>
+
+
+{% endblock %}
+{% block appContenido%} {% endblock %}
+{% block appBody%} {% endblock %}
