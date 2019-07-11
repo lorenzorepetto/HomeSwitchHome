@@ -58,12 +58,16 @@
 		        <li class="residencia list-group-item"><span class="glyphicon glyphicon-map-marker"></span><strong> Dirección:</strong> {{ estadia.calle }}, {{ estadia.altura }}, {{ estadia.ciudad }}, {{ estadia.provincia }}</li>
 		        <li class="residencia list-group-item"><span class="glyphicon glyphicon-user"></span> <strong>Capacidad:</strong> {{ estadia.capacidad }}</li>
             <li class="residencia list-group-item"><span class="glyphicon glyphicon-user"></span> <strong> Usuario: </strong>{{ usuario.apellido }}, {{ usuario.nombre }}</li>
-            <li class="residencia list-group-item"><span class="glyphicon glyphicon-ok"></span> <strong> Créditos: </strong>{{ usuario.creditos }} - Vencimiento: {{ usuario.fecha_registro|date_modify("+1 year")|date("d/m/Y") }}</li>
+            <li class="residencia list-group-item"><span class="glyphicon glyphicon-usd"></span> <strong> Créditos: </strong>{{ usuario.creditos }}
+              {% if usuario.creditos > 0 %}
+                &nbsp;Vencimiento: {{ usuario.fecha_registro|date_modify("+1 year")|date("d/m/Y") }}
+              {% endif %}
+            </li>
 
             {% if usuario.creditos > 0 %}
               <li class="residencia list-group-item"><span class="glyphicon glyphicon-ok"></span> <strong>Luego de esta operación, te quedarán {{ usuario.creditos - 1 }} créditos</strong></li>
             {% else %}
-              <li class="residencia list-group-item"><span class="glyphicon glyphicon-ok"></span> <strong>Se necesita al menos 1 crédito para poder adquirir una estadía</strong></li>
+              <li class="residencia list-group-item"><span class="glyphicon glyphicon-thumbs-down"></span> <strong>Se necesita al menos 1 crédito para poder adquirir una estadía</strong></li>
             {% endif %}
           </ul>
           <img id="foto_detalle_residencia" src="{{ estadia.foto }}" class="residencia float-right col-lg-4" alt="Foto de residencia">

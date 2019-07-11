@@ -408,7 +408,7 @@ class usuariosController extends Controllers implements IControllers {
         $edad = Strings::calculate_age($newDate);
 
         if ($edad < 18) {
-          $data = array('sin_error' => 0 );
+          $data = array('menor_de_edad' => 1, 'sin_error' => 0 );
           $this->modificar_perfil($u, $id, $data);
         }else {
           if ($u->update($id, $usuario)) {

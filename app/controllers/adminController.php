@@ -25,12 +25,13 @@ class adminController extends Controllers implements IControllers {
 
     public function __construct(IRouter $router) {
         parent::__construct($router);
-        
+
         $a = new Model\Admin;
         $r = new Model\Residencias;
         $u = new Model\Usuarios;
         $e = new Model\Estadias;
         $s = new Model\Subastas;
+        $h = new Model\Hotsales;
 
 
         if($router->getMethod() and !isset($_SESSION['id'])){
@@ -38,7 +39,7 @@ class adminController extends Controllers implements IControllers {
                 case 'token':
                     $this->autenticar($a);
                     break;
-                
+
                 default:
                     $this->template->display('home/home');
                     break;
@@ -54,9 +55,9 @@ class adminController extends Controllers implements IControllers {
 
 
             case 'operaciones':
-                
+
                 switch ($router->getId()) {
-                    
+
                     case 'editarResidencias':
                         Functions::redir("http://localhost/HomeSwitchHome/residencias/listar");
                         break;
@@ -70,7 +71,7 @@ class adminController extends Controllers implements IControllers {
                         $data = array('id_residencia' => $_GET['id_residencia'] );
                         echo $this->template->display('estadias/agregarEstadia', $data);
                         break;
-                    
+
 
                     case 'editarResidencia':
                         $id = $_GET['id_residencia'];
@@ -80,7 +81,7 @@ class adminController extends Controllers implements IControllers {
                         $data = array('residencia' => $resultado['0'],
                                       'pendientes' => $pendientes);
 
-                        
+
                         $this->template->display('residencias/modificarResidencia', $data);
                         break;
 
@@ -112,32 +113,32 @@ class adminController extends Controllers implements IControllers {
 
 
             case 'residencias':
-                
+
                 switch ($router->getId()) {
-                    
+
                     case 'insertar':
                         $this->insertarResidencia($r);
                         break;
-                    
+
                     case 'editar':
                         $id = $_GET['id_residencia'];
                         $resultado = $r->getResidencia($id);
-                        $data = array('residencia' => $resultado['0'], 
-                                        'nombre_existente' => 0, 
+                        $data = array('residencia' => $resultado['0'],
+                                        'nombre_existente' => 0,
                                         'sin_error' => 0);
                         $this->editarResidencia($r, $data);
-                        
+
                         break;
 
                     case 'eliminar':
                         $this->eliminarResidencia($r);
-                        break;  
+                        break;
 
                     case 'listarResidenciasHotsale':
                         $residencias = $r->getResidencias();
                         $data = array('residencias' => $residencias );
                         $this->template->display('hotsales/listarResidencias',$data);
-                        break;   
+                        break;
 
                     default:
                         $this->template->display('home/home');
@@ -147,13 +148,13 @@ class adminController extends Controllers implements IControllers {
             break;
 
             case 'estadias':
-                
+
                 switch ($router->getId()) {
-                    
+
                     case 'insertar':
                         $this->insertarEstadia($e);
                         break;
-                    
+
                     default:
                         $this->template->display('home/home');
                         break;
@@ -163,7 +164,7 @@ class adminController extends Controllers implements IControllers {
 
             case 'subastas':
                 switch ($router->getId()) {
-                    
+
                     case 'insertar':
                         $id_estadia= $_GET['id_estadia'];
                         $this->insertarSubasta($s, $id_estadia, $e);
@@ -185,7 +186,7 @@ class adminController extends Controllers implements IControllers {
         	case 'usuarios':
 
                 switch ($router->getId()) {
-                    
+
                     case 'cambiarRol':
                             $id_usuario=$_GET['id'];
 
@@ -206,35 +207,35 @@ class adminController extends Controllers implements IControllers {
                         $data = array('usuario' => $usuario);
                         $this->template->display('usuarios/detalleAdmin', $data);
                         break;
-                    
+
                     default:
                         $this->template->display('home/home');
                         break;
                 }
 
-        		
+
         	   break;
 
             case 'hotsales':
-                
-                    
+
+
                 case 'crear':
                     $id_estadia=$_GET['id_estadia'];
-                    $this->crearHotsale($id_estadia);
+                    $this->crearHotsale($id_estadia, $h, $r, $e);
                     break;
-                
+
                 default:
                     $this->template->display('home/home');
                     break;
 
             break;
-        	
+
 
         }
 
     } //end elseif
     else{
-       $this->template->display('home/home'); 
+       $this->template->display('home/home');
     }
 
 
@@ -249,7 +250,7 @@ class adminController extends Controllers implements IControllers {
 
 
     public function insertarResidencia($r){
-        
+
         $nombre=$_POST['nombre'];
         $descripcion=$_POST['descripcion'];
         $calle=$_POST['calle'];
@@ -259,7 +260,7 @@ class adminController extends Controllers implements IControllers {
         $capacidad=$_POST['capacidad'];
 
         $errores= array('nombre_existente' => 0,
-                          'sin_error' => 0, 
+                          'sin_error' => 0,
                           'nombre' => $nombre,
                           'descripcion' => $descripcion,
                           'calle' => $calle,
@@ -272,7 +273,7 @@ class adminController extends Controllers implements IControllers {
 
         //Valido el nombre
         if ($r->existe($nombre)) {
-            $errores['nombre_existente'] = 1;            
+            $errores['nombre_existente'] = 1;
         }
 
 
@@ -283,14 +284,14 @@ class adminController extends Controllers implements IControllers {
             $errores['id'] = $id;
         }
 
-        echo $this->template->display('residencias/agregarResidencia',$errores); 
+        echo $this->template->display('residencias/agregarResidencia',$errores);
 
     }
 
 
 
     public function insertarEstadia($e){
-        
+
         $data = array('sin_error' => 0, //esta en 1 cuando esta todo ok
                         'semana_ocupada' => 0,
                         'id_residencia'=> $_GET['id_residencia']);
@@ -302,15 +303,15 @@ class adminController extends Controllers implements IControllers {
 
         //Valido si ya existe una estadia para esa residencia y semana
         if ($e->existe($semana, $id_residencia)) {
-            $data['semana_ocupada'] = 1;            
+            $data['semana_ocupada'] = 1;
         }
         else{
-            //puedo crear la estadia  
+            //puedo crear la estadia
             $e->insertar($semana, $id_residencia, $fecha_inicio);
             $data['sin_error'] = 1;
         }
 
-        echo $this->template->display("estadias/agregarEstadia", $data); 
+        echo $this->template->display("estadias/agregarEstadia", $data);
 
     }
 
@@ -319,8 +320,8 @@ class adminController extends Controllers implements IControllers {
 
     private function insertarSubasta($s, $id_estadia, $e){
         $data = array('sin_error' => 0, //está en 1 cuando esta todo ok
-                        'estadia_ocupada' => 0, 
-                      'subasta_existente'=> 0, 
+                        'estadia_ocupada' => 0,
+                      'subasta_existente'=> 0,
                         'falta_monto' =>0);
 
         $monto= $_POST['monto'.$id_estadia];
@@ -329,26 +330,15 @@ class adminController extends Controllers implements IControllers {
             $data['falta_monto'] =1;
         }
 
-        /*debe crearse con al menos 6 meses de anticipacion (es igual a 52/2=26 semanas)
-        $semana_estadia = $e->getSemana($id_estadia);
-
-        $hoy= date("Y-m-d");        
-        $semana_hoy = $this->calcularSemana($hoy);
-        
-        if ($semana_hoy > ($semana_estadia - 26)) {
-            $data['error_anticipacion'] = 1;
-        }
-        */
-
         if($s->existe($id_estadia)){
             $data['subasta_existente'] = 1;
         }
-        
-        
+
+
         if($e->estaOcupada($id_estadia)){
             $data['estadia_ocupada']=1;
         }
-        
+
         $subasta=null;
         if (!$data['estadia_ocupada'] && !$data['subasta_existente'] && !$data['falta_monto']){
             $s->insertar($e, $id_estadia, $monto);
@@ -357,14 +347,14 @@ class adminController extends Controllers implements IControllers {
         }
 
         $estadias= $e->getEstadiasParaSubastar();
-        $this->template->display("subastas/agregarSubasta", array('estadias' => $estadias,'data' => $data, 'subasta' => $subasta['0'])); 
-        
+        $this->template->display("subastas/agregarSubasta", array('estadias' => $estadias,'data' => $data, 'subasta' => $subasta['0']));
+
 
     }
 
 
     private function calcularSemana($fecha){
-        $mes=date("m", strtotime($fecha)); 
+        $mes=date("m", strtotime($fecha));
         $anio=date("Y", strtotime($fecha));
         $dia=date("d", strtotime($fecha));
 
@@ -383,7 +373,7 @@ class adminController extends Controllers implements IControllers {
 
         $ok = $a->autenticar($token);
 
-        if ($ok) {      
+        if ($ok) {
             Functions::redir("http://localhost/HomeSwitchHome/home");
         }
         else{
@@ -407,13 +397,13 @@ class adminController extends Controllers implements IControllers {
 
         $id_residencia=$data['residencia']['id'];
 
-        $residenciaActual= $r->getResidencia($id_residencia); 
+        $residenciaActual= $r->getResidencia($id_residencia);
         //Valido el nombre
         if ($nombre != $residenciaActual[0]['nombre']) {
             if ($r->existe($nombre)) {
                 $data['nombre_existente'] = 1;
                 //creo el array para recordar los datos ingresados
-               
+
                 $res = array('nombre' => $nombre,
                              'descripcion' => $descripcion,
                              'calle' => $calle,
@@ -421,7 +411,7 @@ class adminController extends Controllers implements IControllers {
                              'ciudad' => $ciudad,
                              'provincia' => $provincia,
                              'capacidad' => $capacidad);
-                
+
 
                 $data['residencia'] = $res;
 
@@ -473,7 +463,7 @@ class adminController extends Controllers implements IControllers {
     private function cerrarSubasta($u, $s, $id_subasta, $e){
 
         $data = array('id_subasta' => $id_subasta,
-                      'sin_error' =>0, 
+                      'sin_error' =>0,
                       'usuario_ganador' => 0);
 
         $subasta= $s->getSubasta($id_subasta);
@@ -486,7 +476,7 @@ class adminController extends Controllers implements IControllers {
             if ($data['usuario_ganador']) {
                 $usuario=$u->getUsuario($data['usuario_ganador']);
             }
-            
+
         }
         $subasta= $s->getSubasta($id_subasta);
         $puja = $s->getPuja($id_subasta);
@@ -495,9 +485,28 @@ class adminController extends Controllers implements IControllers {
         $this->template->display('subastas/detalleAdmin',array('subasta' => $subasta['0'], 'puja' => $puja['0'], 'data'=> $data, 'usuario' => $usuario['0'], 'operacion' => 0 ));
     }
 
-    public function crearHotsale($id_estadia){
-        echo "bu";
-        //crear hotsale: poner la estadia en hotsale
+    public function crearHotsale($id_estadia, $h, $r, $e){
+      $input="monto".$id_estadia;
+
+      $monto=$_POST[$input];
+
+      $h->crear($id_estadia, $monto);
+      $id_residencia = $e->getResidencia($id_estadia);
+
+      //paso la estadia a estado "HOTSALE"
+      $e->cambiarEstado($id_estadia, "HOTSALE");
+
+      //vuelvo al listado de estadias para la residencia $id_residencia
+
+      $mis_estadias = $r->getEstadias($id_residencia);
+      $residencia=$r->getResidencia($id_residencia)['0'];
+
+      $data = array('estadias' => $mis_estadias,
+                      'residencia' => $residencia,
+                     'exito' => 1 );
+
+
+      $this->template->display('hotsales/listarEstadias',$data);
 
     }
 }

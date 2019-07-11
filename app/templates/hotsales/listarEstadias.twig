@@ -36,6 +36,15 @@
   <div class="py-5 bg-light">
       <div class="container">
 
+        {% if exito == 1 %}
+
+          <div class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong class="animated flash"><span class="glyphicon glyphicon-exclamation-sign"></span></strong> ¡El Hotsale se ha creado con éxito!.
+          </div>
+
+        {% endif %}
+
         {% if estadias == false %}
 
           <div class="alert alert-danger alert-dismissible">
@@ -60,8 +69,8 @@
 
                   <form action="http://localhost/HomeSwitchHome/admin/hotsales/crear?id_estadia={{ e.id }}" onsubmit="return validarCrearHotsale({{ e.id }});" enctype="multipart/form-data" method="post">
                     <div class="center-block form-group form">
-                      <label for="monto">Monto:</label>                      
-                      <input type="text" id="monto" name="monto" required> 
+                      <label for="monto{{ e.id }}">Monto:</label>
+                      <input type="text" id="monto{{ e.id }}" name="monto{{ e.id }}" required>
                       <br><br>
                       <p class="animated shake" style="display:none" id="msjMontoH{{ e.id }}"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo con un monto mayor a 0.</p>
                     </div>

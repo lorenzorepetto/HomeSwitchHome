@@ -308,7 +308,7 @@ function validarModificarPerfil(){
 
 function validarCrearHotsale ($id){
 
-  var monto = document.getElementById("monto").value;
+  var monto = document.getElementById("monto"+$id).value;
 
   if (monto>0) {
     return true;
