@@ -305,3 +305,14 @@ function validarModificarPerfil(){
 
   return true;
 }
+
+function validarCrearHotsale ($id){
+
+  var monto = document.getElementById("monto").value;
+
+  if (monto>0) {
+    return true;
+  }
+  document.getElementById("msjMontoH"+$id).style.display = "block";
+  return false;
+}

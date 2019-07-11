@@ -35,6 +35,11 @@ class residenciasController extends Controllers implements IControllers {
         	case 'listar':
                 $this->listarResidencias($r);
                 break;
+
+            case 'listarEstadias':
+                $id=$router->getId(true);
+                $this->listarMisEstadias($r, $id);
+                break;
         	
 
             case 'detalle':
@@ -121,6 +126,18 @@ class residenciasController extends Controllers implements IControllers {
         else{
             $this->template->display('residencias/listarResidencias',array('residencias' => $residencias));
         }
+    }
+
+    public function listarMisEstadias($r, $id_residencia){
+
+        $mis_estadias = $r->getEstadias($id_residencia);
+        $residencia=$r->getResidencia($id_residencia)['0'];
+
+        $data = array('estadias' => $mis_estadias, 
+                        'residencia' => $residencia );
+
+
+        $this->template->display('hotsales/listarEstadias',$data);
     }
 
 

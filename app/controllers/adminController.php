@@ -131,7 +131,13 @@ class adminController extends Controllers implements IControllers {
 
                     case 'eliminar':
                         $this->eliminarResidencia($r);
-                        break;    
+                        break;  
+
+                    case 'listarResidenciasHotsale':
+                        $residencias = $r->getResidencias();
+                        $data = array('residencias' => $residencias );
+                        $this->template->display('hotsales/listarResidencias',$data);
+                        break;   
 
                     default:
                         $this->template->display('home/home');
@@ -208,6 +214,20 @@ class adminController extends Controllers implements IControllers {
 
         		
         	   break;
+
+            case 'hotsales':
+                
+                    
+                case 'crear':
+                    $id_estadia=$_GET['id_estadia'];
+                    $this->crearHotsale($id_estadia);
+                    break;
+                
+                default:
+                    $this->template->display('home/home');
+                    break;
+
+            break;
         	
 
         }
@@ -475,4 +495,9 @@ class adminController extends Controllers implements IControllers {
         $this->template->display('subastas/detalleAdmin',array('subasta' => $subasta['0'], 'puja' => $puja['0'], 'data'=> $data, 'usuario' => $usuario['0'], 'operacion' => 0 ));
     }
 
+    public function crearHotsale($id_estadia){
+        echo "bu";
+        //crear hotsale: poner la estadia en hotsale
+
+    }
 }

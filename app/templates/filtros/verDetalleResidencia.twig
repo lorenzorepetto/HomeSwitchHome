@@ -43,7 +43,7 @@
 
 		<div class="border container">
 
-        <a href="http://localhost/HomeSwitchHome/filtros/filtrarEstadias?fecha_desde={{ fecha_desde }}&fecha_hasta={{ fecha_hasta }}&ubicacion={{ ciudad }}"><button type="button" name="button">Atrás</button></a>
+        <a href="http://localhost/HomeSwitchHome/filtros/filtrarEstadias?fecha_desde={{ fecha_desde }}&fecha_hasta={{ fecha_hasta }}&ubicacion={{ ciudad }}"><button id="atras" class="btn btn-secondary my-2">Atrás</button></a>
 
 		   	 <h2 class="residencia center-block">{{ residencia.nombre }}</h2>
 		    <div class_"row">
@@ -117,7 +117,7 @@
                     <p class="card-text"><span class="glyphicon glyphicon-ok"></span><strong> Estadía en semana:</strong> {{ s.semana }}</p>
                     <p class="card-text"><span class="glyphicon glyphicon-ok"></span><strong> Fecha inicio:</strong> {{ s.fecha|date("d/m/Y") }}</p>
                     <p class="card-text"><span class="glyphicon glyphicon-ok"></span><strong> Fecha fin:</strong> {{ s.fecha|date_modify("+7 days")|date("d/m/Y") }}</p>
-                    <a href="" id="estadia_subasta" class="btn btn-secondary my-2">¡La quiero!</a>
+                    <a href="http://localhost/HomeSwitchHome/estadias/adquirir/{{ s.id_estadia }}/{{ fecha_desde }}/{{ fecha_hasta }}/{{ ciudad }}" id="estadia_subasta" class="btn btn-secondary my-2">¡La quiero!</a>
                   {% endif %}
                 </div>
               </div>
