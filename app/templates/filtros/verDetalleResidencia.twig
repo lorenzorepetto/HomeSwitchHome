@@ -80,7 +80,7 @@
                   {% if premium == false %}
                     <a id="estadia_subasta" class="btn btn-secondary my-2" disabled>¡La quiero!</a>
                   {% else %}
-                    <a href="http://localhost/HomeSwitchHome/estadias/adquirir/{{ e.id }}/{{ fecha_desde }}/{{ fecha_hasta }}/{{ ciudad }}" id="estadia_subasta" class="btn btn-secondary my-2">¡La quiero!</a>
+                    <a href="http://localhost/HomeSwitchHome/estadias/confirmacion/{{ e.id }}/{{ fecha_desde }}/{{ fecha_hasta }}/{{ ciudad }}" id="estadia_subasta" class="btn btn-secondary my-2">¡La quiero!</a>
                   {% endif %}
                 </div>
               </div>
@@ -117,7 +117,7 @@
                     <p class="card-text"><span class="glyphicon glyphicon-ok"></span><strong> Estadía en semana:</strong> {{ s.semana }}</p>
                     <p class="card-text"><span class="glyphicon glyphicon-ok"></span><strong> Fecha inicio:</strong> {{ s.fecha|date("d/m/Y") }}</p>
                     <p class="card-text"><span class="glyphicon glyphicon-ok"></span><strong> Fecha fin:</strong> {{ s.fecha|date_modify("+7 days")|date("d/m/Y") }}</p>
-                    <a href="http://localhost/HomeSwitchHome/estadias/adquirir/{{ s.id_estadia }}/{{ fecha_desde }}/{{ fecha_hasta }}/{{ ciudad }}" id="estadia_subasta" class="btn btn-secondary my-2">¡La quiero!</a>
+                    <a href="http://localhost/HomeSwitchHome/estadias/confirmacion/{{ s.id_estadia }}/{{ fecha_desde }}/{{ fecha_hasta }}/{{ ciudad }}" id="estadia_subasta" class="btn btn-secondary my-2">¡La quiero!</a>
                   {% endif %}
                 </div>
               </div>

@@ -50,10 +50,9 @@
 
 		<div class="border container">
 		   	 <h2 class="residencia center-block">{{ estadia.nombre }}</h2>
-         <h5 class="residencia center-block"> Semana: {{ estadia.semana }} - Fecha de inicio: {{ estadia.fecha | date('d-m-Y') }}</h5>
-
         <div class_"row">
 		      <ul class="list-group list-group-flush col-lg-8">
+            <li class="residencia list-group-item"><span class="glyphicon glyphicon-ok"></span> <strong> Semana: </strong>{{ estadia.semana }} (Fecha de inicio: {{ estadia.fecha | date('d-m-Y') }})</li>
 		        <li class="residencia list-group-item"><span class="glyphicon glyphicon-ok"></span> <strong> Descripción: </strong>{{ estadia.descripcion }}</li>
 		        <li class="residencia list-group-item"><span class="glyphicon glyphicon-map-marker"></span><strong> Dirección:</strong> {{ estadia.calle }}, {{ estadia.altura }}, {{ estadia.ciudad }}, {{ estadia.provincia }}</li>
 		        <li class="residencia list-group-item"><span class="glyphicon glyphicon-user"></span> <strong>Capacidad:</strong> {{ estadia.capacidad }}</li>
@@ -72,8 +71,9 @@
           </ul>
           <img id="foto_detalle_residencia" src="{{ estadia.foto }}" class="residencia float-right col-lg-4" alt="Foto de residencia">
 
+
           {% if usuario.creditos > 0 %}
-            <button class="btn btn-secondary my-2" onclick="return confirmarEstadia();">Confirmar</button>
+            <a href="http://localhost/HomeSwitchHome/estadias/adquirir/{{ estadia.id_estadia }}/{{ fecha_desde }}/{{ fecha_hasta }}/{{ ciudad }}" onclick="return confirmarEstadia();"><button class="btn btn-secondary my-2">Confirmar</button></a>
           {% else %}
             <button class="btn btn-secondary my-2" onclick="return confirmarEstadia();" disabled>Confirmar</button>
           {% endif %}

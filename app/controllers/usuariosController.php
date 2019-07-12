@@ -155,6 +155,11 @@ class usuariosController extends Controllers implements IControllers {
                 $this->modificar($id, $u, $data);
                 break;
 
+            case 'cambiar_principal':
+                $id_tarjeta = $router->getId();
+                $this->cambiar_principal($u,$t,$id_tarjeta);
+                break;
+
 
              default:
                 $this->template->display('home/home');
@@ -289,6 +294,16 @@ class usuariosController extends Controllers implements IControllers {
     ----------------------------OPERACIONES--------------------------------------------
 
     */
+
+
+    public function cambiar_principal($u,$t,$id_tarjeta){
+      $t->cambiar_principal($_SESSION['id'], $id_tarjeta);
+
+      $this->perfil($u,$t);
+
+    }
+
+
 
     public function perfil($u, $t){
 

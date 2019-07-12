@@ -87,7 +87,7 @@
                 <li class="perfil list-group-item">
                   <div class="adicionales" class="row">
                     <p class="col-lg-5" id="numero"><strong>Terminada en:</strong> "{{ t.numero|slice(12,13,14,15) }}" <strong> - Marca:</strong> {{ t.marca }}</p>
-                    <a id="cambiar_principal" class="col-lg-3 center-block" href="http://localhost/HomeSwitchHome/usuarios/operaciones/modificar_perfil?id={{ usuario.id }}"><button id="atras" type="button" class="cambiar_principal center-block btn btn-info my-2">Cambiar a principal</button></a>
+                    <a id="cambiar_principal" class="col-lg-3 center-block" href="http://localhost/HomeSwitchHome/usuarios/cambiar_principal/{{ t.id }}"><button id="atras" type="button" class="cambiar_principal center-block btn btn-info my-2">Cambiar a principal</button></a>
                     <a class="col-lg-3" id="trash" title="Eliminar tarjeta" href="http://localhost/HomeSwitchHome/usuarios/operaciones/eliminarTarjeta?id_tarjeta={{ t.id }}" onclick="return confirmation();"><span id="trash" class="glyphicon glyphicon-trash"></span></a>
                   </div>
                 </li>

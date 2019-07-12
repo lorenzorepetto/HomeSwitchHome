@@ -44,4 +44,18 @@ class Tarjeta extends Models implements IModels {
     	return $resultado;
 
     }
+
+    public function cambiar_principal($id_usuario, $id_tarjeta){
+      //pongo todas las tarjetas del usuario en 0
+      $datos = array('principal' => 0 );
+      $resultado = $this->db->update('tarjetas', $datos, "id_usuario = '$id_usuario' AND estado_logico = 0");
+
+      //pongo la nueva en 1
+      $datos['principal'] = 1;
+      $resultado = $this->db->update('tarjetas', $datos, "id_usuario = '$id_usuario' AND estado_logico = 0 AND id = '$id_tarjeta'");
+
+      return $resultado;
+    }
+
+
 }
