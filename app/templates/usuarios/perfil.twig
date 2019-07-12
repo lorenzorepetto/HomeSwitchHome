@@ -70,17 +70,11 @@
 
 
               {% if t.principal == 1 %}
-                <h4>Tarjeta principal:</h4>
                 <li class="perfil list-group-item">
                   <div id="tarjeta_principal" class="alert alert-info">
-                  <p id="numero"><span class="glyphicon glyphicon-ok"></span><strong> Terminada en:</strong> "{{ t.numero|slice(12,13,14,15) }}" <strong> - Marca:</strong> {{ t.marca }}</p>
+                  <p id="numero"><span class="glyphicon glyphicon-ok"></span><strong> Principal: Terminada en:</strong> "{{ t.numero|slice(12,13,14,15) }}" <strong> - Marca:</strong> {{ t.marca }}</p>
                 </div>
                 </li>
-
-                <div id="tarjeta_principal" class="row">
-                  <h4 class="adicionales">Tarjetas adicionales:</h4>
-                  <a id="agregar_tarjeta" class="center-block"><button id="atras" class="center-block btn btn-secondary my-2">Agregar tarjeta</button></a>
-                </div>
 
               {% else %}
 
@@ -108,6 +102,7 @@
               <a class="premium col-md-3" href="http://localhost/HomeSwitchHome/usuarios/faqs"><button id="atras" class="center-block btn btn-secondary my-2">¡Quiero ser Premium!</button></a>
             {% endif %}
             <a id="modificar" class="col-md-3" href="http://localhost/HomeSwitchHome/usuarios/operaciones/modificar_perfil?id={{ usuario.id }}"><button id="atras" class="center-block btn btn-secondary my-2">Modificar datos personales</button></a>
+            <a id="modificar" class="col-md-3" href="http://localhost/HomeSwitchHome/usuarios/operaciones/modificar_perfil?id={{ usuario.id }}"><button id="atras" class="center-block btn btn-secondary my-2">Aregar tarjeta</button></a>
           <br><br><br>
           </div>
         </li>

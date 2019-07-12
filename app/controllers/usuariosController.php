@@ -33,7 +33,7 @@ class usuariosController extends Controllers implements IControllers {
         $e = new Model\Estadias;
         $r = new Model\Residencias;
         $t = new Model\Tarjeta;
-        $H = new Model\Hotsales;
+        $h = new Model\Hotsales;
 
         switch ($router->getMethod()) {
 
@@ -109,6 +109,11 @@ class usuariosController extends Controllers implements IControllers {
                         $this->descontarCredito($u);
                         break;
 
+                    case 'eliminarTarjeta':
+                        $id=$_GET['id_tarjeta'];
+                        $this->eliminarTarjeta($id, $t);
+                    break;
+
                     default:
                         echo $this->template->display('home/home');
                         break;
@@ -137,14 +142,14 @@ class usuariosController extends Controllers implements IControllers {
 
             case 'hotsales':
 
-              switch ($router->getId()) {
+                switch ($router->getId()) {
 
-                case 'listar':
-                    $hotsales=$h->getHotsalesConEstadiaYResidencia();
-                    dump($hotsales);
-                    $data = array('hotsales' => $hotsales,
-                                  'rol' => 'USUARIO');
-                    $this->template->display('hotsales/listaAdmin', $data);
+                    case 'listar':
+                        $hotsales=$h->getHotsalesConEstadiaYResidencia();
+                        
+                        $data = array('hotsales' => $hotsales,
+                                      'rol' => 'USUARIO');
+                        $this->template->display('hotsales/listar', $data);
                     break;
                 }
             break;
@@ -452,6 +457,12 @@ class usuariosController extends Controllers implements IControllers {
         $this->template->display('home/home');
       }
 
+    }
+
+    public function eliminarTarjeta ($id, $t){
+
+       $t->eliminar($id);
+       Functions::redir("http://localhost/HomeSwitchHome/usuarios/operaciones/perfil");
     }
 
 }

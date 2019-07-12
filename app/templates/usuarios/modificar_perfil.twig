@@ -39,6 +39,9 @@
   <body class="text-center" id="body_registrar">
       <div class="container" id="div_modificar_perfil">
         <br>
+        <div class="container">
+          <a href="http://localhost/HomeSwitchHome/usuarios/operaciones/perfil"><button id="atras" class="btn btn-secondary my-2">Atrás</button></a>
+        </div>
 
         <form action="http://localhost/HomeSwitchHome/usuarios/modificar_perfil/{{ usuario.id }}" enctype="multipart/form-data" onsubmit="return validarModificarPerfil();" method="post">
           <img class="bd-placeholder-img rounded-circle" src="app/img/HSH-Logo.jpg" alt="" width="90" height="90">

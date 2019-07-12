@@ -61,5 +61,20 @@ class Hotsales extends Models implements IModels {
       return $resultado;
     }
 
+    public function eliminar($id){
+
+
+      $hotsale = $this->db->select('estado_logico', 'hotsales', null, "id = '$id' AND estado_logico = 0");
+
+      if (!$hotsale['0']['estado_logico']) {
+        
+        $resultado = $this->db->update('hotsales', $datos = array('estado_logico' => 1 ), "id = '$id'");
+      
+      }
+
+      return $resultado;
+
+    }
+
 
 }

@@ -36,15 +36,28 @@
   <div class="py-5 bg-light">
       <div class="container">
 
+        <div class="container">
+          <a href="http://localhost/HomeSwitchHome"><button id="atras" class="btn btn-secondary my-2">Atrás</button></a>
+        </div>
+
         <p class="lead text-muted">Lista de Hotsales: </p>
         <br>
+
+        {% if exito == 1 %}
+
+          <div class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong class="animated flash"><span class="glyphicon glyphicon-exclamation-sign"></span>Nota:</strong> El hotsale se ha eliminado con éxito.
+          </div>
+
+        {% endif %}
 
 
         {% if hotsales == false %}
 
           <div class="alert alert-danger alert-dismissible">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <strong class="animated flash"><span class="glyphicon glyphicon-exclamation-sign"></span></strong> ¡Lo sentimos! No hay estadías disponibles para mostrar.
+            <strong class="animated flash"><span class="glyphicon glyphicon-exclamation-sign"></span></strong> ¡Lo sentimos! No hay hotsales disponibles para mostrar.
           </div>
 
         {% else %}
@@ -65,7 +78,7 @@
                   <p class="card-text"><span class="animated flash glyphicon glyphicon-usd"></span><strong> Monto:</strong> ${{ h.monto }}</p>
 
                   {% if rol == 'ADMINISTRADOR' %}
-                    <a class="col-lg-3" id="trash" title="Eliminar hotsale" href="" onclick="return confirmation();"><span id="trash" class="glyphicon glyphicon-trash"></span></a>
+                    <a class="col-lg-3" id="trash" title="Eliminar hotsale" href="http://localhost/HomeSwitchHome/admin/hotsales/eliminar?id={{ h.id }}" onclick="return confirmation();"><span id="trash" class="glyphicon glyphicon-trash"></span></a>
 
                   {% else %}
                     <button class="btn btn-secondary" type="button" name="button">Ver detalles</button>

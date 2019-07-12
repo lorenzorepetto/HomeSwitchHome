@@ -57,5 +57,19 @@ class Tarjeta extends Models implements IModels {
       return $resultado;
     }
 
+    public function eliminar($id){
+
+      $tarjeta = $this->db->select('estado_logico', 'tarjetas', null, "id = '$id' AND estado_logico = 0");
+
+      if (!$tarjeta['0']['estado_logico']) {
+        
+        $resultado = $this->db->update('tarjetas', $datos = array('estado_logico' => 1 ), "id = '$id'");
+      
+      }
+
+      return $resultado;
+
+    } 
+
 
 }

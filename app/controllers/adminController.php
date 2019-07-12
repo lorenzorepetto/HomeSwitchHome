@@ -223,17 +223,26 @@ class adminController extends Controllers implements IControllers {
                 if ($_SESSION['rol']=='ADMINISTRADOR') {
                   switch ($router->getId()) {
 
-                      case 'crear':
+                        case 'crear':
                           $id_estadia=$_GET['id_estadia'];
                           $this->crearHotsale($id_estadia, $h, $r, $e);
                           break;
 
-                      case 'listar':
+                        case 'listar':
                           $hotsales=$h->getHotsalesConEstadiaYResidencia();
-                          dump($hotsales);
                           $data = array('hotsales' => $hotsales,
                                         'rol' => 'ADMINISTRADOR');
-                          $this->template->display('hotsales/listaAdmin', $data);
+                          
+                          if (isset($_GET['exito'])) {
+                             $data['exito'] = 1;
+                          }
+      
+                          $this->template->display('hotsales/listar', $data);
+                          break;
+
+                        case 'eliminar':
+                          $id_hotsale=$_GET['id'];
+                          $this->eliminarHotsale($id_hotsale, $h);
                           break;
 
                       default:
@@ -526,6 +535,15 @@ class adminController extends Controllers implements IControllers {
 
 
       $this->template->display('hotsales/listarEstadias',$data);
+
+    }
+
+    public function eliminarHotsale($id, $h){
+
+       $resultado=$h->eliminar($id);
+
+
+       Functions::redir("http://localhost/HomeSwitchHome/admin/hotsales/listar?exito=1");
 
     }
 }
