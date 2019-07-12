@@ -31,16 +31,16 @@
 {% endblock %}
 
 {% block carrousel %}
-  
+
   <section id="backend" class="jumbotron text-center">
     <div class="container">
 
-      
+
       <h1 class="jumbotron">Administrar Residencias</h1>
       <p class="lead text-muted">Usted puede agregar, buscar, eliminar, listar las residencias para editarlas y crear estadías.</p>
-      <div class="center-block row">      
+      <div class="center-block row">
         <a href="http://localhost/HomeSwitchHome/admin/operaciones/agregarResidencia" class="btn btn-secondary my-2">Agregar residencia</a>
-        <a href="http://localhost/HomeSwitchHome/admin/operaciones/editarResidencias" class="btn btn-secondary my-2">Ver lista de residencias</a> 
+        <a href="http://localhost/HomeSwitchHome/admin/operaciones/editarResidencias" class="btn btn-secondary my-2">Ver lista de residencias</a>
       </div>
     </div>
   </section>
@@ -49,12 +49,21 @@
 {% block appContenido %}
   <section id="backend" class="jumbotron text-center">
     <div class="container">
-      <h1 class="jumbotron">Administrar Hotsales y Subastas</h1>
-      <p class="lead text-muted">Usted puede crear/editar Hotsales y Subastas.</p>
-      <div class="center-block row"> 
-        <a href="http://localhost/HomeSwitchHome/admin/residencias/listarResidenciasHotsale" class="btn btn-secondary my-2">Ver residencias para crear Hotsale</a>
+      <h1 class="jumbotron">Administrar Subastas</h1>
+      <p class="lead text-muted">Usted puede crear y editar Subastas.</p>
+      <div class="center-block row">
         <a href="http://localhost/HomeSwitchHome/admin/operaciones/agregarSubasta" class="btn btn-secondary my-2">Ver estadías disponibles para crear subastas</a>
         <a href="http://localhost/HomeSwitchHome/admin/operaciones/verSubastas" class="btn btn-secondary my-2">Ver Subastas</a>
+      </div>
+    </div>
+  </section>
+  <section id="backend" class="jumbotron text-center mt-4">
+    <div class="container">
+      <h1 class="jumbotron">Administrar Hotsales</h1>
+      <p class="lead text-muted">Usted puede crear y eliminar Hotsales.</p>
+      <div class="center-block row">
+        <a href="http://localhost/HomeSwitchHome/admin/residencias/listarResidenciasHotsale" class="btn btn-secondary my-2">Ver residencias para crear Hotsale</a>
+        <a href="http://localhost/HomeSwitchHome/admin/hotsales/listar" class="btn btn-secondary my-2">Ver lista de Hotsales</a>
       </div>
     </div>
   </section>

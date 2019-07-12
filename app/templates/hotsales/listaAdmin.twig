@@ -1,0 +1,90 @@
+{% extends 'overall/layout' %}
+{% block appHeader %}
+
+<div id="navbar">
+
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <!-- Brand -->
+    <a class="navbar-brand" href="http://localhost/HomeSwitchHome/"><div><img src="app/img/HSH-Text.jpg" class="img-responsive" title="Logo Home Switch Home" style="width:180px;"></div></a>
+
+    <!-- Links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="http://localhost/HomeSwitchHome/usuarios/cuenta/logout"><span class="glyphicon glyphicon-log-out"></span>   Cerrar Sesion</a>
+      </li>
+
+      <!-- Dropdown -->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle my-2 my-lg-0" href="#" id="navbardrop" data-toggle="dropdown">
+          More
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="#"><span class="glyphicon glyphicon-question-sign"> FAQs</a>
+          <a class="dropdown-item" href="#"><span class="glyphicon glyphicon-envelope"> Contacto</a>
+          <a class="dropdown-item" href="#"><span class="glyphicon glyphicon-fire"></span> Subastas</a>
+          <a class="dropdown-item" href="#"><span class="glyphicon glyphicon-fire"></span> Hotsales</a>
+        </div>
+      </li>
+    </ul>
+  </nav>
+
+</div>
+{% endblock %}
+
+{% block carrousel %}
+
+  <div class="py-5 bg-light">
+      <div class="container">
+
+        <p class="lead text-muted">Lista de Hotsales: </p>
+        <br>
+
+
+        {% if hotsales == false %}
+
+          <div class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong class="animated flash"><span class="glyphicon glyphicon-exclamation-sign"></span></strong> ¡Lo sentimos! No hay estadías disponibles para mostrar.
+          </div>
+
+        {% else %}
+
+          <div class="row">
+
+            {% for h in hotsales %}
+
+            <div class="col-md-4">
+              <div id="div_hotsale" class="card mb-4 shadow-sm">
+
+                <div class="card-body">
+                  <img id="card_foto_residencia" src="{{ h.foto }}" class="card-img-top" >
+                  <p class="card-text">&nbsp;</p>
+                  <p class="card-text"><span class="glyphicon glyphicon-ok"></span><strong> Residencia: </strong>{{ h.nombre }}</p>
+                  <p class="card-text"><span class="glyphicon glyphicon-ok"></span> <strong> Fecha: </strong>{{ h.fecha|date("d/m/Y") }}</p>
+                  <p><span class="glyphicon glyphicon-map-marker"></span> {{ h.calle }}, {{ h.altura }}, {{ h.ciudad }}, {{ h.provincia }}</p>
+                  <p class="card-text"><span class="animated flash glyphicon glyphicon-usd"></span><strong> Monto:</strong> ${{ h.monto }}</p>
+
+                  {% if rol == 'ADMINISTRADOR' %}
+                    <a class="col-lg-3" id="trash" title="Eliminar hotsale" href="" onclick="return confirmation();"><span id="trash" class="glyphicon glyphicon-trash"></span></a>
+
+                  {% else %}
+                    <button class="btn btn-secondary" type="button" name="button">Ver detalles</button>
+                  {% endif %}
+
+                </div>
+              </div>
+            </div>
+
+            {% endfor %}
+
+          </div>
+
+        {% endif %}
+
+      </div>
+  </div>
+
+
+{% endblock %}
+{% block appContenido%} {% endblock %}
+{% block appBody%} {% endblock %}

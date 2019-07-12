@@ -44,5 +44,22 @@ class Hotsales extends Models implements IModels {
       $this->db->insert('hotsales',$hotsale);
     }
 
+    public function getHotsalesConEstadiaYResidencia(){
+      $resultado = $this->db->select('h.monto,
+                                      h.id,
+                                      e.fecha,
+                                      r.nombre,
+                                      r.foto,
+                                      r.calle,
+                                      r.altura,
+                                      r.ciudad,
+                                      r.provincia',
+                                      'hotsales h',
+                                      'INNER JOIN estadias e ON (h.id_estadia = e.id)
+                                      INNER JOIN residencias r ON (e.id_residencia = r.id)',
+                                      "h.estado_logico=0");
+      return $resultado;
+    }
+
 
 }

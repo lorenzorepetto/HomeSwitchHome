@@ -33,6 +33,7 @@ class usuariosController extends Controllers implements IControllers {
         $e = new Model\Estadias;
         $r = new Model\Residencias;
         $t = new Model\Tarjeta;
+        $H = new Model\Hotsales;
 
         switch ($router->getMethod()) {
 
@@ -130,6 +131,20 @@ class usuariosController extends Controllers implements IControllers {
 
                     default:
                         echo $this->template->display('home/home');
+                    break;
+                }
+            break;
+
+            case 'hotsales':
+
+              switch ($router->getId()) {
+
+                case 'listar':
+                    $hotsales=$h->getHotsalesConEstadiaYResidencia();
+                    dump($hotsales);
+                    $data = array('hotsales' => $hotsales,
+                                  'rol' => 'USUARIO');
+                    $this->template->display('hotsales/listaAdmin', $data);
                     break;
                 }
             break;

@@ -218,15 +218,34 @@ class adminController extends Controllers implements IControllers {
 
             case 'hotsales':
 
+              if (isset($_SESSION['rol'])) {
 
-                case 'crear':
-                    $id_estadia=$_GET['id_estadia'];
-                    $this->crearHotsale($id_estadia, $h, $r, $e);
-                    break;
+                if ($_SESSION['rol']=='ADMINISTRADOR') {
+                  switch ($router->getId()) {
 
-                default:
-                    $this->template->display('home/home');
-                    break;
+                      case 'crear':
+                          $id_estadia=$_GET['id_estadia'];
+                          $this->crearHotsale($id_estadia, $h, $r, $e);
+                          break;
+
+                      case 'listar':
+                          $hotsales=$h->getHotsalesConEstadiaYResidencia();
+                          dump($hotsales);
+                          $data = array('hotsales' => $hotsales,
+                                        'rol' => 'ADMINISTRADOR');
+                          $this->template->display('hotsales/listaAdmin', $data);
+                          break;
+
+                      default:
+                          $this->template->display('home/home');
+                          break;
+                    }
+                }else{
+                  $this->template->display('home/home');
+                }
+              }else{
+                $this->template->display('home/home');
+              }
 
             break;
 
