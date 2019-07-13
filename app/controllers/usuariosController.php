@@ -27,6 +27,8 @@ class usuariosController extends Controllers implements IControllers {
     public function __construct(IRouter $router) {
         parent::__construct($router);
 
+        $router->setRoute('/id_hotsale');
+
         #Instancio un objeto Usuario
         $u = new Model\Usuarios;
         $s = new Model\Subastas;
@@ -146,11 +148,23 @@ class usuariosController extends Controllers implements IControllers {
 
                     case 'listar':
                         $hotsales=$h->getHotsalesConEstadiaYResidencia();
-                        
+
                         $data = array('hotsales' => $hotsales,
                                       'rol' => 'USUARIO');
                         $this->template->display('hotsales/listar', $data);
                     break;
+
+                    case 'confirmacion':
+
+                      $id_hotsale = $router->getRoute('/id_hotsale');
+                      $this->confirmacionHotsale($h,$e,$u,$id_hotsale);
+                      break;
+
+                    case 'adquirir':
+                      $id_hotsale = $router->getRoute('/id_hotsale');
+
+                      $this->adquirirHotsale($h,$e,$u,$id_hotsale);
+                      break;
                 }
             break;
 
@@ -464,5 +478,40 @@ class usuariosController extends Controllers implements IControllers {
        $t->eliminar($id);
        Functions::redir("http://localhost/HomeSwitchHome/usuarios/operaciones/perfil");
     }
+
+
+    public function confirmacionHotsale($h,$e,$u,$id_hotsale){
+
+      $hotsale = $h->getHotsaleConEstadiaYResidencia($id_hotsale);
+      $usuario = $u->getUsuario($_SESSION['id']);
+
+      $data = array('hotsale' => $hotsale['0'],
+                    'usuario' => $usuario['0']);
+
+      $this->template->display( 'hotsales/adquirir', $data );
+    }
+
+
+    public function adquirirHotsale($h,$e,$u,$id_hotsale){
+
+      $usuario = $u->getUsuario($_SESSION['id']);
+      $hotsale = $h->getHotsaleConEstadiaYResidencia($id_hotsale);
+      $id_estadia = $hotsale['0']['id_estadia'];
+
+      $e->cambiarEstado($id_estadia, 'OCUPADA');
+
+      $h->eliminar($id_hotsale);
+
+      $u->agregarReservaHotsale($_SESSION['id'], $id_estadia);
+
+      $data = array('hotsale' => $hotsale['0'],
+                    'usuario' => $usuario['0']);
+                  
+      $this->template->display('hotsales/detalleAdquirido', $data);
+
+    }
+
+
+
 
 }

@@ -232,17 +232,17 @@ class adminController extends Controllers implements IControllers {
                           $hotsales=$h->getHotsalesConEstadiaYResidencia();
                           $data = array('hotsales' => $hotsales,
                                         'rol' => 'ADMINISTRADOR');
-                          
+
                           if (isset($_GET['exito'])) {
                              $data['exito'] = 1;
                           }
-      
+
                           $this->template->display('hotsales/listar', $data);
                           break;
 
                         case 'eliminar':
                           $id_hotsale=$_GET['id'];
-                          $this->eliminarHotsale($id_hotsale, $h);
+                          $this->eliminarHotsale($id_hotsale, $h, $e);
                           break;
 
                       default:
@@ -538,10 +538,15 @@ class adminController extends Controllers implements IControllers {
 
     }
 
-    public function eliminarHotsale($id, $h){
+    public function eliminarHotsale($id, $h, $e){
 
+       $hotsale = $h->getHotsale($id);
+       //cambiar a libre
+       $id_estadia = $hotsale['0']['id_estadia'];
+       $e->cambiarEstado($id_estadia, 'LIBRE');
+
+       //eliminar hotsale
        $resultado=$h->eliminar($id);
-
 
        Functions::redir("http://localhost/HomeSwitchHome/admin/hotsales/listar?exito=1");
 

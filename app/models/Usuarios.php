@@ -75,6 +75,23 @@ class Usuarios extends Models implements IModels {
         $this->db->update('usuarios', $datos_nuevos, "id = '$id'");
     }
 
+    public function agregarReserva($id_usuario, $id_estadia){
+
+        $reserva = array('id_usuario' => $id_usuario,
+                          'id_estadia' => $id_estadia);
+
+        $this->db->insert('reservas',$reserva);
+    }
+
+    public function agregarReservaHotsale($id_usuario, $id_estadia){
+
+      $operacion = 'HOTSALE';
+      $hotsale = array('id_usuario' => $id_usuario,
+                        'id_estadia' => $id_estadia,
+                        'tipo_operacion' => $operacion);
+
+      $this->db->insert('reservas',$hotsale);
+    }
 
 
     public function getUsuario($id){

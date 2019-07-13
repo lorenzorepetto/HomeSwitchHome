@@ -61,15 +61,43 @@ class Hotsales extends Models implements IModels {
       return $resultado;
     }
 
-    public function eliminar($id){
+    public function getHotsaleConEstadiaYResidencia($id){
+      $resultado = $this->db->select('h.monto,
+                                      h.id,
+                                      h.id_estadia,
+                                      e.fecha,
+                                      e.semana,
+                                      r.nombre,
+                                      r.foto,
+                                      r.calle,
+                                      r.altura,
+                                      r.ciudad,
+                                      r.capacidad,
+                                      r.descripcion,
+                                      r.provincia',
+                                      'hotsales h',
+                                      'INNER JOIN estadias e ON (h.id_estadia = e.id)
+                                      INNER JOIN residencias r ON (e.id_residencia = r.id)',
+                                      "h.id = '$id' and h.estado_logico=0");
+      return $resultado;
+    }
 
+
+    public function getHotsale($id){
+      $resultado = $this->db->select('*', 'hotsales', null, "id = '$id' AND estado_logico = 0");
+      return $resultado;
+    }
+
+
+
+    public function eliminar($id){
 
       $hotsale = $this->db->select('estado_logico', 'hotsales', null, "id = '$id' AND estado_logico = 0");
 
       if (!$hotsale['0']['estado_logico']) {
-        
+
         $resultado = $this->db->update('hotsales', $datos = array('estado_logico' => 1 ), "id = '$id'");
-      
+
       }
 
       return $resultado;

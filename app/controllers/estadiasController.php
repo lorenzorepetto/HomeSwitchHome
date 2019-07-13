@@ -73,7 +73,7 @@ class estadiasController extends Controllers implements IControllers {
 
       $e->cambiarEstado($id, 'OCUPADA');
       $u->restarCredito($_SESSION['id']);
-
+      $u->agregarReserva($_SESSION['id'], $id);
 
 
       $data = array('estadia' => $estadia[0],

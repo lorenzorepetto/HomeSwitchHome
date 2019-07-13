@@ -36,11 +36,16 @@
   <div class="py-5 bg-light">
       <div class="container">
 
+        <div class="container">
+	      	<a href="http://localhost/HomeSwitchHome/admin/residencias/listarResidenciasHotsale"><button id="atras" class="btn btn-secondary my-2">Atrás</button></a>
+	      </div>
+
         {% if exito == 1 %}
 
           <div class="alert alert-success alert-dismissible">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
             <strong class="animated flash"><span class="glyphicon glyphicon-exclamation-sign"></span></strong> ¡El Hotsale se ha creado con éxito!.
+            <a href="http://localhost/HomeSwitchHome/admin/hotsales/listar">Ver listado de Hotsales</a>
           </div>
 
         {% endif %}

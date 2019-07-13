@@ -13,16 +13,16 @@
         <li class="nav-item">
           <a class="nav-link" href="http://localhost/HomeSwitchHome/usuarios/registro/registrar"><span class="glyphicon glyphicon-user"></span>  Registrarse</a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link" href="http://localhost/HomeSwitchHome/usuarios/faqs"><span class="glyphicon glyphicon-question-sign"></span> FAQs</a>
-        </li>
+        </li> -->
         <li class="nav-item">
           <a class="nav-link" href="#"><span class="glyphicon glyphicon-envelope"></span> Contacto</a>
         </li>
       </ul>
     </nav>
 
-    </div> 
+    </div>
 {% endblock %}
 {% block carrousel %}
 
@@ -43,34 +43,34 @@
             </div>
           {% endif %}
 
-          
+
           <div id="input_email" class="center-block form-group form">
             <label for="email">Email adress:</label>
-            <input type="email" class="form-control" id="email" placeholder="Ingrese su dirección de email" value="{{ email }}" name="email">           
+            <input type="email" class="form-control" id="email" placeholder="Ingrese su dirección de email" value="{{ email }}" name="email">
           </div>
           <p class="animated shake" id="msjEmail"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
 
           <div id="input_password" class="center-block form-group form">
             <label for="password">Password:</label>
-            <input type="password" class="form-control" id="password" placeholder="Ingrese la contraseña" name="password">          
+            <input type="password" class="form-control" id="password" placeholder="Ingrese la contraseña" name="password">
           </div>
           <p class="animated shake" id="msjPassword1"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
 
           <button id="boton_form_iniciar" type="submit" class="btn btn-secondary">Iniciar sesión</button>
         </form>
 
-        
+
 
         <a href="http://localhost/HomeSwitchHome/home/token"><button class="btn btn-secondary" id="boton_token"> Tengo un token </button></a>
-          
-        
+
+
 
 
       </div>
 
 
       <div class="container " id="div_iniciar2">
-        <div class="row">        
+        <div class="row">
           <div id="div_iniciar2_residencia" class="center-block card mb-4 shadow-sm">
             <img id="residencia_home" src="{{ subasta.foto }}" class="card-img-top">
             <div id="home" class="card-body">
@@ -78,7 +78,7 @@
               <p id="home" class="card-text"><span class="glyphicon glyphicon-home"></span><strong> Residencia: </strong>{{ subasta.nombre }}</p>
               <p id="home" class="card-text"><span class="glyphicon glyphicon-map-marker"></span><strong> Dirección:</strong> {{ subasta.calle }}, {{ subasta.altura }}, {{ subasta.ciudad }}, {{ subasta.provincia }}</p>
               <p id="home" class="card-text"><span class="glyphicon glyphicon-usd"></span><strong> Monto ganador: </strong>${{ subasta.monto_actual }}</p>
-            </div>          
+            </div>
           </div>
         </div>
       </div>
@@ -89,7 +89,6 @@
 
 {% block appContenido %}
 {% endblock %}
-    
+
 {% block appBody %}
 {% endblock %}
-    
