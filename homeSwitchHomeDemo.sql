@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 11-07-2019 a las 02:21:05
--- Versión del servidor: 10.1.38-MariaDB
--- Versión de PHP: 7.3.3
+-- Tiempo de generación: 13-07-2019 a las 21:21:02
+-- Versión del servidor: 10.1.40-MariaDB
+-- Versión de PHP: 7.3.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -73,6 +73,15 @@ CREATE TABLE `hotsales` (
   `estado_logico` int(11) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `hotsales`
+--
+
+INSERT INTO `hotsales` (`id`, `id_estadia`, `monto`, `estado_logico`) VALUES
+(11, 14, 5000, 1),
+(12, 14, 500, 1),
+(13, 19, 600, 0);
+
 -- --------------------------------------------------------
 
 --
@@ -109,8 +118,15 @@ CREATE TABLE `reservas` (
   `id` int(10) UNSIGNED NOT NULL,
   `id_usuario` int(10) UNSIGNED NOT NULL,
   `id_estadia` int(10) UNSIGNED NOT NULL,
-  `monto_pagado` float NOT NULL
+  `tipo_operacion` varchar(15) COLLATE utf8_spanish_ci NOT NULL DEFAULT 'DIRECTA'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `reservas`
+--
+
+INSERT INTO `reservas` (`id`, `id_usuario`, `id_estadia`, `tipo_operacion`) VALUES
+(8, 6, 30, 'DIRECTA');
 
 -- --------------------------------------------------------
 
@@ -227,7 +243,7 @@ INSERT INTO `usuarios` (`id`, `email`, `password`, `nombre`, `apellido`, `fecha_
 (1, 'admin@homeswitchhome.com', 'admin1234', 'Administrador', 'Administrador', '0000-00-00', NULL, '111', 1000, 'ADMINISTRADOR', 0, '123456', '0000-00-00'),
 (2, 'loren@mail.com', 'loren1234', 'Lorenzo', 'Repetto', '1994-04-28', 'app/img/usuarios/user.png', '452710', 1, 'ESTANDAR', 0, NULL, '2019-04-01'),
 (5, 'pieri@mail.com', 'pieri1234', 'Pierina', 'Tufillaro', '1999-01-13', 'app/img/usuarios/user.png', '411872', 0, 'ESTANDAR', 0, NULL, '2019-02-15'),
-(6, 'jorge@gmail.com', 'jorge1234', 'Jorge', 'Paulos', '1980-04-13', 'app/img/usuarios/jorge.jpg', '0113751314', 0, 'PREMIUM', 0, NULL, '2019-05-10'),
+(6, 'jorge@gmail.com', 'jorge1234', 'Jorge', 'Paulos', '1980-04-13', 'app/img/usuarios/jorge.jpg', '0113751314', 2, 'PREMIUM', 0, NULL, '2019-05-10'),
 (7, 'julia@gmail.com', 'julia1234', 'Julia', 'Rosales', '1990-09-04', 'app/img/usuarios/julia.jpg', '0113441586', 2, 'PREMIUM', 0, NULL, '2019-01-12'),
 (13, 'raul@gmail.com', 'raul1234', 'Raúl', 'López', '1987-04-15', 'app/img/usuarios/raul.png', '1137881012', 0, 'ESTANDAR', 0, NULL, '2019-06-15'),
 (14, 'melisa@gmail.com', 'melisa1234', 'Melisa', 'Onofri', '1999-11-05', 'app/img/usuarios/melisa.jpeg', '4586143', 2, 'ESTANDAR', 0, NULL, '2019-06-15');
@@ -299,7 +315,7 @@ ALTER TABLE `estadias`
 -- AUTO_INCREMENT de la tabla `hotsales`
 --
 ALTER TABLE `hotsales`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `pujas`
@@ -311,7 +327,7 @@ ALTER TABLE `pujas`
 -- AUTO_INCREMENT de la tabla `reservas`
 --
 ALTER TABLE `reservas`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `residencias`
