@@ -53,6 +53,7 @@
 		        <li class="residencia list-group-item"><span class="glyphicon glyphicon-map-marker"></span><strong> Dirección:</strong> {{ hotsale.calle }}, {{ hotsale.altura }}, {{ hotsale.ciudad }}, {{ hotsale.provincia }}</li>
 		        <li class="residencia list-group-item"><span class="glyphicon glyphicon-user"></span> <strong>Capacidad:</strong> {{ hotsale.capacidad }}</li>
             <li class="residencia list-group-item"><span class="glyphicon glyphicon-user"></span> <strong> Usuario: </strong>{{ usuario.apellido }}, {{ usuario.nombre }}</li>
+            <li class="residencia list-group-item"><span class="animated flash glyphicon glyphicon-usd"></span> <strong class="animated flash"> Monto del Hotsale: </strong>${{ hotsale.monto }}</li>
           </ul>
 
           <img id="foto_detalle_residencia" src="{{ hotsale.foto }}" class="residencia float-right col-lg-4" alt="Foto de residencia">

@@ -45,6 +45,21 @@
     </div>
 
 	<div class="border container">
+
+    {% if agrego_tarjeta == 1 %}
+      <div class="alert alert-success alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong class="animated flash"> <span class='glyphicon glyphicon-ok-sign'></span> Nota:</strong> La tarjeta se ha agregado con éxito! Ya puede ver los datos en su perfil.
+      </div>
+    {% endif %}
+
+    {% if elimino_tarjeta == 1 %}
+      <div class="alert alert-danger alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong class="animated flash"><span class="glyphicon glyphicon-exclamation-sign"></span> Nota: </strong> La tarjeta se ha eliminado con éxito.
+      </div>
+    {% endif %}
+
     <div class="container center-block">
       <h2 class="perfil center-block">{{ usuario.nombre }} {{ usuario.apellido }}</h2>
     </div>
@@ -102,7 +117,7 @@
               <a class="premium col-md-3" href="http://localhost/HomeSwitchHome/usuarios/faqs"><button id="atras" class="center-block btn btn-secondary my-2">¡Quiero ser Premium!</button></a>
             {% endif %}
             <a id="modificar" class="col-md-3" href="http://localhost/HomeSwitchHome/usuarios/operaciones/modificar_perfil?id={{ usuario.id }}"><button id="atras" class="center-block btn btn-secondary my-2">Modificar datos personales</button></a>
-            <a id="modificar" class="col-md-3" href="http://localhost/HomeSwitchHome/usuarios/operaciones/modificar_perfil?id={{ usuario.id }}"><button id="atras" class="center-block btn btn-secondary my-2">Aregar tarjeta</button></a>
+            <a id="modificar" class="col-md-3" href="http://localhost/HomeSwitchHome/usuarios/operaciones/agregar_tarjeta?id={{ usuario.id }}"><button id="atras" class="center-block btn btn-secondary my-2">Aregar tarjeta</button></a>
           <br><br><br>
           </div>
         </li>

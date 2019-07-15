@@ -306,6 +306,26 @@ function validarModificarPerfil(){
   return true;
 }
 
+function validarAgregarTarjeta(){
+
+  var titular = document.getElementById("titular").value;
+  var marca = document.getElementById("marca").value;
+  var numero = document.getElementById("numero").value;
+  var vencimiento = document.getElementById("vencimiento").value;
+
+  if (campoVacio(titular) || campoVacio(marca) || campoVacio(numero) || campoVacio(vencimiento)){
+
+    document.getElementById("msjMarca").style.display = "block";
+    document.getElementById("msjTitular").style.display = "block";
+    document.getElementById("msjVencimiento").style.display = "block";
+    document.getElementById("msjNumero").style.display = "block";
+
+    return false;
+
+  }
+  return true;
+}
+
 function validarCrearHotsale ($id){
 
   var monto = document.getElementById("monto"+$id).value;

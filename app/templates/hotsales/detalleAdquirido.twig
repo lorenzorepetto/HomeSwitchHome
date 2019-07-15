@@ -49,11 +49,11 @@
 		      <ul class="list-group list-group-flush col-lg-8">
 
             <h4>Detalles:</h4>
-            <li class="residencia list-group-item"><span class="glyphicon glyphicon-ok"></span> <strong> Semana: </strong>{{ hotsale.semana }}</li>
             <li class="residencia list-group-item"><span class="glyphicon glyphicon-ok"></span> <strong> Fecha de inicio:</strong> {{ hotsale.fecha | date('d-m-Y') }}</li>
             <li class="residencia list-group-item"><span class="glyphicon glyphicon-ok"></span> <strong> Descripción: </strong>{{ hotsale.descripcion }}</li>
 		        <li class="residencia list-group-item"><span class="glyphicon glyphicon-map-marker"></span><strong> Dirección:</strong> {{ hotsale.calle }}, {{ hotsale.altura }}, {{ hotsale.ciudad }}, {{ hotsale.provincia }}</li>
-            <li class="residencia list-group-item"><span class="glyphicon glyphicon-user"></span> <strong>Capacidad:</strong> {{ hotsale.capacidad }}</li>
+            <li class="residencia list-group-item"><span class="glyphicon glyphicon-user"></span> <strong> Usuario que adquirió el Hotsale: </strong>{{ usuario.apellido }}, {{ usuario.nombre }}</li>
+            <li class="residencia list-group-item"><span class="glyphicon glyphicon-usd"></span> <strong> Monto del Hotsale: </strong>${{ hotsale.monto }}</li>
           </ul>
           <img id="foto_detalle_residencia" src="{{ hotsale.foto }}" class="residencia float-right col-lg-4" alt="Foto de residencia">
 

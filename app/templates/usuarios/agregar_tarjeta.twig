@@ -1,0 +1,105 @@
+{% extends 'overall/layout' %}
+{% block appHeader %}
+
+  <div id="navbar">
+
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <!-- Brand -->
+    <a class="navbar-brand" href="http://localhost/HomeSwitchHome/"><div><img src="app/img/HSH-Text.jpg" class="img-responsive" title="Logo Home Switch Home" style="width:180px;"></div></a>
+
+    <!-- Links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="http://localhost/HomeSwitchHome/usuarios/operaciones/perfil"><span class="glyphicon glyphicon-user"></span>  Mi perfil</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="http://localhost/HomeSwitchHome/usuarios/cuenta/logout"><span class="glyphicon glyphicon-log-out"></span>   Cerrar Sesion</a>
+      </li>
+
+      <!-- Dropdown -->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle my-2 my-lg-0" href="#" id="navbardrop" data-toggle="dropdown">
+          More
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="#"><span class="glyphicon glyphicon-question-sign"> FAQs</a>
+          <a class="dropdown-item" href="#"><span class="glyphicon glyphicon-envelope"> Contacto</a>
+          <a class="dropdown-item" href="#"><span class="glyphicon glyphicon-fire"></span> Subastas</a>
+          <a class="dropdown-item" href="#"><span class="glyphicon glyphicon-fire"></span> Hotsales</a>
+        </div>
+      </li>
+    </ul>
+  </nav>
+
+  </div>
+{% endblock %}
+
+{% block carrousel %}
+
+  <body class="text-center" id="body_registrar">
+      <div class="container" id="div_modificar_perfil">
+        <br>
+        <div class="container">
+          <a href="http://localhost/HomeSwitchHome/usuarios/operaciones/perfil"><button id="atras" class="btn btn-secondary my-2">Atrás</button></a>
+        </div>
+
+        <form action="http://localhost/HomeSwitchHome/usuarios/agregar_tarjeta/{{ usuario }}" enctype="multipart/form-data" onsubmit="return validarAgregarTarjeta()" method="post">
+          <img class="bd-placeholder-img rounded-circle" src="app/img/HSH-Logo.jpg" alt="" width="90" height="90">
+
+          {% if vencimiento_invalido == 1 %}
+            <div class="alert alert-danger alert-dismissible">
+              <button type="button" class="close" data-dismiss="alert">&times;</button>
+              <strong class="animated flash"><span class="glyphicon glyphicon-exclamation-sign"></span> Error: </strong> Debe ingresar una fecha de vencimineto de la tarjeta mayor a la fecha actual.
+            </div>
+          {% endif %}
+
+          <h1 id="titulo_form"class="h3 mb-3 font-weight-normal animated flash">Ingrese los datos de la tarjeta:</h1>
+
+          <div class="container-fluid">
+
+            <div class="container-fluid center-block form-group form">
+              <label for="titular">Titular:</label>
+              <input type="text" pattern="[A-Za-z ñÑáéíóúÁÉÍÓÚ\s]+" title="Ingrese sólo letras" class="form-control" id="titular" placeholder="{{ usuario }}" value="{{ usuario.nombre }}" name="titular" oninput="habilitarSubmit();">
+              <p class="animated shake" id="msjTitular"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
+            </div>
+
+            <div class="container-fluid center-block form-group form">
+              <label for="marca">Marca:</label>
+              <input type="text" pattern="[A-Za-z ñÑáéíóúÁÉÍÓÚ\s]+" title="Ingrese sólo letras" class="form-control" id="marca" placeholder="{{ usuario }}" value="{{ usuario.nombre }}" name="marca" oninput="habilitarSubmit();">
+              <p class="animated shake" id="msjMarca"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
+
+            </div>
+
+            <div class="container-fluid center-block form-group form">
+              <label for="numero">Número:</label>
+              <input type="number" min="1" class="form-control" oninput="habilitarSubmit();" id="numero" placeholder="{{ usuario.telefono }}" value="{{ usuario.telefono }}" name="numero">
+              <p class="animated shake" id="msjNumero"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
+
+            </div>
+
+            <div class="container-fluid center-block form-group form">
+                <label for="vencimiento">Vencimiento:</label>
+                <input type="month" class="form-control" id="vencimiento" value="{{ vencimiento_tarjeta }}" name="vencimiento">
+                <p class="animated shake" id="msjVencimiento"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
+            </div>
+
+            <br>
+  	        <button id="submitModificar" type="submit" class="btn btn-secondary" disabled>Agregar tarjeta</button>
+
+          </div>
+
+      </form>
+
+
+
+      <br>
+    </div>
+  </body>
+{% endblock %}
+{% block appContenido %}
+
+{% endblock %}
+
+{% block appBody %}
+
+{% endblock %}

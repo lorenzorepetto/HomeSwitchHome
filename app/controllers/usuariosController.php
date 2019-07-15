@@ -95,7 +95,13 @@ class usuariosController extends Controllers implements IControllers {
                 switch ($router->getId()) {
 
                     case 'perfil':
-                        $this->perfil($u, $t);
+
+                        if (isset($_GET['elimino'])) {
+                          $this->perfil($u, $t, 1);
+                        }else {
+                          // code...
+                          $this->perfil($u, $t, 0);
+                        }
                         break;
 
                     case 'modificar_perfil':
@@ -114,6 +120,13 @@ class usuariosController extends Controllers implements IControllers {
                     case 'eliminarTarjeta':
                         $id=$_GET['id_tarjeta'];
                         $this->eliminarTarjeta($id, $t);
+                    break;
+
+                    case 'agregar_tarjeta':
+                        $id=$_GET['id'];
+                        $data = array('usuario' => $id );
+
+                        $this->template->display('usuarios/agregar_tarjeta', $data);
                     break;
 
                     default:
@@ -170,6 +183,11 @@ class usuariosController extends Controllers implements IControllers {
 
             case 'faqs':
               $this->template->display('usuarios/faqs');
+            break;
+
+            case 'agregar_tarjeta':
+              $id= $router->getId();
+              $this->agregar_tarjeta($id, $t, $u);
             break;
 
             case 'cambiarRol':
@@ -339,7 +357,7 @@ class usuariosController extends Controllers implements IControllers {
 
 
 
-    public function perfil($u, $t){
+    public function perfil($u, $t, $elimino = 0){
 
         if (isset($_SESSION['id'])) {
 
@@ -366,6 +384,10 @@ class usuariosController extends Controllers implements IControllers {
             }
 
             $data = array('usuario' => $usuario, 'tarjetas' => $tarjetas );
+
+            if ($elimino == 1) {
+              $data['elimino_tarjeta'] = 1;
+            }
             $this->template->display('usuarios/perfil', $data);
         }
         else{
@@ -476,7 +498,7 @@ class usuariosController extends Controllers implements IControllers {
     public function eliminarTarjeta ($id, $t){
 
        $t->eliminar($id);
-       Functions::redir("http://localhost/HomeSwitchHome/usuarios/operaciones/perfil");
+       Functions::redir("http://localhost/HomeSwitchHome/usuarios/operaciones/perfil?elimino=1");
     }
 
 
@@ -506,9 +528,57 @@ class usuariosController extends Controllers implements IControllers {
 
       $data = array('hotsale' => $hotsale['0'],
                     'usuario' => $usuario['0']);
-                  
+
       $this->template->display('hotsales/detalleAdquirido', $data);
 
+    }
+
+    public function agregar_tarjeta($id, $t, $u){
+
+      $titular= $_POST['titular'];
+      $marca= $_POST['marca'];
+      $numero= $_POST['numero'];
+      $vencimiento= $_POST['vencimiento'];
+
+      $tarjeta = array('titular' => $titular,
+                        'marca' => $marca,
+                      'numero' => $numero,
+                      'vencimiento' => $vencimiento,
+                    'id_usuario' => $id,
+                      'principal' => 0);
+
+      $t->insertar($tarjeta);
+
+      if (isset($_SESSION['id'])) {
+
+          $id=$_SESSION['id'];
+
+          $resultado = $u->getUsuario($id);
+
+          if ($resultado) {
+
+              $usuario = array(
+              'id' => $resultado['0']['id'],
+              'email' => $resultado['0']['email'],
+              'nombre' => $resultado['0']['nombre'],
+              'apellido' => $resultado['0']['apellido'],
+              'foto' => $resultado['0']['foto'],
+              'creditos' => $resultado['0']['creditos'],
+              'rol' => $resultado['0']['rol'],
+              'telefono' => $resultado['0']['telefono'],
+              'fecha_nacimiento' => $resultado['0']['fecha_nacimiento'],
+              'fecha_registro' => $resultado['0']['fecha_registro']
+               );
+
+              $tarjetas= $t->getTarjetas($id);
+          }
+
+          $data = array('usuario' => $usuario, 'tarjetas' => $tarjetas, 'agrego_tarjeta' => 1 );
+          $this->template->display('usuarios/perfil', $data);
+      }
+      else{
+          $this->template->display('home/home');
+      }
     }
 
 
