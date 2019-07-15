@@ -545,8 +545,16 @@ class usuariosController extends Controllers implements IControllers {
                       'numero' => $numero,
                       'vencimiento' => $vencimiento,
                     'id_usuario' => $id,
-                      'principal' => 0);
+                      'principal' => 0,
+                      'vencimiento_invalido' => 0);
 
+
+      if ($vencimiento < date('Y-m')) {
+          $tarjeta['vencimiento_invalido'] = 1;
+          $this->template->display('usuarios/agregar_tarjeta', $tarjeta);
+      }
+
+      unset($tarjeta['vencimiento_invalido']);
       $t->insertar($tarjeta);
 
       if (isset($_SESSION['id'])) {

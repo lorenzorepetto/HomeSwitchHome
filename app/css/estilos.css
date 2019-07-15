@@ -90,7 +90,7 @@ div .input_tarjeta{
 	text-align: justify;
 }
 
-#msjEmail, #msjPassword1, #msjPassword2, #msjToken1, #msjToken2, #msjNombre, #msjApellido, #msjFecha_nacimiento, #msjTelefono, #msjMarca, #msjNumero, #msjVencimiento, #msjNumeroCantDigitos, #msjTitular, #errorPujaVacia, #errorPujaMonto{
+#msjEmail, #msjPassword1, #msjPassword2, #msjToken1, #msjToken2, #msjNombre, #msjApellido, #msjFecha_nacimiento, #msjTelefono, #msjMarca, #msjNumero, #msjNumero2, #msjVencimiento,#msjVencimiento2, #msjNumeroCantDigitos, #msjTitular, #errorPujaVacia, #errorPujaMonto{
 	display:none;
 }
 

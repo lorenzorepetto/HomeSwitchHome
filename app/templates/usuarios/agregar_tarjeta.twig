@@ -49,7 +49,7 @@
           {% if vencimiento_invalido == 1 %}
             <div class="alert alert-danger alert-dismissible">
               <button type="button" class="close" data-dismiss="alert">&times;</button>
-              <strong class="animated flash"><span class="glyphicon glyphicon-exclamation-sign"></span> Error: </strong> Debe ingresar una fecha de vencimineto de la tarjeta mayor a la fecha actual.
+              <strong class="animated flash"><span class="glyphicon glyphicon-exclamation-sign"></span> Error: </strong> Debe ingresar una fecha de vencimiento de la tarjeta mayor a la fecha actual.
             </div>
           {% endif %}
 
@@ -59,32 +59,35 @@
 
             <div class="container-fluid center-block form-group form">
               <label for="titular">Titular:</label>
-              <input type="text" pattern="[A-Za-z ñÑáéíóúÁÉÍÓÚ\s]+" title="Ingrese sólo letras" class="form-control" id="titular" placeholder="{{ usuario }}" value="{{ usuario.nombre }}" name="titular" oninput="habilitarSubmit();">
+              <input type="text" pattern="[A-Za-z ñÑáéíóúÁÉÍÓÚ\s]+" title="Ingrese sólo letras" class="form-control" id="titular" value="{{ titular }}" name="titular">
               <p class="animated shake" id="msjTitular"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
             </div>
 
             <div class="container-fluid center-block form-group form">
               <label for="marca">Marca:</label>
-              <input type="text" pattern="[A-Za-z ñÑáéíóúÁÉÍÓÚ\s]+" title="Ingrese sólo letras" class="form-control" id="marca" placeholder="{{ usuario }}" value="{{ usuario.nombre }}" name="marca" oninput="habilitarSubmit();">
+              <input type="text" pattern="[A-Za-z ñÑáéíóúÁÉÍÓÚ\s]+" title="Ingrese sólo letras" class="form-control" id="marca" value="{{ marca }}" name="marca">
               <p class="animated shake" id="msjMarca"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
 
             </div>
 
             <div class="container-fluid center-block form-group form">
               <label for="numero">Número:</label>
-              <input type="number" min="1" class="form-control" oninput="habilitarSubmit();" id="numero" placeholder="{{ usuario.telefono }}" value="{{ usuario.telefono }}" name="numero">
+              <input type="number" min="1" class="form-control" id="numero" value="{{ numero }}" name="numero">
               <p class="animated shake" id="msjNumero"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
+              <p class="animated shake" id="msjNumero2"><span class="glyphicon glyphicon-exclamation-sign"></span> El número debe tener exactamente 16 dígitos</p>
 
             </div>
 
             <div class="container-fluid center-block form-group form">
                 <label for="vencimiento">Vencimiento:</label>
-                <input type="month" class="form-control" id="vencimiento" value="{{ vencimiento_tarjeta }}" name="vencimiento">
+                <input type="month" class="form-control" id="vencimiento" value="{{ vencimiento }}" name="vencimiento">
                 <p class="animated shake" id="msjVencimiento"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
+                <p class="animated shake" id="msjVencimiento2"><span class="glyphicon glyphicon-exclamation-sign"></span> El vencimiento debe ser mayor a la fecha actual</p>
+
             </div>
 
             <br>
-  	        <button id="submitModificar" type="submit" class="btn btn-secondary" disabled>Agregar tarjeta</button>
+  	        <button type="submit" class="btn btn-secondary">Agregar tarjeta</button>
 
           </div>
 

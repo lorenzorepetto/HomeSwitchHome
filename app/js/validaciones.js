@@ -313,15 +313,22 @@ function validarAgregarTarjeta(){
   var numero = document.getElementById("numero").value;
   var vencimiento = document.getElementById("vencimiento").value;
 
+
   if (campoVacio(titular) || campoVacio(marca) || campoVacio(numero) || campoVacio(vencimiento)){
 
     document.getElementById("msjMarca").style.display = "block";
     document.getElementById("msjTitular").style.display = "block";
     document.getElementById("msjVencimiento").style.display = "block";
     document.getElementById("msjNumero").style.display = "block";
+    document.getElementById("msjNumero2").style.display = "none";
+
 
     return false;
+  }else if (numero.length != 16){
+    document.getElementById("msjNumero2").style.display = "block";
+    document.getElementById("msjNumero").style.display = "none";
 
+    return false;
   }
   return true;
 }
