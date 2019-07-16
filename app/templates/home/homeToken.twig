@@ -14,15 +14,12 @@
           <a class="nav-link" href="http://localhost/HomeSwitchHome/usuarios/registro/registrar"><span class="glyphicon glyphicon-user"></span>  Registrarse</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"><span class="glyphicon glyphicon-question-sign"></span> FAQs</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#"><span class="glyphicon glyphicon-envelope"></span> Contacto</a>
+          <a class="nav-link" href="http://localhost/HomeSwitchHome/usuarios/faqs"><span class="glyphicon glyphicon-question-sign"></span> FAQs</a>
         </li>
       </ul>
     </nav>
 
-    </div> 
+    </div>
 {% endblock %}
 {% block carrousel %}
 
@@ -34,9 +31,9 @@
       <div class="container " id="div_iniciar">
 
         <br>
-      
+
         {# TOKEN #}
-        
+
         <form action="http://localhost/HomeSwitchHome/admin/token" method="post" onsubmit="return validarToken();">
 
           <img class="bd-placeholder-img rounded-circle" src="app/img/HSH-Logo.jpg" alt="" width="90" height="90">
@@ -60,15 +57,15 @@
             <p class="animated shake" id="msjToken2"><span class="glyphicon glyphicon-exclamation-sign"></span> El token debe contener 6 dígitos</p>
             <button type="submit" class="btn btn-secondary">Enviar token</button>
             <a href="http://localhost/HomeSwitchHome"><button type="button" class="btn btn-secondary my-2">Volver atrás</button></a>
-                
+
         </form>
-          
+
 
       </div>
 
 
       <div class="container " id="div_iniciar2">
-        <div class="row">        
+        <div class="row">
           <div id="div_iniciar2_residencia" class="center-block card mb-4 shadow-sm">
             <img id="residencia_home" src="{{ subasta.foto }}" class="card-img-top">
             <div id="home" class="card-body">
@@ -76,7 +73,7 @@
               <p id="home" class="card-text"><span class="glyphicon glyphicon-home"></span><strong> Residencia: </strong>{{ subasta.nombre }}</p>
               <p id="home" class="card-text"><span class="glyphicon glyphicon-map-marker"></span><strong> Dirección:</strong> {{ subasta.calle }}, {{ subasta.altura }}, {{ subasta.ciudad }}, {{ subasta.provincia }}</p>
               <p id="home" class="card-text"><span class="glyphicon glyphicon-usd"></span><strong> Monto ganador: </strong>{{ subasta.monto_actual }}</p>
-            </div>          
+            </div>
           </div>
         </div>
       </div>
@@ -86,7 +83,6 @@
 
 {% block appContenido %}
 {% endblock %}
-    
+
 {% block appBody %}
 {% endblock %}
-    

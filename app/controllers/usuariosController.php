@@ -182,7 +182,13 @@ class usuariosController extends Controllers implements IControllers {
             break;
 
             case 'faqs':
-              $this->template->display('usuarios/faqs');
+              if (isset($_SESSION['id'])) {
+                $data = array('esta_loggeado' => 1 );
+              }else{
+                $data = array('esta_loggeado' => 0 );
+
+              }
+              $this->template->display('usuarios/faqs', $data);
             break;
 
             case 'agregar_tarjeta':

@@ -19,8 +19,7 @@
                 More
               </a>
               <div class="dropdown-menu">
-                <a class="dropdown-item" href="#"><span class="glyphicon glyphicon-question-sign"> FAQs</a>
-                <a class="dropdown-item" href="#"><span class="glyphicon glyphicon-envelope"> Contacto</a>
+                <a class="dropdown-item" href="http://localhost/HomeSwitchHome/usuarios/faqs"><span class="glyphicon glyphicon-question-sign"> FAQs</a>
                 <a class="dropdown-item" href="#"><span class="glyphicon glyphicon-fire"></span> Subastas</a>
                 <a class="dropdown-item" href="#"><span class="glyphicon glyphicon-fire"></span> Hotsales</a>
               </div>
@@ -28,14 +27,14 @@
           </ul>
         </nav>
 
-        </div> 
+        </div>
 {% endblock %}
 
 {% block carrousel %}
 {% endblock %}
 
-{% block appContenido %}    
-		
+{% block appContenido %}
+
   <div clasS="container">
     <a href="http://localhost/HomeSwitchHome/admin/operaciones/verSubastas"><button id="atras" class="btn btn-secondary my-2">Atrás</button></a>
   </div>
@@ -73,18 +72,18 @@
             <li class="subasta list-group-item"><span class="glyphicon glyphicon-ok"></span> <strong> Residencia: </strong>{{ subasta.nombre }}</li>
             <li class="subasta list-group-item"><span class="glyphicon glyphicon-ok"></span> <strong> Fecha: </strong>{{ subasta.fecha|date("d/m/Y") }}</li>
   	        <li class="subasta list-group-item"><span class="glyphicon glyphicon-map-marker"></span><strong> Dirección:</strong> {{ subasta.calle }} {{ subasta.altura }}, {{ subasta.ciudad }}, {{ subasta.provincia }}</li>
-  	        <li class="subasta list-group-item"><span class="glyphicon glyphicon-user"></span> <strong>Capacidad:</strong> {{ subasta.capacidad }}</li>      
-  	      </ul> 
+  	        <li class="subasta list-group-item"><span class="glyphicon glyphicon-user"></span> <strong>Capacidad:</strong> {{ subasta.capacidad }}</li>
+  	      </ul>
 
-    
-         
+
+
 
             {% if subasta.estado == 'ACTIVA' %}
             <br>
             <h2 id="pujas">Pujas</h2>
 
-            <ul class="list-group list-group-flush">      
-              
+            <ul class="list-group list-group-flush">
+
               {% if puja.usuario_id != null %}
 
                   {% set monto_validacion = puja.monto_apostado %}
@@ -99,16 +98,16 @@
                   <li class="subasta list-group-item"><span class="glyphicon glyphicon-usd"></span> Aún no existen pujas, podés ser el primero! Monto a partir del cual se puede pujar: ${{ monto_validacion }}</li>
               {% endif %}
 
-                
+
                 <form action="http://localhost/HomeSwitchHome/subastas/pujar/{{ subasta.id_subasta }}" onsubmit="return validarPuja({{ monto_validacion }});" enctype="multipart/form-data" method="post">
-                  
-                      <label for="puja">Monto:</label>                      
-                      <input type="text" id="puja" name="puja"> 
-                                     
+
+                      <label for="puja">Monto:</label>
+                      <input type="text" id="puja" name="puja">
+
                     <button id="pujar" type="submit" class="btn btn-secondary my-2">Pujar!</button>
                     <p class="animated shake" id="errorPujaVacia" name="errorPujaVacia"><span class="glyphicon glyphicon-exclamation-sign"></span> Complete este campo.</p>
                     <p class="animated shake" id="errorPujaMonto" name="errorPujaMonto"><span class="glyphicon glyphicon-exclamation-sign"></span> Debe ingresar un valor mayor al actual!</p>
-                  
+
                 </form>
             </ul>
 
@@ -134,19 +133,19 @@
                   </ul>
 
                 {% endif %}
-                  
+
             {% endif %}
 
         </div>
       </div>
       <div class="col-lg-4">
-        <img id="foto_detalle_subasta" src="{{ subasta.foto }}" class="subasta float-right" alt="Foto de la subasta"> 
+        <img id="foto_detalle_subasta" src="{{ subasta.foto }}" class="subasta float-right" alt="Foto de la subasta">
       </div>
 
 
 
  	</div>
-		
+
 
 
 {% endblock %}

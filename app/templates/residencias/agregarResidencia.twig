@@ -19,8 +19,7 @@
             More
           </a>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="#"><span class="glyphicon glyphicon-question-sign"> FAQs</a>
-            <a class="dropdown-item" href="#"><span class="glyphicon glyphicon-envelope"> Contacto</a>
+            <a class="dropdown-item" href="http://localhost/HomeSwitchHome/usuarios/faqs"><span class="glyphicon glyphicon-question-sign"> FAQs</a>
             <a class="dropdown-item" href="#"><span class="glyphicon glyphicon-fire"></span> Subastas</a>
             <a class="dropdown-item" href="#"><span class="glyphicon glyphicon-fire"></span> Hotsales</a>
           </div>
@@ -33,7 +32,7 @@
 {% block carrousel %}
 
   <body class="text-center" id="body_registrar">
-      <div class="container" id="div_agregar_residencia">  
+      <div class="container" id="div_agregar_residencia">
         <div class="container">
           <a href="http://localhost/HomeSwitchHome"><button id="atras" class="btn btn-secondary my-2">Atrás</button></a>
         </div>
@@ -66,7 +65,7 @@
             <label for="nombre">Nombre: </label>  (*)
             <input type="text" class="form-control" pattern="[A-Za-z ñÑáéíóúÁÉÍÓÚ\s]+" title="Ingrese sólo letras" id="nombre" placeholder="Ingrese el nombre de la residencia" name="nombre" value="{{ nombre }}">
             <p class="animated shake" id="msjNombreR2"><span class="glyphicon glyphicon-exclamation-sign"></span> Debe ingresar solo letras.</p>
-            
+
           </div>
 
           <div class="center-block form-group form">
@@ -80,7 +79,7 @@
               <div class="col">
                 <input type="text" class="form-control" id="calle" placeholder="Calle" value="{{ calle }}" name="calle">
                 <p class="animated shake" id="msjCalleR2"><span class="glyphicon glyphicon-exclamation-sign"></span> Debe ingresar solo caracteres alfanuméricos.</p>
-                  
+
               </div>
               <div class="col">
               	<input type="number" min="1" pattern="[A-Za-z ñÑáéíóúÁÉÍÓÚ\s]+" class="form-control" id="altura" placeholder="Altura" value="{{ altura }}" name="altura">
@@ -94,7 +93,7 @@
               <div class="col">
                 <input type="text" class="form-control" pattern="[A-Za-z ñÑáéíóúÁÉÍÓÚ\s]+" title="Ingrese sólo letras" id="ciudad" placeholder="Ciudad" value="{{ ciudad }}" name="ciudad">
                 <p class="animated shake" id="msjCiudadR2"><span class="glyphicon glyphicon-exclamation-sign"></span> Debe ingresar solo letras.</p>
-                  
+
               </div>
               <div class="col">
               	<input type="text" class="form-control" pattern="[A-Za-z ñÑáéíóúÁÉÍÓÚ\s]+" title="Ingrese sólo letras" id="provincia" placeholder="Provincia" value="{{ provincia }}" name="provincia">
@@ -104,7 +103,7 @@
            </div>
 
 	          <div class="center-block form-group form">
-	          	
+
 	            <label for="capacidad">Capacidad:</label>  (*)
 	            <input type="number" min="1" pattern="[A-Za-z ñÑáéíóúÁÉÍÓÚ\s]+" class="form-control" id="capacidad" placeholder="Ingrese la capacidad" value="{{ capacidad }}" name="capacidad">
               <p class="animated shake" id="msjCapacidadR2"><span class="glyphicon glyphicon-exclamation-sign"></span> Debe ingresar un número mayor a 0.</p>
@@ -113,11 +112,11 @@
 	           <div class="center-block form-group form">
 		            <label for="foto">Foto:</label>  (*)
 		            <input type="file" class="form-control-file border" id="foto" name="foto">
-				        
+
 	            </div>
-	   
+
 	        <button type="submit" class="btn btn-secondary">Agregar residencia</button>
- 
+
 	        </div>
 
       </form>
@@ -129,7 +128,7 @@
 {% block appContenido %}
 
 {% endblock %}
-    
+
 {% block appBody %}
 
 {% endblock %}

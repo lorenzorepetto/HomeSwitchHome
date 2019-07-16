@@ -19,8 +19,7 @@
             More
           </a>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="#"><span class="glyphicon glyphicon-question-sign"> FAQs</a>
-            <a class="dropdown-item" href="#"><span class="glyphicon glyphicon-envelope"> Contacto</a>
+            <a class="dropdown-item" href="http://localhost/HomeSwitchHome/usuarios/faqs"><span class="glyphicon glyphicon-question-sign"> FAQs</a>
             <a class="dropdown-item" href="#"><span class="glyphicon glyphicon-fire"></span> Subastas</a>
             <a class="dropdown-item" href="#"><span class="glyphicon glyphicon-fire"></span> Hotsales</a>
           </div>
@@ -33,7 +32,7 @@
 {% block carrousel %}
 
   <body class="text-center" id="body_registrar">
-      <div class="container" id="div_agregar_residencia">  
+      <div class="container" id="div_agregar_residencia">
         <br>
 
 
@@ -42,8 +41,8 @@
                     <button type="button" class="close" data-dismiss="alert">&times;</button>
                     <strong class="animated flash"><span class="glyphicon glyphicon-exclamation-sign"></span></strong> Esta residencia no se puede modificar ya que tiene estadías reservadas, en subasta o hotsale.
               </div>
-          {% endif %}  
-        
+          {% endif %}
+
 
 
         <form action="http://localhost/HomeSwitchHome/admin/residencias/editar?id_residencia={{ residencia.id }}" enctype="multipart/form-data" onsubmit="return validarModificarResidencia();" method="post">
@@ -69,19 +68,19 @@
           <h1 id="titulo_form"class="h3 mb-3 font-weight-normal animated flash">Ingrese los nuevos datos de la residencia:</h1>
 
           <span class="glyphicon glyphicon-exclamation-sign"></span> Tenga en cuenta que debe modificar al menos un campo</p>
-          
+
 
           <div class="center-block form-group form">
             <label for="nombreM">Nombre:</label>
             <input type="text" pattern="[A-Za-z ñÑáéíóúÁÉÍÓÚ\s]+" title="Ingrese sólo letras" class="form-control" id="nombreM" placeholder="{{ residencia.nombre }}" value="{{ residencia.nombre }}" name="nombreM" oninput="habilitarSubmit();">
             <p class="animated shake" id="msjNombreM2"><span class="glyphicon glyphicon-exclamation-sign"></span> Debe ingresar solo letras.</p>
-            
+
           </div>
 
           <div class="center-block form-group form">
             <label for="descripcionM">Descripcion:</label>
             <input type="text" class="form-control" id="descripcionM" placeholder="{{ residencia.descripcion }}" value="{{ residencia.descripcion }}" name="descripcionM" oninput="habilitarSubmit();">
-            
+
           </div>
 
           <div class="center-block form-group form">
@@ -90,8 +89,8 @@
                 <div class="col">
                   	<input type="text" class="form-control" id="calleM" oninput="habilitarSubmit();" placeholder="{{ residencia.calle }}" value="{{ residencia.calle }}" name="calleM">
                     <p class="animated shake" id="msjCalleM2"><span class="glyphicon glyphicon-exclamation-sign"></span> Debe ingresar solo caracteres alfanuméricos.</p>
- 
-                    
+
+
                 </div>
                 <div class="col">
                 	<input type="number" min="1" pattern="[A-Za-z ñÑáéíóúÁÉÍÓÚ\s]+" class="form-control" oninput="habilitarSubmit();" id="alturaM" placeholder="{{ residencia.altura }}" value="{{ residencia.altura }}" name="alturaM">
@@ -107,7 +106,7 @@
                   	<input type="text"  pattern="[A-Za-z ñÑáéíóúÁÉÍÓÚ\s]+"  oninput="habilitarSubmit();" title="Ingrese sólo letras" class="form-control" id="ciudadM" placeholder="{{ residencia.ciudad }}" value="{{ residencia.ciudad }}" name="ciudadM">
                     <p class="animated shake" id="msjCiudadM2"><span class="glyphicon glyphicon-exclamation-sign"></span> Debe ingresar solo letras.</p>
 
-                    
+
                 </div>
                 <div class="col">
                 	<input type="text" pattern="[A-Za-z ñÑáéíóúÁÉÍÓÚ\s]+" title="Ingrese sólo letras" oninput="habilitarSubmit();" class="form-control" id="provinciaM" placeholder="{{ residencia.provincia }}" value="{{ residencia.provincia }}" name="provinciaM">
@@ -118,7 +117,7 @@
            </div>
 
 	          <div class="center-block form-group form">
-	          	
+
 	            <label for="capacidadM">Capacidad:</label>
 	            <input type="number" min="1" class="form-control" oninput="habilitarSubmit();" title="Ingrese un número mayor a 0" id="capacidadM" placeholder="{{ residencia.capacidad }}" value="{{ residencia.capacidad }}" name="capacidadM">
               <p class="animated shake" id="msjCapacidadM2"><span class="glyphicon glyphicon-exclamation-sign"></span> Debe ingresar un número mayor a 0.</p>
@@ -128,14 +127,14 @@
 	           <div class="center-block form-group form">
 		            <label for="foto">Foto:</label>
 		            <input type="file" class="form-control-file border" value="{{ residencia.foto }}" oninput="habilitarSubmit();" id="fotoM" name="fotoM">
-				        
+
 	            </div>
-	           
+
 
             {% if pendientes == true %}
 
-                <button type="submit" class="btn btn-secondary" disabled>Modificar residencia</button>   
-               
+                <button type="submit" class="btn btn-secondary" disabled>Modificar residencia</button>
+
 
 
             {% else %}
@@ -143,7 +142,7 @@
 	              <button id="submitModificar" type="submit" class="btn btn-secondary" disabled>Modificar residencia</button>
 
             {% endif %}  {# end if de pendientes  #}
-	        
+
 
 
           </div>
@@ -159,7 +158,7 @@
 {% block appContenido %}
 
 {% endblock %}
-    
+
 {% block appBody %}
 
 {% endblock %}

@@ -1,37 +1,61 @@
 {% extends 'overall/layout' %}
 {% block appHeader %}
 
-  <div id="navbar">
+  {% if esta_loggeado == 1 %}
+    <div id="navbar">
 
-  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-    <!-- Brand -->
-    <a class="navbar-brand" href="http://localhost/HomeSwitchHome/"><div><img src="app/img/HSH-Text.jpg" class="img-responsive" title="Logo Home Switch Home" style="width:180px;"></div></a>
+      <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <!-- Brand -->
+        <a class="navbar-brand" href="http://localhost/HomeSwitchHome/"><div><img src="app/img/HSH-Text.jpg" class="img-responsive" title="Logo Home Switch Home" style="width:180px;"></div></a>
 
-    <!-- Links -->
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" href="http://localhost/HomeSwitchHome/usuarios/operaciones/perfil"><span class="glyphicon glyphicon-user"></span>  Mi perfil</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="http://localhost/HomeSwitchHome/usuarios/cuenta/logout"><span class="glyphicon glyphicon-log-out"></span>   Cerrar Sesion</a>
-      </li>
+        <!-- Links -->
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="http://localhost/HomeSwitchHome/usuarios/operaciones/perfil"><span class="glyphicon glyphicon-user"></span>  Mi perfil</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="http://localhost/HomeSwitchHome/usuarios/cuenta/logout"><span class="glyphicon glyphicon-log-out"></span>   Cerrar Sesion</a>
+          </li>
 
-      <!-- Dropdown -->
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle my-2 my-lg-0" href="#" id="navbardrop" data-toggle="dropdown">
-          More
-        </a>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" href="#"><span class="glyphicon glyphicon-question-sign"> FAQs</a>
-          <a class="dropdown-item" href="#"><span class="glyphicon glyphicon-envelope"> Contacto</a>
-          <a class="dropdown-item" href="#"><span class="glyphicon glyphicon-fire"></span> Subastas</a>
-          <a class="dropdown-item" href="#"><span class="glyphicon glyphicon-fire"></span> Hotsales</a>
-        </div>
-      </li>
-    </ul>
-  </nav>
+          <!-- Dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle my-2 my-lg-0" href="#" id="navbardrop" data-toggle="dropdown">
+              More
+            </a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="#"><span class="glyphicon glyphicon-question-sign"> FAQs</a>
+                <a class="dropdown-item" href="#"><span class="glyphicon glyphicon-fire"></span> Subastas</a>
+                <a class="dropdown-item" href="#"><span class="glyphicon glyphicon-fire"></span> Hotsales</a>
+              </div>
+            </li>
+          </ul>
+        </nav>
 
-  </div>
+      </div>
+
+  {% else %}
+
+    <div id="navbar">
+
+      <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <!-- Brand -->
+        <a class="navbar-brand" href="http://localhost/HomeSwitchHome/"><div><img src="app/img/HSH-Text.jpg" class="img-responsive" title="Logo Home Switch Home" style="width:180px;"></div></a>
+
+        <!-- Links -->
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="http://localhost/HomeSwitchHome/usuarios/registro/registrar"><span class="glyphicon glyphicon-user"></span>  Registrarse</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="http://localhost/HomeSwitchHome/usuarios/faqs"><span class="glyphicon glyphicon-question-sign"></span> FAQs</a>
+          </li>
+        </ul>
+      </nav>
+
+    </div>
+
+  {% endif %}
+
 {% endblock %}
 
 {% block carrousel %}
@@ -49,56 +73,84 @@
     <div class="row">
       <p class="faq">
         <button class="faq btn btn-secondary" type="button" data-toggle="collapse" data-target="#faq1" aria-expanded="false" aria-controls="collapseExample">
-          faq1
+          ¿Cómo me registro?
         </button>
       </p>
     </div>
 
     <div class="row collapse" id="faq1">
       <p class="faq">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+        Registrarse en nuestra pagina web es simple y rápido. Solo tenes que hacer click en “Registrarse” ubicado en la barra superior de la pagina y completar con tus datos personales. Tene en cuenta que solo se pueden registrar personas mayores de 18 años y es necesario contar con una tarjeta ya sea de crédito o débito.
       </p>
     </div>
 
     <div class="row">
       <p class="faq">
         <button class="faq btn btn-secondary" type="button" data-toggle="collapse" data-target="#faq2" aria-expanded="false" aria-controls="collapseExample">
-          faq2
+          ¿Cómo ser un usuario Premium?
         </button>
       </p>
     </div>
 
     <div class="row collapse" id="faq2">
       <p class="faq">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+        Para registrarse como usuario Premium debe acercarse a nuestra oficina ubicada en la calle 48, numero 863, de 10 a 21 hs. Allí se le solicitaran nuevos datos personales y se le adjudicará membresía.
       </p>
     </div>
 
     <div class="row">
       <p class="faq">
         <button class="faq btn btn-secondary" type="button" data-toggle="collapse" data-target="#faq3" aria-expanded="false" aria-controls="collapseExample">
-          faq3
+          ¿Qué beneficios tiene ser un usuario Premium?
         </button>
       </p>
     </div>
 
     <div class="row collapse" id="faq3">
       <p class="faq">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+        Al ser un usuario Premium cuenta con la capacidad de adquirir cualquier estadía disponible de manera directa. También podrá comprar créditos de manera ilimitada, para utilizarlos cuando lo desee. Además podrá participar de subastas para obtener estadías a menor precio.
       </p>
     </div>
 
     <div class="row">
       <p class="faq">
         <button class="faq btn btn-secondary" type="button" data-toggle="collapse" data-target="#faq4" aria-expanded="false" aria-controls="collapseExample">
-          faq4
+          ¿Cómo adquirir una estadia?
         </button>
       </p>
     </div>
 
     <div class="row collapse" id="faq4">
       <p class="faq">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+        Únicamente las personas registradas en el sistema pueden adquirir una estadía. Aquellos que son usuarios estándar pueden adquirir estadías solo a través de Hotsales. En caso de que se trate de un usuario Premium, éste puede adquirir cualquier estadía disponible de forma automática, puede participar de subastas y además adquirir Hotsales.
+      </p>
+    </div>
+
+    <div class="row">
+      <p class="faq">
+        <button class="faq btn btn-secondary" type="button" data-toggle="collapse" data-target="#faq5" aria-expanded="false" aria-controls="collapseExample">
+          ¿Cómo participar de una subasta?
+        </button>
+      </p>
+    </div>
+
+    <div class="row collapse" id="faq5">
+      <p class="faq">
+        Para participar de una subasta debe contar al menos con un crédito. Al pujar en una subasta, se descuenta un crédito y se registra la puja. El sistema va informando el ganador actual y el monto mayor para mantener a los usuarios actualizados. Una vez finalizada la subasta, el sistema le informa al usuario ganador a traves de un mensaje.
+      </p>
+    </div>
+
+    <div class="row">
+      <p class="faq">
+        <button class="faq btn btn-secondary" type="button" data-toggle="collapse" data-target="#faq6" aria-expanded="false" aria-controls="collapseExample">
+          ¿Cómo adquirir un Hotsale?
+        </button>
+      </p>
+    </div>
+
+    <div class="row collapse" id="faq6">
+      <p class="faq">
+        Para adquirir un Hotsale no se requieren créditos... ¡pero si se requiere ser rápido! La primer persona que se lo adjudique la obtiene. Solo debe hacer click en “Adquirir Hotsale” y listo! Tenga en cuenta que los Hotsales tienen sus propios precios.
       </p>
     </div>
 

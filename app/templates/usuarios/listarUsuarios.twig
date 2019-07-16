@@ -19,8 +19,7 @@
                 More
               </a>
               <div class="dropdown-menu">
-                <a class="dropdown-item" href="#"><span class="glyphicon glyphicon-question-sign"> FAQs</a>
-                <a class="dropdown-item" href="#"><span class="glyphicon glyphicon-envelope"> Contacto</a>
+                <a class="dropdown-item" href="http://localhost/HomeSwitchHome/usuarios/faqs"><span class="glyphicon glyphicon-question-sign"> FAQs</a>
                 <a class="dropdown-item" href="#"><span class="glyphicon glyphicon-fire"></span> Subastas</a>
                 <a class="dropdown-item" href="#"><span class="glyphicon glyphicon-fire"></span> Hotsales</a>
               </div>
@@ -28,14 +27,14 @@
           </ul>
         </nav>
 
-        </div> 
+        </div>
     {% endblock %}
 
 {% block carrousel %}
-	
+
 	<div id="div_listar_residencias" class="py-5 bg-light">
 	    <div class="container">
-	      
+
 	      <div class="container">
 	      	<a href="http://localhost/HomeSwitchHome"><button id="atras" class="btn btn-secondary my-2">Atrás</button></a>
 	      </div>
@@ -53,7 +52,7 @@
 	      <div class="container-fluid row">
 
 	      	{% for u in usuarios %}
-	      		
+
 	        	<div class="container-fluid panel col-lg-4">
 		      		<div class="container-fluid">
 			            <img id="fotoRedondelHL" src="{{ u.foto }}" class="bd-placeholder-img rounded-circle" >
@@ -70,14 +69,14 @@
 
 	        {% endfor %}
 
-	    
+
 	      </div>
 
-	      
+
 	    </div>
 	</div>
-	
-	   
+
+
 {% endblock %}
 {% block appContenido%} {% endblock %}
 {% block appBody%} {% endblock %}

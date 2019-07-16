@@ -19,8 +19,7 @@
                 More
               </a>
               <div class="dropdown-menu">
-                <a class="dropdown-item" href="#"><span class="glyphicon glyphicon-question-sign"> FAQs</a>
-                <a class="dropdown-item" href="#"><span class="glyphicon glyphicon-envelope"> Contacto</a>
+                <a class="dropdown-item" href="http://localhost/HomeSwitchHome/usuarios/faqs"><span class="glyphicon glyphicon-question-sign"> FAQs</a>
                 <a class="dropdown-item" href="#"><span class="glyphicon glyphicon-fire"></span> Subastas</a>
                 <a class="dropdown-item" href="#"><span class="glyphicon glyphicon-fire"></span> Hotsales</a>
               </div>
@@ -28,11 +27,11 @@
           </ul>
         </nav>
 
-        </div> 
+        </div>
     {% endblock %}
 
 {% block carrousel %}
-  
+
   <div class="py-5 bg-light">
       <div class="container">
         {% if data.sin_error == 1 and data.usuario_ganador != 0 %}
@@ -61,17 +60,17 @@
           </div>
 
         {% else %}
-        
+
 
 
         <div class="row">
-          
+
 
           {% for s in subastas %}
 
           <div class="col-md-4">
             <div id="div_subasta_admin" class="card mb-4 shadow-sm">
-              
+
               <div class="card-body">
                 <img id="card_foto_residencia" src="{{ s.foto }}" class="card-img-top" >
                 <p class="card-text"> &nbsp; </p>
@@ -80,7 +79,7 @@
                 <p class="card-text"><span class="glyphicon glyphicon-map-marker"></span><strong> Ciudad:</strong> {{ s.ciudad }}</p>
                 <p class="card-text"><span class="glyphicon glyphicon-map-marker"></span><strong> Provincia:</strong> {{ s.provincia }}</p>
                 <p class="card-text"><span class="glyphicon glyphicon-ok"></span><strong> Estado:</strong> {{ s.estado|capitalize }}</p>
-                
+
 
                 <div class="d-flex justify-content-between align-items-center">
                   <div id="botones" class="btn-group">
@@ -100,18 +99,18 @@
           </div>
 
           {% endfor %}
-      
 
-       
+
+
         </div>
 
 
         {% endif %}
-        
+
       </div>
   </div>
-  
-     
+
+
 {% endblock %}
 {% block appContenido%} {% endblock %}
 {% block appBody%} {% endblock %}

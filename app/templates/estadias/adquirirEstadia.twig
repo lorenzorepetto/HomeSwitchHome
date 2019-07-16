@@ -73,7 +73,7 @@
 
 
           {% if usuario.creditos > 0 %}
-            <a href="http://localhost/HomeSwitchHome/estadias/adquirir/{{ estadia.id_estadia }}/{{ fecha_desde }}/{{ fecha_hasta }}/{{ ciudad }}" onclick="return confirmarEstadia();"><button class="btn btn-secondary my-2">Confirmar</button></a>
+            <a href="http://localhost/HomeSwitchHome/estadias/adquirir/{{ estadia.id_estadia }}/{{ fecha_desde }}/{{ fecha_hasta }}/{{ ciudad }}" onclick="return confirmarEstadia();"><button class="btn btn-secondary my-2">Adquirir</button></a>
           {% else %}
             <button class="btn btn-secondary my-2" onclick="return confirmarEstadia();" disabled>Confirmar</button>
           {% endif %}
